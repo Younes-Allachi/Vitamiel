@@ -14,6 +14,7 @@ import lombok.Setter;
 
 public class Vitamiel {
 	
+	private int id;
 	private String nom;
 	private String adresse;
 	private String email;
