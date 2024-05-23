@@ -8,6 +8,7 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+<<<<<<< HEAD
 	<groupId>com.vita</groupId>
 	<artifactId>vitamiel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -22,10 +23,37 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
+=======
+	<groupId>ICC.TFE</groupId>
+	<artifactId>Vitamiel</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Vitamiel</name>
+	<description>Website for Vitamiel</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		 <version>8.0.29</version>
+    	</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+				<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+				<dependency>
+>>>>>>> 298ebbdb5deb8b20732a8970dcf2dd3641b63117
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+<<<<<<< HEAD
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
@@ -47,10 +75,21 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+=======
+>>>>>>> 298ebbdb5deb8b20732a8970dcf2dd3641b63117
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
+=======
+		<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.32</version>
+		<scope>provided</scope>
+	</dependency>
+>>>>>>> 298ebbdb5deb8b20732a8970dcf2dd3641b63117
 	</dependencies>
 
 	<build>
@@ -58,6 +97,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+<<<<<<< HEAD
 				<configuration>
 					<excludes>
 						<exclude>
@@ -66,6 +106,8 @@
 						</exclude>
 					</excludes>
 				</configuration>
+=======
+>>>>>>> 298ebbdb5deb8b20732a8970dcf2dd3641b63117
 			</plugin>
 		</plugins>
 	</build>
