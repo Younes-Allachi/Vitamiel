@@ -4,6 +4,7 @@ import com.vita.vitamiel.model.Job;
 import com.vita.vitamiel.repository.JobRepository;
 import com.vita.vitamiel.service.JobService;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class JobServiceImplementation implements JobService {
@@ -34,7 +35,14 @@ public class JobServiceImplementation implements JobService {
 
     @Override
     public Job findJobById(UUID id) throws Exception {
-        return null;
+
+        Optional<Job> opt = jobRepository.findById(id);
+
+        if(opt.isPresent()){
+
+            opt.get();
+        }
+        throw new  Exception("le job avec id suivant n'a pas été trouvé"+id);
     }
 
     @Override
@@ -44,6 +52,10 @@ public class JobServiceImplementation implements JobService {
 
     @Override
     public void deleteJob(UUID id) throws Exception {
+
+        findJobById(id);
+
+        jobRepository.deleteById(id);
 
     }
 }
