@@ -32,6 +32,6 @@ public class Job {
     private String langue;
     private String education;
     private String secteur;
-    private boolean statut;
+    private Boolean statut;
 
    }

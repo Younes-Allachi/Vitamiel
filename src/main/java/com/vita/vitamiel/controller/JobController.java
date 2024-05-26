@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/job")
@@ -37,5 +38,22 @@ public class JobController {
 
         return  createdJob;
     }
+
+    @PutMapping("/{id}")
+    public Job updateJob(@RequestBody Job job, @PathVariable UUID id) throws Exception{
+
+      Job updateJob = jobService.updateJob(job, id);
+
+      return updateJob;
+    }
+
+    @DeleteMapping("/{jobid}")
+    public String deletejob(@PathVariable UUID jobid) throws Exception{
+
+        jobService.deleteJob(jobid);
+
+        return "le job a bien été effacé";
+    }
+
 
 }

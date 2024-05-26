@@ -31,7 +31,7 @@ public class JobServiceImplementation implements JobService {
         createJob.setLangue(job.getLangue());
         createJob.setEducation(job.getEducation());
         createJob.setSecteur(job.getSecteur());
-        createJob.setStatut(job.isStatut());
+        createJob.setStatut(job.getStatut());
 
         return jobRepository.save(createJob);
     }
@@ -43,9 +43,9 @@ public class JobServiceImplementation implements JobService {
 
         if(opt.isPresent()){
 
-            opt.get();
+            return opt.get();
         }
-        throw new  Exception("le job avec id suivant n'a pas été trouvé"+id);
+        throw new  Exception("le job avec id suivant n'a pas été trouvé " +id);
     }
 
     @Override
@@ -62,9 +62,9 @@ public class JobServiceImplementation implements JobService {
             oldJob.setFin(job.getFin());
         }
 
-        if(job.isStatut() != false){
+        if(job.getStatut() != null){
 
-            oldJob.setStatut(job.isStatut());
+            oldJob.setStatut(job.getStatut());
         }
         return jobRepository.save(oldJob);
     }
