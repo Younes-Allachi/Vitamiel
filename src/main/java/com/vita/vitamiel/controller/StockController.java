@@ -4,11 +4,10 @@ import com.vita.vitamiel.model.Stock;
 import com.vita.vitamiel.repository.StockRepository;
 import com.vita.vitamiel.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/stock")
@@ -40,4 +39,21 @@ public class StockController {
         return createdStock;
 
     }
+
+    @PutMapping("/{id}")
+    public Stock updatedStock(@RequestBody Stock stock, @PathVariable UUID id) throws Exception {
+
+        Stock updatedStock = stockService.updateStock(stock,id);
+
+        return updatedStock;
+    }
+
+    @DeleteMapping("/{stockId}")
+    public String deleteStock(@PathVariable UUID stockId) throws Exception{
+
+        stockService.deleteStock(stockId);
+
+        return  "le stock du produit a été supprimer";
+    }
+
 }
