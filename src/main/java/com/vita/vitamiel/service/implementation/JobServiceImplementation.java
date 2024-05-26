@@ -3,12 +3,15 @@ package com.vita.vitamiel.service.implementation;
 import com.vita.vitamiel.model.Job;
 import com.vita.vitamiel.repository.JobRepository;
 import com.vita.vitamiel.service.JobService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
-
+@Service
 public class JobServiceImplementation implements JobService {
 
+    @Autowired
     private JobRepository jobRepository;
     @Override
     public Job createjob(Job job) {
