@@ -17,10 +17,10 @@ public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    UUID id;
-    String nom;
-    double prix;
-    int quantite;
+    private UUID id;
+    private String nom;
+    private double prix;
+    private int quantite;
 
 
 }
