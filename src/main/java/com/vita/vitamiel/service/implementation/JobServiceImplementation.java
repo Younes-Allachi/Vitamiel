@@ -47,7 +47,23 @@ public class JobServiceImplementation implements JobService {
 
     @Override
     public Job updateJob(Job job, UUID id) throws Exception {
-        return null;
+
+        Job oldJob = findJobById(id);
+
+        if(job.getDebut() !=null){
+            oldJob.setDebut(job.getDebut());
+        }
+
+        if(job.getFin() !=null){
+
+            oldJob.setFin(job.getFin());
+        }
+
+        if(job.isStatut() != false){
+
+            oldJob.setStatut(job.isStatut());
+        }
+        return jobRepository.save(oldJob);
     }
 
     @Override
