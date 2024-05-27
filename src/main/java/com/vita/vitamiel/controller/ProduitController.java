@@ -1,6 +1,7 @@
 package com.vita.vitamiel.controller;
 
 import com.vita.vitamiel.model.Produit;
+import com.vita.vitamiel.model.Stock;
 import com.vita.vitamiel.repository.ProduitRepository;
 import com.vita.vitamiel.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,13 @@ public class ProduitController {
         return createProduit;
     }
 
+    @PutMapping("/{id}")
+    public Produit updatedProduit(@RequestBody Produit produit, @PathVariable UUID id) throws Exception {
 
+        Produit updatedProduit = produitService.updateProduit(produit,id);
+
+        return updatedProduit;
+    }
 
     @DeleteMapping("/{produitid}")
     public String deleteProduit(@PathVariable UUID produitid) throws Exception{
