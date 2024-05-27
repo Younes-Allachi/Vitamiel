@@ -1,8 +1,6 @@
 package com.vita.vitamiel.service;
 
 import com.vita.vitamiel.model.Job;
-import com.vita.vitamiel.model.Stock;
-
 import java.util.UUID;
 
 public interface JobService {
