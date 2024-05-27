@@ -4,9 +4,7 @@ import com.vita.vitamiel.model.Produit;
 import com.vita.vitamiel.repository.ProduitRepository;
 import com.vita.vitamiel.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 
@@ -31,7 +29,14 @@ public class ProduitController {
 
         return produits;
 
-
     }
+
+    @PostMapping("/produitpost")
+    public Produit createProduit(@RequestBody Produit produit){
+        Produit createProduit = produitService.createProduit(produit);
+
+        return createProduit;
+    }
+
 
 }
