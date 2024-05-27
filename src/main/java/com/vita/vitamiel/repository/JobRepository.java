@@ -11,4 +11,6 @@ public interface JobRepository extends JpaRepository<Job, UUID> {
 
     @Query("SELECT j FROM Job j")
     LinkedList<Job> findAllJob();
+
+
 }

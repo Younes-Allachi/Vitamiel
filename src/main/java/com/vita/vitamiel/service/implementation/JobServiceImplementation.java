@@ -13,6 +13,7 @@ public class JobServiceImplementation implements JobService {
 
     @Autowired
     private JobRepository jobRepository;
+
     @Override
     public Job createjob(Job job) {
 
@@ -32,6 +33,8 @@ public class JobServiceImplementation implements JobService {
         createJob.setEducation(job.getEducation());
         createJob.setSecteur(job.getSecteur());
         createJob.setStatut(job.getStatut());
+
+
 
         return jobRepository.save(createJob);
     }
