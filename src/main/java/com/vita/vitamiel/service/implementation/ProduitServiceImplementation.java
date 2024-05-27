@@ -6,6 +6,7 @@ import com.vita.vitamiel.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -31,12 +32,42 @@ public class ProduitServiceImplementation implements ProduitService {
 
     @Override
     public Produit findProduitById(UUID id) throws Exception {
-        return null;
+
+        Optional<Produit> opt = produitRepository.findById(id);
+
+        if(opt.isPresent()){
+            return opt.get();
+        }
+        throw new  Exception("le produit avec id suivant n'a pas été trouvé " +id);
+
     }
 
     @Override
     public Produit updateProduit(Produit produit, UUID id) throws Exception {
-        return null;
+
+        Produit oldproduit = findProduitById(id);
+
+        if(produit.getNom() !=null){
+            oldproduit.setNom(produit.getNom());
+        }
+
+        if(produit.getDescription() !=null){
+            oldproduit.setDescription(produit.getDescription());
+        }
+
+        if(produit.getOrigine() !=null){
+            oldproduit.setOrigine(produit.getOrigine());
+        }
+
+        if(produit.getPoids() != 0){
+            oldproduit.setPoids(produit.getPoids());
+        }
+
+        if(produit.getPrix() !=0){
+            oldproduit.setPrix(produit.getPrix());
+        }
+
+        return produitRepository.save(oldproduit);
     }
 
     @Override
