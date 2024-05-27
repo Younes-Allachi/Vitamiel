@@ -73,5 +73,9 @@ public class ProduitServiceImplementation implements ProduitService {
     @Override
     public void deleteProduit(UUID id) throws Exception {
 
+        findProduitById(id);
+
+        produitRepository.deleteById(id);
+
     }
 }
