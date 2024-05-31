@@ -24,6 +24,9 @@ public class Produit {
     private double poids;
     private double prix;
 
+    @ManyToOne
+    private Stock stock;
+
     public void obtenirDetailsProduit(){
 
     }

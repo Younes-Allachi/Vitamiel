@@ -1,6 +1,7 @@
 package com.vita.vitamiel.service.implementation;
 
 import com.vita.vitamiel.model.Produit;
+import com.vita.vitamiel.model.Stock;
 import com.vita.vitamiel.repository.ProduitRepository;
 import com.vita.vitamiel.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ProduitServiceImplementation implements ProduitService {
     private ProduitRepository produitRepository;
 
     @Override
-    public Produit createProduit(Produit produit){
+    public Produit createProduit(Produit produit, Stock stock){
 
         Produit createProduit = new Produit();
 
@@ -25,6 +26,7 @@ public class ProduitServiceImplementation implements ProduitService {
         createProduit.setOrigine(produit.getOrigine());
         createProduit.setPoids(produit.getPoids());
         createProduit.setPrix(produit.getPrix());
+        createProduit.setStock(stock);
 
         return produitRepository.save(createProduit);
 

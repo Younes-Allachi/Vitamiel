@@ -4,6 +4,7 @@ import com.vita.vitamiel.model.Produit;
 import com.vita.vitamiel.model.Stock;
 import com.vita.vitamiel.repository.ProduitRepository;
 import com.vita.vitamiel.service.ProduitService;
+import com.vita.vitamiel.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,9 @@ public class ProduitController {
     @Autowired
    private  ProduitService produitService;
 
+    @Autowired
+    private StockService stockService;
+
     @GetMapping("/produits")
         public LinkedList<Produit> getAllProduit() throws Exception{
 
@@ -33,9 +37,10 @@ public class ProduitController {
 
     }
 
-    @PostMapping("/produitpost")
-    public Produit createProduit(@RequestBody Produit produit){
-        Produit createProduit = produitService.createProduit(produit);
+    @PostMapping("/produitpost/{id}")
+    public Produit createProduit(@RequestBody Produit produit, @PathVariable  UUID id) throws Exception{
+        Stock stock = stockService.findStockById(id);
+        Produit createProduit = produitService.createProduit(produit, stock);
 
         return createProduit;
     }

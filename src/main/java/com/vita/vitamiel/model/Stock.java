@@ -19,7 +19,6 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String nom;
-    private double prix;
     private int quantite;
 
 

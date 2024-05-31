@@ -18,7 +18,6 @@ public class StockServiceImplementation implements StockService {
 
         Stock createStock = new Stock();
         createStock.setNom(stock.getNom());
-        createStock.setPrix(stock.getPrix());
         createStock.setQuantite(stock.getQuantite());
         return stockRepository.save(createStock);
     }
@@ -44,11 +43,6 @@ public class StockServiceImplementation implements StockService {
 
             oldStock.setQuantite(stock.getQuantite());
 
-        }
-
-        if(stock.getPrix() != 0.0){
-
-            oldStock.setPrix(stock.getPrix());
         }
 
         return stockRepository.save(oldStock);
