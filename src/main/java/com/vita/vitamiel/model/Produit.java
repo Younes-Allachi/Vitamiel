@@ -27,6 +27,8 @@ public class Produit {
     @ManyToOne
     private Stock stock;
 
+
+
     public void obtenirDetailsProduit(){
 
     }
