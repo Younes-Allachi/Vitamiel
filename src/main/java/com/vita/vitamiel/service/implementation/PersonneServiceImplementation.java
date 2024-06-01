@@ -6,6 +6,7 @@ import com.vita.vitamiel.service.PersonneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -28,7 +29,14 @@ public class PersonneServiceImplementation implements PersonneService {
 
     @Override
     public Personne findPersonne(UUID id) throws Exception {
-        return null;
+
+        Optional<Personne> personneOptional = personneRepository.findById(id);
+
+        if(personneOptional.isPresent()){
+            return personneOptional.get();
+        }
+        throw new  Exception("la personne avec id suivant n'a pas été trouvé " +id);
+
     }
 
     @Override
