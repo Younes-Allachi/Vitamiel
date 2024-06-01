@@ -49,4 +49,14 @@ public class PersonneController {
         return updatePersonne;
     }
 
+    @DeleteMapping("/{personneid}")
+    public String deletePersonne(@PathVariable UUID personneid) throws Exception{
+
+        personneService.deletePersonne(personneid);
+
+        return "suppression effectué";
+    }
+
+
+
 }
