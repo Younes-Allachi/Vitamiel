@@ -62,5 +62,9 @@ public class PersonneServiceImplementation implements PersonneService {
     @Override
     public void deletePersonne(UUID id) throws Exception {
 
+        findPersonne(id);
+
+        personneRepository.deleteById(id);
+
     }
 }
