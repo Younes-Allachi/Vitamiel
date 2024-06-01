@@ -41,7 +41,22 @@ public class PersonneServiceImplementation implements PersonneService {
 
     @Override
     public Personne updatePersonne(Personne personne, UUID id) throws Exception {
-        return null;
+
+        Personne oldPersonne = findPersonne(id);
+
+        if(oldPersonne.getNom() !=null){
+            oldPersonne.setNom(oldPersonne.getNom());
+        }
+
+        if(oldPersonne.getPrenom() !=null){
+
+            oldPersonne.setPrenom(oldPersonne.getPrenom());
+        }
+        if(oldPersonne.getPays() !=null){
+
+            oldPersonne.setPays(oldPersonne.getPays());
+        }
+        return personneRepository.save(oldPersonne);
     }
 
     @Override
