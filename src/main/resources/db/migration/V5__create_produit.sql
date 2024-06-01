@@ -7,8 +7,10 @@ CREATE TABLE produit
     poids       DOUBLE PRECISION NOT NULL,
     prix        DOUBLE PRECISION NOT NULL,
     stock_id UUID not null,
+    personne_id UUID not null,
     CONSTRAINT pk_produit PRIMARY KEY (id),
-    CONSTRAINT fk_stock_id FOREIGN KEY (stock_id) REFERENCES stock (id)
+    CONSTRAINT fk_stock_id FOREIGN KEY (stock_id) REFERENCES stock (id),
+    CONSTRAINT fk_personne_id FOREIGN KEY (personne_id) REFERENCES personne (id)
 
 );
 

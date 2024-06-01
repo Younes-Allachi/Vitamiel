@@ -1,5 +1,6 @@
 package com.vita.vitamiel.service.implementation;
 
+import com.vita.vitamiel.model.Personne;
 import com.vita.vitamiel.model.Produit;
 import com.vita.vitamiel.model.Stock;
 import com.vita.vitamiel.repository.ProduitRepository;
@@ -17,7 +18,7 @@ public class ProduitServiceImplementation implements ProduitService {
     private ProduitRepository produitRepository;
 
     @Override
-    public Produit createProduit(Produit produit, Stock stock){
+    public Produit createProduit(Produit produit, Stock stock, Personne personne){
 
         Produit createProduit = new Produit();
 
@@ -27,6 +28,7 @@ public class ProduitServiceImplementation implements ProduitService {
         createProduit.setPoids(produit.getPoids());
         createProduit.setPrix(produit.getPrix());
         createProduit.setStock(stock);
+        createProduit.setPersonne(personne);
 
         return produitRepository.save(createProduit);
 
