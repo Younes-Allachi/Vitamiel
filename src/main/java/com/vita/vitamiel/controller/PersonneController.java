@@ -4,9 +4,7 @@ import com.vita.vitamiel.model.Personne;
 import com.vita.vitamiel.repository.PersonneRepository;
 import com.vita.vitamiel.service.PersonneService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 
@@ -22,7 +20,7 @@ public class PersonneController {
     }
 
     @Autowired
-    PersonneService personneService;
+    private PersonneService personneService;
 
     @GetMapping("/personnes")
     public LinkedList<Personne> getAllPersonne() throws Exception{
@@ -31,5 +29,13 @@ public class PersonneController {
 
         return personnes;
 
+    }
+
+    @PostMapping("/personnecreate")
+    public Personne createPersonne(@RequestBody Personne personne) throws Exception{
+
+        Personne personnecreated = personneService.createPersonne(personne);
+
+        return  personnecreated;
     }
 }

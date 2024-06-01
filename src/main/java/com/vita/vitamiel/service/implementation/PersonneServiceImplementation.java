@@ -19,9 +19,9 @@ public class PersonneServiceImplementation implements PersonneService {
     public Personne createPersonne(Personne personne) {
         Personne personneCreated = new Personne();
 
-        personneCreated.setNom(personneCreated.getNom());
-        personneCreated.setPrenom(personneCreated.getPrenom());
-        personneCreated.setPays(personneCreated.getPays());
+        personneCreated.setNom(personne.getNom());
+        personneCreated.setPrenom(personne.getPrenom());
+        personneCreated.setPays(personne.getPays());
 
         return personneRepository.save(personneCreated);
 
@@ -30,10 +30,10 @@ public class PersonneServiceImplementation implements PersonneService {
     @Override
     public Personne findPersonne(UUID id) throws Exception {
 
-        Optional<Personne> personneOptional = personneRepository.findById(id);
+        Optional<Personne> opt = personneRepository.findById(id);
 
-        if(personneOptional.isPresent()){
-            return personneOptional.get();
+        if(opt.isPresent()){
+            return opt.get();
         }
         throw new  Exception("la personne avec id suivant n'a pas été trouvé " +id);
 

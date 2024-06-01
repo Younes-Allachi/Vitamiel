@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface PersonneRepository extends JpaRepository<Personne, UUID> {
 
-    @Query("SELECT p FROM Produit p")
+    @Query("SELECT p FROM Personne p")
     LinkedList<Personne> findAllPersonne();
 }
