@@ -1,12 +1,14 @@
 package com.vita.vitamiel.controller;
 
 import com.vita.vitamiel.model.Personne;
+import com.vita.vitamiel.model.Produit;
 import com.vita.vitamiel.repository.PersonneRepository;
 import com.vita.vitamiel.service.PersonneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/personne")
@@ -38,4 +40,13 @@ public class PersonneController {
 
         return  personnecreated;
     }
+
+    @PutMapping("/{id}")
+    public Personne updatedPersonne(@RequestBody Personne personne, @PathVariable UUID id) throws Exception {
+
+        Personne updatePersonne = personneService.updatePersonne(personne,id);
+
+        return updatePersonne;
+    }
+
 }

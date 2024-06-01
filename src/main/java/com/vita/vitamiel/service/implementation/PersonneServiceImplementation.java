@@ -45,16 +45,16 @@ public class PersonneServiceImplementation implements PersonneService {
         Personne oldPersonne = findPersonne(id);
 
         if(oldPersonne.getNom() !=null){
-            oldPersonne.setNom(oldPersonne.getNom());
+            oldPersonne.setNom(personne.getNom());
         }
 
         if(oldPersonne.getPrenom() !=null){
 
-            oldPersonne.setPrenom(oldPersonne.getPrenom());
+            oldPersonne.setPrenom(personne.getPrenom());
         }
         if(oldPersonne.getPays() !=null){
 
-            oldPersonne.setPays(oldPersonne.getPays());
+            oldPersonne.setPays(personne.getPays());
         }
         return personneRepository.save(oldPersonne);
     }
