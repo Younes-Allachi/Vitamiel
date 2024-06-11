@@ -30,6 +30,10 @@ public class Produit {
     @ManyToOne
     private Personne personne;
 
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Category category;
+
 
 
     public void obtenirDetailsProduit(){
