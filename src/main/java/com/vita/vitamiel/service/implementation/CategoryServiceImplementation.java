@@ -6,6 +6,7 @@ import com.vita.vitamiel.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,7 +22,15 @@ public class CategoryServiceImplementation implements CategoryService {
 
     @Override
     public Category findCategoryById(UUID id) throws Exception {
-        return null;
+
+        Optional<Category> opt = categoryRepository.findById(id);
+
+        if(opt.isPresent()){
+
+            return opt.get();
+        }
+        throw new  Exception("le job avec id suivant n'a pas été trouvé " +id);
+
     }
 
     @Override
