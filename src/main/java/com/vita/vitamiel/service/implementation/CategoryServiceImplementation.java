@@ -41,7 +41,18 @@ public class CategoryServiceImplementation implements CategoryService {
 
     @Override
     public Category updateCategory(Category category, UUID id) throws Exception {
-        return null;
+
+        Category oldcategory = findCategoryById(id);
+
+        if(category.getNom() !=null){
+            oldcategory.setNom(category.getNom());
+        }
+
+        if(category.getProduits() !=null){
+            oldcategory.setProduits(category.getProduits());
+        }
+
+        return categoryRepository.save(oldcategory);
     }
 
     @Override
