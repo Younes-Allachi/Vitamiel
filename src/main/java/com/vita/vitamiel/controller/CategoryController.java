@@ -1,12 +1,11 @@
 package com.vita.vitamiel.controller;
 
 import com.vita.vitamiel.model.Category;
+import com.vita.vitamiel.model.Job;
 import com.vita.vitamiel.repository.CategoryRepository;
 import com.vita.vitamiel.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 
@@ -31,6 +30,14 @@ public class CategoryController {
         LinkedList<Category> categories = categoryRepository.findAllCategory();
 
         return categories;
+    }
+
+    @PostMapping("/createcategory")
+    public Category createCategory(@RequestBody Category category){
+
+        Category createdCategory = categoryService.createcategory(category);
+
+        return  createdCategory;
     }
 
 
