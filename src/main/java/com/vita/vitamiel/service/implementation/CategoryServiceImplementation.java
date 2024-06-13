@@ -23,7 +23,7 @@ public class CategoryServiceImplementation implements CategoryService {
         category1.setNom(category.getNom());
         category1.setProduits(category.getProduits());
 
-        return null;
+        return  categoryRepository.save(category1);
     }
 
     @Override
