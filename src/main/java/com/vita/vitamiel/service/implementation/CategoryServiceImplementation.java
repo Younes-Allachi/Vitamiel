@@ -17,6 +17,12 @@ public class CategoryServiceImplementation implements CategoryService {
 
     @Override
     public Category createcategory(Category category) {
+
+        Category category1 = new Category();
+
+        category1.setNom(category.getNom());
+        category1.setProduits(category.getProduits());
+
         return null;
     }
 

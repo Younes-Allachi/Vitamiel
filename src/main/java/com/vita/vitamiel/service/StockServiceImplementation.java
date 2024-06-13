@@ -19,6 +19,7 @@ public class StockServiceImplementation implements StockService {
         Stock createStock = new Stock();
         createStock.setNom(stock.getNom());
         createStock.setQuantite(stock.getQuantite());
+        createStock.set
         return stockRepository.save(createStock);
     }
 
