@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/category")
@@ -38,6 +39,14 @@ public class CategoryController {
         Category createdCategory = categoryService.createcategory(category);
 
         return  createdCategory;
+    }
+
+    @DeleteMapping("/{jobid}")
+    public String deletecategory(@PathVariable UUID categoryId) throws Exception{
+
+        categoryService.deleteCategory(categoryId);
+
+        return "la catégory a bien été effacé";
     }
 
 
