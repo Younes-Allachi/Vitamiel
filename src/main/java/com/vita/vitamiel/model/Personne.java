@@ -28,6 +28,9 @@ public class Personne {
     @OneToMany(mappedBy = "personne")
     List<Produit> produits;
 
+    @OneToOne
+    private Job job;
+
     public void vueProduits(){
 
     }

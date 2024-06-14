@@ -47,4 +47,8 @@ public class Job {
 
     private Boolean statut;
 
+    @OneToOne
+    @JoinColumn(name = "id_personne")
+    Personne personne;
+
    }
