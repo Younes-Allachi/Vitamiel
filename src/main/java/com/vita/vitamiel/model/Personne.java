@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,8 +20,13 @@ public class Personne {
     private UUID id;
 
     private String nom;
+
     private String prenom;
+
     private String pays;
+
+    @OneToMany(mappedBy = "personne")
+    List<Produit> produits;
 
     public void vueProduits(){
 

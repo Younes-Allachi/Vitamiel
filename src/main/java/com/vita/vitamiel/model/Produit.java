@@ -29,6 +29,7 @@ public class Produit {
     private Stock stock;
 
     @ManyToOne
+    @JoinColumn(name = "id_personne")
     private Personne personne;
 
     @ManyToOne
