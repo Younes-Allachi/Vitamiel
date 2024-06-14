@@ -1,7 +1,6 @@
 package com.vita.vitamiel.controller;
 
 import com.vita.vitamiel.model.Category;
-import com.vita.vitamiel.model.Job;
 import com.vita.vitamiel.repository.CategoryRepository;
 import com.vita.vitamiel.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,15 @@ public class CategoryController {
         return  createdCategory;
     }
 
-    @DeleteMapping("/{jobid}")
+    @PutMapping("/{id}")
+    public Category updateCategory(@RequestBody Category category, @PathVariable UUID id) throws Exception{
+
+        Category updateCategory = categoryService.updateCategory(category, id);
+
+        return updateCategory;
+    }
+
+    @DeleteMapping("/{categoryId}")
     public String deletecategory(@PathVariable UUID categoryId) throws Exception{
 
         categoryService.deleteCategory(categoryId);
