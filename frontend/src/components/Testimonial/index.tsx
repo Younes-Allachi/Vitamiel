@@ -25,12 +25,12 @@ const Testimonial: React.FC = () => {
           <div className="col-lg-6 offset-lg-3">
             <div className="section-title">
               <h2>
-                Client <span>Testimonial</span>
+                Témoignages <span>Clients</span>
               </h2>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry has been the industry's standard consectetur
-                adipisicing elit.
+                Nos clients adorent notre miel, et voici ce qu'ils disent de
+                leur expérience avec nos produits. De la qualité au goût, notre
+                miel laisse une impression durable !
               </p>
             </div>
           </div>
@@ -40,21 +40,21 @@ const Testimonial: React.FC = () => {
             <Slider {...settings}>
               <div className="testimonial-item">
                 <div className="testimonial-img">
-                  <img src={test1} alt="Testimonial 1" />
+                  <img src={test1} alt="Témoignage Rachel Matthews" />
                   <div className="t-quote">
                     <i className="fi flaticon-left-quote"></i>
                   </div>
                 </div>
                 <div className="testimonial-content">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry has been the industry's standard dummy
-                    text ever since the 1500s. Unknown printer took a galley of
-                    type and scrambled it to make a type specimen book.
+                    "Le miel que j'ai reçu était absolument fantastique ! Je
+                    n'ai jamais goûté un miel aussi pur et frais. Il a
+                    complètement transformé mon thé du matin. Je le recommande
+                    vivement !"
                   </p>
                   <div className="testimonial-author">
                     <h3>Rachel Matthews</h3>
-                    <span>CEO, Deixfes</span>
+                    <span>PDG, Deixfes</span>
                   </div>
                   <div className="t-content-quote">
                     <i className="fi flaticon-left-quote"></i>
@@ -63,21 +63,21 @@ const Testimonial: React.FC = () => {
               </div>
               <div className="testimonial-item">
                 <div className="testimonial-img">
-                  <img src={test2} alt="Testimonial 2" />
+                  <img src={test2} alt="Témoignage David Warner" />
                   <div className="t-quote">
                     <i className="fi flaticon-left-quote"></i>
                   </div>
                 </div>
                 <div className="testimonial-content">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry has been the industry's standard dummy
-                    text ever since the 1500s. Unknown printer took a galley of
-                    type and scrambled it to make a type specimen book.
+                    "J'ai essayé plusieurs types de miel, mais celui-ci se
+                    démarque par sa saveur riche et sa texture douce. C'est le
+                    complément parfait pour mes desserts, et j'adore son goût
+                    naturel."
                   </p>
                   <div className="testimonial-author">
                     <h3>David Warner</h3>
-                    <span>CEO, TBR</span>
+                    <span>PDG, TBR</span>
                   </div>
                   <div className="t-content-quote">
                     <i className="fi flaticon-left-quote"></i>
@@ -86,21 +86,21 @@ const Testimonial: React.FC = () => {
               </div>
               <div className="testimonial-item">
                 <div className="testimonial-img">
-                  <img src={test3} alt="Testimonial 3" />
+                  <img src={test3} alt="Témoignage Ken Williamson" />
                   <div className="t-quote">
                     <i className="fi flaticon-left-quote"></i>
                   </div>
                 </div>
                 <div className="testimonial-content">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry has been the industry's standard dummy
-                    text ever since the 1500s. Unknown printer took a galley of
-                    type and scrambled it to make a type specimen book.
+                    "Ce miel est tout simplement incroyable. La qualité est
+                    exceptionnelle et je ne peux plus imaginer revenir au miel
+                    acheté en magasin. Il est parfait pour la cuisine et pour
+                    sucrer mes boissons."
                   </p>
                   <div className="testimonial-author">
                     <h3>Ken Williamson</h3>
-                    <span>CEO, Bexim</span>
+                    <span>PDG, Bexim</span>
                   </div>
                   <div className="t-content-quote">
                     <i className="fi flaticon-left-quote"></i>

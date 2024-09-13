@@ -12,7 +12,11 @@ const Hero: React.FC = () => {
               <div className="col col-lg-5 slide-caption">
                 <div className="slide-title">
                   <h2>
-                    <span>Fresh</span> Organic <span>Honey</span>
+                    <span>MIEL </span> 100%{" "}
+                    <span>
+                      <br />
+                      Frais
+                    </span>
                   </h2>
                 </div>
                 <div className="btns">
@@ -21,7 +25,8 @@ const Hero: React.FC = () => {
                     className="btn theme-btn"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Shop Now <i className="fa fa-angle-double-right"></i>
+                    Acheter Maintenant{" "}
+                    <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>
               </div>

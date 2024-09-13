@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import Logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
-import MobileMenu from "../../components/MobileMenu";
+import MobileMenu from "../MobileMenu";
 
 interface HeaderProps {
   hClass?: string;
@@ -41,12 +41,12 @@ const Header: React.FC<HeaderProps> = ({ hClass }) => {
                 <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
                   <li>
                     <Link onClick={ClickHandler} className="active" to="/">
-                      Home
+                      Accueil
                     </Link>
                   </li>
                   <li>
                     <Link onClick={ClickHandler} to="/">
-                      About
+                      À propos
                     </Link>
                   </li>
                 </ul>
@@ -73,12 +73,12 @@ const Header: React.FC<HeaderProps> = ({ hClass }) => {
                     <ul>
                       <li>
                         <Link onClick={ClickHandler} to="#">
-                          Login
+                          Connexion
                         </Link>
                       </li>
                       <li>
                         <Link onClick={ClickHandler} to="#">
-                          Register
+                          Inscription
                         </Link>
                       </li>
                     </ul>

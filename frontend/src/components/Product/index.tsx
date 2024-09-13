@@ -17,12 +17,14 @@ const Product = ({ products }: ProductProps) => {
           <div className="col-lg-6 offset-lg-3">
             <div className="section-title">
               <h2>
-                100% Fresh <span>Honey</span>
+                Miel <span>100% Frais</span>
               </h2>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry has been the industry's standard consectetur
-                adipisicing elit.
+                Découvrez notre sélection de miels purs et frais, directement
+                issus des apiculteurs pour garantir la meilleure qualité et
+                saveur. Que ce soit pour la cuisine, les bienfaits pour la santé
+                ou comme édulcorant naturel, notre miel apportera douceur et
+                bien-être à votre quotidien.
               </p>
             </div>
           </div>
@@ -34,7 +36,7 @@ const Product = ({ products }: ProductProps) => {
                 <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
                   <div className="product-item">
                     <div className="product-img">
-                      <img src={product.proImg} alt="" />
+                      <img src={product.proImg} alt={product.title} />
                       <ul>
                         <li>
                           <button>
@@ -61,8 +63,8 @@ const Product = ({ products }: ProductProps) => {
                       <div className="product-btm">
                         <div className="product-price">
                           <ul>
-                            <li>${product.price}</li>
-                            <li>${product.delPrice}</li>
+                            <li>{product.price} €</li>
+                            <li className="del-price">{product.delPrice} €</li>
                           </ul>
                         </div>
                       </div>

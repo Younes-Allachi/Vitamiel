@@ -1,5 +1,5 @@
 import Navbar from "../../components/Navbar";
-import Hero from "../../components/hero";
+import Hero from "../../components/Hero";
 import Category from "../../components/Category";
 import Product from "../../components/Product";
 import OfferSection from "../../components/OfferSection";
@@ -7,8 +7,8 @@ import FlashSale from "../../components/FlashSale";
 import Service from "../../components/Service";
 import Testimonial from "../../components/Testimonial";
 import Client from "../../components/Client";
-import Footer from "../../components/footer";
-import Scrollbar from "../../components/scrollbar";
+import Footer from "../../components/Footer";
+import Scrollbar from "../../components/Scrollbar";
 import getProducts from "../../api";
 
 const HomePage = () => {

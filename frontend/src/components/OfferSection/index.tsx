@@ -7,30 +7,32 @@ const OfferSection: React.FC = () => {
         <div className="row align-items-center">
           <div className="col-lg-7">
             <div className="offer-img">
-              <img src={abimg} alt="" />
+              <img src={abimg} alt="Offre Miel de Tournesol" />
             </div>
           </div>
           <div className="col-lg-5">
             <div className="offer-wrap">
               <div className="offer-title">
-                <small>Limited Offer For Customer</small>
+                <small>Offre limitée pour les clients</small>
                 <h2>
-                  Fresh Sunflower <span>Original Honey Up</span> <br /> To 58%
-                  Off.
+                  Miel de Tournesol <span>Frais et Original</span> <br />{" "}
+                  Jusqu'à 58% de réduction.
                 </h2>
               </div>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo,
-                eos fugit officiis error ipsum, dolor ducimus nam ratione nulla
-                deleniti inventore blanditiis lorem inorci sed vestibulum
-                tempus.
+                Ne manquez pas notre promotion spéciale ! Notre Miel de
+                Tournesol frais est maintenant disponible à un prix imbattable.
+                Connu pour sa saveur légère et florale, ce miel est parfait pour
+                sublimer vos plats préférés ou à déguster tel quel. <br />
+                <br /> Faites vos stocks avant la fin de cette offre à durée
+                limitée.
               </p>
               <a
                 href="#"
                 className="btn theme-btn"
                 onClick={(e) => e.preventDefault()}
               >
-                Shop Now <i className="fa fa-angle-double-right"></i>
+                Achetez Maintenant <i className="fa fa-angle-double-right"></i>
               </a>
             </div>
           </div>

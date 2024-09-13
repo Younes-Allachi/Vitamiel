@@ -19,9 +19,9 @@ const Footer: React.FC = () => {
                   </Link>
                 </div>
                 <p>
-                  Management consulting includes a broad range of activities,
-                  and the many firms and their members often define these
-                  practices.
+                  Le conseil en management inclut un large éventail d'activités,
+                  et les nombreuses entreprises et leurs membres définissent
+                  souvent ces pratiques.
                 </p>
                 <ul>
                   <li>
@@ -55,8 +55,7 @@ const Footer: React.FC = () => {
                 <div className="contact-ft">
                   <ul>
                     <li>
-                      <i className="fi flaticon-pin"></i>7 Green Lake Street,
-                      47933
+                      <i className="fi flaticon-pin"></i>7 Rue Green Lake, 47933
                     </li>
                     <li>
                       <i className="fi flaticon-call"></i>+1 800 123 456 789
@@ -74,13 +73,13 @@ const Footer: React.FC = () => {
                 <div className="widget-title">
                   <h3>Newsletter</h3>
                 </div>
-                <p>You will be notified when something new will appear.</p>
+                <p>Vous serez notifié lorsqu'une nouveauté apparaîtra.</p>
                 <form>
                   <div className="input-1">
                     <input
                       type="email"
                       className="form-control"
-                      placeholder="Email Address *"
+                      placeholder="Adresse Email *"
                       required
                     />
                   </div>
@@ -100,7 +99,7 @@ const Footer: React.FC = () => {
           <div className="row">
             <div className="col col-xs-12">
               <p className="copyright">
-                Copyright &copy; 2024 Vitamiel. All Rights Reserved.
+                Copyright &copy; 2024 Vitamiel. Tous droits réservés.
               </p>
             </div>
           </div>

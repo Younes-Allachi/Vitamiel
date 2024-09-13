@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Header from "../header";
+import Header from "../Header";
 
 interface NavbarProps {
   hClass?: string;

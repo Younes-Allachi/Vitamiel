@@ -11,12 +11,16 @@ const Service: React.FC = () => {
             <div className="service-item">
               <div className="service-icon">
                 <span>
-                  <img draggable="false" src={serviceimg} alt="Free Shipping" />
+                  <img
+                    draggable="false"
+                    src={serviceimg}
+                    alt="Livraison Gratuite"
+                  />
                 </span>
               </div>
               <div className="service-icon-text">
-                <h2>Free Shipping</h2>
-                <span>Order Over $560</span>
+                <h2>Livraison Gratuite</h2>
+                <span>Pour toute commande supérieure à 560€</span>
               </div>
             </div>
           </div>
@@ -24,12 +28,16 @@ const Service: React.FC = () => {
             <div className="service-item">
               <div className="service-icon">
                 <span>
-                  <img draggable="false" src={serviceimg2} alt="Easy Payment" />
+                  <img
+                    draggable="false"
+                    src={serviceimg2}
+                    alt="Paiement Facile"
+                  />
                 </span>
               </div>
               <div className="service-icon-text">
-                <h2>Easy Payment</h2>
-                <span>100% Secure Payment</span>
+                <h2>Paiement Facile</h2>
+                <span>Paiement 100% Sécurisé</span>
               </div>
             </div>
           </div>
@@ -37,12 +45,12 @@ const Service: React.FC = () => {
             <div className="service-item">
               <div className="service-icon">
                 <span>
-                  <img draggable="false" src={serviceimg3} alt="24/7 Support" />
+                  <img draggable="false" src={serviceimg3} alt="Support 24/7" />
                 </span>
               </div>
               <div className="service-icon-text">
-                <h2>24/7 Support</h2>
-                <span>Anytime Support</span>
+                <h2>Support 24/7</h2>
+                <span>Support à tout moment</span>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@
     "id": 1,
     "proImg": "/product/1.png",
     "offer": "-28%",
-    "title": "Manuka Honey ",
+    "title": "Miel de Manuka",
     "price": 85.00,
     "delPrice": 98.00
   },
@@ -11,15 +11,15 @@
     "id": 2,
     "proImg": "/product/2.png",
     "offer": "-25%",
-    "title": "Raw Honey",
+    "title": "Miel Brut",
     "price": 100.00,
     "delPrice": 158.00
   },
   {
     "id": 3,
     "proImg": "/product/3.png",
-    "offer": "New",
-    "title": "Wildflower Honey",
+    "offer": "Nouveau",
+    "title": "Miel de Fleurs Sauvages",
     "price": 75.00,
     "delPrice": 88.00
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "proImg": "/product/4.png",
     "offer": "-20%",
-    "title": "Queen Bee Honey",
+    "title": "Miel de Reine",
     "price": 85.00,
     "delPrice": 98.00
   },
@@ -35,15 +35,15 @@
     "id": 5,
     "proImg": "/product/5.png",
     "offer": "-18%",
-    "title": "Mustard Flower Honey",
+    "title": "Miel de Fleurs de Moutarde",
     "price": 95.00,
     "delPrice": 108.00
   },
   {
     "id": 6,
     "proImg": "/product/6.png",
-    "offer": "New",
-    "title": "Pure Hill Honey",
+    "offer": "Nouveau",
+    "title": "Miel Pur de Montagne",
     "price": 88.00,
     "delPrice": 75.00
   },
@@ -51,15 +51,15 @@
     "id": 7,
     "proImg": "/product/7.png",
     "offer": "-15%",
-    "title": "Black Seed Flower Honey",
+    "title": "Miel de Fleurs de Nigelle",
     "price": 75.00,
     "delPrice": 99.00
   },
   {
     "id": 8,
     "proImg": "/product/8.png",
-    "offer": "New",
-    "title": "Mango Flower Honey",
+    "offer": "Nouveau",
+    "title": "Miel de Fleurs de Mangue",
     "price": 155.00,
     "delPrice": 198.00
   }

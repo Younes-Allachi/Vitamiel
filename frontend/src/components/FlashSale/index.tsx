@@ -1,4 +1,4 @@
-import Offer from "../../components/countdown";
+import Offer from "../Countdown";
 
 interface ProductType {
   id: number;
@@ -21,7 +21,7 @@ const FlashSale = ({ products }: FlashSaleProps) => {
           <div className="col-lg-6 offset-lg-3">
             <div className="section-title">
               <h2>
-                Flash <span>Sale</span> Items
+                Articles en <span>Vente Flash</span>
               </h2>
               <Offer />
             </div>
@@ -34,7 +34,7 @@ const FlashSale = ({ products }: FlashSaleProps) => {
                 <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
                   <div className="product-item">
                     <div className="product-img">
-                      <img src={product.proImg} alt="" />
+                      <img src={product.proImg} alt={product.title} />
                       <ul>
                         <li>
                           <button>
@@ -61,8 +61,8 @@ const FlashSale = ({ products }: FlashSaleProps) => {
                       <div className="product-btm">
                         <div className="product-price">
                           <ul>
-                            <li>${product.price}</li>
-                            <li>${product.delPrice}</li>
+                            <li>{product.price} €</li>
+                            <li className="del-price">{product.delPrice} €</li>
                           </ul>
                         </div>
                       </div>

@@ -12,49 +12,53 @@ const Category: React.FC = () => {
           <div className="col-lg-6">
             <div className="category-wrap">
               <div className="category-title">
-                <h2>Our Honey Category</h2>
+                <h2>Notre Gamme de Miel</h2>
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Nemo, eos fugit officiis error ipsum, dolor ducimus nam
-                  ratione nulla deleniti inventore blanditiis.
+                  Découvrez notre sélection de miels de haute qualité, chacun
+                  offrant un profil de saveur unique et des bienfaits pour la
+                  santé. Que vous cherchiez un ajout sucré pour vos repas ou un
+                  remède naturel, notre gamme a quelque chose pour tout le
+                  monde.
                 </p>
               </div>
               <div className="category-item">
                 <div className="category-icon">
-                  <img src={catimg} alt="" />
+                  <img src={catimg} alt="Miel de Reine" />
                 </div>
                 <div className="category-content">
-                  <h2>Queen Bee Honey</h2>
+                  <h2>Miel de Reine</h2>
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing industry
-                    has been the industry's standard eos fugit industry's
-                    standard consectetur ipsum.
+                    Notre Miel de Reine est récolté dans des ruches de qualité
+                    supérieure et se distingue par sa couleur dorée riche et sa
+                    texture lisse. Idéal pour ceux qui apprécient un goût de
+                    miel traditionnel avec une légère touche florale.
                   </p>
                 </div>
               </div>
               <div className="category-item">
                 <div className="category-icon">
-                  <img src={catimg2} alt="" />
+                  <img src={catimg2} alt="Miel de Tournesol" />
                 </div>
                 <div className="category-content">
-                  <h2>Sunflower Honey</h2>
+                  <h2>Miel de Tournesol</h2>
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing industry
-                    has been the industry's standard eos fugit industry's
-                    standard consectetur ipsum.
+                    Ce miel est issu des tournesols, offrant une saveur légère
+                    et brillante avec une touche d'agrumes. Il est parfait pour
+                    sucrer vos thés, salades ou desserts légers.
                   </p>
                 </div>
               </div>
               <div className="category-item">
                 <div className="category-icon">
-                  <img src={catimg3} alt="" />
+                  <img src={catimg3} alt="Miel de Manuka" />
                 </div>
                 <div className="category-content">
-                  <h2>Manuka Honey</h2>
+                  <h2>Miel de Manuka</h2>
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing industry
-                    has been the industry's standard eos fugit industry's
-                    standard consectetur ipsum.
+                    Originaire de Nouvelle-Zélande, le miel de Manuka est réputé
+                    pour ses puissantes propriétés médicinales. Il est riche en
+                    qualités antibactériennes, ce qui le rend idéal pour apaiser
+                    les maux de gorge et renforcer votre système immunitaire.
                   </p>
                 </div>
               </div>
@@ -62,9 +66,9 @@ const Category: React.FC = () => {
           </div>
           <div className="col-lg-6">
             <div className="category-img">
-              <img src={catimg5} alt="" />
+              <img src={catimg5} alt="Vue d'ensemble des catégories" />
               <div className="ct-img">
-                <img src={catimg4} alt="" />
+                <img src={catimg4} alt="Pot de miel" />
               </div>
             </div>
           </div>
