@@ -1,0 +1,77 @@
+@import '../../../../content/sass/helpers/_variables.scss';
+@import '../../../../content/sass/helpers/mixins';
+
+/*---------------------------
+   service-area
+----------------------------*/
+
+.service-area {
+  background: url('../../../../content/images/support/banner-1.jpg') 50% / cover no-repeat local;
+  padding: 100px 0;
+  position: relative;
+  z-index: 1;
+  @media (max-width: 991px) {
+    padding: 70px 0 30px;
+  }
+
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, $theme-secondary-color 24%, $theme-primary-color);
+    content: '';
+    opacity: 0.9;
+    z-index: -1;
+  }
+
+  .service-item {
+    overflow: hidden;
+    @media (max-width: 991px) {
+      margin-bottom: 30px;
+    }
+    .service-icon {
+      width: 110px;
+      height: 110px;
+      line-height: 110px;
+      border: 2px solid $white;
+      text-align: center;
+      @include rounded-border(50%);
+      margin-right: 20px;
+      transition: all 0.3s;
+      float: left;
+    }
+
+    &:hover {
+      .service-icon {
+        background: $theme-primary-color;
+      }
+    }
+
+    .service-icon-text {
+      overflow: hidden;
+      padding-top: 20px;
+      @media (max-width: 1200px) {
+        padding-top: 25px;
+      }
+      h2 {
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: $white;
+
+        @media (max-width: 1200px) {
+          font-size: 22px;
+        }
+      }
+      span {
+        font-size: 17px;
+        color: $white;
+        @media (max-width: 1200px) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

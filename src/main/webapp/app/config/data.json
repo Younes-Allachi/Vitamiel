@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "proImg": "../../content/images/product/1.png",
+    "offer": "product.offer.discount28",
+    "title": "product.title2.manuka",
+    "price": 85.0,
+    "delPrice": 98.0
+  },
+  {
+    "id": 2,
+    "proImg": "../../content/images/product/2.png",
+    "offer": "product.offer.discount25",
+    "title": "product.title2.brut",
+    "price": 100.0,
+    "delPrice": 158.0
+  },
+  {
+    "id": 3,
+    "proImg": "../../content/images/product/3.png",
+    "offer": "product.offer.new",
+    "title": "product.title2.sauvage",
+    "price": 75.0,
+    "delPrice": 88.0
+  },
+  {
+    "id": 4,
+    "proImg": "../../content/images/product/4.png",
+    "offer": "product.offer.discount20",
+    "title": "product.title2.reine",
+    "price": 85.0,
+    "delPrice": 98.0
+  },
+  {
+    "id": 5,
+    "proImg": "../../content/images/product/5.png",
+    "offer": "product.offer.discount18",
+    "title": "product.title2.moutarde",
+    "price": 95.0,
+    "delPrice": 108.0
+  },
+  {
+    "id": 6,
+    "proImg": "../../content/images/product/6.png",
+    "offer": "product.offer.new",
+    "title": "product.title2.montagne",
+    "price": 88.0,
+    "delPrice": 75.0
+  },
+  {
+    "id": 7,
+    "proImg": "../../content/images/product/7.png",
+    "offer": "product.offer.discount15",
+    "title": "product.title2.nigelle",
+    "price": 75.0,
+    "delPrice": 99.0
+  },
+  {
+    "id": 8,
+    "proImg": "../../content/images/product/8.png",
+    "offer": "product.offer.new",
+    "title": "product.title2.mangue",
+    "price": 155.0,
+    "delPrice": 198.0
+  }
+]

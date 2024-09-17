@@ -1,0 +1,185 @@
+@import '../../../../content/sass/helpers/_variables.scss';
+
+/*---------------------------
+   category-area
+----------------------------*/
+
+.category-area {
+  .category-wrap {
+    .category-title {
+      padding-bottom: 40px; // Déplacer avant les règles imbriquées
+      position: relative;
+      margin-bottom: 60px;
+
+      @media (max-width: 450px) {
+        text-align: center;
+      }
+      h2 {
+        font-size: 52px;
+        font-weight: 600;
+        margin-bottom: 30px;
+
+        @media (max-width: 1200px) {
+          font-size: 40px;
+        }
+        @media (max-width: 450px) {
+          font-size: 25px;
+          margin-bottom: 20px;
+        }
+      }
+
+      p {
+        color: $text-color;
+        margin-bottom: 0;
+      }
+
+      &:after {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 30px;
+        height: 6px;
+        background: linear-gradient(to right, $theme-primary-color, $theme-secondary-color);
+        content: '';
+        @media (max-width: 450px) {
+          left: 35%;
+        }
+      }
+
+      &:before {
+        position: absolute;
+        left: 40px;
+        bottom: 0;
+        width: 40px;
+        height: 6px;
+        background: linear-gradient(to right, $theme-primary-color, $theme-secondary-color);
+        content: '';
+        @media (max-width: 450px) {
+          left: 50%;
+        }
+      }
+    }
+
+    .category-item {
+      margin-bottom: 45px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 1200px) {
+        margin-bottom: 30px;
+      }
+
+      .category-icon {
+        width: 130px;
+        height: 130px;
+        line-height: 130px;
+        border-radius: 50%;
+        text-align: center;
+        position: relative;
+        background: #fdf5ee;
+        z-index: 1;
+        float: left;
+        overflow: hidden;
+        margin-right: 40px;
+
+        @media (max-width: 450px) {
+          float: none;
+          margin: 0 auto;
+        }
+
+        &:before {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          content: '';
+          border-radius: 50%;
+          z-index: -1;
+          background: linear-gradient(0deg, rgb(161, 54, 2) 0%, rgb(254, 185, 52) 100%);
+          background: -moz-linear-gradient(0deg, rgb(161, 54, 2) 0%, rgb(254, 185, 52) 100%);
+          background: -webkit-linear-gradient(0deg, rgb(161, 54, 2) 0%, rgb(254, 185, 52) 100%);
+          background: -ms-linear-gradient(0deg, rgb(161, 54, 2) 0%, rgb(254, 185, 52) 100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s;
+        }
+      }
+
+      .category-content {
+        overflow: hidden;
+        margin-top: 20px;
+
+        @media (max-width: 450px) {
+          text-align: center;
+        }
+
+        a {
+          color: $heading-color;
+
+          &:hover {
+            color: $theme-primary-color;
+          }
+        }
+
+        p {
+          margin-bottom: 0;
+        }
+
+        h2 {
+          margin-top: 10px;
+          font-size: 30px;
+          font-weight: 600;
+          margin-bottom: 15px;
+
+          @media (max-width: 1200px) {
+            margin-top: 0;
+            margin-bottom: 7px;
+          }
+
+          @media (max-width: 450px) {
+            font-size: 22px;
+            margin-bottom: 15px;
+          }
+        }
+      }
+
+      &:hover {
+        .category-icon {
+          &:before {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+
+  .category-img {
+    text-align: right;
+    position: relative;
+    z-index: 1;
+    padding-left: 150px;
+
+    @media (max-width: 1399px) {
+      padding-left: 0px;
+    }
+
+    @media (max-width: 991px) {
+      text-align: left;
+      margin-top: 40px;
+    }
+
+    .ct-img {
+      position: absolute;
+      left: -15px;
+      top: 170px;
+      z-index: -1;
+      @media (max-width: 1399px) {
+        display: none;
+      }
+    }
+  }
+}

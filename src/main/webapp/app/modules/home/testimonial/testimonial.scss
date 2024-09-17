@@ -1,0 +1,194 @@
+@import '../../../../content/sass/helpers/_variables.scss';
+@import '../../../../content/sass/helpers/mixins';
+@import '../../../../content/sass/components/section-title';
+
+/*---------------------------
+   testimonial-area
+----------------------------*/
+
+.testimonial-area {
+  padding-top: 100px;
+
+  @include media-query(767px) {
+    padding-top: 80px;
+  }
+
+  .testimonial-wrap {
+    background: #fdf5ee;
+    padding: 70px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    @include media-query(575px) {
+      padding: 30px;
+    }
+
+    &:before {
+      position: absolute;
+      left: -30px;
+      top: -30px;
+      width: 150px;
+      height: 150px;
+      background: $theme-primary-color;
+      content: '';
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+      border-bottom-left-radius: 50%;
+      z-index: -1;
+    }
+
+    .testimonial-item {
+      overflow: hidden;
+      @include media-query(991px) {
+        text-align: center;
+      }
+      .testimonial-img {
+        float: left;
+        margin-right: 100px;
+        position: relative;
+        max-width: 266px;
+
+        @include media-query(991px) {
+          float: none;
+        }
+
+        @include media-query(991px) {
+          margin-right: 0;
+          margin: 0 auto;
+          margin-bottom: 50px;
+        }
+
+        .t-quote {
+          position: absolute;
+          right: -45px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: $theme-primary-color;
+          width: 90px;
+          height: 90px;
+          line-height: 90px;
+          text-align: center;
+          background: $white;
+          @include rounded-border(50%);
+
+          @include media-query(991px) {
+            right: auto;
+            top: auto;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+
+      .testimonial-content {
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        p {
+          font-size: 20px;
+          font-family: $heading-font;
+          color: $heading-color;
+          font-weight: 500;
+          margin-bottom: 30px;
+
+          @include media-query(1200px) {
+            font-size: 18px;
+          }
+          @include media-query(767px) {
+            font-size: 16px;
+          }
+        }
+
+        .testimonial-author {
+          h3 {
+            font-size: 25px;
+            font-weight: 600;
+            margin-bottom: 10px;
+          }
+
+          span {
+            font-size: 17px;
+            color: $theme-primary-color;
+          }
+        }
+
+        .t-content-quote {
+          position: absolute;
+          left: 50%;
+          top: -45px;
+          transform: translateX(-50%);
+          z-index: -1;
+          opacity: 0.1;
+
+          .fi {
+            &:before {
+              font-size: 180px;
+              color: $theme-primary-color;
+            }
+          }
+        }
+      }
+    }
+
+    .slick-prev,
+    .slick-next {
+      background-color: transparent;
+      width: 55px;
+      height: 55px;
+      z-index: 10;
+      top: auto;
+      bottom: -30px;
+      @include rounded-border(50%);
+      border: 1px solid #d5c5be;
+      color: #d5c5be;
+      transition: all 0.3s;
+
+      &:hover {
+        background: $theme-primary-color;
+
+        &:before {
+          color: $white;
+        }
+      }
+    }
+
+    .slick-prev {
+      right: 70px;
+      left: auto;
+
+      @include media-query(991px) {
+        display: none !important;
+      }
+
+      &:before {
+        font-family: 'themify';
+        content: '\e662';
+        opacity: 1;
+        color: #d5c5be;
+      }
+    }
+
+    .slick-next {
+      right: 0;
+
+      @include media-query(991px) {
+        display: none !important;
+      }
+
+      &:before {
+        font-family: 'themify';
+        content: '\e661';
+        opacity: 1;
+        color: #d5c5be;
+      }
+    }
+    .slick-dots {
+      bottom: -45px;
+    }
+    .slick-dots li button:before {
+      font-size: 10px;
+    }
+  }
+}

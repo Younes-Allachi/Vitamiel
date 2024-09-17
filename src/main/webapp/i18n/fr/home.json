@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "miel": "MIEL",
+    "fresh": "Frais",
+    "buyNow": "Acheter Maintenant"
+  },
+  "category": {
+    "title": "Notre Gamme de Miel",
+    "description": "Découvrez notre sélection de miels de haute qualité, chacun offrant un profil de saveur unique et des bienfaits pour la santé. Que vous cherchiez un ajout sucré pour vos repas ou un remède naturel, notre gamme a quelque chose pour tout le monde.",
+    "items": {
+      "reine": {
+        "title": "Miel de Reine",
+        "description": "Notre Miel de Reine est récolté dans des ruches de qualité supérieure et se distingue par sa couleur dorée riche et sa texture lisse. Idéal pour ceux qui apprécient un goût de miel traditionnel avec une légère touche florale."
+      },
+      "tournesol": {
+        "title": "Miel de Tournesol",
+        "description": "Ce miel est issu des tournesols, offrant une saveur légère et brillante avec une touche d'agrumes. Il est parfait pour sucrer vos thés, salades ou desserts légers."
+      },
+      "manuka": {
+        "title": "Miel de Manuka",
+        "description": "Originaire de Nouvelle-Zélande, le miel de Manuka est réputé pour ses puissantes propriétés médicinales. Il est riche en qualités antibactériennes, ce qui le rend idéal pour apaiser les maux de gorge et renforcer votre système immunitaire."
+      }
+    }
+  },
+  "product": {
+    "title1": "Miel",
+    "fresh": "100% Frais",
+    "description": "Découvrez notre sélection de miels purs et frais, directement issus des apiculteurs pour garantir la meilleure qualité et saveur. Que ce soit pour la cuisine, les bienfaits pour la santé ou comme édulcorant naturel, notre miel apportera douceur et bien-être à votre quotidien.",
+    "offer": {
+      "discount28": "-28%",
+      "discount25": "-25%",
+      "new": "Nouveau",
+      "discount20": "-20%",
+      "discount18": "-18%",
+      "discount15": "-15%"
+    },
+    "title2": {
+      "manuka": "Miel de Manuka",
+      "brut": "Miel Brut",
+      "sauvage": "Miel de Fleurs Sauvages",
+      "reine": "Miel de Reine",
+      "moutarde": "Miel de Fleurs de Moutarde",
+      "montagne": "Miel Pur de Montagne",
+      "nigelle": "Miel de Fleurs de Nigelle",
+      "mangue": "Miel de Fleurs de Mangue"
+    },
+    "currency": "€"
+  },
+  "offer": {
+    "limited": "Offre limitée pour les clients",
+    "title": "Miel de Tournesol",
+    "subtitle": "Frais et Original",
+    "discount": "Jusqu'à 58% de réduction",
+    "description": "Ne manquez pas notre promotion spéciale ! Notre Miel de Tournesol frais est maintenant disponible à un prix imbattable. Connu pour sa saveur légère et florale, ce miel est parfait pour sublimer vos plats préférés ou à déguster tel quel.",
+    "stockWarning": "Faites vos stocks avant la fin de cette offre à durée limitée.",
+    "buyNow": "Achetez Maintenant"
+  },
+  "flashSale": {
+    "flash": "Articles en",
+    "sale": "Vente",
+    "items": "Flash"
+  },
+  "service": {
+    "freeShipping": {
+      "title": "Livraison Gratuite",
+      "description": "Pour toute commande supérieure à 560€"
+    },
+    "easyPayment": {
+      "title": "Paiement Facile",
+      "description": "Paiement 100% Sécurisé"
+    },
+    "support": {
+      "title": "Support 24/7",
+      "description": "Support à tout moment"
+    }
+  },
+  "testimonial": {
+    "title": "Témoignages",
+    "clients": "Clients",
+    "description": "Nos clients adorent notre miel, et voici ce qu'ils disent de leur expérience avec nos produits. De la qualité au goût, notre miel laisse une impression durable !",
+    "rachelQuote": "Le miel que j'ai reçu était absolument fantastique ! Je n'ai jamais goûté un miel aussi pur et frais. Il a complètement transformé mon thé du matin. Je le recommande vivement !",
+    "davidQuote": "J'ai essayé plusieurs types de miel, mais celui-ci se démarque par sa saveur riche et sa texture douce. C'est le complément parfait pour mes desserts, et j'adore son goût naturel.",
+    "kenQuote": "Ce miel est tout simplement incroyable. La qualité est exceptionnelle et je ne peux plus imaginer revenir au miel acheté en magasin. Il est parfait pour la cuisine et pour sucrer mes boissons."
+  }
+}

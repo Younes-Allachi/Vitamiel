@@ -1,0 +1,201 @@
+/*
+* Bootstrap overrides https://v4-alpha.getbootstrap.com/getting-started/options/
+* All values defined in bootstrap source
+* https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss can be overwritten here
+* Make sure not to add !default to values here
+*/
+
+// Options:
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-rounded: true;
+$enable-shadows: false;
+$enable-gradients: false;
+$enable-transitions: true;
+$enable-hover-media-query: false;
+$enable-grid-classes: true;
+$enable-print-styles: true;
+$heading-font-s3: 'Barlow Condensed', sans-serif;
+
+// Components:
+// Define common padding and border radius sizes and more.
+
+$border-radius: 0.15rem;
+$border-radius-lg: 0.125rem;
+$border-radius-sm: 0.1rem;
+
+// Body:
+// Settings for the `<body>` element.
+
+$body-bg: #ffffff;
+
+/*---------------------------
+	Fonts
+----------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Conv_Now-Bold';
+  src: url('../content/fonts/text-fonts/Now-Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Now';
+  src: url('../content/fonts/text-fonts/now-regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Now';
+  src: url('../content/fonts/text-fonts/now-medium.otf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Now';
+  src: url('../content/fonts/text-fonts/now-light.otf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Now';
+  src: url('../content/fonts/text-fonts/now-thin.otf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+// fonts
+$base-font-size: 15;
+$base-font: 'Poppins', sans-serif;
+$heading-font: 'Now';
+$heading-font-s2: 'Conv_Now-Bold';
+$heading-font-s3: 'Barlow Condensed', sans-serif;
+
+// color
+$dark-gray: #30180d;
+$white: #fff;
+$black: #000;
+$small-black: #333;
+
+$theme-primary-color: #b83806;
+$theme-secondary-color: #bf692d;
+$body-bg-color: #f2f0f0;
+$section-bg-color: #fdf5ee;
+$text-color: #696664;
+$heading-color: $dark-gray;
+$border-color: #ebebeb;
+
+@mixin background-style($path, $position, $bg-size, $repeat, $attachment) {
+  background: url($path) $position/$bg-size $repeat $attachment;
+}
+
+@mixin pattern-background($color, $path) {
+  background: $color url($path);
+}
+
+@mixin overlay($bg-color) {
+  background-color: $bg-color;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@mixin rounded-border($amount: 50%) {
+  -webkit-border-radius: $amount;
+  -moz-border-radius: $amount;
+  -o-border-radius: $amount;
+  -ms-border-radius: $amount;
+  border-radius: $amount;
+}
+
+@mixin skewingx($amount) {
+  -webkit-transform: skewX($amount);
+  -moz-transform: skewX($amount);
+  -o-transform: skewX($amount);
+  -ms-transform: skewX($amount);
+  transform: skewX($amount);
+}
+
+@mixin translatingX($amount: -50%) {
+  -webkit-transform: translateX($amount);
+  -moz-transform: translateX($amount);
+  -o-transform: translateX($amount);
+  -ms-transform: translateX($amount);
+  transform: translateX($amount);
+}
+
+@mixin translatingY($amount: -50%) {
+  -webkit-transform: translateY($amount);
+  -moz-transform: translateY($amount);
+  -o-transform: translateY($amount);
+  -ms-transform: translateY($amount);
+  transform: translateY($amount);
+}
+
+@mixin center-by-translating() {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@mixin transition-time($time: 0.5s, $prop: all) {
+  -webkit-transition: $prop $time;
+  -moz-transition: $prop $time;
+  -o-transition: $prop $time;
+  -ms-transition: $prop $time;
+  transition: $prop $time;
+}
+
+@mixin round-box-shadow($color, $blur: 5px, $sprade: 5px) {
+  -webkit-box-shadow: 0 0 $blur $sprade $color;
+  -moz-box-shadow: 0 0 $blur $sprade $color;
+  -o-box-shadow: 0 0 $blur $sprade $color;
+  -ms-box-shadow: 0 0 $blur $sprade $color;
+  box-shadow: 0 0 $blur $sprade $color;
+}
+
+@mixin widther($length) {
+  @media screen and (min-width: $length) {
+    @content;
+  }
+}
+
+@mixin media-query($length) {
+  @media (max-width: $length) {
+    @content;
+  }
+}
+
+@mixin placeholder-style($color, $font-size: 14px, $font-style: italic) {
+  ::-webkit-input-placeholder {
+    font-size: $font-size;
+    font-style: $font-style;
+    color: $color;
+  }
+
+  :-moz-placeholder {
+    font-size: $font-size;
+    font-style: $font-style;
+    color: $color;
+  }
+
+  ::-moz-placeholder {
+    font-size: $font-size;
+    font-style: $font-style;
+    color: $color;
+  }
+
+  :-ms-input-placeholder {
+    font-size: $font-size;
+    font-style: $font-style;
+    color: $color;
+  }
+}

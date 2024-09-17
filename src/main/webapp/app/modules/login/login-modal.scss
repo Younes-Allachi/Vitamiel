@@ -1,0 +1,19 @@
+@import '../../bootstrap-variables';
+
+.login-modal {
+  position: relative;
+  height: 930px;
+  margin-top: 90%;
+
+  @include media-query(991px) {
+    height: 600px;
+  }
+
+  @include media-query(767px) {
+    height: 420px;
+  }
+
+  @include media-query(575px) {
+    height: 320px;
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "miel": "HONEY",
+    "fresh": "Fresh",
+    "buyNow": "Buy Now"
+  },
+  "category": {
+    "title": "Our Honey Category",
+    "description": "Discover our selection of high-quality honeys, each offering a unique flavor profile and health benefits. Whether you're looking for a sweet addition to your meals or a natural remedy, our range has something for everyone.",
+    "items": {
+      "reine": {
+        "title": "Queen's Honey",
+        "description": "Our Queen's Honey is harvested from high-quality hives and stands out for its rich golden color and smooth texture. Ideal for those who enjoy a traditional honey taste with a slight floral touch."
+      },
+      "tournesol": {
+        "title": "Sunflower Honey",
+        "description": "This honey is made from sunflowers, offering a light and bright flavor with a hint of citrus. Perfect for sweetening your teas, salads, or light desserts."
+      },
+      "manuka": {
+        "title": "Manuka Honey",
+        "description": "Originating from New Zealand, Manuka honey is renowned for its powerful medicinal properties. It is rich in antibacterial qualities, making it ideal for soothing sore throats and boosting your immune system."
+      }
+    }
+  },
+  "product": {
+    "title1": "Honey",
+    "fresh": "100% Fresh",
+    "description": "Discover our selection of pure and fresh honeys, directly sourced from beekeepers to ensure the best quality and flavor. Whether it's for cooking, health benefits, or as a natural sweetener, our honey will bring sweetness and well-being to your daily life.",
+    "offer": {
+      "discount28": "-28%",
+      "discount25": "-25%",
+      "new": "New",
+      "discount20": "-20%",
+      "discount18": "-18%",
+      "discount15": "-15%"
+    },
+    "title2": {
+      "manuka": "Manuka Honey",
+      "brut": "Raw Honey",
+      "sauvage": "Wildflower Honey",
+      "reine": "Queen's Honey",
+      "moutarde": "Mustard Flower Honey",
+      "montagne": "Pure Mountain Honey",
+      "nigelle": "Nigella Flower Honey",
+      "mangue": "Mango Flower Honey"
+    },
+    "currency": "$"
+  },
+  "offer": {
+    "limited": "Limited offer for customers",
+    "title": "Sunflower Honey",
+    "subtitle": "Fresh and Original",
+    "discount": "Up to 58% discount",
+    "description": "Don't miss our special promotion! Our fresh Sunflower Honey is now available at an unbeatable price. Known for its light and floral flavor, this honey is perfect for enhancing your favorite dishes or enjoying on its own.",
+    "stockWarning": "Stock up before this limited-time offer ends.",
+    "buyNow": "Buy Now"
+  },
+  "flashSale": {
+    "flash": "Flash",
+    "sale": "Sale",
+    "items": "Items"
+  },
+  "service": {
+    "freeShipping": {
+      "title": "Free Shipping",
+      "description": "For any order over €560"
+    },
+    "easyPayment": {
+      "title": "Easy Payment",
+      "description": "100% Secure Payment"
+    },
+    "support": {
+      "title": "24/7 Support",
+      "description": "Support available anytime"
+    }
+  },
+  "testimonial": {
+    "title": "Testimonials",
+    "clients": "Clients",
+    "description": "Our customers love our honey, and here’s what they say about their experience with our products. From quality to taste, our honey leaves a lasting impression!",
+    "rachelQuote": "The honey I received was absolutely fantastic! I’ve never tasted honey this pure and fresh. It completely transformed my morning tea. I highly recommend it!",
+    "davidQuote": "I’ve tried several types of honey, but this one stands out with its rich flavor and smooth texture. It’s the perfect complement to my desserts, and I love its natural taste.",
+    "kenQuote": "This honey is simply incredible. The quality is exceptional, and I can’t imagine going back to store-bought honey. It’s perfect for cooking and sweetening my drinks."
+  }
+}

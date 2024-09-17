@@ -1,0 +1,89 @@
+@import '../../../../content/sass/helpers/_variables.scss';
+@import '../../../../content/sass/helpers/mixins';
+@import '../../../../content/sass/components/section-title';
+
+/*---------------------------
+   flash-Sale-area
+----------------------------*/
+
+.flash-Sale-area {
+  .countdownwrap {
+    ul {
+      display: flex;
+      justify-content: center;
+      li {
+        margin-right: 5px;
+        display: flex;
+        align-items: center;
+        width: 123px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        justify-content: center;
+        margin-right: 50px;
+        background: #f4eae1;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: $dark-gray;
+
+        @media (max-width: 450px) {
+          width: 60px;
+          margin-right: 20px;
+          height: 35px;
+          font-size: 12px;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:after {
+          content: ':';
+          left: 48%;
+          top: 0;
+          transform: translateX(-50%);
+          position: relative;
+          color: #333;
+          font-weight: 500;
+          font-size: 24px;
+          color: #414141;
+
+          @media (max-width: 450px) {
+            left: 25%;
+          }
+        }
+
+        &:last-child {
+          &:after {
+            display: none;
+          }
+        }
+
+        .digit {
+          font-size: 16px;
+          margin-right: 6px;
+        }
+
+        .text {
+          font-size: 14px;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .single_countdown:last-child:after {
+      display: none;
+    }
+    .offer-single-3 .single_countdown {
+      padding: 10px 6px;
+    }
+    .countdown_number {
+      margin: 0 5px;
+    }
+  }
+}
