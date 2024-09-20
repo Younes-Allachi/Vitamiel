@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-jhipster'; // Pour utiliser la traduction
+import { Translate } from 'react-jhipster';
 import './service.scss';
 
 const Service: React.FC = () => {

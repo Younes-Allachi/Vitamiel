@@ -3,7 +3,7 @@
     "request": {
       "title": "Réinitialiser son mot de passe",
       "form": {
-        "button": "Réinitialiser le mot de passe"
+        "button": "Réinitialiser"
       },
       "messages": {
         "info": "Veuillez renseigner l'adresse email utilisée pour vous enregistrer",
@@ -13,7 +13,7 @@
     "finish": {
       "title": "Réinitialisation du mot de passe",
       "form": {
-        "button": "Réinitialiser le mot de passe"
+        "button": "Réinitialiser"
       },
       "messages": {
         "info": "Choisir un nouveau mot de passe",

@@ -20,5 +20,61 @@
         "emailexists": "<strong>Email is already in use!</strong> Please choose another one."
       }
     }
+  },
+
+  "global": {
+    "form": {
+      "firstname": {
+        "label": "First Name",
+        "placeholder": "Enter your first name"
+      },
+      "lastname": {
+        "label": "Last Name",
+        "placeholder": "Enter your last name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "newpassword": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      },
+      "confirmpassword": {
+        "label": "Confirm Password",
+        "placeholder": "Confirm your password"
+      }
+    },
+    "messages": {
+      "validate": {
+        "firstname": {
+          "required": "First name is required"
+        },
+        "lastname": {
+          "required": "Last name is required"
+        },
+        "email": {
+          "required": "Email is required",
+          "invalid": "Email is invalid",
+          "minlength": "Email must be at least 5 characters",
+          "maxlength": "Email cannot exceed 254 characters"
+        },
+        "newpassword": {
+          "required": "Password is required",
+          "minlength": "Password must be at least 4 characters",
+          "maxlength": "Password cannot exceed 50 characters"
+        },
+        "confirmpassword": {
+          "required": "Password confirmation is required",
+          "dontmatch": "Passwords do not match"
+        }
+      }
+    }
+  },
+  "entity": {
+    "action": {
+      "cancel": "Cancel",
+      "register": "Register"
+    }
   }
 }

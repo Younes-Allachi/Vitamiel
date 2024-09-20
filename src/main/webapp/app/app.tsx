@@ -8,14 +8,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { getSession } from 'app/shared/reducers/authentication';
+import { getSession, login } from 'app/shared/reducers/authentication';
 import { getProfile } from 'app/shared/reducers/application-profile';
 import Header from 'app/shared/layout/header/header';
 import Footer from 'app/shared/layout/footer/footer';
-import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import ErrorBoundary from 'app/shared/error/error-boundary';
-import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
+import LoginModal from 'app/modules/login/login-modal';
 
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
@@ -29,13 +28,16 @@ export const App = () => {
 
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
   const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
-  const isAdmin = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMIN]));
   const ribbonEnv = useAppSelector(state => state.applicationProfile.ribbonEnv);
   const isInProduction = useAppSelector(state => state.applicationProfile.inProduction);
   const isOpenAPIEnabled = useAppSelector(state => state.applicationProfile.isOpenAPIEnabled);
-
-  const paddingTop = '60px';
   const [scroll, setScroll] = useState<number>(0);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const loginError = useAppSelector(state => state.authentication.loginError);
+
+  const toggleLoginModal = () => {
+    setShowLoginModal(!showLoginModal);
+  };
 
   const handleScroll = () => setScroll(document.documentElement.scrollTop);
 
@@ -45,6 +47,30 @@ export const App = () => {
   }, []);
 
   const className = scroll > 80 ? 'fixed-navbar animated fadeInDown active' : 'fixed-navbar';
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setShowLoginModal(false);
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    dispatch(getSession()); // Récupère la session utilisateur
+    dispatch(getProfile()); // Récupère le profil utilisateur
+  }, []);
+
+  const handleLogin = (username: string, password: string) => {
+    dispatch(login(username, password));
+  };
+
+  const handleSignup = () => {
+    // Logic to handle signup modal (if necessary)
+  };
+
+  const openPasswordResetModal = () => {
+    // Logic to open password reset modal
+  };
+
   return (
     <BrowserRouter basename={baseHref}>
       <div>
@@ -53,11 +79,12 @@ export const App = () => {
           <div className={className}>
             <Header
               hClass={'header-style-1'}
-              isAuthenticated={isAuthenticated}
+              isAuthenticated={isAuthenticated} // Assurez-vous que isAuthenticated est bien passé ici
               currentLocale={currentLocale}
               ribbonEnv={ribbonEnv}
               isInProduction={isInProduction}
               isOpenAPIEnabled={isOpenAPIEnabled}
+              toggleLoginModal={toggleLoginModal}
             />
           </div>
         </ErrorBoundary>
@@ -69,6 +96,15 @@ export const App = () => {
           </Card>
           <Footer />
         </div>
+        <LoginModal
+          showModal={showLoginModal}
+          handleClose={toggleLoginModal}
+          loginError={loginError}
+          handleLogin={handleLogin}
+          isAuthenticated={isAuthenticated}
+          handleSignup={handleSignup}
+          openPasswordResetModal={openPasswordResetModal}
+        />
       </div>
     </BrowserRouter>
   );

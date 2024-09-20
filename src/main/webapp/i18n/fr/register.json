@@ -1,8 +1,8 @@
 {
   "register": {
-    "title": "Création de compte utilisateur",
+    "title": "Inscription",
     "form": {
-      "button": "Enregistrement"
+      "button": "S'inscrire"
     },
     "messages": {
       "validate": {
@@ -19,6 +19,61 @@
         "userexists": "<strong>Ce compte utilisateur existe déjà !</strong> Veuillez en choisir un autre.",
         "emailexists": "<strong>Cet email est déjà utilisé !</strong> Veuillez en choisir un autre."
       }
+    }
+  },
+  "global": {
+    "form": {
+      "firstname": {
+        "label": "Prénom",
+        "placeholder": "Entrez votre prénom"
+      },
+      "lastname": {
+        "label": "Nom",
+        "placeholder": "Entrez votre nom"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Entrez votre email"
+      },
+      "newpassword": {
+        "label": "Mot de passe",
+        "placeholder": "Entrez votre mot de passe"
+      },
+      "confirmpassword": {
+        "label": "Confirmer le mot de passe",
+        "placeholder": "Confirmez votre mot de passe"
+      }
+    },
+    "messages": {
+      "validate": {
+        "firstname": {
+          "required": "Le prénom est obligatoire"
+        },
+        "lastname": {
+          "required": "Le nom est obligatoire"
+        },
+        "email": {
+          "required": "L'email est obligatoire",
+          "invalid": "L'email est invalide",
+          "minlength": "L'email doit comporter au moins 5 caractères",
+          "maxlength": "L'email ne peut pas dépasser 254 caractères"
+        },
+        "newpassword": {
+          "required": "Le mot de passe est obligatoire",
+          "minlength": "Le mot de passe doit comporter au moins 4 caractères",
+          "maxlength": "Le mot de passe ne peut pas dépasser 50 caractères"
+        },
+        "confirmpassword": {
+          "required": "La confirmation du mot de passe est obligatoire",
+          "dontmatch": "Les mots de passe ne correspondent pas"
+        }
+      }
+    }
+  },
+  "entity": {
+    "action": {
+      "cancel": "Annuler",
+      "register": "S'inscrire"
     }
   }
 }

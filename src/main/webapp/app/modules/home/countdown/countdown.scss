@@ -1,0 +1,49 @@
+.offer {
+  .countdownwrap {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      min-width: 80px;
+      max-width: 100px;
+      flex: 1 1 80px;
+
+      small {
+        font-size: 1rem;
+        color: #555;
+      }
+    }
+  }
+}
+
+/* Media Queries pour ajustements supplémentaires sur petits écrans */
+@media (max-width: 768px) {
+  .offer .countdownwrap {
+    gap: 15px;
+  }
+
+  .offer .countdown-item {
+    padding: 10px;
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .offer .countdownwrap {
+    gap: 10px;
+  }
+
+  .offer .countdown-item {
+    padding: 8px;
+    min-width: 60px;
+  }
+}

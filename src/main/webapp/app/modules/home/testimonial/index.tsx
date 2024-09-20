@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-jhipster'; // Utilisation de react-jhipster pour l'i18n
+import { Translate } from 'react-jhipster';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

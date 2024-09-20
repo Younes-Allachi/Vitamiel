@@ -1,19 +1,23 @@
 {
   "login": {
-    "title": "Sign in",
-    "form": {
-      "password": "Password",
-      "password.placeholder": "Your password",
-      "rememberme": "Remember me",
-      "button": "Sign in"
-    },
-    "messages": {
-      "error": {
-        "authentication": "<strong>Failed to sign in!</strong> Please check your credentials and try again."
-      }
+    "title": "Login",
+    "success": "Login successful!",
+    "error": "Incorrect username or password",
+    "username": {
+      "placeholder": "Enter your username",
+      "required": "Username is required"
     },
     "password": {
-      "forgot": "Did you forget your password?"
+      "placeholder": "Enter your password",
+      "required": "Password is required"
+    },
+    "forgot": "Forgot password ?",
+    "signup": "Register",
+    "button": "Login"
+  },
+  "entity": {
+    "action": {
+      "cancel": "Cancel"
     }
   }
 }

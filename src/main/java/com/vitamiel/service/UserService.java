@@ -38,10 +38,18 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    private final MailService mailService;
+
+    public UserService(
+        UserRepository userRepository,
+        PasswordEncoder passwordEncoder,
+        AuthorityRepository authorityRepository,
+        MailService mailService
+    ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.mailService = mailService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -119,6 +127,7 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         LOG.debug("Created Information for User: {}", newUser);
+        mailService.sendActivationEmail(newUser);
         return newUser;
     }
 
@@ -185,6 +194,7 @@ public class UserService {
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
                 user.setLangKey(userDTO.getLangKey());
+                user.setDeliveryAddress(userDTO.getDeliveryAddress());
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 userDTO
@@ -219,12 +229,13 @@ public class UserService {
      * @param langKey   language key.
      * @param imageUrl  image URL of user.
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl, String deliveryAddress) {
         SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
             .ifPresent(user -> {
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
+                user.setDeliveryAddress(deliveryAddress);
                 if (email != null) {
                     user.setEmail(email.toLowerCase());
                 }

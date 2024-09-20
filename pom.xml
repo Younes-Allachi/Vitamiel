@@ -20,7 +20,6 @@
     <properties>
         <!--
             Build properties
-            The spring-boot version should match the one managed by https://mvnrepository.com/artifact/tech.jhipster/jhipster-dependencies/${jhipster-dependencies.version}
         -->
         <maven.version>3.2.5</maven.version>
         <java.version>17</java.version>
@@ -73,7 +72,6 @@
         <profile.test/>
         <profile.tls/>
         <properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
-        <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
         <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
         <springdoc-openapi-starter-webmvc-api.version>2.6.0</springdoc-openapi-starter-webmvc-api.version>
     </properties>
@@ -324,10 +322,7 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-            </plugin>
+
         </plugins>
         <pluginManagement>
             <plugins>
@@ -676,11 +671,6 @@
                             <goals>
                                 <goal>read-project-properties</goal>
                             </goals>
-                            <configuration>
-                                <files>
-                                    <file>sonar-project.properties</file>
-                                </files>
-                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
@@ -781,11 +771,7 @@
                         </dependency>
                     </dependencies>
                 </plugin>
-                <plugin>
-                    <groupId>org.sonarsource.scanner.maven</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <version>${sonar-maven-plugin.version}</version>
-                </plugin>
+
             </plugins>
         </pluginManagement>
     </build>

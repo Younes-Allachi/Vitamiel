@@ -77,7 +77,7 @@ public class MailService {
             javaMailSender.send(mimeMessage);
             LOG.debug("Sent email to User '{}'", to);
         } catch (MailException | MessagingException e) {
-            LOG.warn("Email could not be sent to user '{}'", to, e);
+            LOG.warn("Email could not be sent to user '{}'", to, e.getMessage());
         }
     }
 

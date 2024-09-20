@@ -2,10 +2,6 @@
 @import '../../../../content/sass/helpers/mixins';
 @import '../../../../content/sass/components/section-title';
 
-/*---------------------------
-   offer-area
-----------------------------*/
-
 .offer-area {
   .offer-wrap {
     @media (max-width: 991px) {
@@ -49,7 +45,6 @@
         }
       }
 
-      /* Utilisez `& {}` pour conserver les déclarations après les règles imbriquées */
       & {
         padding-bottom: 20px;
         position: relative;
@@ -79,6 +74,21 @@
 
     p {
       margin-bottom: 30px;
+    }
+  }
+
+  .offer-img {
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 991px) {
+      margin-top: 20px;
     }
   }
 }

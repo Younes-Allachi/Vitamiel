@@ -1,0 +1,101 @@
+@import '../../../../content/sass/helpers/_variables.scss';
+@import '../../../../content/sass/helpers/mixins';
+@import '../../../../content/sass/components/section-title';
+
+.about-section {
+  border-top: 1px solid #ebebeb;
+
+  .about-area {
+    @include media-query(1199px) {
+      padding-top: 0;
+      padding-left: 0;
+    }
+
+    .about-wrap {
+      @media (max-width: 991px) {
+        margin-top: 40px;
+      }
+
+      & {
+        padding-bottom: 20px;
+        position: relative;
+        margin-bottom: 40px;
+      }
+
+      .about-title {
+        small {
+          display: block;
+          font-size: 22px;
+          line-height: 25px;
+          background: -webkit-linear-gradient($theme-primary-color, $theme-secondary-color);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 20px;
+
+          @media (max-width: 991px) {
+            font-size: 20px;
+            margin-bottom: 10px;
+          }
+        }
+
+        h2 {
+          font-size: 55px;
+          line-height: 80px;
+          font-weight: 600;
+          margin-bottom: 15px;
+
+          @media (max-width: 1200px) {
+            font-size: 40px;
+            line-height: 65px;
+          }
+          @media (max-width: 991px) {
+            font-size: 40px;
+            line-height: 55px;
+            margin-bottom: 10px;
+          }
+          @media (max-width: 450px) {
+            font-size: 30px;
+            line-height: 45px;
+          }
+        }
+
+        &:after {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 30px;
+          height: 6px;
+          background: linear-gradient(to right, $theme-primary-color, $theme-secondary-color);
+          content: '';
+        }
+
+        &:before {
+          position: absolute;
+          left: 40px;
+          bottom: 0;
+          width: 40px;
+          height: 6px;
+          background: linear-gradient(to right, $theme-primary-color, $theme-secondary-color);
+          content: '';
+        }
+      }
+
+      p {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .video-area {
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 991px) {
+      margin-top: 20px;
+    }
+  }
+}

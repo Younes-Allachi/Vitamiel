@@ -60,6 +60,12 @@
     "sale": "Vente",
     "items": "Flash"
   },
+  "countdown": {
+    "days": "Jours",
+    "hours": "Heures",
+    "minutes": "Minutes",
+    "seconds": "Secondes"
+  },
   "service": {
     "freeShipping": {
       "title": "Livraison Gratuite",
@@ -81,5 +87,24 @@
     "rachelQuote": "Le miel que j'ai reçu était absolument fantastique ! Je n'ai jamais goûté un miel aussi pur et frais. Il a complètement transformé mon thé du matin. Je le recommande vivement !",
     "davidQuote": "J'ai essayé plusieurs types de miel, mais celui-ci se démarque par sa saveur riche et sa texture douce. C'est le complément parfait pour mes desserts, et j'adore son goût naturel.",
     "kenQuote": "Ce miel est tout simplement incroyable. La qualité est exceptionnelle et je ne peux plus imaginer revenir au miel acheté en magasin. Il est parfait pour la cuisine et pour sucrer mes boissons."
+  },
+  "aboutSection": {
+    "smallTitle": "À propos de notre entreprise",
+    "mainTitle": {
+      "part1": "Tout-en-un",
+      "part2": "pour créer une",
+      "part3": "structure différente"
+    },
+    "paragraph1": "Chez Vitamiel, nous nous engageons à offrir les meilleurs produits de miel naturels provenant directement de nos apiculteurs partenaires. Nous croyons que le miel n'est pas seulement un édulcorant naturel, mais aussi un aliment aux multiples bienfaits pour la santé. Notre mission est de proposer une gamme de miels de haute qualité, tout en respectant l'environnement et les traditions apicoles.",
+    "paragraph2": "Chaque pot de miel que nous vendons raconte l'histoire de ses origines, des champs fleuris aux ruches soigneusement entretenues. Avec des années d'expérience dans l'apiculture, nous garantissons un produit frais et pur, riche en saveurs et en bienfaits.",
+    "learnMore": "En savoir plus"
+  },
+  "category2": {
+    "queenBeeHoneyTitle": "Miel de Reine",
+    "queenBeeHoneyDescription": "Le miel de reine est riche en nutriments et est souvent considéré comme un aliment de luxe. Il est récolté avec soin pour préserver sa pureté et ses propriétés bénéfiques pour la santé.",
+    "sunflowerHoneyTitle": "Miel de Tournesol",
+    "sunflowerHoneyDescription": "Le miel de tournesol est apprécié pour son goût doux et légèrement fruité. C'est une source naturelle d'énergie et il est parfait pour sucrer vos boissons ou plats préférés.",
+    "manukaHoneyTitle": "Miel de Manuka",
+    "manukaHoneyDescription": "Le miel de Manuka, originaire de Nouvelle-Zélande, est réputé pour ses propriétés médicinales uniques. Il est souvent utilisé pour améliorer la santé digestive et renforcer le système immunitaire."
   }
 }

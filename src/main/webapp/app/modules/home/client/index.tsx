@@ -1,5 +1,4 @@
 import React from 'react';
-import { Translate } from 'react-jhipster';
 import './client.scss';
 
 import Slider from 'react-slick';

@@ -60,7 +60,6 @@ public class AccountResource {
         if (isPasswordLengthInvalid(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
-        managedUserVM.setFirstName(managedUserVM.getLogin());
         managedUserVM.setLogin(managedUserVM.getEmail());
         managedUserVM.setActivated(true);
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
@@ -119,7 +118,8 @@ public class AccountResource {
             userDTO.getLastName(),
             userDTO.getEmail(),
             userDTO.getLangKey(),
-            userDTO.getImageUrl()
+            userDTO.getImageUrl(),
+            userDTO.getDeliveryAddress()
         );
     }
 

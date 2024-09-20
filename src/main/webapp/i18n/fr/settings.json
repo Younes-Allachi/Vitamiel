@@ -7,7 +7,9 @@
       "lastname": "Nom",
       "lastname.placeholder": "Votre nom",
       "language": "Langue",
-      "button": "Sauvegarder"
+      "button": "Sauvegarder",
+      "deliveryAddress": "Adresse de livraison",
+      "deliveryAddress.placeholder": "Votre adresse de livraison"
     },
     "messages": {
       "error": {

@@ -8,6 +8,8 @@ import { getSession } from 'app/shared/reducers/authentication';
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 import { reset, savePassword } from './password.reducer';
 
+import './password.scss';
+
 export const PasswordPage = () => {
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
@@ -38,8 +40,6 @@ export const PasswordPage = () => {
     }
     dispatch(reset());
   }, [successMessage, errorMessage]);
-
-  // TODO: ADD PASSWORD RESET INTEGRATION
 
   return (
     <div>

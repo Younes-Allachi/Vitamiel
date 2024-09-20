@@ -6,6 +6,7 @@
 --------------------------------------------------------------*/
 html {
   font-size: $base-font-size + px;
+  user-select: none;
 }
 :root {
   scroll-behavior: inherit;

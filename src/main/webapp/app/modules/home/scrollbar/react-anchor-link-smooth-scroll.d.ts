@@ -3,7 +3,7 @@ declare module 'react-anchor-link-smooth-scroll' {
 
   interface AnchorLinkProps {
     href: string;
-    offset?: () => number | number;
+    offset?: () => number;
     onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
     className?: string;
     children?: React.ReactNode;

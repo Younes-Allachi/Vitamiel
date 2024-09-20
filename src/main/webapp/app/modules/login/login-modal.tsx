@@ -1,111 +1,139 @@
-import React from 'react';
-import { Translate, ValidatedField, translate } from 'react-jhipster';
-import { Alert, Button, Col, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
+import React, { useState, useEffect } from 'react';
+import { Translate, translate } from 'react-jhipster';
+import { Alert, Button, Form, ModalFooter, ModalHeader, Modal } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { type FieldError, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 import './login-modal.scss';
 
 export interface ILoginModalProps {
   showModal: boolean;
   loginError: boolean;
-  handleLogin: (username: string, password: string, rememberMe: boolean) => void;
+  isAuthenticated: boolean;
+  handleLogin: (username: string, password: string) => void;
   handleClose: () => void;
+  handleSignup: () => void;
+  openPasswordResetModal: () => void;
 }
 
-const LoginModal = (props: ILoginModalProps) => {
-  const login = ({ username, password, rememberMe }) => {
-    props.handleLogin(username, password, rememberMe);
-  };
+const modalVariants = {
+  hidden: { opacity: 0, y: '-1000px' },
+  visible: {
+    opacity: 1,
+    y: '0',
+    transition: {
+      type: 'tween',
+      duration: 1.5,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+};
 
+const LoginModal: React.FC<ILoginModalProps> = ({
+  showModal,
+  loginError,
+  isAuthenticated,
+  handleLogin,
+  handleClose,
+  handleSignup,
+  openPasswordResetModal,
+}) => {
   const {
     handleSubmit,
     register,
     formState: { errors, touchedFields },
   } = useForm({ mode: 'onTouched' });
 
-  const { loginError, handleClose } = props;
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertColor, setAlertColor] = useState('');
 
-  const handleLoginSubmit = e => {
-    handleSubmit(login)(e);
+  const onSubmit = (data: { username: string; password: string }) => {
+    handleLogin(data.username, data.password);
   };
-  // TODO: ADD LOGIN INTEGRATION
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setAlertMessage(translate('login.success'));
+      setAlertColor('success');
+      setShowAlert(true);
+
+      handleClose();
+    } else if (loginError) {
+      setAlertMessage(translate('login.error'));
+      setAlertColor('danger');
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [isAuthenticated, loginError, handleClose]);
+
   return (
-    <div className={'login-modal'}>
-      <Form onSubmit={handleLoginSubmit}>
-        <ModalHeader id="login-title" data-cy="loginTitle" toggle={handleClose}>
-          <Translate contentKey="login.title">Sign in</Translate>
-        </ModalHeader>
-        <ModalBody>
-          <Row>
-            <Col md="12">
-              {loginError ? (
-                <Alert color="danger" data-cy="loginError">
-                  <Translate contentKey="login.messages.error.authentication">
-                    <strong>Failed to sign in!</strong> Please check your credentials and try again.
-                  </Translate>
+    <>
+      <Modal isOpen={showModal} toggle={handleClose} className="login-modal" backdrop="static">
+        <motion.div variants={modalVariants} initial="hidden" animate="visible" exit="exit">
+          <Form
+            onSubmit={e => {
+              e.preventDefault();
+              handleSubmit(onSubmit)(e);
+            }}
+          >
+            <ModalHeader toggle={handleClose}>
+              <h5>
+                <Translate contentKey="login.title">Sign in to your account</Translate>
+              </h5>
+            </ModalHeader>
+            <div className="modal-body">
+              {showAlert && (
+                <Alert color={alertColor} className="custom-alert">
+                  {alertMessage}
                 </Alert>
-              ) : null}
-            </Col>
-            <Col md="12">
-              <ValidatedField
-                name="username"
-                label={translate('global.form.username.label')}
-                placeholder={translate('global.form.username.placeholder')}
-                required
-                autoFocus
-                data-cy="username"
-                validate={{ required: 'Username cannot be empty!' }}
-                register={register}
-                error={errors.username as FieldError}
-                isTouched={touchedFields.username}
-              />
-              <ValidatedField
-                name="password"
-                type="password"
-                label={translate('login.form.password')}
-                placeholder={translate('login.form.password.placeholder')}
-                required
-                data-cy="password"
-                validate={{ required: 'Password cannot be empty!' }}
-                register={register}
-                error={errors.password as FieldError}
-                isTouched={touchedFields.password}
-              />
-              <ValidatedField
-                name="rememberMe"
-                type="checkbox"
-                check
-                label={translate('login.form.rememberme')}
-                value={true}
-                register={register}
-              />
-            </Col>
-          </Row>
-          <div className="mt-1">&nbsp;</div>
-          <Alert color="warning">
-            <Link to="/account/reset/request" data-cy="forgetYourPasswordSelector">
-              <Translate contentKey="login.password.forgot">Did you forget your password?</Translate>
-            </Link>
-          </Alert>
-          <Alert color="warning">
-            <span>
-              <Translate contentKey="global.messages.info.register.noaccount">You don&apos;t have an account yet?</Translate>
-            </span>{' '}
-            <Link to="/account/register">
-              <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
-            </Link>
-          </Alert>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="secondary" onClick={handleClose} tabIndex={1}>
-            <Translate contentKey="entity.action.cancel">Cancel</Translate>
-          </Button>{' '}
-          <Button color="primary" type="submit" data-cy="submit">
-            <Translate contentKey="login.form.button">Sign in</Translate>
-          </Button>
-        </ModalFooter>
-      </Form>
-    </div>
+              )}
+
+              <div className="form-group position-relative">
+                <input
+                  name="username"
+                  placeholder={translate('login.username.placeholder')}
+                  className={`form-control ${errors.username ? 'invalid' : touchedFields.username ? 'valid' : ''}`}
+                  {...register('username', { required: true })}
+                />
+                {errors.username && <i className="fa fa-times field-icon error"></i>}
+                {!errors.username && touchedFields.username && <i className="fa fa-check field-icon success"></i>}
+                {errors.username && <span className="error-message1">{translate('login.username.required')}</span>}
+              </div>
+              <div className="form-group position-relative">
+                <input
+                  name="password"
+                  type="password"
+                  placeholder={translate('login.password.placeholder')}
+                  className={`form-control ${errors.password ? 'invalid' : touchedFields.password ? 'valid' : ''}`}
+                  {...register('password', { required: true })}
+                />
+                {errors.password && <i className="fa fa-times field-icon error"></i>}
+                {!errors.password && touchedFields.password && <i className="fa fa-check field-icon success"></i>}
+                {errors.password && <span className="error-message2">{translate('login.password.required')}</span>}
+              </div>
+              <div className="login-links">
+                <Link to="#" onClick={openPasswordResetModal}>
+                  <Translate contentKey="login.forgot">Forgot password?</Translate>
+                </Link>
+                <div className="custom-signup-link" onClick={handleSignup}>
+                  <Translate contentKey="login.signup">Sign up</Translate>
+                </div>
+              </div>
+            </div>
+            <ModalFooter>
+              <Button color="secondary" onClick={handleClose}>
+                <Translate contentKey="entity.action.cancel">Cancel</Translate>
+              </Button>{' '}
+              <Button color="primary" type="submit">
+                <Translate contentKey="login.button">Sign in</Translate>
+              </Button>
+            </ModalFooter>
+          </Form>
+        </motion.div>
+      </Modal>
+    </>
   );
 };
 

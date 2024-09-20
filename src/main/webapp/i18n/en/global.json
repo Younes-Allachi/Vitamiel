@@ -11,12 +11,13 @@
       },
       "account": {
         "main": "Account",
-        "settings": "Settings",
+        "settings": "Profile",
         "password": "Password",
         "sessions": "Sessions",
         "login": "Sign in",
         "logout": "Sign out",
-        "register": "Register"
+        "register": "Register",
+        "profile": "Profile"
       },
       "admin": {
         "main": "Administration",
@@ -33,6 +34,10 @@
       "language": "Language"
     },
     "form": {
+      "firstname.label": "First name",
+      "firstname.placeholder": "Your first name",
+      "lastname.label": "Last name",
+      "lastname.placeholder": "Your last name",
       "username.label": "Username",
       "username.placeholder": "Your username",
       "currentpassword.label": "Current password",
@@ -153,7 +158,12 @@
       "title": "Contact",
       "address": "7 Rue Green Lake, 47933"
     },
-    "copyright": "2024 Vitamiel. All rights reserved."
+    "copyright": "2024 Vitamiel. All rights reserved.",
+    "global": {
+      "form": {
+        "email.placeholder": "Email Address"
+      }
+    }
   },
   "header": {
     "about": "About",
@@ -161,6 +171,7 @@
     "password": "Password",
     "signout": "Sign out",
     "login": "Login",
-    "inscription": "Inscription"
+    "inscription": "Register",
+    "profile": "Profile"
   }
 }

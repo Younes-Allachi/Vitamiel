@@ -1,9 +1,4 @@
-import './home.scss';
-
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Translate } from 'react-jhipster';
-import { Alert, Col, Row } from 'reactstrap';
 
 import { useAppSelector } from 'app/config/store';
 import Hero from 'app/modules/home/hero';

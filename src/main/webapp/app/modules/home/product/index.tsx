@@ -76,7 +76,9 @@ const Product = ({ products }: ProductProps) => {
                             <li>
                               {product.price} <Translate contentKey="product.currency" />
                             </li>
-                            <li className="del-price">{product.delPrice} €</li>
+                            <li className="del-price">
+                              {product.delPrice} <Translate contentKey="product.currency" />
+                            </li>
                           </ul>
                         </div>
                       </div>

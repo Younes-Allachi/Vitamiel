@@ -1,70 +1,173 @@
 import './header.scss';
-
-import React, { useCallback, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Storage, Translate } from 'react-jhipster';
 import MobileMenu from 'app/shared/layout/header/MobileMenu';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { setLocale } from 'app/shared/reducers/locale';
-import { AccountMenu, LocaleMenu } from 'app/shared/layout/menus';
+import { LocaleMenu } from 'app/shared/layout/menus';
+import RegisterModal from 'app/modules/account/register/RegisterModal';
+import LoginModal from 'app/modules/login/login-modal';
+import PasswordResetModal from 'app/modules/account/password-reset/PasswordResetModal';
+import ProfileModal from 'app/modules/account/settings/ProfileModal/ProfileModal';
+import PasswordModal from 'app/modules/account/password/PasswordModal/PasswordModal';
+import { login, logout } from 'app/shared/reducers/authentication';
+import { saveAccountSettings } from 'app/modules/account/settings/settings.reducer';
 
 interface HeaderProps {
   hClass?: string;
-  isAuthenticated?: boolean;
+  isAuthenticated: boolean;
   currentLocale?: string;
   ribbonEnv?: string;
   isInProduction?: boolean;
   isOpenAPIEnabled?: boolean;
+  toggleLoginModal?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ hClass, currentLocale }) => {
+const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLocale, toggleLoginModal }) => {
   const [isProfileShow, setIsProfileShow] = useState(false);
-  const dispatch = useAppDispatch();
-  const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showPasswordResetModal, setShowPasswordResetModal] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
 
-  const handleLocaleChange = event => {
+  const dispatch = useAppDispatch();
+  const account = useAppSelector(state => state.authentication.account);
+  const loginError = useAppSelector(state => state.authentication.loginError);
+  const location = useLocation();
+
+  // Récupérer l'état actuel de la langue pour éviter un rerendering excessif
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setIsProfileShow(false);
+    }
+  }, [isAuthenticated]);
+
+  // Fermer tous les modals en une fois
+  const closeAllModals = () => {
+    setShowRegisterModal(false);
+    setShowLoginModal(false);
+    setShowPasswordResetModal(false);
+    setShowProfileModal(false);
+    setShowPasswordModal(false);
+  };
+
+  const handleLocaleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const langKey = event.target.value;
     Storage.session.set('locale', langKey);
     dispatch(setLocale(langKey));
+
+    // Fermer les modals lorsque la langue change pour éviter tout conflit
+    closeAllModals();
   };
 
   const profileHandler = useCallback(() => {
     setIsProfileShow(prevState => !prevState);
   }, []);
 
-  const ClickHandler = () => {
-    window.scrollTo(10, 0);
-    setIsProfileShow(prevState => !prevState);
+  const closeProfileMenu = () => setIsProfileShow(false);
+
+  const closeProfileModal = () => setShowProfileModal(false);
+  const closeRegisterModal = () => setShowRegisterModal(false);
+
+  const openRegisterModal = () => {
+    closeAllModals();
+    setShowRegisterModal(true);
   };
-  const getAccountMenu = useMemo(() => {
-    return isAuthenticated ? (
-      <ul>
-        <li>
-          <a onClick={ClickHandler} href="/account/password">
-            <Translate contentKey="global.menu.account.password">Password</Translate>
-          </a>
-        </li>
-        <li>
-          <a onClick={ClickHandler} href="/logout">
-            <Translate contentKey="header.signout">Sign out</Translate>
-          </a>
-        </li>
-      </ul>
-    ) : (
-      <ul>
-        <li>
-          <Link onClick={ClickHandler} to="/login">
-            <Translate contentKey="header.login">Login</Translate>
-          </Link>
-        </li>
-        <li>
-          <Link onClick={ClickHandler} to="/account/register">
-            <Translate contentKey="header.inscription">Sign up</Translate>
-          </Link>
-        </li>
-      </ul>
-    );
-  }, [isAuthenticated, currentLocale]);
+
+  const openLoginModal = () => {
+    closeAllModals();
+    setShowLoginModal(true);
+  };
+
+  const openPasswordResetModal = () => {
+    closeAllModals();
+    setShowPasswordResetModal(true);
+  };
+
+  const openProfileModal = () => {
+    closeAllModals();
+    setShowProfileModal(true);
+  };
+
+  const openPasswordModal = () => {
+    closeAllModals();
+    setShowPasswordModal(true);
+  };
+
+  const handleProfileSubmit = values => {
+    dispatch(saveAccountSettings({ ...account, ...values }));
+    closeProfileModal();
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    window.location.reload();
+  };
+
+  const isActive = (pathname: string) => location.pathname === pathname;
+
+  const getAccountMenu = isAuthenticated ? (
+    <ul className="custom-menu">
+      <li className="custom-menu-item2">
+        <Link
+          to="#"
+          id="profile"
+          onClick={() => {
+            openProfileModal();
+            closeProfileMenu();
+          }}
+        >
+          {currentLocale === 'fr' ? 'Profil' : 'Profile'}
+        </Link>
+      </li>
+      <li className="custom-menu-item2">
+        <Link
+          to="#"
+          id="password"
+          onClick={() => {
+            openPasswordModal();
+            closeProfileMenu();
+          }}
+        >
+          {currentLocale === 'fr' ? 'Mot de passe' : 'Password'}
+        </Link>
+      </li>
+      <li className="custom-menu-item2">
+        <Link to="#" id="signout" onClick={handleLogout}>
+          <Translate contentKey="header.signout">Sign out</Translate>
+        </Link>
+      </li>
+    </ul>
+  ) : (
+    <ul className="custom-menu">
+      <li className="custom-menu-item2">
+        <Link
+          to="#"
+          id="login"
+          onClick={() => {
+            openLoginModal();
+            closeProfileMenu();
+          }}
+        >
+          <Translate contentKey="header.login">Login</Translate>
+        </Link>
+      </li>
+      <li className="custom-menu-item2">
+        <Link
+          to="#"
+          id="signup"
+          onClick={() => {
+            openRegisterModal();
+            closeProfileMenu();
+          }}
+        >
+          <Translate contentKey="header.inscription">Sign up</Translate>
+        </Link>
+      </li>
+    </ul>
+  );
 
   return (
     <header id="header" className={`site-header ${hClass}`}>
@@ -73,41 +176,59 @@ const Header: React.FC<HeaderProps> = ({ hClass, currentLocale }) => {
           <div className="row">
             <div className="col-lg-3">
               <div className="navbar-header">
-                <Link onClick={ClickHandler} className="navbar-brand" to="/">
+                <div className="navbar-brand">
                   <img src="content/images/logo.png" alt="icon" /> Vitamiel
-                </Link>
+                </div>
               </div>
             </div>
             <div className="col-lg-7">
               <div id="navbar" className="collapse navbar-collapse navigation-holder">
-                <Link onClick={ClickHandler} className="menu-close" to="/">
-                  <i className="fi flaticon-cancel"></i>
-                </Link>
                 <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
                   <li>
-                    <Link onClick={ClickHandler} className="active" to="/">
-                      <Translate contentKey="header.home">title</Translate>
+                    <Link className={isActive('/') || isActive('/home') ? 'active' : ''} to="/">
+                      <Translate contentKey="header.home">Home</Translate>
                     </Link>
                   </li>
                   <li>
-                    <Link onClick={ClickHandler} to="/">
-                      <Translate contentKey="header.about">title</Translate>
+                    <Link className={isActive('/about') ? 'active' : ''} to="/about">
+                      <Translate contentKey="header.about">About</Translate>
                     </Link>
                   </li>
                   <LocaleMenu currentLocale={currentLocale} onClick={handleLocaleChange} />
                 </ul>
               </div>
             </div>
-            <div className="col-lg-2">
+            <div className="col-lg-2 d-flex align-items-center justify-content-end">
               <div className="header-right d-flex">
+                <div className="responsive-locale-menu">
+                  <LocaleMenu currentLocale={currentLocale} onClick={handleLocaleChange} />
+                </div>
                 <div className="header-profile-form-wrapper">
                   <button onClick={profileHandler} className="profile-toggle-btn">
                     <i className={`${isProfileShow ? 'fi ti-close' : 'fi flaticon-user'}`}></i>
                   </button>
                   <div className={`header-profile-content ${isProfileShow ? 'header-profile-content-toggle' : ''}`}>{getAccountMenu}</div>
+                  <LoginModal
+                    showModal={showLoginModal}
+                    handleClose={() => setShowLoginModal(false)}
+                    loginError={loginError}
+                    handleLogin={(username, password) => dispatch(login(username, password))}
+                    isAuthenticated={isAuthenticated}
+                    handleSignup={openRegisterModal}
+                    openPasswordResetModal={openPasswordResetModal}
+                  />
+                  <RegisterModal showModal={showRegisterModal} handleClose={closeRegisterModal} />
+                  <PasswordResetModal showModal={showPasswordResetModal} handleClose={() => setShowPasswordResetModal(false)} />
+                  <ProfileModal
+                    showModal={showProfileModal}
+                    handleClose={closeProfileModal}
+                    handleValidSubmit={handleProfileSubmit}
+                    account={account}
+                  />
+                  <PasswordModal showModal={showPasswordModal} handleClose={() => setShowPasswordModal(false)} />
                 </div>
+                <MobileMenu />
               </div>
-              <MobileMenu />
             </div>
           </div>
         </div>

@@ -1,13 +1,9 @@
 @import '../../../../content/sass/helpers/_variables.scss';
 
-/*---------------------------
-   category-area
-----------------------------*/
-
 .category-area {
   .category-wrap {
     .category-title {
-      padding-bottom: 40px; // Déplacer avant les règles imbriquées
+      padding-bottom: 40px;
       position: relative;
       margin-bottom: 60px;
 
@@ -172,12 +168,18 @@
       margin-top: 40px;
     }
 
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
     .ct-img {
       position: absolute;
       left: -15px;
       top: 170px;
       z-index: -1;
-      @media (max-width: 1399px) {
+
+      @media (max-width: 991px) {
         display: none;
       }
     }

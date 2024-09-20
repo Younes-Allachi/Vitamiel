@@ -1,7 +1,9 @@
 import './footer.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Translate } from 'react-jhipster';
+import { Translate, translate } from 'react-jhipster';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const ClickHandler = (e: React.MouseEvent) => {
   e.preventDefault();
@@ -15,9 +17,9 @@ const Footer = () => (
           <div className="col col-lg-3 col-md-6 col-sm-12 col-12">
             <div className="widget about-widget">
               <div className="logo widget-title">
-                <Link onClick={ClickHandler} to="/" style={{ textDecoration: 'none' }}>
-                  <img src="content/images/logo.png" alt="ft-logo" /> Vitamiel
-                </Link>
+                <div onClick={ClickHandler} style={{ textDecoration: 'none' }}>
+                  <img src="content/images/logo.png" alt="ft-logo" className="logo-image" /> Vitamiel
+                </div>
               </div>
               <p>
                 <Translate contentKey="footer.title" />
@@ -30,7 +32,7 @@ const Footer = () => (
                 </li>
                 <li>
                   <Link onClick={ClickHandler} to="#">
-                    <i className="ti-twitter-alt"></i>
+                    <FontAwesomeIcon icon={faXTwitter} />
                   </Link>
                 </li>
                 <li>
@@ -81,7 +83,7 @@ const Footer = () => (
               </p>
               <form>
                 <div className="input-1">
-                  <input type="email" className="form-control" placeholder="Adresse Email *" required />
+                  <input type="email" className="form-control" placeholder={translate('global.form.email.placeholder')} required />
                 </div>
                 <div className="submit clearfix">
                   <button type="submit">

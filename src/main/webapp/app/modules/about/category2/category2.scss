@@ -1,0 +1,219 @@
+@import '../../../../content/sass/helpers/_variables.scss';
+@import '../../../../content/sass/helpers/mixins';
+@import '../../../../content/sass/components/section-title';
+
+.category-area-s2 {
+  padding-bottom: 80px;
+
+  @media (max-width: 767px) {
+    padding-bottom: 50px;
+  }
+
+  .category-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .category-item {
+      text-align: center;
+      padding: 40px;
+      background: #fdf5ee;
+      margin-bottom: 45px;
+      flex: 1;
+      min-width: 400px;
+      max-width: 430px;
+      height: 100%;
+      box-sizing: border-box;
+
+      &:last-child {
+        margin-bottom: 45px;
+      }
+
+      @media (max-width: 600px) {
+        padding: 20px;
+      }
+
+      .category-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        background: $white;
+        margin-bottom: 15px;
+        width: 130px;
+        height: 130px;
+        line-height: 130px;
+        border-radius: 50%;
+        text-align: center;
+        position: relative;
+        background: #fdf5ee;
+        z-index: 1;
+        overflow: hidden;
+
+        @media (max-width: 450px) {
+          margin: 0 auto;
+        }
+
+        &:before {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          content: '';
+          border-radius: 50%;
+          z-index: -1;
+          background: linear-gradient(0deg, rgb(161, 54, 2) 0%, rgb(254, 185, 52) 100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s;
+        }
+      }
+
+      .category-content {
+        overflow: hidden;
+        margin-top: 20px;
+
+        @media (max-width: 450px) {
+          text-align: center;
+        }
+
+        h2 {
+          font-size: 30px;
+          font-weight: 600;
+          margin-top: 10px;
+          margin-bottom: 15px;
+
+          @media (max-width: 1200px) {
+            margin-top: 0;
+            margin-bottom: 7px;
+          }
+
+          @media (max-width: 450px) {
+            font-size: 22px;
+            margin-bottom: 15px;
+          }
+        }
+
+        p {
+          margin-bottom: 0;
+        }
+
+        a {
+          color: $heading-color;
+
+          &:hover {
+            color: $theme-primary-color;
+          }
+        }
+      }
+
+      &:hover {
+        .category-icon {
+          &:before {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+
+    .category-title {
+      padding-bottom: 40px;
+      position: relative;
+      margin-bottom: 60px;
+
+      @media (max-width: 450px) {
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 52px;
+        font-weight: 600;
+        margin-bottom: 30px;
+
+        @media (max-width: 1200px) {
+          font-size: 40px;
+        }
+
+        @media (max-width: 450px) {
+          font-size: 25px;
+          margin-bottom: 20px;
+        }
+      }
+
+      p {
+        color: $text-color;
+        margin-bottom: 0;
+      }
+
+      &:after {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 30px;
+        height: 6px;
+        background: linear-gradient(to right, $theme-primary-color, $theme-secondary-color);
+        content: '';
+        @media (max-width: 450px) {
+          left: 35%;
+        }
+      }
+
+      &:before {
+        position: absolute;
+        left: 40px;
+        bottom: 0;
+        width: 40px;
+        height: 6px;
+        background: linear-gradient(to right, $theme-primary-color, $theme-secondary-color);
+        content: '';
+        @media (max-width: 450px) {
+          left: 50%;
+        }
+      }
+    }
+  }
+
+  .category-img {
+    text-align: right;
+    position: relative;
+    z-index: 1;
+    padding-left: 150px;
+
+    @media (max-width: 1399px) {
+      padding-left: 0px;
+    }
+
+    @media (max-width: 991px) {
+      text-align: left;
+      margin-top: 40px;
+    }
+
+    .ct-img {
+      position: absolute;
+      left: -15px;
+      top: 170px;
+      z-index: -1;
+
+      @media (max-width: 1399px) {
+        display: none;
+      }
+    }
+  }
+
+  &.style-2 {
+    background: #fdf5ee;
+
+    .category-wrap {
+      .category-item {
+        background: $white;
+        margin-bottom: 45px;
+
+        .category-icon {
+          background: #fdf5ee;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Translate } from 'react-jhipster'; // Utiliser Translate pour i18n
+import { Translate } from 'react-jhipster';
 import Offer from '../countdown';
 import './flashSale.scss';
 

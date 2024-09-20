@@ -60,6 +60,12 @@
     "sale": "Sale",
     "items": "Items"
   },
+  "countdown": {
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
   "service": {
     "freeShipping": {
       "title": "Free Shipping",
@@ -81,5 +87,24 @@
     "rachelQuote": "The honey I received was absolutely fantastic! I’ve never tasted honey this pure and fresh. It completely transformed my morning tea. I highly recommend it!",
     "davidQuote": "I’ve tried several types of honey, but this one stands out with its rich flavor and smooth texture. It’s the perfect complement to my desserts, and I love its natural taste.",
     "kenQuote": "This honey is simply incredible. The quality is exceptional, and I can’t imagine going back to store-bought honey. It’s perfect for cooking and sweetening my drinks."
+  },
+  "aboutSection": {
+    "smallTitle": "About our company",
+    "mainTitle": {
+      "part1": "All-in-one",
+      "part2": "to make a",
+      "part3": "different structure"
+    },
+    "paragraph1": "At Vitamiel, we are committed to offering the best natural honey products sourced directly from our partner beekeepers. We believe that honey is not just a natural sweetener but also a food with multiple health benefits. Our mission is to provide a range of high-quality honey while respecting the environment and beekeeping traditions.",
+    "paragraph2": "Each jar of honey we sell tells the story of its origins, from flower-filled fields to carefully maintained hives. With years of beekeeping experience, we guarantee a fresh and pure product, rich in flavor and benefits.",
+    "learnMore": "Learn more"
+  },
+  "category2": {
+    "queenBeeHoneyTitle": "Queen Bee Honey",
+    "queenBeeHoneyDescription": "Queen bee honey is rich in nutrients and is often considered a luxury food. It is carefully harvested to preserve its purity and beneficial health properties.",
+    "sunflowerHoneyTitle": "Sunflower Honey",
+    "sunflowerHoneyDescription": "Sunflower honey is appreciated for its mild and slightly fruity taste. It is a natural source of energy and is perfect for sweetening your favorite drinks or dishes.",
+    "manukaHoneyTitle": "Manuka Honey",
+    "manukaHoneyDescription": "Manuka honey, originating from New Zealand, is known for its unique medicinal properties. It is often used to improve digestive health and strengthen the immune system."
   }
 }
