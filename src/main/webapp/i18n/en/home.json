@@ -106,5 +106,38 @@
     "sunflowerHoneyDescription": "Sunflower honey is appreciated for its mild and slightly fruity taste. It is a natural source of energy and is perfect for sweetening your favorite drinks or dishes.",
     "manukaHoneyTitle": "Manuka Honey",
     "manukaHoneyDescription": "Manuka honey, originating from New Zealand, is known for its unique medicinal properties. It is often used to improve digestive health and strengthen the immune system."
+  },
+  "contact": {
+    "title": "Our Contacts",
+    "description": "At Vitamiel, we are committed to providing the highest quality natural honey directly from our apiaries in Belgium. Our team is always here to answer any of your questions or assist you in selecting the right product for your needs.",
+    "location": {
+      "title": "Our Location",
+      "address": "Vlezenbeeklaan 171A, 1602 Sint-Pieters-Leeuw, Belgium"
+    },
+    "phone": {
+      "title": "Phone",
+      "number": "+32 484 161 363"
+    },
+    "email": {
+      "title": "Email",
+      "address": "vitamiel@gmail.com"
+    },
+    "formTitle": "Quick Contact Form"
+  },
+  "contactForm": {
+    "name": "Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send Message",
+    "errors": {
+      "name": "Please enter your name",
+      "lastname": "Please enter your last name",
+      "email": "Please enter your email",
+      "subject": "Please enter the subject",
+      "events": "Please select an event",
+      "notes": "Please enter a note"
+    }
   }
 }

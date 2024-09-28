@@ -106,5 +106,38 @@
     "sunflowerHoneyDescription": "Le miel de tournesol est apprécié pour son goût doux et légèrement fruité. C'est une source naturelle d'énergie et il est parfait pour sucrer vos boissons ou plats préférés.",
     "manukaHoneyTitle": "Miel de Manuka",
     "manukaHoneyDescription": "Le miel de Manuka, originaire de Nouvelle-Zélande, est réputé pour ses propriétés médicinales uniques. Il est souvent utilisé pour améliorer la santé digestive et renforcer le système immunitaire."
+  },
+  "contact": {
+    "title": "Nos Contacts",
+    "description": "Chez Vitamiel, nous nous engageons à fournir le miel naturel de la plus haute qualité directement de nos ruchers en Belgique. Notre équipe est toujours là pour répondre à vos questions ou vous aider à choisir le bon produit pour vos besoins.",
+    "location": {
+      "title": "Notre Localisation",
+      "address": "Vlezenbeeklaan 171A, 1602 Sint-Pieters-Leeuw, Belgique"
+    },
+    "phone": {
+      "title": "Téléphone",
+      "number": "+32 484 161 363"
+    },
+    "email": {
+      "title": "Email",
+      "address": "vitamiel@gmail.com"
+    },
+    "formTitle": "Formulaire de Contact Rapide"
+  },
+  "contactForm": {
+    "name": "Nom",
+    "lastname": "Nom de famille",
+    "email": "Email",
+    "subject": "Sujet",
+    "message": "Message",
+    "submit": "Envoyer le message",
+    "errors": {
+      "name": "Veuillez entrer votre nom",
+      "lastname": "Veuillez entrer votre nom de famille",
+      "email": "Veuillez entrer votre email",
+      "subject": "Veuillez entrer le sujet",
+      "events": "Veuillez sélectionner un événement",
+      "notes": "Veuillez entrer une note"
+    }
   }
 }

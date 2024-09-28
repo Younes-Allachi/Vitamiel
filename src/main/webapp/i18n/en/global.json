@@ -172,6 +172,7 @@
     "signout": "Sign out",
     "login": "Login",
     "inscription": "Register",
-    "profile": "Profile"
+    "profile": "Profile",
+    "contact": "Contact"
   }
 }

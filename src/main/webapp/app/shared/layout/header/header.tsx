@@ -37,14 +37,12 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
   const loginError = useAppSelector(state => state.authentication.loginError);
   const location = useLocation();
 
-  // Récupérer l'état actuel de la langue pour éviter un rerendering excessif
   useEffect(() => {
     if (!isAuthenticated) {
       setIsProfileShow(false);
     }
   }, [isAuthenticated]);
 
-  // Fermer tous les modals en une fois
   const closeAllModals = () => {
     setShowRegisterModal(false);
     setShowLoginModal(false);
@@ -57,8 +55,6 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
     const langKey = event.target.value;
     Storage.session.set('locale', langKey);
     dispatch(setLocale(langKey));
-
-    // Fermer les modals lorsque la langue change pour éviter tout conflit
     closeAllModals();
   };
 
@@ -192,6 +188,11 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                   <li>
                     <Link className={isActive('/about') ? 'active' : ''} to="/about">
                       <Translate contentKey="header.about">About</Translate>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={isActive('/contact') ? 'active' : ''} to="/contact">
+                      <Translate contentKey="header.contact">Contact</Translate>
                     </Link>
                   </li>
                   <LocaleMenu currentLocale={currentLocale} onClick={handleLocaleChange} />

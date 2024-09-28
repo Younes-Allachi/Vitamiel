@@ -28,6 +28,11 @@ const menus: Menu[] = [
     title: 'About',
     link: '/about',
   },
+  {
+    id: 3,
+    title: 'Contact',
+    link: '/contact',
+  },
 ];
 
 const MobileMenu: React.FC = () => {

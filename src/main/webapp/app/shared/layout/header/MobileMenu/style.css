@@ -193,6 +193,7 @@
   .mobileMenu {
     left: -240px;
     width: 240px;
+    height: 250px;
   }
   .responsivemenu li a,
   .responsivemenu li p {
