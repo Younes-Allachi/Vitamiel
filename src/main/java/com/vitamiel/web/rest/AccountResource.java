@@ -6,6 +6,7 @@ import com.vitamiel.security.SecurityUtils;
 import com.vitamiel.service.MailService;
 import com.vitamiel.service.UserService;
 import com.vitamiel.service.dto.AdminUserDTO;
+import com.vitamiel.service.dto.ContactVM;
 import com.vitamiel.service.dto.PasswordChangeDTO;
 import com.vitamiel.web.rest.errors.*;
 import com.vitamiel.web.rest.vm.KeyAndPasswordVM;
@@ -44,6 +45,12 @@ public class AccountResource {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+    }
+
+    @PostMapping("/contact")
+    @ResponseStatus(HttpStatus.OK)
+    public void sendContact(@Valid @RequestBody ContactVM contactVM) {
+        mailService.sendContactEmail(contactVM);
     }
 
     /**

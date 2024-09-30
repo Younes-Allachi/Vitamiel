@@ -1,6 +1,7 @@
 package com.vitamiel.service;
 
 import com.vitamiel.domain.User;
+import com.vitamiel.service.dto.ContactVM;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
@@ -49,6 +50,16 @@ public class MailService {
         this.javaMailSender = javaMailSender;
         this.messageSource = messageSource;
         this.templateEngine = templateEngine;
+    }
+
+    @Async
+    public void sendContactEmail(final ContactVM contactVM) {
+        LOG.debug("Sending contact email to '{}'", jHipsterProperties.getMail().getFrom());
+        Locale locale = Locale.forLanguageTag("en");
+        Context context = new Context(locale);
+        context.setVariable("contact", contactVM);
+        String content = templateEngine.process("mail/contactEmail", context);
+        this.sendEmailSync(jHipsterProperties.getMail().getFrom(), contactVM.getSubject(), content, false, true);
     }
 
     @Async
