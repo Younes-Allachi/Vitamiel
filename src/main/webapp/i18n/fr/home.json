@@ -44,6 +44,16 @@
       "nigelle": "Miel de Fleurs de Nigelle",
       "mangue": "Miel de Fleurs de Mangue"
     },
+    "title3": {
+      "1": "Miel de Manuka",
+      "2": "Miel Brut",
+      "3": "Miel de Fleurs Sauvages",
+      "4": "Miel de Reine",
+      "5": "Miel de Fleurs de Moutarde",
+      "6": "Miel Pur de Montagne",
+      "7": "Miel de Fleurs de Nigelle",
+      "8": "Miel de Fleurs de Mangue"
+    },
     "currency": "€"
   },
   "offer": {
@@ -120,7 +130,7 @@
     },
     "email": {
       "title": "Email",
-      "address": "vitamiel@gmail.com"
+      "address": "vitamiel.be@gmail.com"
     },
     "formTitle": "Formulaire de Contact Rapide"
   },

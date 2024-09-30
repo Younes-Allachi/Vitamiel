@@ -1,34 +1,14 @@
 {
   "global": {
     "title": "Ecomvitamiel",
-    "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
     "menu": {
       "home": "Accueil",
-      "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
-      "entities": {
-        "main": "Entités",
-        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
-      },
       "account": {
-        "main": "Compte",
-        "password": "Mot de passe",
-        "sessions": "Sessions",
-        "login": "S'authentifier",
+        "profile": "Profil",
+        "login": "Connexion",
         "logout": "Déconnexion",
-        "register": "Créer un compte",
-        "profile": "Profil"
-      },
-      "admin": {
-        "main": "Administration",
-        "userManagement": "Gestion des utilisateurs",
-        "tracker": "Suivi des utilisateurs",
-        "metrics": "Métriques",
-        "health": "Diagnostics",
-        "configuration": "Configuration",
-        "logs": "Logs",
-        "apidocs": "API",
-        "database": "Base de données",
-        "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+        "register": "Inscription",
+        "password": "Mot de passe"
       },
       "language": "Langue"
     },
@@ -82,70 +62,13 @@
           "invalid": "Votre email n'est pas valide."
         }
       }
-    },
-    "field": {
-      "id": "ID"
-    },
-    "ribbon": {
-      "dev": "Développement"
-    },
-    "item-count": "Affichage {{first}} - {{second}} de {{total}} items."
-  },
-  "entity": {
-    "action": {
-      "addblob": "Ajouter blob",
-      "addimage": "Ajouter image",
-      "back": "Retour",
-      "cancel": "Annuler",
-      "edit": "Editer",
-      "delete": "Supprimer",
-      "open": "Ouvrir",
-      "save": "Sauvegarder",
-      "view": "Voir",
-      "show": "Show {{otherEntity}}"
-    },
-    "detail": {
-      "field": "Champs",
-      "value": "Valeur"
-    },
-    "delete": {
-      "title": "Confirmation de suppression"
-    },
-    "validation": {
-      "required": "Ce champ est obligatoire.",
-      "minlength": "Ce champ doit faire au minimum {{min}} caractères.",
-      "maxlength": "Ce champ doit faire moins de {{max}} caractères.",
-      "min": "Ce champ doit être supérieur à {{min}}.",
-      "max": "Ce champ doit être inférieur à {{max}}.",
-      "minbytes": "Ce champ doit être supérieur à {{min}} bytes.",
-      "maxbytes": "Ce champ doit être inférieur à {{max}} bytes.",
-      "pattern": "Ce champ doit suivre l'expression régulière {{pattern}}.",
-      "number": "Ce champ doit être un nombre.",
-      "datetimelocal": "Ce champ doit être une date et une heure.",
-      "patternLogin": "Ce champ ne peut contenir que des lettres, des chiffres ou des adresses e-mail."
-    },
-    "filters": {
-      "set": "Following filters are set",
-      "clear": "Clear filter",
-      "clearAll": "Clear all filters"
     }
   },
-  "error": {
-    "internalServerError": "Erreur interne du serveur",
-    "server.not.reachable": "Serveur inaccessible",
-    "url.not.found": "Non trouvé",
-    "NotNull": "Le champ {{fieldName}} ne peut pas être vide !",
-    "Size": "Le champ {{fieldName}} ne respecte pas les critères minimum et maximum !",
-    "userexists": "Login déjà utilisé !",
-    "emailexists": "Email déjà utilisé !",
-    "idexists": "Une nouvelle entité {{entityName}} ne peut pas avoir d'identifiant !",
-    "idnull": "Identifiant invalide",
-    "idinvalid": "Invalid Id",
-    "idnotfound": "ID cannot be found",
-    "file": {
-      "could.not.extract": "Impossible d'extraire le fichier",
-      "not.image": "Le fichier doit être une image et non du type \"{{ fileType }}\""
-    }
+  "cart": {
+    "total": "Total",
+    "checkout": "La caisse",
+    "viewCart": "Le panier",
+    "viewWishlist": "Favoris"
   },
   "footer": {
     "title": "Le conseil en management inclut un large éventail d'activités, et les nombreuses entreprises et leurs membres définissent souvent ces pratiques.",
@@ -155,7 +78,7 @@
     },
     "contact": {
       "title": "Contact",
-      "address": "7 Rue Green Lake, 47933"
+      "address": "Vlezenbeeklaan 171A, Belgique"
     },
     "copyright": "2024 Vitamiel. Tous droits réservés.",
     "global": {
@@ -167,11 +90,39 @@
   "header": {
     "about": "À propos",
     "home": "Accueil",
-    "password": "Mot de passe",
-    "signout": "Se déconnecter",
+    "contact": "Contact",
     "login": "Connexion",
     "inscription": "Inscription",
-    "profile": "Profil",
-    "contact": "Contact"
+    "signout": "Déconnexion"
+  },
+  "product": {
+    "title1": "Miel",
+    "fresh": "100% Frais",
+    "description": "Découvrez notre sélection de miels purs et frais...",
+    "offer": {
+      "discount28": "-28%",
+      "discount25": "-25%",
+      "new": "Nouveau",
+      "discount20": "-20%",
+      "discount18": "-18%",
+      "discount15": "-15%"
+    },
+    "title2": {
+      "manuka": "Miel de Manuka",
+      "brut": "Miel Brut",
+      "sauvage": "Miel de Fleurs Sauvages",
+      "reine": "Miel de Reine",
+      "moutarde": "Miel de Fleurs de Moutarde",
+      "montagne": "Miel Pur de Montagne",
+      "nigelle": "Miel de Fleurs de Nigelle",
+      "mangue": "Miel de Fleurs de Mangue"
+    },
+    "currency": "€"
+  },
+  "alerts": {
+    "itemAddedToCart": "Article ajouté au panier",
+    "itemRemovedFromCart": "Article retiré du panier",
+    "itemAddedToWishList": "Article ajouté aux favoris",
+    "itemRemovedFromWishList": "Article retiré des favoris"
   }
 }

@@ -1,3 +1,7 @@
+@import '../helpers/variables';
+@import '../helpers/functions';
+@import '../helpers/mixins';
+
 .theme-btn {
   background: $theme-primary-color;
   color: $white;
@@ -24,5 +28,19 @@
   @include media-query(767px) {
     padding: 12px;
     font-size: 13px;
+  }
+}
+
+.view-cart-btn {
+  background-color: $small-black;
+  height: 45px;
+  text-align: center;
+  display: inline-block;
+  width: 120px;
+  line-height: 45px;
+  color: $white;
+
+  &:hover {
+    color: $white;
   }
 }

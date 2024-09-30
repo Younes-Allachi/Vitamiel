@@ -52,7 +52,7 @@ const Contactpage: React.FC = () => {
                     <Translate contentKey="contact.email.title">Email</Translate>
                   </h5>
                   <p>
-                    <Translate contentKey="contact.email.address">vitamiel@gmail.com</Translate>
+                    <Translate contentKey="contact.email.address">vitamiel.be@gmail.com</Translate>
                   </p>
                 </li>
               </ul>

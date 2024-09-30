@@ -1,35 +1,14 @@
 {
   "global": {
     "title": "Ecomvitamiel",
-    "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
     "menu": {
       "home": "Home",
-      "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
-      "entities": {
-        "main": "Entities",
-        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
-      },
       "account": {
-        "main": "Account",
-        "settings": "Profile",
-        "password": "Password",
-        "sessions": "Sessions",
-        "login": "Sign in",
+        "profile": "Profile",
+        "login": "Login",
         "logout": "Sign out",
-        "register": "Register",
-        "profile": "Profile"
-      },
-      "admin": {
-        "main": "Administration",
-        "userManagement": "User management",
-        "tracker": "User tracker",
-        "metrics": "Metrics",
-        "health": "Health",
-        "configuration": "Configuration",
-        "logs": "Logs",
-        "apidocs": "API",
-        "database": "Database",
-        "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+        "register": "Sign up",
+        "password": "Password"
       },
       "language": "Language"
     },
@@ -83,70 +62,13 @@
           "maxlength": "Your email cannot be longer than 50 characters."
         }
       }
-    },
-    "field": {
-      "id": "ID"
-    },
-    "ribbon": {
-      "dev": "Development"
-    },
-    "item-count": "Showing {{first}} - {{second}} of {{total}} items."
-  },
-  "entity": {
-    "action": {
-      "addblob": "Add blob",
-      "addimage": "Add image",
-      "back": "Back",
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "edit": "Edit",
-      "open": "Open",
-      "save": "Save",
-      "view": "View",
-      "show": "Show {{otherEntity}}"
-    },
-    "detail": {
-      "field": "Field",
-      "value": "Value"
-    },
-    "delete": {
-      "title": "Confirm delete operation"
-    },
-    "validation": {
-      "required": "This field is required.",
-      "minlength": "This field is required to be at least {{ min }} characters.",
-      "maxlength": "This field cannot be longer than {{ max }} characters.",
-      "min": "This field should be at least {{ min }}.",
-      "max": "This field cannot be more than {{ max }}.",
-      "minbytes": "This field should be at least {{ min }} bytes.",
-      "maxbytes": "This field cannot be more than {{ max }} bytes.",
-      "pattern": "This field should follow pattern for {{ pattern }}.",
-      "number": "This field should be a number.",
-      "datetimelocal": "This field should be a date and time.",
-      "patternLogin": "This field can only contain letters, digits and e-mail addresses."
-    },
-    "filters": {
-      "set": "Following filters are set",
-      "clear": "Clear filter",
-      "clearAll": "Clear all filters"
     }
   },
-  "error": {
-    "internalServerError": "Internal server error",
-    "server.not.reachable": "Server not reachable",
-    "url.not.found": "Not found",
-    "NotNull": "Field {{ fieldName }} cannot be empty!",
-    "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
-    "userexists": "Login name already used!",
-    "emailexists": "Email is already in use!",
-    "idexists": "A new {{ entityName }} cannot already have an ID",
-    "idnull": "Invalid ID",
-    "idinvalid": "Invalid ID",
-    "idnotfound": "ID cannot be found",
-    "file": {
-      "could.not.extract": "Could not extract file",
-      "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
-    }
+  "cart": {
+    "total": "Total",
+    "checkout": "Checkout",
+    "viewCart": "View Cart",
+    "viewWishlist": "View Wishlist"
   },
   "footer": {
     "title": "Management consulting includes a broad range of activities, and the many firms and their members often define these practices.",
@@ -156,7 +78,7 @@
     },
     "contact": {
       "title": "Contact",
-      "address": "7 Rue Green Lake, 47933"
+      "address": "Vlezenbeeklaan 171A, Belgium"
     },
     "copyright": "2024 Vitamiel. All rights reserved.",
     "global": {
@@ -168,11 +90,39 @@
   "header": {
     "about": "About",
     "home": "Home",
-    "password": "Password",
-    "signout": "Sign out",
+    "contact": "Contact",
     "login": "Login",
-    "inscription": "Register",
-    "profile": "Profile",
-    "contact": "Contact"
+    "inscription": "Sign up",
+    "signout": "Sign out"
+  },
+  "product": {
+    "title1": "Honey",
+    "fresh": "100% Fresh",
+    "description": "Discover our selection of pure and fresh honeys...",
+    "offer": {
+      "discount28": "-28%",
+      "discount25": "-25%",
+      "new": "New",
+      "discount20": "-20%",
+      "discount18": "-18%",
+      "discount15": "-15%"
+    },
+    "title2": {
+      "manuka": "Manuka Honey",
+      "brut": "Raw Honey",
+      "sauvage": "Wildflower Honey",
+      "reine": "Queen's Honey",
+      "moutarde": "Mustard Flower Honey",
+      "montagne": "Pure Mountain Honey",
+      "nigelle": "Nigella Flower Honey",
+      "mangue": "Mango Flower Honey"
+    },
+    "currency": "$"
+  },
+  "alerts": {
+    "itemAddedToCart": "Item added to Cart",
+    "itemRemovedFromCart": "Item removed from Cart",
+    "itemAddedToWishList": "Item added to Wishlist",
+    "itemRemovedFromWishList": "Item removed from Wishlist"
   }
 }

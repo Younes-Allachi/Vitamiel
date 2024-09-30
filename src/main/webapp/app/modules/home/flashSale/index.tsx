@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Translate } from 'react-jhipster';
 import Offer from '../countdown';
 import './flashSale.scss';
@@ -14,9 +14,23 @@ interface ProductType {
 
 interface FlashSaleProps {
   products: ProductType[];
+  addToCartProduct: (product: ProductType) => void;
+  addToWishListProduct: (product: ProductType) => void;
 }
 
-const FlashSale = ({ products }: FlashSaleProps) => {
+const FlashSale = ({ products, addToCartProduct, addToWishListProduct }: FlashSaleProps) => {
+  const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
+
+  const handleClickOpen = (product: ProductType) => {
+    setSelectedProduct(product);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <section className="flash-Sale-area product-area section-padding">
       <div className="container">
@@ -48,17 +62,27 @@ const FlashSale = ({ products }: FlashSaleProps) => {
                       <img src={product.proImg} alt={product.title} />
                       <ul>
                         <li>
-                          <button>
+                          <button
+                            data-bs-toggle="tooltip"
+                            data-bs-html="true"
+                            title="Add to Cart"
+                            onClick={() => addToCartProduct(product)}
+                          >
                             <i className="fi flaticon-shopping-cart"></i>
                           </button>
                         </li>
                         <li>
-                          <button>
+                          <button data-bs-toggle="tooltip" data-bs-html="true" title="Quick View" onClick={() => handleClickOpen(product)}>
                             <i className="fi ti-eye"></i>
                           </button>
                         </li>
                         <li>
-                          <button>
+                          <button
+                            data-bs-toggle="tooltip"
+                            data-bs-html="true"
+                            title="Add to Wishlist"
+                            onClick={() => addToWishListProduct(product)}
+                          >
                             <i className="fi flaticon-like"></i>
                           </button>
                         </li>

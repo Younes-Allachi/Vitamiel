@@ -12,6 +12,8 @@ import entitiesReducers from 'app/entities/reducers';
 import applicationProfile from './application-profile';
 import authentication from './authentication';
 import locale from './locale';
+import cartReducer from 'app/shared/reducers/cart';
+import wishListReducer from 'app/shared/reducers/wishList';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const rootReducer: ReducersMapObject = {
@@ -26,6 +28,8 @@ const rootReducer: ReducersMapObject = {
   password,
   settings,
   loadingBar,
+  cartList: cartReducer, // Ajoutez le cartReducer ici
+  wishList: wishListReducer, // Ajoutez le wishListReducer ici
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   ...entitiesReducers,
 };

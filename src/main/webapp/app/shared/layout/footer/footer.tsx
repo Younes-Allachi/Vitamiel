@@ -62,10 +62,10 @@ const Footer = () => (
                     <Translate contentKey="footer.contact.address" />
                   </li>
                   <li>
-                    <i className="fi flaticon-call"></i>+1 800 123 456 789
+                    <i className="fi flaticon-call"></i>+32 484 161 363
                   </li>
                   <li>
-                    <i className="fi flaticon-envelope"></i>Vitamiel@gmail.com
+                    <i className="fi flaticon-envelope"></i>Vitamiel.be@gmail.com
                   </li>
                 </ul>
               </div>

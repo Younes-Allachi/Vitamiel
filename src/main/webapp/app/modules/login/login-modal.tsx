@@ -53,11 +53,16 @@ const LoginModal: React.FC<ILoginModalProps> = ({
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // Vérifier si la page a déjà été rafraîchie après une connexion réussie
+    if (isAuthenticated && !sessionStorage.getItem('hasRefreshed')) {
       setAlertMessage(translate('login.success'));
       setAlertColor('success');
       setShowAlert(true);
+      handleClose();
 
+      // Définir un indicateur dans sessionStorage pour indiquer que la page a été rafraîchie
+      sessionStorage.setItem('hasRefreshed', 'true');
+      window.location.reload();
       handleClose();
     } else if (loginError) {
       setAlertMessage(translate('login.error'));

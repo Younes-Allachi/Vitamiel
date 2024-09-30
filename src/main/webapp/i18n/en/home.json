@@ -44,6 +44,16 @@
       "nigelle": "Nigella Flower Honey",
       "mangue": "Mango Flower Honey"
     },
+    "title3": {
+      "1": "Manuka Honey",
+      "2": "Raw Honey",
+      "3": "Wildflower Honey",
+      "4": "Queen's Honey",
+      "5": "Mustard Flower Honey",
+      "6": "Pure Mountain Honey",
+      "7": "Nigella Flower Honey",
+      "8": "Mango Flower Honey"
+    },
     "currency": "$"
   },
   "offer": {
@@ -120,7 +130,7 @@
     },
     "email": {
       "title": "Email",
-      "address": "vitamiel@gmail.com"
+      "address": "vitamiel.be@gmail.com"
     },
     "formTitle": "Quick Contact Form"
   },

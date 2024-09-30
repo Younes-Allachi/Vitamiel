@@ -13,6 +13,9 @@ import ProfileModal from 'app/modules/account/settings/ProfileModal/ProfileModal
 import PasswordModal from 'app/modules/account/password/PasswordModal/PasswordModal';
 import { login, logout } from 'app/shared/reducers/authentication';
 import { saveAccountSettings } from 'app/modules/account/settings/settings.reducer';
+import { removeFromCart, removeFromWishList } from 'app/shared/actions/action';
+import { totalPrice } from '../../../shared/util/lists';
+import '../../../../content/sass/components/_buttons.scss';
 
 interface HeaderProps {
   hClass?: string;
@@ -31,10 +34,14 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
   const [showPasswordResetModal, setShowPasswordResetModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [isCartShow, setIsCartShow] = useState(false);
+  const [isWishlistShow, setIsWishlistShow] = useState(false);
 
   const dispatch = useAppDispatch();
   const account = useAppSelector(state => state.authentication.account);
   const loginError = useAppSelector(state => state.authentication.loginError);
+  const carts = useAppSelector(state => state.cartList?.cart) || []; // Par défaut, un tableau vide
+  const wishs = useAppSelector(state => state.wishList?.w_list) || []; // Par défaut, un tableau vide
   const location = useLocation();
 
   useEffect(() => {
@@ -61,6 +68,14 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
   const profileHandler = useCallback(() => {
     setIsProfileShow(prevState => !prevState);
   }, []);
+
+  const cartHandler = () => {
+    setIsCartShow(!isCartShow);
+  };
+
+  const wishlistHandler = () => {
+    setIsWishlistShow(!isWishlistShow);
+  };
 
   const closeProfileMenu = () => setIsProfileShow(false);
 
@@ -101,6 +116,34 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
     dispatch(logout());
     window.location.reload();
   };
+
+  useEffect(() => {
+    if (carts.length > 0) {
+      localStorage.setItem('cartList', JSON.stringify(carts));
+    } else {
+      localStorage.removeItem('cartList');
+    }
+  }, [carts]);
+
+  useEffect(() => {
+    if (wishs.length > 0) {
+      localStorage.setItem('wishList', JSON.stringify(wishs));
+    } else {
+      localStorage.removeItem('wishList');
+    }
+  }, [wishs]);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cartList');
+    if (storedCart) {
+      dispatch({ type: 'cartList/setCart', payload: JSON.parse(storedCart) });
+    }
+
+    const storedWishList = localStorage.getItem('wishList');
+    if (storedWishList) {
+      dispatch({ type: 'wishList/setWishList', payload: JSON.parse(storedWishList) });
+    }
+  }, [dispatch]);
 
   const isActive = (pathname: string) => location.pathname === pathname;
 
@@ -172,9 +215,11 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
           <div className="row">
             <div className="col-lg-3">
               <div className="navbar-header">
-                <div className="navbar-brand">
-                  <img src="content/images/logo.png" alt="icon" /> Vitamiel
-                </div>
+                <Link to="/">
+                  <div className="navbar-brand">
+                    <img src="content/images/logo.png" alt="icon" /> Vitamiel
+                  </div>
+                </Link>
               </div>
             </div>
             <div className="col-lg-7">
@@ -227,6 +272,104 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                     account={account}
                   />
                   <PasswordModal showModal={showPasswordModal} handleClose={() => setShowPasswordModal(false)} />
+                </div>
+                <div className="mini-cart">
+                  <button onClick={cartHandler} className="cart-toggle-btn">
+                    <i className="fi flaticon-bag"></i> <span className="cart-count">{carts.length}</span>
+                  </button>
+                  <div className={`mini-cart-content ${isCartShow ? 'mini-cart-content-toggle' : ''}`}>
+                    <button onClick={cartHandler} className="mini-cart-close">
+                      <i className="ti-close"></i>
+                    </button>
+                    <div className="mini-cart-items">
+                      {carts &&
+                        carts.length > 0 &&
+                        carts.map((cart, index) => (
+                          <div className="mini-cart-item clearfix" key={index}>
+                            <div className="mini-cart-item-image">
+                              <span>
+                                <img src={cart.proImg} alt="icon" />
+                              </span>
+                            </div>
+                            <div className="mini-cart-item-des">
+                              <p>
+                                <Translate contentKey={`product.title3.${cart.id}`}>{cart.title}</Translate>
+                              </p>
+                              <span className="mini-cart-item-price">
+                                ${cart.price} x {cart.qty}
+                              </span>
+                              <button onClick={() => dispatch(removeFromCart(cart.id))} className="btn btn-sm btn-danger">
+                                <i className="ti-close"></i>
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                    <div className="mini-cart-action clearfix">
+                      <span className="mini-checkout-price">
+                        <Translate contentKey="cart.total">Total</Translate>: ${totalPrice(carts)}
+                      </span>
+                      <div className="mini-btn">
+                        <Link to="#" className="view-cart-btn s1">
+                          <Translate contentKey="cart.checkout">Checkout</Translate>
+                        </Link>
+                        <Link to="#" className="view-cart-btn">
+                          <Translate contentKey="cart.viewCart">View Cart</Translate>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="visible-icon">
+                      <img src="../../../../content/images/shop/mini-cart/bee2.png" alt="icon" />
+                    </div>
+                  </div>
+                </div>
+                <div className="header-wishlist-form-wrapper">
+                  <button onClick={wishlistHandler} className="wishlist-toggle-btn">
+                    <i className="fi flaticon-heart"></i> <span className="cart-count">{wishs.length}</span>
+                  </button>
+                  <div className={`mini-wislist-content ${isWishlistShow ? 'mini-cart-content-toggle' : ''}`}>
+                    <button onClick={wishlistHandler} className="mini-cart-close">
+                      <i className="ti-close"></i>
+                    </button>
+                    <div className="mini-cart-items">
+                      {wishs &&
+                        wishs.length > 0 &&
+                        wishs.map((wish, index) => (
+                          <div className="mini-cart-item clearfix" key={index}>
+                            <div className="mini-cart-item-image">
+                              <span>
+                                <img src={wish.proImg} alt="icon" />
+                              </span>
+                            </div>
+                            <div className="mini-cart-item-des">
+                              <p>
+                                <Translate contentKey={`product.title3.${wish.id}`}>{wish.title}</Translate>
+                              </p>
+                              <span className="mini-cart-item-price">${wish.price}</span>
+                              <button onClick={() => dispatch(removeFromWishList(wish.id))} className="btn btn-sm btn-danger">
+                                <i className="ti-close"></i>
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                    <div className="mini-cart-action clearfix">
+                      <span className="mini-checkout-price">
+                        <Translate contentKey="cart.total">Total</Translate>: ${totalPrice(wishs)}
+                      </span>
+                      <div className="mini-btn">
+                        <Link to="#" className="view-cart-btn s1">
+                          <Translate contentKey="cart.checkout">Checkout</Translate>
+                        </Link>
+                        <Link to="#" className="view-cart-btn">
+                          <Translate contentKey="cart.viewWishlist">View Wishlist</Translate>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="visible-icon">
+                      <img src="../../../../content/images/shop/mini-cart/bee2.png" alt="icon" />
+                    </div>
+                  </div>
                 </div>
                 <MobileMenu />
               </div>

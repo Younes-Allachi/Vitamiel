@@ -675,13 +675,14 @@
         right: 5px;
         top: 5px;
       }
+
       .visible-icon {
         position: absolute;
-        left: 50%;
-        top: 50%;
+        left: 20%;
+        top: 20%;
         transform: translate(-50%, -50%);
-        width: 300px;
-        height: 300px;
+        width: 100px;
+        height: 100px;
         opacity: 0.02;
         z-index: -1;
       }
@@ -971,38 +972,35 @@ button {
 
   @media (max-width: 992px) {
     display: block;
-    margin-right: 10px;
-    font-size: 14px;
-    position: relative;
-    left: -20px;
-    top: 10px;
-  }
+    position: absolute;
+    top: 42px;
+    left: calc(48% + 10px);
+    z-index: 1000;
 
-  // Appliquer un style spécifique à select pour éviter l'apparition de styles indésirables
-  select {
-    border: none;
-    background: transparent;
-    font-size: 14px;
-    color: #000;
-    appearance: none;
-  }
+    select {
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      color: #000;
+      appearance: none;
+    }
 
-  ul,
-  li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+    ul,
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-  label {
-    margin: 0;
-    padding: 0;
-    display: block;
-    position: relative;
+    label {
+      margin: 0;
+      padding: 0;
+      display: block;
+      position: relative;
+    }
   }
 }
 
-// Style pour dropdown-menu
 .dropdown-menu-end[data-bs-popper] {
   right: 0;
   left: auto;
@@ -1013,7 +1011,6 @@ button {
   border-radius: 5px;
   z-index: 1000;
 
-  // Ajout de styles pour les items dans le dropdown
   .dropdown-item {
     padding: 5px 5px;
     font-size: 14px;
