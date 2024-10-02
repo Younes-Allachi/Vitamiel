@@ -68,7 +68,37 @@
     "total": "Total",
     "checkout": "La caisse",
     "viewCart": "Le panier",
-    "viewWishlist": "Favoris"
+    "viewWishlist": "Favoris",
+    "image": "Image",
+    "productName": "Nom du produit",
+    "quantity": "Quantité",
+    "price": "Prix",
+    "totalPrice": "Prix total",
+    "action": "Action",
+    "continueShopping": "Continuer vos achats",
+    "proceedToCheckout": "Passer à la caisse",
+    "totalProduct": "Total des produits",
+    "subPrice": "Prix sous-total",
+    "vat": "TVA",
+    "ecoTax": "Taxe éco",
+    "deliveryCharge": "Frais de livraison",
+    "totalPriceOverall": "Prix total"
+  },
+  "cart2": {
+    "image": "Image",
+    "productName": "Nom du produit",
+    "quantity": "Quantité",
+    "price": "Prix",
+    "totalPrice": "Prix total",
+    "action": "Action",
+    "continueShopping": "Continuer vos achats",
+    "proceedToCheckout": "Procéder au paiement",
+    "totalProduct": "Nombre total de produits",
+    "subPrice": "Prix total",
+    "vat": "TVA",
+    "ecoTax": "Taxe éco",
+    "deliveryCharge": "Frais de livraison",
+    "totalPriceOverall": "Prix total"
   },
   "footer": {
     "title": "Le conseil en management inclut un large éventail d'activités, et les nombreuses entreprises et leurs membres définissent souvent ces pratiques.",
@@ -93,7 +123,8 @@
     "contact": "Contact",
     "login": "Connexion",
     "inscription": "Inscription",
-    "signout": "Déconnexion"
+    "signout": "Déconnexion",
+    "cart": "Panier"
   },
   "product": {
     "title1": "Miel",
@@ -116,6 +147,16 @@
       "montagne": "Miel Pur de Montagne",
       "nigelle": "Miel de Fleurs de Nigelle",
       "mangue": "Miel de Fleurs de Mangue"
+    },
+    "title3": {
+      "1": "Miel de Manuka",
+      "2": "Miel Brut",
+      "3": "Miel de Fleurs Sauvages",
+      "4": "Miel de Reine",
+      "5": "Miel de Fleurs de Moutarde",
+      "6": "Miel Pur de Montagne",
+      "7": "Miel de Fleurs de Nigelle",
+      "8": "Miel de Fleurs de Mangue"
     },
     "currency": "€"
   },

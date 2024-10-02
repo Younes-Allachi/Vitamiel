@@ -11,6 +11,7 @@ import Logout from 'app/modules/login/logout';
 import Home from 'app/modules/home/home';
 import About from 'app/modules/about/about';
 import Contact from 'app/modules/contact/contact';
+import CartPage from 'app/modules/cart/cart';
 import EntitiesRoutes from 'app/entities/routes';
 import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
@@ -39,6 +40,7 @@ const AppRoutes = () => {
         <Route path="/logout" element={<Logout />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="account/*">
           <Route
             path="*"

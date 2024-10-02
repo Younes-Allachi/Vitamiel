@@ -240,6 +240,11 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                       <Translate contentKey="header.contact">Contact</Translate>
                     </Link>
                   </li>
+                  <li>
+                    <Link className={isActive('/cart') ? 'active' : ''} to="/cart">
+                      <Translate contentKey="header.cart">Cart</Translate>
+                    </Link>
+                  </li>
                   <LocaleMenu currentLocale={currentLocale} onClick={handleLocaleChange} />
                 </ul>
               </div>
@@ -313,7 +318,7 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                         <Link to="#" className="view-cart-btn s1">
                           <Translate contentKey="cart.checkout">Checkout</Translate>
                         </Link>
-                        <Link to="#" className="view-cart-btn">
+                        <Link to="/cart" className="view-cart-btn">
                           <Translate contentKey="cart.viewCart">View Cart</Translate>
                         </Link>
                       </div>

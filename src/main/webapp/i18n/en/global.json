@@ -68,7 +68,37 @@
     "total": "Total",
     "checkout": "Checkout",
     "viewCart": "View Cart",
-    "viewWishlist": "View Wishlist"
+    "viewWishlist": "View Wishlist",
+    "image": "Image",
+    "productName": "Product Name",
+    "quantity": "Quantity",
+    "price": "Price",
+    "totalPrice": "Total Price",
+    "action": "Action",
+    "continueShopping": "Continue Shopping",
+    "proceedToCheckout": "Proceed to Checkout",
+    "totalProduct": "Total product",
+    "subPrice": "Sub Price",
+    "vat": "VAT",
+    "ecoTax": "Eco Tax",
+    "deliveryCharge": "Delivery Charge",
+    "totalPriceOverall": "Total Price"
+  },
+  "cart2": {
+    "image": "Image",
+    "productName": "Product Name",
+    "quantity": "Quantity",
+    "price": "Price",
+    "totalPrice": "Total Price",
+    "action": "Action",
+    "continueShopping": "Continue Shopping",
+    "proceedToCheckout": "Proceed to Checkout",
+    "totalProduct": "Total product",
+    "subPrice": "Sub Price",
+    "vat": "Vat",
+    "ecoTax": "Eco Tax",
+    "deliveryCharge": "Delivery Charge",
+    "totalPriceOverall": "Total Price"
   },
   "footer": {
     "title": "Management consulting includes a broad range of activities, and the many firms and their members often define these practices.",
@@ -93,7 +123,8 @@
     "contact": "Contact",
     "login": "Login",
     "inscription": "Sign up",
-    "signout": "Sign out"
+    "signout": "Sign out",
+    "cart": "Cart"
   },
   "product": {
     "title1": "Honey",
@@ -116,6 +147,16 @@
       "montagne": "Pure Mountain Honey",
       "nigelle": "Nigella Flower Honey",
       "mangue": "Mango Flower Honey"
+    },
+    "title3": {
+      "1": "Manuka Honey",
+      "2": "Raw Honey",
+      "3": "Wildflower Honey",
+      "4": "Queen's Honey",
+      "5": "Mustard Flower Honey",
+      "6": "Pure Mountain Honey",
+      "7": "Nigella Flower Honey",
+      "8": "Mango Flower Honey"
     },
     "currency": "$"
   },
