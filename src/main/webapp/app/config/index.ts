@@ -7,6 +7,7 @@ export interface Product {
   title: string;
   price: number;
   delPrice: number;
+  stock: string;
 }
 
 const productData: Product[] = data;

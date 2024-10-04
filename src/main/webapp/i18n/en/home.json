@@ -54,6 +54,16 @@
       "7": "Nigella Flower Honey",
       "8": "Mango Flower Honey"
     },
+    "stock": {
+      "1": "In Stock",
+      "2": "In Stock",
+      "3": "Out of Stock",
+      "4": "In Stock",
+      "5": "In Stock",
+      "6": "Out of Stock",
+      "7": "In Stock",
+      "8": "In Stock"
+    },
     "currency": "$"
   },
   "offer": {
@@ -149,5 +159,12 @@
       "events": "Please select an event",
       "notes": "Please enter a note"
     }
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "contactt": "Contact",
+    "cart": "Cart",
+    "wishlist": "Wishlist"
   }
 }

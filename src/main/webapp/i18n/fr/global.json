@@ -66,8 +66,8 @@
   },
   "cart": {
     "total": "Total",
-    "checkout": "La caisse",
-    "viewCart": "Le panier",
+    "checkout": "Caisse",
+    "viewCart": "Panier",
     "viewWishlist": "Favoris",
     "image": "Image",
     "productName": "Nom du produit",
@@ -98,7 +98,16 @@
     "vat": "TVA",
     "ecoTax": "Taxe éco",
     "deliveryCharge": "Frais de livraison",
-    "totalPriceOverall": "Prix total"
+    "totalPriceOverall": "Prix total",
+    "viewCart": "Voir le panier"
+  },
+  "wishlist": {
+    "image": "Image",
+    "productName": "Nom du produit",
+    "price": "Prix",
+    "stockStatus": "État du stock",
+    "action": "Action",
+    "stock": "État du stock"
   },
   "footer": {
     "title": "Le conseil en management inclut un large éventail d'activités, et les nombreuses entreprises et leurs membres définissent souvent ces pratiques.",
@@ -124,7 +133,8 @@
     "login": "Connexion",
     "inscription": "Inscription",
     "signout": "Déconnexion",
-    "cart": "Panier"
+    "cart": "Panier",
+    "wishlist": "Favoris"
   },
   "product": {
     "title1": "Miel",

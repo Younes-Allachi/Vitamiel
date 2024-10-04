@@ -54,6 +54,16 @@
       "7": "Miel de Fleurs de Nigelle",
       "8": "Miel de Fleurs de Mangue"
     },
+    "stock": {
+      "1": "En Stock",
+      "2": "En Stock",
+      "3": "Rupture de Stock",
+      "4": "En Stock",
+      "5": "En Stock",
+      "6": "Rupture de Stock",
+      "7": "En Stock",
+      "8": "En Stock"
+    },
     "currency": "€"
   },
   "offer": {
@@ -149,5 +159,12 @@
       "events": "Veuillez sélectionner un événement",
       "notes": "Veuillez entrer une note"
     }
+  },
+  "menu": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contactt": "Contact",
+    "cart": "Panier",
+    "wishlist": "Favoris"
   }
 }

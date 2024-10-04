@@ -5,7 +5,8 @@
     "offer": "product.offer.discount28",
     "title": "product.title2.manuka",
     "price": 85.0,
-    "delPrice": 98.0
+    "delPrice": 98.0,
+    "stock": "In Stock"
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "offer": "product.offer.discount25",
     "title": "product.title2.brut",
     "price": 100.0,
-    "delPrice": 158.0
+    "delPrice": 158.0,
+    "stock": "In Stock"
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "offer": "product.offer.new",
     "title": "product.title2.sauvage",
     "price": 75.0,
-    "delPrice": 88.0
+    "delPrice": 88.0,
+    "stock": "Out of Stock"
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "offer": "product.offer.discount20",
     "title": "product.title2.reine",
     "price": 85.0,
-    "delPrice": 98.0
+    "delPrice": 98.0,
+    "stock": "In Stock"
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "offer": "product.offer.discount18",
     "title": "product.title2.moutarde",
     "price": 95.0,
-    "delPrice": 108.0
+    "delPrice": 108.0,
+    "stock": "In Stock"
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "offer": "product.offer.new",
     "title": "product.title2.montagne",
     "price": 88.0,
-    "delPrice": 75.0
+    "delPrice": 75.0,
+    "stock": "Out of Stock"
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@
     "offer": "product.offer.discount15",
     "title": "product.title2.nigelle",
     "price": 75.0,
-    "delPrice": 99.0
+    "delPrice": 99.0,
+    "stock": "In Stock"
   },
   {
     "id": 8,
@@ -61,6 +68,7 @@
     "offer": "product.offer.new",
     "title": "product.title2.mangue",
     "price": 155.0,
-    "delPrice": 198.0
+    "delPrice": 198.0,
+    "stock": "In Stock"
   }
 ]

@@ -83,14 +83,18 @@
           }
         }
 
-        .w-btn{
-          .flaticon-delete{
-            &:before{
-              font-size: 30px;
+        .w-btn {
+          .flaticon-delete {
+            position: relative;
+            top: -10px;
+            left: -2px;
+            &:before {
+              font-size: 25px;
               cursor: pointer;
             }
           }
         }
+
       }
     }
   }
@@ -131,12 +135,16 @@
     border: none;
 
     &.c-btn {
-      background: rgb(207, 55, 55);
+      background: rgb(207, 126, 55);
     }
 
     .fi {
-      &::before {
-        font-size: 20px;
+      position: relative;
+      top: -10px;
+      left: -3px;
+      &:before {
+        font-size: 25px;
+        cursor: pointer;
       }
     }
   }
@@ -303,4 +311,8 @@
 
 .img2 {
   max-width: 100%;
+}
+
+.stock-status {
+  margin-left: 60px;
 }

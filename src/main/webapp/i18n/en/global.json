@@ -98,7 +98,16 @@
     "vat": "Vat",
     "ecoTax": "Eco Tax",
     "deliveryCharge": "Delivery Charge",
-    "totalPriceOverall": "Total Price"
+    "totalPriceOverall": "Total Price",
+    "viewCart": "View Cart"
+  },
+  "wishlist": {
+    "image": "Image",
+    "productName": "Product Name",
+    "price": "Price",
+    "stockStatus": "Stock Status",
+    "action": "Action",
+    "stock": "Stock Status"
   },
   "footer": {
     "title": "Management consulting includes a broad range of activities, and the many firms and their members often define these practices.",
@@ -124,7 +133,8 @@
     "login": "Login",
     "inscription": "Sign up",
     "signout": "Sign out",
-    "cart": "Cart"
+    "cart": "Cart",
+    "wishlist": "Wishlist"
   },
   "product": {
     "title1": "Honey",

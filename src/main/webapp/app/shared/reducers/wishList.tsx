@@ -1,8 +1,7 @@
 import { ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST } from '../actions/type';
-import { toast } from 'react-toastify';
 
 const init = {
-  w_list: JSON.parse(localStorage.getItem('wishList')) || [], // Initialisation à partir du localStorage
+  w_list: JSON.parse(localStorage.getItem('wishList')) || [],
 };
 
 export const wishListReducer = (state = init, action) => {

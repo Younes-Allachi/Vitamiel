@@ -241,6 +241,11 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                     </Link>
                   </li>
                   <li>
+                    <Link className={isActive('/wishlist') ? 'active' : ''} to="/wishlist">
+                      <Translate contentKey="header.wishlist">WishList</Translate>
+                    </Link>
+                  </li>
+                  <li>
                     <Link className={isActive('/cart') ? 'active' : ''} to="/cart">
                       <Translate contentKey="header.cart">Cart</Translate>
                     </Link>
@@ -366,7 +371,7 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                         <Link to="#" className="view-cart-btn s1">
                           <Translate contentKey="cart.checkout">Checkout</Translate>
                         </Link>
-                        <Link to="#" className="view-cart-btn">
+                        <Link to="/wishlist" className="view-cart-btn">
                           <Translate contentKey="cart.viewWishlist">View Wishlist</Translate>
                         </Link>
                       </div>

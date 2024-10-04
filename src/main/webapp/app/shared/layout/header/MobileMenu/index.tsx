@@ -1,8 +1,8 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Collapse, CardBody, Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Translate } from 'react-jhipster';
 import './style.css';
-import React from 'react';
 
 interface SubMenu {
   id: number;
@@ -20,18 +20,28 @@ interface Menu {
 const menus: Menu[] = [
   {
     id: 1,
-    title: 'Home',
+    title: 'menu.home',
     link: '/home',
   },
   {
     id: 2,
-    title: 'About',
+    title: 'menu.about',
     link: '/about',
   },
   {
     id: 3,
-    title: 'Contact',
+    title: 'menu.contactt',
     link: '/contact',
+  },
+  {
+    id: 4,
+    title: 'menu.wishlist',
+    link: '/wishlist',
+  },
+  {
+    id: 5,
+    title: 'menu.cart',
+    link: '/cart',
   },
 ];
 
@@ -63,11 +73,13 @@ const MobileMenu: React.FC = () => {
             <li key={item.id}>
               {item.submenu ? (
                 <p onClick={handleSubMenuToggle(item.id)}>
-                  {item.title}
+                  <Translate contentKey={item.title} />
                   {item.submenu ? <i className="fa fa-angle-right" aria-hidden="true"></i> : null}
                 </p>
               ) : (
-                <Link to={item.link || '#'}>{item.title}</Link>
+                <Link to={item.link || '#'}>
+                  <Translate contentKey={item.title} />
+                </Link>
               )}
               {item.submenu && (
                 <Collapse isOpen={item.id === isOpen}>
@@ -77,7 +89,7 @@ const MobileMenu: React.FC = () => {
                         {item.submenu.map(submenu => (
                           <li key={submenu.id}>
                             <Link className="active" to={submenu.link}>
-                              {submenu.title}
+                              <Translate contentKey={submenu.title} />
                             </Link>
                           </li>
                         ))}

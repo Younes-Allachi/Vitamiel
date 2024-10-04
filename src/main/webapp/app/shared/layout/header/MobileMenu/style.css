@@ -168,6 +168,7 @@
   }
   .mobileMenu {
     display: block;
+    height: 400px;
   }
 }
 
@@ -193,7 +194,7 @@
   .mobileMenu {
     left: -240px;
     width: 240px;
-    height: 250px;
+    height: 400px;
   }
   .responsivemenu li a,
   .responsivemenu li p {
