@@ -28,15 +28,40 @@ const CartPage: React.FC<CartPageProps> = props => {
     window.scrollTo(10, 0);
   };
 
-  const { carts } = props;
+  const { carts, incrementQuantity, decrementQuantity } = props;
 
   const currentLocale = useSelector((state: any) => state.locale.currentLocale);
-
   const [locale, setLocale] = useState(currentLocale);
+  const currencySymbol = locale === 'fr' ? '€' : '$'; // Définir la devise en fonction de la langue
 
   useEffect(() => {
     setLocale(currentLocale);
   }, [currentLocale]);
+
+  // Calcul du sous-total
+  const subTotal = totalPrice(carts);
+
+  // Calcul de la TVA à 6%
+  const vat = subTotal * 0.06;
+
+  // Calcul du prix total incluant la TVA
+  const total = subTotal + vat;
+
+  // Fonction pour gérer la modification de la quantité
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, itemId: number) => {
+    const newQty = parseInt(e.target.value, 10);
+    if (newQty > 0) {
+      const item = carts.find(cartItem => cartItem.id === itemId);
+      if (item && item.qty !== newQty) {
+        const difference = newQty - item.qty;
+        if (difference > 0) {
+          Array.from({ length: difference }).forEach(() => incrementQuantity(itemId));
+        } else {
+          Array.from({ length: -difference }).forEach(() => decrementQuantity(itemId));
+        }
+      }
+    }
+  };
 
   return (
     <>
@@ -88,18 +113,28 @@ const CartPage: React.FC<CartPageProps> = props => {
                               <td className="stock">
                                 <div className="pro-single-btn">
                                   <div className="quantity cart-plus-minus">
-                                    <Button className="dec qtybutton" onClick={() => props.decrementQuantity(catItem.id)}>
+                                    <Button className="dec qtybutton" onClick={() => decrementQuantity(catItem.id)}>
                                       -
                                     </Button>
-                                    <input value={catItem.qty} type="text" readOnly />
-                                    <Button className="inc qtybutton" onClick={() => props.incrementQuantity(catItem.id)}>
+                                    <input
+                                      type="number"
+                                      value={catItem.qty}
+                                      min="1"
+                                      onChange={e => handleQuantityChange(e, catItem.id)}
+                                      className="quantity-input"
+                                    />
+                                    <Button className="inc qtybutton" onClick={() => incrementQuantity(catItem.id)}>
                                       +
                                     </Button>
                                   </div>
                                 </div>
                               </td>
-                              <td className="ptice">${catItem.price}</td>
-                              <td className="stock">${catItem.qty * catItem.price}</td>
+                              <td className="ptice">
+                                {catItem.price} {currencySymbol}
+                              </td>
+                              <td className="stock">
+                                {catItem.qty * catItem.price} {currencySymbol}
+                              </td>
                               <td className="action">
                                 <ul>
                                   <li className="w-btn" onClick={() => props.removeFromCart(catItem.id)}>
@@ -130,19 +165,25 @@ const CartPage: React.FC<CartPageProps> = props => {
                       </li>
                       <li>
                         <Translate contentKey="cart2.subPrice">Sub Price</Translate>
-                        <span>${totalPrice(carts)}</span>
+                        <span>
+                          {subTotal.toFixed(2)} {currencySymbol}
+                        </span>
                       </li>
                       <li>
-                        <Translate contentKey="cart2.vat">Vat</Translate>
-                        <span>$0</span>
+                        <Translate contentKey="cart2.vat">VAT (6%)</Translate>
+                        <span>
+                          {vat.toFixed(2)} {currencySymbol}
+                        </span>
                       </li>
                       <li>
                         <Translate contentKey="cart2.deliveryCharge">Delivery Charge</Translate>
-                        <span>$0</span>
+                        <span>0 {currencySymbol}</span>
                       </li>
                       <li className="cart-b">
                         <Translate contentKey="cart2.totalPriceOverall">Total Price</Translate>
-                        <span>${totalPrice(carts)}</span>
+                        <span>
+                          {total.toFixed(2)} {currencySymbol}
+                        </span>
                       </li>
                     </ul>
                   </div>

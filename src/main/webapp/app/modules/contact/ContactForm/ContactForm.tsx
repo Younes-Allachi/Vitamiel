@@ -2,27 +2,25 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { translate } from 'react-jhipster';
 
 interface ContactFormState {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   subject: string;
-  lastname: string;
-  events: string;
   notes: string;
   error: Record<string, string>;
 }
 
 const ContactForm: React.FC = () => {
   const [state, setState] = useState<ContactFormState>({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     subject: '',
-    lastname: '',
-    events: '',
     notes: '',
     error: {},
   });
 
-  const changeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const changeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     const error = { ...state.error };
     error[name] = '';
@@ -37,23 +35,20 @@ const ContactForm: React.FC = () => {
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { name, email, subject, lastname, events, notes } = state;
+    const { firstName, lastName, email, subject, notes } = state;
 
     const newError: Record<string, string> = {};
-    if (name === '') {
-      newError.name = translate('contactForm.errors.name');
+    if (firstName === '') {
+      newError.firstName = translate('contactForm.errors.firstName');
+    }
+    if (lastName === '') {
+      newError.lastName = translate('contactForm.errors.lastName');
     }
     if (email === '') {
       newError.email = translate('contactForm.errors.email');
     }
     if (subject === '') {
       newError.subject = translate('contactForm.errors.subject');
-    }
-    if (lastname === '') {
-      newError.lastname = translate('contactForm.errors.lastname');
-    }
-    if (events === '') {
-      newError.events = translate('contactForm.errors.events');
     }
     if (notes === '') {
       newError.notes = translate('contactForm.errors.notes');
@@ -67,32 +62,37 @@ const ContactForm: React.FC = () => {
       return;
     }
 
-    setState({
-      name: '',
-      email: '',
-      subject: '',
-      lastname: '',
-      events: '',
-      notes: '',
-      error: {},
-    });
+    setTimeout(() => {
+      setState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: '',
+        notes: '',
+        error: {},
+      });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    }, 1000);
   };
 
-  const { name, email, subject, lastname, notes, error } = state;
+  const { firstName, lastName, email, subject, notes, error } = state;
 
   return (
     <form onSubmit={submitHandler} className="form">
       <div className="row">
         <div className="col-lg-6 col-md-6 col-12">
           <div className="form-field">
-            <input value={name} onChange={changeHandler} type="text" name="name" placeholder={translate('contactForm.name')} />
-            <p>{error.name}</p>
+            <input value={firstName} onChange={changeHandler} type="text" name="firstName" placeholder={translate('contactForm.name')} />
+            <p>{error.firstName}</p>
           </div>
         </div>
         <div className="col-lg-6 col-md-6 col-12">
           <div className="form-field">
-            <input value={lastname} onChange={changeHandler} type="text" name="lastname" placeholder={translate('contactForm.lastname')} />
-            <p>{error.lastname}</p>
+            <input value={lastName} onChange={changeHandler} type="text" name="lastName" placeholder={translate('contactForm.lastname')} />
+            <p>{error.lastName}</p>
           </div>
         </div>
         <div className="col-lg-6 col-md-6 col-12">
@@ -103,7 +103,19 @@ const ContactForm: React.FC = () => {
         </div>
         <div className="col-lg-6 col-md-6 col-12">
           <div className="form-field">
-            <input value={subject} onChange={changeHandler} type="text" name="subject" placeholder={translate('contactForm.subject')} />
+            <select value={subject} onChange={changeHandler} name="subject" className="form-control">
+              <option value="">{translate('contactForm.subject')}</option>
+              <option value="orderInProgress">{translate('contactForm.subjectt.orderInProgress')}</option>
+              <option value="productInfo">{translate('contactForm.subjectt.productInfo')}</option>
+              <option value="deliveryIssue">{translate('contactForm.subjectt.deliveryIssue')}</option>
+              <option value="returnOrExchange">{translate('contactForm.subjectt.returnOrExchange')}</option>
+              <option value="paymentIssue">{translate('contactForm.subjectt.paymentIssue')}</option>
+              <option value="promotionalOffers">{translate('contactForm.subjectt.promotionalOffers')}</option>
+              <option value="partnershipRequest">{translate('contactForm.subjectt.partnershipRequest')}</option>
+              <option value="generalInformation">{translate('contactForm.subjectt.generalInformation')}</option>
+              <option value="suggestionOrComplaint">{translate('contactForm.subjectt.suggestionOrComplaint')}</option>
+              <option value="other">{translate('contactForm.subjectt.other')}</option>
+            </select>
             <p>{error.subject}</p>
           </div>
         </div>

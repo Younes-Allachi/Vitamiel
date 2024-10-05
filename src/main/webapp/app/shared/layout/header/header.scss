@@ -68,6 +68,7 @@
       > ul > li > a {
         font-size: 16px;
         font-size: calc-rem-value(16);
+        font-weight: bold;
         padding: 40px 25px;
         display: block;
         color: $black;
@@ -90,7 +91,7 @@
 
         &:hover,
         &.active {
-          color: $theme-primary-color;
+          color: rgb(99, 197, 106);
           &:before {
             opacity: 1;
             visibility: visible;

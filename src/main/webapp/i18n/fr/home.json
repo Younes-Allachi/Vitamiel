@@ -145,19 +145,31 @@
     "formTitle": "Formulaire de Contact Rapide"
   },
   "contactForm": {
-    "name": "Nom",
-    "lastname": "Nom de famille",
+    "name": "Prénom",
+    "lastname": "Nom",
     "email": "Email",
-    "subject": "Sujet",
+    "subject": "Veuillez sélectionner un sujet",
     "message": "Message",
     "submit": "Envoyer le message",
     "errors": {
       "name": "Veuillez entrer votre nom",
       "lastname": "Veuillez entrer votre nom de famille",
       "email": "Veuillez entrer votre email",
-      "subject": "Veuillez entrer le sujet",
+      "subject": "Veuillez sélectionner un sujet",
       "events": "Veuillez sélectionner un événement",
       "notes": "Veuillez entrer une note"
+    },
+    "subjectt": {
+      "orderInProgress": "Commande en cours",
+      "productInfo": "Informations sur un produit",
+      "deliveryIssue": "Problème de livraison",
+      "returnOrExchange": "Retour ou échange",
+      "paymentIssue": "Problème de paiement",
+      "promotionalOffers": "Question sur les offres promotionnelles",
+      "partnershipRequest": "Demande de partenariat",
+      "generalInformation": "Demande d'information générale",
+      "suggestionOrComplaint": "Suggestion ou réclamation",
+      "other": "Autre"
     }
   },
   "menu": {

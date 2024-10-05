@@ -23,6 +23,7 @@ const WishlistPage: React.FC<WishlistPageProps> = props => {
 
   const currentLocale = useSelector((state: any) => state.locale.currentLocale);
   const [locale, setLocale] = useState(currentLocale);
+  const currencySymbol = locale === 'fr' ? '€' : '$'; // Définir la devise en fonction de la langue
 
   const ClickHandler = () => {
     window.scrollTo(10, 0);
@@ -76,9 +77,10 @@ const WishlistPage: React.FC<WishlistPageProps> = props => {
                                   </p>
                                 </ul>
                               </td>
-                              <td className="ptice">${wish.price}</td>
+                              <td className="ptice">
+                                {wish.price} {currencySymbol}
+                              </td>
                               <td className="stock">
-                                {' '}
                                 <ul>
                                   <p className="stock-status">
                                     <Translate contentKey={`product.stock.${wish.id}`}>{wish.stock}</Translate>

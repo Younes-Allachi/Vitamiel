@@ -95,7 +95,7 @@
     "proceedToCheckout": "Proceed to Checkout",
     "totalProduct": "Total product",
     "subPrice": "Sub Price",
-    "vat": "Vat",
+    "vat": "VAT",
     "ecoTax": "Eco Tax",
     "deliveryCharge": "Delivery Charge",
     "totalPriceOverall": "Total Price",
@@ -110,14 +110,14 @@
     "stock": "Stock Status"
   },
   "footer": {
-    "title": "Management consulting includes a broad range of activities, and the many firms and their members often define these practices.",
+    "title": "At Vitamiel, we are committed to providing the purest and most natural honey to our customers. Each jar is filled with the sweetness and benefits of nature.",
     "newsletter": {
       "title": "Newsletter",
       "description": "You will be notified when something new appears."
     },
     "contact": {
       "title": "Contact",
-      "address": "Vlezenbeeklaan 171A, Belgium"
+      "address": "Vlezenbeeklaan 171A, 1602 SPL, Belgium"
     },
     "copyright": "2024 Vitamiel. All rights reserved.",
     "global": {

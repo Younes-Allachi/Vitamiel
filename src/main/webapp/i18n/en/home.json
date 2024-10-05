@@ -148,7 +148,7 @@
     "name": "Name",
     "lastname": "Last Name",
     "email": "Email",
-    "subject": "Subject",
+    "subject": "Select a subject",
     "message": "Message",
     "submit": "Send Message",
     "errors": {
@@ -158,6 +158,18 @@
       "subject": "Please enter the subject",
       "events": "Please select an event",
       "notes": "Please enter a note"
+    },
+    "subjectt": {
+      "orderInProgress": "Order in Progress",
+      "productInfo": "Product Information",
+      "deliveryIssue": "Delivery Issue",
+      "returnOrExchange": "Return or Exchange",
+      "paymentIssue": "Payment Issue",
+      "promotionalOffers": "Question about Promotional Offers",
+      "partnershipRequest": "Partnership Request",
+      "generalInformation": "General Information Request",
+      "suggestionOrComplaint": "Suggestion or Complaint",
+      "other": "Other"
     }
   },
   "menu": {
