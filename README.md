@@ -1,4 +1,4 @@
-# Vitamiel
+# Vitamiel Belgium
 
 ### Structure du projet
 
