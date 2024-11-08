@@ -222,7 +222,7 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                 </Link>
               </div>
             </div>
-            <div className="col-lg-7">
+            <div className="col-lg-9">
               <div id="navbar" className="collapse navbar-collapse navigation-holder">
                 <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
                   <li>
@@ -233,6 +233,11 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                   <li>
                     <Link className={isActive('/about') ? 'active' : ''} to="/about">
                       <Translate contentKey="header.about">About</Translate>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={isActive('/question') ? 'active' : ''} to="/question">
+                      <Translate contentKey="header.question">Questionnaire</Translate>
                     </Link>
                   </li>
                   <li>

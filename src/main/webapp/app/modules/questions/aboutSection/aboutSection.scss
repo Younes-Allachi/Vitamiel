@@ -1,0 +1,36 @@
+@import '../../../../content/sass/helpers/_variables.scss';
+@import '../../../../content/sass/helpers/mixins';
+@import '../../../../content/sass/components/section-title';
+
+.faq-section {
+  button {
+    width: 100%;
+  }
+  .faq-wrap {
+    padding: 20px;
+  }
+
+  .faq-list {
+    .faq-item {
+      margin-bottom: 10px;
+      width: 100%;
+
+      .faq-question {
+        background: #b83806;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+
+      .faq-answer {
+        padding: 10px 20px;
+        background: #f7f7f7;
+        border-left: 4px solid #b83806;
+      }
+    }
+  }
+}

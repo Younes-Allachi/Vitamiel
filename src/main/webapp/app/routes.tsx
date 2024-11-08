@@ -10,6 +10,7 @@ import PasswordResetFinish from 'app/modules/account/password-reset/finish/passw
 import Logout from 'app/modules/login/logout';
 import Home from 'app/modules/home/home';
 import About from 'app/modules/about/about';
+import Question from 'app/modules/questions/questions';
 import Contact from 'app/modules/contact/contact';
 import CartPage from 'app/modules/cart/cart';
 import WishList from 'app/modules/wishlist/wishlist';
@@ -18,6 +19,8 @@ import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
+
+import TawkToWidget from 'app/shared/components/TawkToWidget'; // Import the widget component
 
 const loading = <div>loading ...</div>;
 
@@ -35,30 +38,132 @@ const AppRoutes = () => {
   return (
     <div className="view-routes">
       <Routes>
-        {' '}
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/wishlist" element={<WishList />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Home />
+              <TawkToWidget />
+            </>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <>
+              <Home />
+              <TawkToWidget />
+            </>
+          }
+        />
+        <Route
+          path="/logout"
+          element={
+            <>
+              <Logout />
+              <TawkToWidget />
+            </>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <>
+              <About />
+              <TawkToWidget />
+            </>
+          }
+        />
+        <Route
+          path="/question"
+          element={
+            <>
+              <Question />
+              <TawkToWidget />
+            </>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <>
+              <Contact />
+              <TawkToWidget />
+            </>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <>
+              <CartPage />
+              <TawkToWidget />
+            </>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <>
+              <WishList />
+              <TawkToWidget />
+            </>
+          }
+        />
+
+        {/* Account Routes */}
         <Route path="account/*">
           <Route
             path="*"
             element={
               <PrivateRoute hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]}>
-                <Account />
+                <>
+                  <Account />
+                  <TawkToWidget />
+                </>
               </PrivateRoute>
             }
           />
-          <Route path="register" element={<Register />} />
-          <Route path="activate" element={<Activate />} />
+          <Route
+            path="register"
+            element={
+              <>
+                <Register />
+                <TawkToWidget />
+              </>
+            }
+          />
+          <Route
+            path="activate"
+            element={
+              <>
+                <Activate />
+                <TawkToWidget />
+              </>
+            }
+          />
           <Route path="reset">
-            <Route path="request" element={<PasswordResetInit />} />
-            <Route path="finish" element={<PasswordResetFinish />} />
+            <Route
+              path="request"
+              element={
+                <>
+                  <PasswordResetInit />
+                  <TawkToWidget />
+                </>
+              }
+            />
+            <Route
+              path="finish"
+              element={
+                <>
+                  <PasswordResetFinish />
+                  <TawkToWidget />
+                </>
+              }
+            />
           </Route>
         </Route>
+
         <Route
           path="/admin/*"
           element={
@@ -67,7 +172,17 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<PageNotFound />} />
+
+        {/* Catch-all for undefined routes */}
+        <Route
+          path="*"
+          element={
+            <>
+              <PageNotFound />
+              <TawkToWidget />
+            </>
+          }
+        />
       </Routes>
     </div>
   );

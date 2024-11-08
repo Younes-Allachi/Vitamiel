@@ -2,7 +2,12 @@
 spring:
   config:
     activate:
-      on-profile: '!api-docs'
+      on-profile:
+        '!api-docs'
+        # MongoDB Configuration
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/vitamiel # Replace with your MongoDB URI
 springdoc:
   api-docs:
     enabled: false

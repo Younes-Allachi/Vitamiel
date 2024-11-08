@@ -18,6 +18,7 @@ interface ProductProps {
 const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductProps) => {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleClickOpen = (product: any) => {
     setOpen(true);
@@ -27,6 +28,13 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Filter products based on the search query
+  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <section className="product-area section-padding">
@@ -49,10 +57,36 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
             </div>
           </div>
         </div>
+
+        {/* Centered Search Bar with Icon */}
+        <div className="search-bar">
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Search products by title..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="form-control"
+            />
+            <span className="input-group-text">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-search"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11.742 10.742a6.5 6.5 0 1 0-1.416 1.416 5.48 5.48 0 0 0 .332.39l4.26 4.261a1 1 0 1 0 1.415-1.415l-4.261-4.26a5.48 5.48 0 0 0-.39-.332zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
         <div className="product-wrap">
           <div className="row align-items-center">
-            {products.length > 0 &&
-              products.slice(0, 8).map((product, pitem) => (
+            {filteredProducts.length > 0 ? (
+              filteredProducts.slice(0, 8).map((product, pitem) => (
                 <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
                   <div className="product-item">
                     <div className="product-img">
@@ -98,7 +132,7 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
                         <div className="product-price">
                           <ul>
                             <li>
-                              {product.price} <Translate contentKey="product.currency" />
+                              {(product.price * 1.06).toFixed(2)} <Translate contentKey="product.currency" />
                             </li>
                             <li className="del-price">
                               {product.delPrice} <Translate contentKey="product.currency" />
@@ -109,7 +143,12 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div className="col-12">
+                <p>No products found.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

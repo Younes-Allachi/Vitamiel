@@ -2,6 +2,7 @@ package com.vitamiel;
 
 import com.vitamiel.config.ApplicationProperties;
 import com.vitamiel.config.CRLFLogConverter;
+import com.vitamiel.config.MongoDatabaseConfiguration;
 import jakarta.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -11,17 +12,19 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
-public class EcomvitamielApp {
+public class EcomvitamielApp implements CommandLineRunner { // Implements CommandLineRunner
 
     private static final Logger LOG = LoggerFactory.getLogger(EcomvitamielApp.class);
 
@@ -67,7 +70,21 @@ public class EcomvitamielApp {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(EcomvitamielApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
-        Environment env = app.run(args).getEnvironment();
+        app.run(args); // Only call run once
+    }
+
+    /**
+     * Run method from CommandLineRunner interface, which is executed after Spring Boot application starts.
+     *
+     * @param args the command line arguments.
+     * @throws Exception if any error occurs
+     */
+    @Override
+    public void run(String... args) throws Exception {
+        // Retrieve the MongoDatabaseConfiguration bean and call verifyMongoConnection
+        ApplicationContext context = (ApplicationContext) env;
+        MongoDatabaseConfiguration mongoConfig = context.getBean(MongoDatabaseConfiguration.class);
+        mongoConfig.verifyMongoConnection(); // Call the connection verification method
         logApplicationStartup(env);
     }
 
@@ -78,12 +95,14 @@ public class EcomvitamielApp {
         String contextPath = Optional.ofNullable(env.getProperty("server.servlet.context-path"))
             .filter(StringUtils::isNotBlank)
             .orElse("/");
+
         String hostAddress = "localhost";
         try {
             hostAddress = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
             LOG.warn("The host name could not be determined, using `localhost` as fallback");
         }
+
         LOG.info(
             CRLFLogConverter.CRLF_SAFE_MARKER,
             """

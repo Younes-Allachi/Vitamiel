@@ -134,7 +134,8 @@
     "inscription": "Inscription",
     "signout": "Déconnexion",
     "cart": "Panier",
-    "wishlist": "Favoris"
+    "wishlist": "Favoris",
+    "question": "Questionnaire"
   },
   "product": {
     "title1": "Miel",
