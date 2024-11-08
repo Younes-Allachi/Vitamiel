@@ -1,0 +1,55 @@
+{
+  "faqSection": {
+    "mainTitle": "Questions Fréquemment Posées",
+    "questions": [
+      {
+        "question": "Qu'est-ce qui rend le miel Vitamiel unique ?",
+        "answer": "Le miel Vitamiel est produit à partir de sources florales uniques à travers l'Espagne, ce qui donne des saveurs et des qualités distinctes. Nous privilégions des pratiques apicoles durables pour garantir la meilleure qualité de produit et une responsabilité environnementale."
+      },
+      {
+        "question": "D'où vient le miel Vitamiel ?",
+        "answer": "Notre miel provient directement de nos ruches en Espagne. Nos abeilles récoltent le nectar de régions florales spécifiques, créant une variété de types de miel qui mettent en valeur les saveurs uniques de chaque région."
+      },
+      {
+        "question": "Comment le miel Vitamiel est-il emballé ?",
+        "answer": "Le miel Vitamiel est emballé de manière durable pour préserver sa fraîcheur et protéger l'environnement. Chaque pot est soigneusement scellé et étiqueté avec des informations sur sa source florale et son origine."
+      },
+      {
+        "question": "Comment puis-je acheter du miel Vitamiel ?",
+        "answer": "Vous pouvez acheter le miel Vitamiel directement sur notre boutique en ligne. Nous proposons divers types et tailles de miel, et nous livrons partout en Belgique."
+      },
+      {
+        "question": "Quels types de miel Vitamiel propose-t-il ?",
+        "answer": "Vitamiel propose plusieurs types de miel provenant de différentes sources florales, y compris le miel de fleurs sauvages, de fleur d'oranger et de thym. Chaque type possède un goût et un profil nutritionnel unique."
+      },
+      {
+        "question": "Le miel Vitamiel contient-il des additifs ou des conservateurs ?",
+        "answer": "Non, le miel Vitamiel est 100% pur et naturel, sans conservateurs, sucres ajoutés ou ingrédients artificiels."
+      },
+      {
+        "question": "Le miel Vitamiel est-il bio ?",
+        "answer": "Notre miel est produit en utilisant des pratiques durables et respectueuses de l'environnement. Bien que nous ne soyons pas certifiés bio, nous privilégions des méthodes naturelles et évitons les produits chimiques nocifs dans notre processus apicole."
+      },
+      {
+        "question": "Comment stocker le miel Vitamiel ?",
+        "answer": "Conservez le miel Vitamiel à température ambiante dans un endroit sec. Le miel résiste naturellement à la dégradation, il n'est donc pas nécessaire de le réfrigérer. S'il cristallise, placez le pot dans de l'eau chaude pour le liquéfier à nouveau."
+      },
+      {
+        "question": "Vitamiel propose-t-il des commandes en gros ou en gros volumes ?",
+        "answer": "Oui, nous proposons des options pour les commandes en gros et en gros volumes. Veuillez nous contacter pour plus de détails et les prix des quantités plus importantes."
+      },
+      {
+        "question": "Comment Vitamiel soutient-il l'apiculture durable ?",
+        "answer": "Vitamiel se concentre sur des pratiques écologiques, le maintien de la santé des abeilles et le soutien de la biodiversité. Nous évitons les pesticides nocifs et travaillons à créer un environnement sain pour nos abeilles."
+      },
+      {
+        "question": "Puis-je suivre ma commande Vitamiel ?",
+        "answer": "Oui, après avoir passé votre commande, vous recevrez un numéro de suivi par e-mail. Vous pouvez utiliser ce numéro pour vérifier l'état de votre expédition."
+      },
+      {
+        "question": "Que dois-je faire si je reçois un produit endommagé ?",
+        "answer": "Si votre produit arrive endommagé, veuillez contacter immédiatement notre service client avec des photos de l'article endommagé. Nous organiserons un remplacement ou un remboursement selon le cas."
+      }
+    ]
+  }
+}

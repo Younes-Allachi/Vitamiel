@@ -1,7 +1,6 @@
 package com.vitamiel.service.dto;
 
-public class ContactVM
-{
+public class ContactVM {
 
     private String name;
     private String lastname;
