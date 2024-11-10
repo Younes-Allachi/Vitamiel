@@ -4,6 +4,7 @@ logging:
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
     com.vitamiel: DEBUG
+    com.paypal: DEBUG  
 
 spring:
   devtools:
@@ -46,7 +47,7 @@ server:
   forward-headers-strategy: native
 
 jhipster:
-  # CORS is only enabled by default with the "dev" profile
+  # CORS is only enabled by default with  "dev" profile
   cors:
     # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
     allowed-origins: 'http://localhost:8100,https://localhost:8100,http://localhost:9000,https://localhost:9000,http://localhost:9060,https://localhost:9060'
@@ -84,3 +85,13 @@ jhipster:
 # ===================================================================
 
 # application:
+
+# PayPal Configuration
+paypal:
+  client:
+    id: Afey45hZ-9MTTToY1cHUZG146w8WGpSJ9W64lJqeo_-qx2oHl7s2iNR462N-WWa4Jxqm9UTAdv274SC_   
+    secret: EPfMkkg-SEP8A37byWax1nom2mJef-xr8Nw2so1wmBptv2IG6AKd5_GjXnuBms1tPsxePu1P1WvsIQQc  
+  mode: sandbox  
+  redirect:
+    return-url: http://localhost:8080/paypal/return  # URL for successful payment
+    cancel-url: http://localhost:8080/paypal/cancel  # URL for canceled payment

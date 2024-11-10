@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, connect } from 'react-redux';
-import Scrollbar from 'app/modules/home/scrollbar';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { totalPrice } from 'app/shared/util/lists';
 import { removeFromCart, incrementQuantity, decrementQuantity } from 'app/shared/actions/action';
 import { Translate } from 'react-jhipster';
+import axios from 'axios';
+import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import './CartPage.scss';
 
 interface CartPageProps {
@@ -23,31 +23,19 @@ interface CartItem {
   price: number;
 }
 
-const CartPage: React.FC<CartPageProps> = props => {
-  const ClickHandler = () => {
-    window.scrollTo(10, 0);
-  };
-
+const CartPage: React.FC<CartPageProps> = (props) => {
   const { carts, incrementQuantity, decrementQuantity } = props;
 
   const currentLocale = useSelector((state: any) => state.locale.currentLocale);
   const [locale, setLocale] = useState(currentLocale);
-  const currencySymbol = locale === 'fr' ? '€' : '$'; // Définir la devise en fonction de la langue
+  const currencySymbol = locale === 'fr' ? '€' : '$'; 
 
-  useEffect(() => {
-    setLocale(currentLocale);
-  }, [currentLocale]);
-
-  // Calcul du sous-total
   const subTotal = totalPrice(carts);
-
-  // Calcul de la TVA à 6%
   const vat = subTotal * 0.06;
+  const total = subTotal + vat > 0 ? subTotal + vat : 1;  // Ensure total is never zero
 
-  // Calcul du prix total incluant la TVA
-  const total = subTotal + vat;
+  const [loading, setLoading] = useState(false);
 
-  // Fonction pour gérer la modification de la quantité
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, itemId: number) => {
     const newQty = parseInt(e.target.value, 10);
     if (newQty > 0) {
@@ -61,6 +49,78 @@ const CartPage: React.FC<CartPageProps> = props => {
         }
       }
     }
+  };
+
+  const createOrder = async (data, actions) => {
+    try {
+      const response = await axios.post('/api/paypal/create-order', {
+        total: total.toFixed(2),
+        currency: locale === 'fr' ? 'EUR' : 'USD',
+      });
+
+      console.log('PayPal Order Response:', response.data);
+
+      const { paymentId, approvalUrl } = response.data;
+
+      if (!approvalUrl || !paymentId) {
+        throw new Error("PayPal Approval URL or Payment ID is missing.");
+      }
+
+      console.log('Approval URL:', approvalUrl);
+      console.log('Payment ID:', paymentId);
+
+      const urlParams = new URLSearchParams(new URL(approvalUrl).search);
+      const token = urlParams.get('token');
+
+      if (!token) {
+        throw new Error("EC Token is missing.");
+      }
+
+      console.log('EC Token:', token);
+
+      return paymentId;  
+    } catch (error) {
+      console.error('Error creating PayPal order:', error);
+      throw new Error('Failed to create PayPal order');
+    }
+  };
+
+  const onApprove = async (data: any, actions: any) => {
+    try {
+      const order = await actions.order.capture();
+      console.log('Order successful:', order);
+
+      await axios.post('/api/paypal/capture-payment', {
+        paymentId: order.id,
+        payerId: data.payerID,
+      });
+
+      setLoading(false); 
+      console.log('Payment captured successfully');
+    } catch (error) {
+      console.error('Error capturing PayPal payment:', error);
+      setLoading(false);  // Stop loading on error
+    }
+  };
+
+  const ButtonWrapper = ({ showSpinner }: { showSpinner: boolean }) => {
+    const [{ isPending }] = usePayPalScriptReducer();
+
+    return (
+      <>
+        {showSpinner && isPending && <div className="spinner" />}
+        <PayPalButtons
+          style={{ layout: 'vertical' }}
+          createOrder={createOrder}
+          onApprove={onApprove}
+          onError={(err) => console.error("PayPal Error: ", err)}
+        />
+      </>
+    );
+  };
+
+  const handleProceedToCheckout = () => {
+    setLoading(true);  
   };
 
   return (
@@ -96,114 +156,76 @@ const CartPage: React.FC<CartPageProps> = props => {
                         </tr>
                       </thead>
                       <tbody>
-                        {carts &&
-                          carts.length > 0 &&
-                          carts.map((catItem, crt) => (
-                            <tr key={crt}>
-                              <td className="images">
-                                <img src={catItem.proImg} className="img2" alt="" />
-                              </td>
-                              <td className="product">
-                                <ul>
-                                  <p>
-                                    <Translate contentKey={`product.title3.${catItem.id}`}>{catItem.title}</Translate>
-                                  </p>
-                                </ul>
-                              </td>
-                              <td className="stock">
-                                <div className="pro-single-btn">
-                                  <div className="quantity cart-plus-minus">
-                                    <Button className="dec qtybutton" onClick={() => decrementQuantity(catItem.id)}>
-                                      -
-                                    </Button>
-                                    <input
-                                      type="number"
-                                      value={catItem.qty}
-                                      min="1"
-                                      onChange={e => handleQuantityChange(e, catItem.id)}
-                                      className="quantity-input"
-                                    />
-                                    <Button className="inc qtybutton" onClick={() => incrementQuantity(catItem.id)}>
-                                      +
-                                    </Button>
-                                  </div>
-                                </div>
-                              </td>
-                              <td className="ptice">
-                                {catItem.price} {currencySymbol}
-                              </td>
-                              <td className="stock">
-                                {catItem.qty * catItem.price} {currencySymbol}
-                              </td>
-                              <td className="action">
-                                <ul>
-                                  <li className="w-btn" onClick={() => props.removeFromCart(catItem.id)}>
-                                    <i className="fi flaticon-delete"></i>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                          ))}
+                        {carts.map((catItem, crt) => (
+                          <tr key={crt}>
+                            <td className="images">
+                              <img src={catItem.proImg} className="img2" alt="" />
+                            </td>
+                            <td className="product">
+                              <p>{catItem.title}</p>
+                            </td>
+                            <td className="stock">
+                              <div className="quantity cart-plus-minus">
+                                <Button className="dec qtybutton" onClick={() => decrementQuantity(catItem.id)}>
+                                  -
+                                </Button>
+                                <input
+                                  type="number"
+                                  value={catItem.qty}
+                                  min="1"
+                                  onChange={e => handleQuantityChange(e, catItem.id)}
+                                  className="quantity-input"
+                                />
+                                <Button className="inc qtybutton" onClick={() => incrementQuantity(catItem.id)}>
+                                  +
+                                </Button>
+                              </div>
+                            </td>
+                            <td className="ptice">
+                              {catItem.price} {currencySymbol}
+                            </td>
+                            <td className="stock">
+                              {catItem.qty * catItem.price} {currencySymbol}
+                            </td>
+                            <td className="action">
+                              <ul>
+                                <li className="w-btn" onClick={() => props.removeFromCart(catItem.id)}>
+                                  <i className="fi flaticon-delete"></i>
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </form>
+
                   <div className="submit-btn-area">
                     <ul>
                       <li>
-                        <Link onClick={ClickHandler} className="theme-btn" to="#">
-                          <Translate contentKey="cart2.continueShopping">Continue Shopping</Translate>{' '}
+                        <Button
+                          className="theme-btn"
+                          onClick={handleProceedToCheckout} // Trigger loading state and PayPal
+                        >
+                          <Translate contentKey="cart2.proceedToCheckout">Proceed to Checkout</Translate>
                           <i className="fa fa-angle-double-right"></i>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="cart-product-list">
-                    <ul>
-                      <li>
-                        <Translate contentKey="cart2.totalProduct">Total product</Translate>
-                        <span>( {carts.length} )</span>
-                      </li>
-                      <li>
-                        <Translate contentKey="cart2.subPrice">Sub Price</Translate>
-                        <span>
-                          {subTotal.toFixed(2)} {currencySymbol}
-                        </span>
-                      </li>
-                      <li>
-                        <Translate contentKey="cart2.vat">VAT (6%)</Translate>
-                        <span>
-                          {vat.toFixed(2)} {currencySymbol}
-                        </span>
-                      </li>
-                      <li>
-                        <Translate contentKey="cart2.deliveryCharge">Delivery Charge</Translate>
-                        <span>0 {currencySymbol}</span>
-                      </li>
-                      <li className="cart-b">
-                        <Translate contentKey="cart2.totalPriceOverall">Total Price</Translate>
-                        <span>
-                          {total.toFixed(2)} {currencySymbol}
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="submit-btn-area">
-                    <ul>
-                      <li>
-                        <Link onClick={ClickHandler} className="theme-btn" to="#">
-                          <Translate contentKey="cart2.proceedToCheckout">Proceed to Checkout</Translate>{' '}
-                          <i className="fa fa-angle-double-right"></i>
-                        </Link>
+                        </Button>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
+
+              {/* PayPal buttons */}
+              {loading && (
+                <PayPalScriptProvider options={{ clientId: "Afey45hZ-9MTTToY1cHUZG146w8WGpSJ9W64lJqeo_-qx2oHl7s2iNR462N-WWa4Jxqm9UTAdv274SC_", currency: "USD" }}>
+                  <ButtonWrapper showSpinner={loading} />
+                </PayPalScriptProvider>
+              )}
             </div>
           </div>
         </div>
       </div>
-      <Scrollbar />
     </>
   );
 };

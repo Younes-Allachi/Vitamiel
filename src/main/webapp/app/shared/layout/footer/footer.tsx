@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Translate, translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faXTwitter, faSnapchat, faTiktok } from '@fortawesome/free-brands-svg-icons'; // Import new icons
 
 const ClickHandler = (e: React.MouseEvent) => {
   e.preventDefault();
@@ -26,23 +26,28 @@ const Footer = () => (
               </p>
               <ul>
                 <li>
-                  <Link onClick={ClickHandler} to="#">
+                  <Link onClick={ClickHandler} to="https://www.facebook.com/profile.php?id=61566039371306">
                     <i className="ti-facebook"></i>
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={ClickHandler} to="#">
+                  <Link onClick={ClickHandler} to="https://x.com/VitamielBelgium">
                     <FontAwesomeIcon icon={faXTwitter} />
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={ClickHandler} to="#">
+                  <Link onClick={ClickHandler} to="https://www.instagram.com/vitamiel_belgium">
                     <i className="ti-instagram"></i>
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={ClickHandler} to="#">
-                    <i className="ti-google"></i>
+                  <Link onClick={ClickHandler} to="https://www.snapchat.com/add/vitamielbelgium"> 
+                    <FontAwesomeIcon icon={faSnapchat} />
+                  </Link>
+                </li>
+                <li>
+                  <Link onClick={ClickHandler} to="https://www.tiktok.com/@vitamiel_belgium"> 
+                    <FontAwesomeIcon icon={faTiktok} />
                   </Link>
                 </li>
               </ul>

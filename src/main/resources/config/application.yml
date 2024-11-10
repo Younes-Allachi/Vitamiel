@@ -5,9 +5,12 @@ spring:
       on-profile:
         '!api-docs'
         # MongoDB Configuration
+  file:
+    upload-dir: ./uploads
+    
   data:
     mongodb:
-      uri: mongodb://localhost:27017/vitamiel # Replace with your MongoDB URI
+      uri: mongodb://localhost:27017/vatamiel # Replace with your MongoDB URI
 springdoc:
   api-docs:
     enabled: false
@@ -154,6 +157,9 @@ server:
     session:
       cookie:
         http-only: true
+  multipart:
+      enabled:true
+  port: 8080
 
 springdoc:
   show-actuator: true
@@ -162,6 +168,7 @@ springdoc:
 info:
   # Comma separated list of profiles that will trigger the ribbon to show
   display-ribbon-on-profiles: 'dev'
+
 
 jhipster:
   clientApp:
@@ -200,3 +207,15 @@ jhipster:
 # ===================================================================
 
 # application:
+
+# ===================================================================
+# PayPal Configuration
+# ===================================================================
+paypal:
+  client:
+    id: Afey45hZ-9MTTToY1cHUZG146w8WGpSJ9W64lJqeo_-qx2oHl7s2iNR462N-WWa4Jxqm9UTAdv274SC_
+    secret: EPfMkkg-SEP8A37byWax1nom2mJef-xr8Nw2so1wmBptv2IG6AKd5_GjXnuBms1tPsxePu1P1WvsIQQc
+  mode: sandbox  # Set to 'live' for production environment
+  redirect:
+    return-url: http://localhost:8080/paypal/return  # URL for successful payment
+    cancel-url: http://localhost:8080/paypal/cancel  # URL for canceled payment

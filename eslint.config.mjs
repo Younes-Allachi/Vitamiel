@@ -5,13 +5,21 @@ import pluginReact from 'eslint-plugin-react';
 
 export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
-  { languageOptions: { globals: globals.browser } },
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,  // Include the browser globals
+        structuredClone: 'readonly', // Add structuredClone here
+        'AudioWorkletGlobalScope': 'readonly', 
+      },
+    },
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
     rules: {
-      // Désactiver des règles spécifiques
+      // Disable specific rules
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       'react/prop-types': 'off',

@@ -76,6 +76,14 @@
         <springdoc-openapi-starter-webmvc-api.version>2.6.0</springdoc-openapi-starter-webmvc-api.version>
     </properties>
 
+<repositories>
+    <repository>
+        <id>paypal-repo</id>
+        <url>https://github.com/paypal/sdk-packages/releases</url>
+    </repository>
+</repositories>
+
+
     <dependencies>
         <dependency>
             <groupId>tech.jhipster</groupId>
@@ -133,11 +141,6 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.9.0</version>  <!-- Ensure you use the version compatible with your Spring Boot version -->
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
@@ -189,6 +192,11 @@
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.paypal.sdk</groupId>
+            <artifactId>rest-api-sdk</artifactId>
+            <version>1.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.tngtech.archunit</groupId>
@@ -674,14 +682,14 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>properties-maven-plugin</artifactId>
                     <version>${properties-maven-plugin.version}</version>
-                    <executions>
+                    <!-- <executions>
                         <execution>
                             <phase>initialize</phase>
                             <goals>
                                 <goal>read-project-properties</goal>
                             </goals>
                         </execution>
-                    </executions>
+                    </executions> -->
                 </plugin>
                 <plugin>
                     <groupId>org.gaul</groupId>
@@ -1091,7 +1099,7 @@
                     <plugin>
                         <groupId>net.nicoulaj.maven.plugins</groupId>
                         <artifactId>checksum-maven-plugin</artifactId>
-                        <executions>
+                        <!-- <executions>
                             <execution>
                                 <id>create-pre-compiled-webapp-checksum</id>
                                 <goals>
@@ -1109,7 +1117,7 @@
                                     <csvSummaryFile>checksums.csv.old</csvSummaryFile>
                                 </configuration>
                             </execution>
-                        </executions>
+                        </executions> -->
                         <configuration>
                             <fileSets>
                                 <fileSet>
