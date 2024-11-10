@@ -2,7 +2,6 @@ package com.vitamiel;
 
 import com.vitamiel.config.ApplicationProperties;
 import com.vitamiel.config.CRLFLogConverter;
-import com.vitamiel.config.MongoDatabaseConfiguration;
 import jakarta.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -17,14 +16,19 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.ConnectionString;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
-public class EcomvitamielApp implements CommandLineRunner { // Implements CommandLineRunner
+public class EcomvitamielApp implements CommandLineRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(EcomvitamielApp.class);
 
@@ -44,18 +48,14 @@ public class EcomvitamielApp implements CommandLineRunner { // Implements Comman
     @PostConstruct
     public void initApplication() {
         Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
-        if (
-            activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) &&
-            activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)
-        ) {
+        if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) &&
+            activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
             LOG.error(
                 "You have misconfigured your application! It should not run " + "with both the 'dev' and 'prod' profiles at the same time."
             );
         }
-        if (
-            activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) &&
-            activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_CLOUD)
-        ) {
+        if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) &&
+            activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_CLOUD)) {
             LOG.error(
                 "You have misconfigured your application! It should not " + "run with both the 'dev' and 'cloud' profiles at the same time."
             );
@@ -81,11 +81,31 @@ public class EcomvitamielApp implements CommandLineRunner { // Implements Comman
      */
     @Override
     public void run(String... args) throws Exception {
-        // Retrieve the MongoDatabaseConfiguration bean and call verifyMongoConnection
-        ApplicationContext context = (ApplicationContext) env;
-        MongoDatabaseConfiguration mongoConfig = context.getBean(MongoDatabaseConfiguration.class);
-        mongoConfig.verifyMongoConnection(); // Call the connection verification method
+        // MongoDB connection verification
+        verifyMongoConnection();
+
+        // Log application startup information
         logApplicationStartup(env);
+    }
+
+    private void verifyMongoConnection() {
+        String connectionString = "mongodb://localhost:27017/vatamiel"; // Update if needed
+
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(new ConnectionString(connectionString))
+                .build();
+
+        try (MongoClient mongoClient = MongoClients.create(settings)) {
+            MongoDatabase database = mongoClient.getDatabase("vatamiel");
+            database.runCommand(new Document("ping", 1));  // Ping to check connection
+            LOG.info("Pinged your deployment. You successfully connected to MongoDB!");
+            // Get collection names
+            for (String collectionName : database.listCollectionNames()) {
+                LOG.info("Collection found: {}", collectionName);
+            }
+        } catch (Exception e) {
+            LOG.error("MongoDB connection failed: {}", e.getMessage(), e);
+        }
     }
 
     private static void logApplicationStartup(Environment env) {

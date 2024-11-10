@@ -19,6 +19,7 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [comparisonProducts, setComparisonProducts] = useState<Array<any>>([]);
 
   const handleClickOpen = (product: any) => {
     setOpen(true);
@@ -31,6 +32,19 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleAddToComparison = (product: any) => {
+    // If less than two products are selected, add the product to comparison
+    if (comparisonProducts.length < 2 && !comparisonProducts.some(p => p.id === product.id)) {
+      setComparisonProducts([...comparisonProducts, product]);
+    }
+  };
+
+  const handleCompare = () => {
+    if (comparisonProducts.length === 2) {
+      setOpen(true); // Open the modal to show the comparison
+    }
   };
 
   // Filter products based on the search query
@@ -83,10 +97,19 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
           </div>
         </div>
 
+        {/* Display comparison button if 2 products are selected */}
+        {comparisonProducts.length === 2 && (
+          <div className="compare-btn-container">
+            <button className="btn btn-primary" onClick={handleCompare}>
+              Compare Selected Products
+            </button>
+          </div>
+        )}
+
         <div className="product-wrap">
           <div className="row align-items-center">
             {filteredProducts.length > 0 ? (
-              filteredProducts.slice(0, 8).map((product, pitem) => (
+              filteredProducts.slice(0, 12).map((product, pitem) => (
                 <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
                   <div className="product-item">
                     <div className="product-img">
@@ -103,7 +126,7 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
                           </button>
                         </li>
                         <li>
-                          <button data-bs-toggle="tooltip" data-bs-html="true" title="Quick View" onClick={() => handleClickOpen(product)}>
+                          <button data-bs-toggle="tooltip" data-bs-html="true" title="Quick View" onClick={() => handleAddToComparison(product)}>
                             <i className="fi ti-eye"></i>
                           </button>
                         </li>
@@ -152,6 +175,44 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
           </div>
         </div>
       </div>
+
+      {/* Modal for Comparison */}
+      {comparisonProducts.length === 2 && (
+        <div className="modal fade show" id="comparisonModal" tabIndex={-1} style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }} aria-hidden="true">
+          <div className="modal-dialog modal-lg">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Product Comparison</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setComparisonProducts([])}></button>
+              </div>
+              <div className="modal-body">
+                <div className="comparison-wrapper" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  {/* Comparison Item 1 */}
+                  <div className="comparison-item" style={{ width: '48%' }}>
+                    <img src={comparisonProducts[0].proImg} alt={comparisonProducts[0].title} style={{ width: '75%' }} />
+                    <h4><Translate contentKey={comparisonProducts[0].title} /></h4>
+                    <p>Price: ${(comparisonProducts[0].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
+                    <p>Discounted Price: {comparisonProducts[0].delPrice} <Translate contentKey="product.currency" /></p>
+                  </div>
+
+                  {/* Comparison Item 2 */}
+                  <div className="comparison-item" style={{ width: '48%' }}>
+                    <img src={comparisonProducts[1].proImg} alt={comparisonProducts[1].title} style={{ width: '75%' }} />
+                    <h4><Translate contentKey={comparisonProducts[0].title} /></h4>
+                    <p>Price: ${(comparisonProducts[1].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
+                    <p>Discounted Price: {comparisonProducts[1].delPrice} <Translate contentKey="product.currency" /></p>
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setComparisonProducts([])}>
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
