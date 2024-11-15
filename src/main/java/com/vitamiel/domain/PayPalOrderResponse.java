@@ -3,10 +3,13 @@ package com.vitamiel.domain;
 public class PayPalOrderResponse {
     private String paymentId;
     private String approvalUrl;
+    private String orderId;  // Add orderId (EC token)
 
-    public PayPalOrderResponse(String paymentId, String approvalUrl) {
+    // Constructor
+    public PayPalOrderResponse(String paymentId, String approvalUrl, String orderId) {
         this.paymentId = paymentId;
         this.approvalUrl = approvalUrl;
+        this.orderId = orderId;  
     }
 
     // Getters and setters
@@ -25,5 +28,12 @@ public class PayPalOrderResponse {
     public void setApprovalUrl(String approvalUrl) {
         this.approvalUrl = approvalUrl;
     }
-}
 
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+}

@@ -10,6 +10,7 @@ interface ProductType {
   offer: string;
   price: number;
   delPrice: number;
+  name:string
 }
 
 interface FlashSaleProps {
@@ -37,7 +38,7 @@ const FlashSale = ({ products, addToCartProduct, addToWishListProduct }: FlashSa
   };
 
   // Filter products based on the search query
-  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <section className="flash-Sale-area product-area section-padding">

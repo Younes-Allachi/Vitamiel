@@ -23,7 +23,7 @@ function getCompareList(items) {
 }
 
 function searchFilter(row, search) {
-  return row.title.toLowerCase().includes(search.toLowerCase()) || !search;
+  return row.name.toLowerCase().includes(search.toLowerCase()) || !search;
 }
 
 // short helper function

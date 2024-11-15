@@ -11,9 +11,8 @@ public class Category {
     private int categoryId;
     private String name;
 
-    // Constructor with categoryId and name
-    public Category(String id, int categoryId, String name) {
-        this.id = id;
+    // Constructor with categoryId and name (no need for id)
+    public Category(int categoryId, String name) {
         this.categoryId = categoryId;
         this.name = name;
     }

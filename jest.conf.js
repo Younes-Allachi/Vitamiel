@@ -66,3 +66,5 @@ function mapTypescriptAliasToJestAlias(alias = {}) {
     }, jestAliases);
   return jestAliases;
 }
+
+global.structuredClone = (val) => JSON.parse(JSON.stringify(val))
