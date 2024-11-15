@@ -4,18 +4,23 @@ import './product.scss';
 
 interface ProductProps {
   products: Array<{
-    id: number;
-    proImg: string;
-    offer: string;
-    title: string;
+    id: string;        // Updated to string, as per new data format
+    imageUrl: string;  // Updated field name for the product image
+    name: string;
+    description: string;
     price: number;
-    delPrice: number;
+    stockQuantity: number;
+    categoryId: string;
+  }>;
+  categories: Array<{
+    categoryId: string;
+    name: string;
   }>;
   addToCartProduct: (product: any) => void;
   addToWishListProduct: (product: any) => void;
 }
 
-const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductProps) => {
+const Product = ({ products,categories, addToCartProduct, addToWishListProduct }: ProductProps) => {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,8 +53,10 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
   };
 
   // Filter products based on the search query
-  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
+
+  console.log('categories in index.tsx:',categories)
   return (
     <section className="product-area section-padding">
       <div className="container">
@@ -109,11 +116,11 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
         <div className="product-wrap">
           <div className="row align-items-center">
             {filteredProducts.length > 0 ? (
-              filteredProducts.slice(0, 12).map((product, pitem) => (
+              filteredProducts.map((product, pitem) => (
                 <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
                   <div className="product-item">
                     <div className="product-img">
-                      <img src={product.proImg} alt={product.title} />
+                      <img src={`http://localhost:8080/${product.imageUrl} `}alt={product.name} />
                       <ul>
                         <li>
                           <button
@@ -141,24 +148,16 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
                           </button>
                         </li>
                       </ul>
-                      <div className="offer-thumb">
-                        <span>
-                          <Translate contentKey={product.offer} />
-                        </span>
-                      </div>
                     </div>
                     <div className="product-content">
                       <h3>
-                        <Translate contentKey={product.title} />
+                        <Translate contentKey={product.name} />
                       </h3>
                       <div className="product-btm">
                         <div className="product-price">
                           <ul>
                             <li>
                               {(product.price * 1.06).toFixed(2)} <Translate contentKey="product.currency" />
-                            </li>
-                            <li className="del-price">
-                              {product.delPrice} <Translate contentKey="product.currency" />
                             </li>
                           </ul>
                         </div>
@@ -189,18 +188,16 @@ const Product = ({ products, addToCartProduct, addToWishListProduct }: ProductPr
                 <div className="comparison-wrapper" style={{ display: 'flex', justifyContent: 'space-between' }}>
                   {/* Comparison Item 1 */}
                   <div className="comparison-item" style={{ width: '48%' }}>
-                    <img src={comparisonProducts[0].proImg} alt={comparisonProducts[0].title} style={{ width: '75%' }} />
-                    <h4><Translate contentKey={comparisonProducts[0].title} /></h4>
+                    <img src={comparisonProducts[0].imageUrl} alt={comparisonProducts[0].name} style={{ width: '75%' }} />
+                    <h4><Translate contentKey={comparisonProducts[0].name} /></h4>
                     <p>Price: ${(comparisonProducts[0].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
-                    <p>Discounted Price: {comparisonProducts[0].delPrice} <Translate contentKey="product.currency" /></p>
                   </div>
 
                   {/* Comparison Item 2 */}
                   <div className="comparison-item" style={{ width: '48%' }}>
-                    <img src={comparisonProducts[1].proImg} alt={comparisonProducts[1].title} style={{ width: '75%' }} />
-                    <h4><Translate contentKey={comparisonProducts[0].title} /></h4>
+                    <img src={comparisonProducts[1].imageUrl} alt={comparisonProducts[1].name} style={{ width: '75%' }} />
+                    <h4><Translate contentKey={comparisonProducts[1].name} /></h4>
                     <p>Price: ${(comparisonProducts[1].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
-                    <p>Discounted Price: {comparisonProducts[1].delPrice} <Translate contentKey="product.currency" /></p>
                   </div>
                 </div>
               </div>

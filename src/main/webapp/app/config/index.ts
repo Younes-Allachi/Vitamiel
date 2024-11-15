@@ -1,5 +1,7 @@
 import data from './data.json';
+import axios from 'axios';
 
+// Define the Product interface
 export interface Product {
   id: number;
   proImg: string;
@@ -10,10 +12,31 @@ export interface Product {
   stock: string;
 }
 
-const productData: Product[] = data;
+// Define the Category interface
+export interface Category {
+  categoryId: string;
+  name: string;
+}
 
-const getProducts = (): Product[] => {
-  return productData;
+
+const getProducts = async (): Promise<Product[]> => {
+  try {
+    const response = await axios.get<Product[]>('/api/products');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching product data:', error);
+    return [];
+  }
 };
 
-export default getProducts;
+const getCategories = async (): Promise<Category[]> => {
+  try {
+    const response = await axios.get<Category[]>('/api/categories'); 
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching category data:', error);
+    return [];
+  }
+};
+
+export { getProducts, getCategories };

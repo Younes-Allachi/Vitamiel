@@ -15,7 +15,7 @@ public class Product {
     private double price;
     private int stockQuantity;
     private String imageUrl;
-    private Category category;
+    private String categoryId;  
 
     // Getters and Setters
     public String getId() {
@@ -82,11 +82,11 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }

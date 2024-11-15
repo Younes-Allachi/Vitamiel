@@ -6,11 +6,11 @@ spring:
         '!api-docs'
         # MongoDB Configuration
   file:
-    upload-dir: ./uploads
-    
+    upload-dir: ${USER_HOME}/uploads  # Absolute path for file uploads
+
   data:
     mongodb:
-      uri: mongodb://localhost:27017/vatamiel # Replace with your MongoDB URI
+      uri: mongodb://localhost:27017/vatamiel  # MongoDB URI
 springdoc:
   api-docs:
     enabled: false
@@ -79,7 +79,6 @@ management:
           enabled: true
     tags:
       application: ${spring.application.name}
-
 spring:
   application:
     name: ecomvitamiel
@@ -213,8 +212,8 @@ jhipster:
 # ===================================================================
 paypal:
   client:
-    id: Afey45hZ-9MTTToY1cHUZG146w8WGpSJ9W64lJqeo_-qx2oHl7s2iNR462N-WWa4Jxqm9UTAdv274SC_
-    secret: EPfMkkg-SEP8A37byWax1nom2mJef-xr8Nw2so1wmBptv2IG6AKd5_GjXnuBms1tPsxePu1P1WvsIQQc
+    id: ASZqYCLb4pjpMt3Bq2RsQtrtgXYCA9Ido09Za0_GX7bCr5tth3Q4YEMJ9Bp33aL8ACCeaDRnrPjueGQW
+    secret: EC_nlQdVsaTSYOuOGPB-xzLTOT3Ax0Hf_5BXkSUtaUQUw53ylaF-gxpOl15wAmARQL6hyzzshIrrEiqU
   mode: sandbox  # Set to 'live' for production environment
   redirect:
     return-url: http://localhost:8080/paypal/return  # URL for successful payment

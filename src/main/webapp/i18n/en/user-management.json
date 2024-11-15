@@ -6,6 +6,16 @@
       "createLabel": "Create a new user",
       "createOrEditLabel": "Create or edit a user"
     },
+    "category": {
+      "title": "Categories",
+      "refreshListLabel": "Refresh list",
+      "createLabel": "Create a new cateogry",
+      "createOrEditLabel": "Create or edit a category",
+      "Name":"Name",
+      "Actions":"Actions",
+      "Category ID":"Category ID",
+      "ID":"ID"      
+    },
     "created": "A new user is created with identifier {{ param }}",
     "updated": "A user is updated with identifier {{ param }}",
     "deleted": "A user is deleted with identifier {{ param }}",
@@ -26,6 +36,9 @@
     "createdBy": "Created by",
     "createdDate": "Created date",
     "lastModifiedBy": "Modified by",
-    "lastModifiedDate": "Modified date"
+    "lastModifiedDate": "Modified date",
+    "View":"View",
+    "Edit":"Edit",
+    "Delete":"Delete"
   }
 }

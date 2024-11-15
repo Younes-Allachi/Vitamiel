@@ -12,16 +12,17 @@ public class PayPalService {
 
     private APIContext apiContext;
 
-    private final String clientId = "Afey45hZ-9MTTToY1cHUZG146w8WGpSJ9W64lJqeo_-qx2oHl7s2iNR462N-WWa4Jxqm9UTAdv274SC_";
-    private final String clientSecret = "EPfMkkg-SEP8A37byWax1nom2mJef-xr8Nw2so1wmBptv2IG6AKd5_GjXnuBms1tPsxePu1P1WvsIQQc";
+    private final String clientId = "ASZqYCLb4pjpMt3Bq2RsQtrtgXYCA9Ido09Za0_GX7bCr5tth3Q4YEMJ9Bp33aL8ACCeaDRnrPjueGQW";
+    private final String clientSecret = "EC_nlQdVsaTSYOuOGPB-xzLTOT3Ax0Hf_5BXkSUtaUQUw53ylaF-gxpOl15wAmARQL6hyzzshIrrEiqU";
     private final String mode = "sandbox";  
-    private final String returnUrl = "http://localhost:8080/paypal/return"; 
-    private final String cancelUrl = "http://localhost:8080/paypal/cancel"; 
+    private final String returnUrl = "http://localhost:8080/"; 
+    private final String cancelUrl = "http://localhost:8080/"; 
 
     public PayPalService() {
         this.apiContext = new APIContext(clientId, clientSecret, mode);
     }
 
+    // Creating the PayPal payment
     public Payment createPayment(double totalAmount, String currency) throws PayPalRESTException {
         if (totalAmount <= 0) {
             throw new IllegalArgumentException("Amount must be greater than zero.");
@@ -48,21 +49,34 @@ public class PayPalService {
         redirectUrls.setReturnUrl(returnUrl);
         payment.setRedirectUrls(redirectUrls);
 
-        // Call PayPal API to create the payment
-        Payment createdPayment = payment.create(apiContext);  
+        // Creating the payment and capturing the response
+        Payment createdPayment = payment.create(apiContext);
 
-        // Log the payment details (optional)
+        // Extract approval URL
+        String approvalUrl = createdPayment.getLinks().stream()
+            .filter(link -> "approval_url".equals(link.getRel()))
+            .map(link -> link.getHref())
+            .findFirst()
+            .orElse(null);
+
+        // Check if the approval URL was extracted successfully
+        if (approvalUrl == null) {
+            throw new PayPalRESTException("Approval URL not found in the PayPal response.");
+        }
+
         System.out.println("Payment created with ID: " + createdPayment.getId());
-
-        return createdPayment;  // Return the full Payment object, which contains the order ID
+        return createdPayment;
     }
 
-    // Capture payment after approval
+    // Executing the PayPal payment with the EC token (order ID) and payer ID
     public Payment executePayment(String paymentId, String payerId) throws PayPalRESTException {
         Payment payment = new Payment();
-        payment.setId(paymentId);
+        payment.setId(paymentId);  // paymentId is actually the EC token (orderId)
+
         PaymentExecution paymentExecution = new PaymentExecution();
-        paymentExecution.setPayerId(payerId);
-        return payment.execute(apiContext, paymentExecution); 
+        paymentExecution.setPayerId(paymentId);
+
+        // Execute the payment using the EC token (orderId)
+        return payment.execute(apiContext, paymentExecution);
     }
 }

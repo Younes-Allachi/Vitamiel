@@ -9,8 +9,6 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,  // Include the browser globals
-        structuredClone: 'readonly', // Add structuredClone here
-        'AudioWorkletGlobalScope': 'readonly', 
       },
     },
   },

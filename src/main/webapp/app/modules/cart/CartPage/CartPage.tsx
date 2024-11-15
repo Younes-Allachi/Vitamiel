@@ -57,51 +57,48 @@ const CartPage: React.FC<CartPageProps> = (props) => {
         total: total.toFixed(2),
         currency: locale === 'fr' ? 'EUR' : 'USD',
       });
-
+  
       console.log('PayPal Order Response:', response.data);
-
-      const { paymentId, approvalUrl } = response.data;
-
-      if (!approvalUrl || !paymentId) {
-        throw new Error("PayPal Approval URL or Payment ID is missing.");
+  
+      const { paymentId, approvalUrl, orderId } = response.data;
+  
+      if (!paymentId || !orderId) {
+        throw new Error("PayPal Payment ID or Order ID is missing.");
       }
-
-      console.log('Approval URL:', approvalUrl);
+  
       console.log('Payment ID:', paymentId);
-
-      const urlParams = new URLSearchParams(new URL(approvalUrl).search);
-      const token = urlParams.get('token');
-
-      if (!token) {
-        throw new Error("EC Token is missing.");
-      }
-
-      console.log('EC Token:', token);
-
-      return paymentId;  
+      console.log('Order ID (EC token):', orderId);
+  
+      return approvalUrl;
     } catch (error) {
       console.error('Error creating PayPal order:', error);
       throw new Error('Failed to create PayPal order');
     }
   };
-
-  const onApprove = async (data: any, actions: any) => {
+  
+  const onApprove = async (data, actions) => {
     try {
       const order = await actions.order.capture();
-      console.log('Order successful:', order);
-
+      const orderId = order.id; 
+      console.log('PayPal Order ID:', orderId);
+  
+      const payerId = data.payerID;  
+      console.log('PayPal Payer ID:', payerId);
+  
       await axios.post('/api/paypal/capture-payment', {
-        paymentId: order.id,
-        payerId: data.payerID,
+        paymentId: orderId,  
+        payerId: payerId, 
       });
-
-      setLoading(false); 
+  
+      setLoading(false);
       console.log('Payment captured successfully');
     } catch (error) {
       console.error('Error capturing PayPal payment:', error);
-      setLoading(false);  // Stop loading on error
+      setLoading(false);
     }
   };
+  
+  
 
   const ButtonWrapper = ({ showSpinner }: { showSpinner: boolean }) => {
     const [{ isPending }] = usePayPalScriptReducer();
@@ -218,7 +215,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
               {/* PayPal buttons */}
               {loading && (
-                <PayPalScriptProvider options={{ clientId: "Afey45hZ-9MTTToY1cHUZG146w8WGpSJ9W64lJqeo_-qx2oHl7s2iNR462N-WWa4Jxqm9UTAdv274SC_", currency: "USD" }}>
+                <PayPalScriptProvider options={{ clientId: "ASZqYCLb4pjpMt3Bq2RsQtrtgXYCA9Ido09Za0_GX7bCr5tth3Q4YEMJ9Bp33aL8ACCeaDRnrPjueGQW",currency:'EUR', intent:'capture' }}>
                   <ButtonWrapper showSpinner={loading} />
                 </PayPalScriptProvider>
               )}
