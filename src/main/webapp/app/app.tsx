@@ -15,6 +15,7 @@ import Footer from 'app/shared/layout/footer/footer';
 import ErrorBoundary from 'app/shared/error/error-boundary';
 import AppRoutes from 'app/routes';
 import LoginModal from 'app/modules/login/login-modal';
+import GdprModal from 'app/modules/gdpr/gdpr';
 
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
@@ -33,6 +34,7 @@ export const App = () => {
   const isOpenAPIEnabled = useAppSelector(state => state.applicationProfile.isOpenAPIEnabled);
   const [scroll, setScroll] = useState<number>(0);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showGdprModal, setShowGdprModal] = useState<boolean>(false); // New state for GDPR modal visibility.
   const loginError = useAppSelector(state => state.authentication.loginError);
 
   const toggleLoginModal = () => {
@@ -71,6 +73,19 @@ export const App = () => {
     // Logic to open password reset modal
   };
 
+  // Handle closing of GDPR modal
+  const handleCloseGdprModal = () => {
+    setShowGdprModal(false);
+  };
+
+
+  useEffect(() => {
+    const consentGiven = localStorage.getItem('gdprConsent');
+    if (!consentGiven) {
+      setShowGdprModal(true); // Show the GDPR modal if consent is not given.
+    }
+  }, []);
+
   return (
     <BrowserRouter basename={baseHref}>
       <div>
@@ -79,7 +94,7 @@ export const App = () => {
           <div className={className}>
             <Header
               hClass={'header-style-1'}
-              isAuthenticated={isAuthenticated} // Assurez-vous que isAuthenticated est bien passé ici
+              isAuthenticated={isAuthenticated}
               currentLocale={currentLocale}
               ribbonEnv={ribbonEnv}
               isInProduction={isInProduction}
@@ -90,7 +105,7 @@ export const App = () => {
         </ErrorBoundary>
         <div className="container-fluid view-container" id="app-view-container">
           <Card className="jh-card">
-              <AppRoutes />
+            <AppRoutes />
           </Card>
           <Footer />
         </div>
@@ -102,6 +117,10 @@ export const App = () => {
           isAuthenticated={isAuthenticated}
           handleSignup={handleSignup}
           openPasswordResetModal={openPasswordResetModal}
+        />
+        <GdprModal
+          showModal={showGdprModal}
+          handleClose={handleCloseGdprModal} // Close GDPR modal
         />
       </div>
     </BrowserRouter>

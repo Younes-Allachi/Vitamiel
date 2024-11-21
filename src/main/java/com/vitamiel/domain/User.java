@@ -35,7 +35,7 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
     @Column(length = 50, unique = true, nullable = false)
     private String login;
 
-    @Column(name = "DELIVERYADDRESS ")
+    @Column(name = "DELIVERYADDRESS")
     private String deliveryAddress;
 
     @JsonIgnore

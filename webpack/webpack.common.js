@@ -135,6 +135,8 @@ module.exports = async options => {
           groupBy: [
             { pattern: './src/main/webapp/i18n/fr/*.json', fileName: './i18n/fr.json' },
             { pattern: './src/main/webapp/i18n/en/*.json', fileName: './i18n/en.json' },
+            { pattern: './src/main/webapp/i18n/nl/*.json', fileName: './i18n/nl.json' },
+            { pattern: './src/main/webapp/i18n/es/*.json', fileName: './i18n/es.json' },
           ],
         },
       }),

@@ -4,8 +4,8 @@ import './product.scss';
 
 interface ProductProps {
   products: Array<{
-    id: string;        // Updated to string, as per new data format
-    imageUrl: string;  // Updated field name for the product image
+    id: string;
+    imageUrl: string;
     name: string;
     description: string;
     price: number;
@@ -20,7 +20,7 @@ interface ProductProps {
   addToWishListProduct: (product: any) => void;
 }
 
-const Product = ({ products,categories, addToCartProduct, addToWishListProduct }: ProductProps) => {
+const Product = ({ products, categories, addToCartProduct, addToWishListProduct }: ProductProps) => {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,8 +55,14 @@ const Product = ({ products,categories, addToCartProduct, addToWishListProduct }
   // Filter products based on the search query
   const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
+  // Group products by categoryId
+  const groupedProducts = categories.map((category) => ({
+    ...category,
+    // Convert categoryId to string to match product categoryId format
+    products: filteredProducts.filter((product) => String(product.categoryId) === String(category.categoryId)),
+  }));
 
-  console.log('categories in index.tsx:',categories)
+  console.log('Grouped Products:/meme',groupedProducts);
   return (
     <section className="product-area section-padding">
       <div className="container">
@@ -71,7 +77,6 @@ const Product = ({ products,categories, addToCartProduct, addToWishListProduct }
                   <Translate contentKey="product.fresh" />
                 </span>
               </h2>
-
               <p>
                 <Translate contentKey="product.description" />
               </p>
@@ -114,64 +119,70 @@ const Product = ({ products,categories, addToCartProduct, addToWishListProduct }
         )}
 
         <div className="product-wrap">
-          <div className="row align-items-center">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product, pitem) => (
-                <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
-                  <div className="product-item">
-                    <div className="product-img">
-                      <img src={`http://localhost:8080/${product.imageUrl} `}alt={product.name} />
-                      <ul>
-                        <li>
-                          <button
-                            data-bs-toggle="tooltip"
-                            data-bs-html="true"
-                            title="Add to Cart"
-                            onClick={() => addToCartProduct(product)}
-                          >
-                            <i className="fi flaticon-shopping-cart"></i>
-                          </button>
-                        </li>
-                        <li>
-                          <button data-bs-toggle="tooltip" data-bs-html="true" title="Quick View" onClick={() => handleAddToComparison(product)}>
-                            <i className="fi ti-eye"></i>
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            data-bs-toggle="tooltip"
-                            data-bs-html="true"
-                            title="Add to Wishlist"
-                            onClick={() => addToWishListProduct(product)}
-                          >
-                            <i className="fi flaticon-like"></i>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="product-content">
-                      <h3>
-                        <Translate contentKey={product.name} />
-                      </h3>
-                      <div className="product-btm">
-                        <div className="product-price">
+          {groupedProducts.map((category) => (
+            <div key={category.categoryId}>
+              <h3>{category.name}</h3> {/* Display category name */}
+
+              <div className="row align-items-center">
+                {category.products.length > 0 ? (
+                  category.products.map((product, pitem) => (
+                    <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
+                      <div className="product-item">
+                        <div className="product-img">
+                          <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.name} />
                           <ul>
                             <li>
-                              {(product.price * 1.06).toFixed(2)} <Translate contentKey="product.currency" />
+                              <button
+                                data-bs-toggle="tooltip"
+                                data-bs-html="true"
+                                title="Add to Cart"
+                                onClick={() => addToCartProduct(product)}
+                              >
+                                <i className="fi flaticon-shopping-cart"></i>
+                              </button>
+                            </li>
+                            <li>
+                              <button data-bs-toggle="tooltip" data-bs-html="true" title="Quick View" onClick={() => handleAddToComparison(product)}>
+                                <i className="fi ti-eye"></i>
+                              </button>
+                            </li>
+                            <li>
+                              <button
+                                data-bs-toggle="tooltip"
+                                data-bs-html="true"
+                                title="Add to Wishlist"
+                                onClick={() => addToWishListProduct(product)}
+                              >
+                                <i className="fi flaticon-like"></i>
+                              </button>
                             </li>
                           </ul>
                         </div>
+                        <div className="product-content">
+                          <h3>
+                            <Translate contentKey={product.name} />
+                          </h3>
+                          <div className="product-btm">
+                            <div className="product-price">
+                              <ul>
+                                <li>
+                                  {(product.price * 1.06).toFixed(2)} <Translate contentKey="product.currency" />
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  ))
+                ) : (
+                  <div className="col-12">
+                    <p>No products found for this category.</p>
                   </div>
-                </div>
-              ))
-            ) : (
-              <div className="col-12">
-                <p>No products found.</p>
+                )}
               </div>
-            )}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 

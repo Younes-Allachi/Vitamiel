@@ -1,0 +1,23 @@
+{
+  "login": {
+    "title": "Iniciar sesión",
+    "success": "¡Inicio de sesión exitoso!",
+    "error": "Nombre de usuario o contraseña incorrectos",
+    "username": {
+      "placeholder": "Ingresa tu nombre de usuario",
+      "required": "El nombre de usuario es obligatorio"
+    },
+    "password": {
+      "placeholder": "Ingresa tu contraseña",
+      "required": "La contraseña es obligatoria"
+    },
+    "forgot": "¿Olvidaste tu contraseña?",
+    "signup": "Registrarse",
+    "button": "Iniciar sesión"
+  },
+  "entity": {
+    "action": {
+      "cancel": "Cancelar"
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "global": {
+    "title": "Ecomvitamiel",
+    "menu": {
+      "home": "Inicio",
+      "account": {
+        "profile": "Perfil",
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión",
+        "register": "Registrarse",
+        "password": "Contraseña"
+      },
+      "language": "Idioma"
+    },
+    "form": {
+      "firstname.label": "Nombre",
+      "firstname.placeholder": "Tu nombre",
+      "lastname.label": "Apellido",
+      "lastname.placeholder": "Tu apellido",
+      "username.label": "Nombre de usuario",
+      "username.placeholder": "Tu nombre de usuario",
+      "currentpassword.label": "Contraseña actual",
+      "currentpassword.placeholder": "Contraseña actual",
+      "newpassword.label": "Nueva contraseña",
+      "newpassword.placeholder": "Nueva contraseña",
+      "confirmpassword.label": "Confirmación de nueva contraseña",
+      "confirmpassword.placeholder": "Confirma la nueva contraseña",
+      "email.label": "Correo electrónico",
+      "email.placeholder": "Tu correo electrónico"
+    },
+    "messages": {
+      "info": {
+        "authenticated": {
+          "prefix": "Si deseas ",
+          "link": "iniciar sesión",
+          "suffix": ", puedes probar con las cuentas predeterminadas:<br/>- Administrador (login=\"admin\" y contraseña=\"admin\") <br/>- Usuario (login=\"user\" y contraseña=\"user\")."
+        },
+        "register": {
+          "noaccount": "¿No tienes una cuenta aún?",
+          "link": "Registra una nueva cuenta"
+        }
+      },
+      "error": {
+        "dontmatch": "¡La contraseña y su confirmación no coinciden!"
+      },
+      "validate": {
+        "newpassword": {
+          "required": "Se requiere tu contraseña.",
+          "minlength": "Tu contraseña debe tener al menos 4 caracteres.",
+          "maxlength": "Tu contraseña no puede tener más de 50 caracteres.",
+          "strength": "Fuerza de la contraseña:"
+        },
+        "confirmpassword": {
+          "required": "Se requiere la confirmación de la contraseña.",
+          "minlength": "La confirmación de la contraseña debe tener al menos 4 caracteres.",
+          "maxlength": "La confirmación de la contraseña no puede tener más de 50 caracteres."
+        },
+        "email": {
+          "required": "Se requiere tu correo electrónico.",
+          "invalid": "Tu correo electrónico no es válido.",
+          "minlength": "Tu correo electrónico debe tener al menos 5 caracteres.",
+          "maxlength": "Tu correo electrónico no puede tener más de 50 caracteres."
+        }
+      }
+    }
+  },
+  "cart": {
+    "total": "Total",
+    "checkout": "Finalizar compra",
+    "viewCart": "Ver carrito",
+    "viewWishlist": "Ver lista de deseos",
+    "image": "Imagen",
+    "productName": "Nombre del producto",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "totalPrice": "Precio total",
+    "action": "Acción",
+    "continueShopping": "Seguir comprando",
+    "proceedToCheckout": "Proceder a la compra",
+    "totalProduct": "Producto total",
+    "subPrice": "Precio subtotal",
+    "vat": "IVA",
+    "ecoTax": "Impuesto ecológico",
+    "deliveryCharge": "Gastos de entrega",
+    "totalPriceOverall": "Precio total"
+  },
+  "cart2": {
+    "image": "Imagen",
+    "productName": "Nombre del producto",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "totalPrice": "Precio total",
+    "action": "Acción",
+    "continueShopping": "Seguir comprando",
+    "proceedToCheckout": "Proceder a la compra",
+    "totalProduct": "Producto total",
+    "subPrice": "Precio subtotal",
+    "vat": "IVA",
+    "ecoTax": "Impuesto ecológico",
+    "deliveryCharge": "Gastos de entrega",
+    "totalPriceOverall": "Precio total",
+    "viewCart": "Ver carrito"
+  },
+  "wishlist": {
+    "image": "Imagen",
+    "productName": "Nombre del producto",
+    "price": "Precio",
+    "stockStatus": "Estado del stock",
+    "action": "Acción",
+    "stock": "Estado del stock"
+  },
+  "footer": {
+    "title": "En Vitamiel, nos comprometemos a proporcionar la miel más pura y natural a nuestros clientes. Cada frasco está lleno de la dulzura y los beneficios de la naturaleza.",
+    "newsletter": {
+      "title": "Boletín de noticias",
+      "description": "Te notificaremos cuando algo nuevo aparezca."
+    },
+    "contact": {
+      "title": "Contacto",
+      "address": "Vlezenbeeklaan 171A, 1602 SPL, Bélgica"
+    },
+    "copyright": "2024 Vitamiel. Todos los derechos reservados.",
+    "global": {
+      "form": {
+        "email.placeholder": "Dirección de correo electrónico"
+      }
+    }
+  },
+  "header": {
+    "about": "Acerca de",
+    "home": "Inicio",
+    "contact": "Contacto",
+    "login": "Iniciar sesión",
+    "inscription": "Registrarse",
+    "signout": "Cerrar sesión",
+    "cart": "Carrito",
+    "wishlist": "Lista de deseos",
+    "question": "Cuestionario"
+  },
+  "product": {
+    "title1": "Miel",
+    "fresh": "100% Fresca",
+    "description": "Descubre nuestra selección de mieles puras y frescas...",
+    "offer": {
+      "discount28": "-28%",
+      "discount25": "-25%",
+      "new": "Nuevo",
+      "discount20": "-20%",
+      "discount18": "-18%",
+      "discount15": "-15%"
+    },
+    "title2": {
+      "manuka": "Miel de Manuka",
+      "brut": "Miel cruda",
+      "sauvage": "Miel de flores silvestres",
+      "reine": "Miel de la Reina",
+      "moutarde": "Miel de flor de mostaza",
+      "montagne": "Miel pura de montaña",
+      "nigelle": "Miel de flor de Nigella",
+      "mangue": "Miel de flor de Mango"
+    },
+    "title3": {
+      "1": "Miel de Manuka",
+      "2": "Miel cruda",
+      "3": "Miel de flores silvestres",
+      "4": "Miel de la Reina",
+      "5": "Miel de flor de mostaza",
+      "6": "Miel pura de montaña",
+      "7": "Miel de flor de Nigella",
+      "8": "Miel de flor de Mango"
+    },
+    "currency": "$"
+  },
+  "alerts": {
+    "itemAddedToCart": "Artículo añadido al carrito",
+    "itemRemovedFromCart": "Artículo eliminado del carrito",
+    "itemAddedToWishList": "Artículo añadido a la lista de deseos",
+    "itemRemovedFromWishList": "Artículo eliminado de la lista de deseos"
+  }
+}

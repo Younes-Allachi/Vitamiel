@@ -1,0 +1,180 @@
+{
+  "global": {
+    "title": "Ecomvitamiel",
+    "menu": {
+      "home": "Home",
+      "account": {
+        "profile": "Profiel",
+        "login": "Inloggen",
+        "logout": "Uitloggen",
+        "register": "Aanmelden",
+        "password": "Wachtwoord"
+      },
+      "language": "Taal"
+    },
+    "form": {
+      "firstname.label": "Voornaam",
+      "firstname.placeholder": "Je voornaam",
+      "lastname.label": "Achternaam",
+      "lastname.placeholder": "Je achternaam",
+      "username.label": "Gebruikersnaam",
+      "username.placeholder": "Je gebruikersnaam",
+      "currentpassword.label": "Huidig wachtwoord",
+      "currentpassword.placeholder": "Huidig wachtwoord",
+      "newpassword.label": "Nieuw wachtwoord",
+      "newpassword.placeholder": "Nieuw wachtwoord",
+      "confirmpassword.label": "Bevestig nieuw wachtwoord",
+      "confirmpassword.placeholder": "Bevestig het nieuwe wachtwoord",
+      "email.label": "E-mail",
+      "email.placeholder": "Je e-mail"
+    },
+    "messages": {
+      "info": {
+        "authenticated": {
+          "prefix": "Als je wilt ",
+          "link": "inloggen",
+          "suffix": ", kun je proberen de standaardaccounts:<br/>- Administrator (login=\"admin\" en wachtwoord=\"admin\") <br/>- Gebruiker (login=\"user\" en wachtwoord=\"user\")"
+        },
+        "register": {
+          "noaccount": "Heb je nog geen account?",
+          "link": "Registreer een nieuw account"
+        }
+      },
+      "error": {
+        "dontmatch": "Het wachtwoord en de bevestiging komen niet overeen!"
+      },
+      "validate": {
+        "newpassword": {
+          "required": "Je wachtwoord is verplicht.",
+          "minlength": "Je wachtwoord moet minimaal 4 tekens bevatten.",
+          "maxlength": "Je wachtwoord mag niet langer zijn dan 50 tekens.",
+          "strength": "Wachtwoordsterkte:"
+        },
+        "confirmpassword": {
+          "required": "Je bevestigingswachtwoord is verplicht.",
+          "minlength": "Je bevestigingswachtwoord moet minimaal 4 tekens bevatten.",
+          "maxlength": "Je bevestigingswachtwoord mag niet langer zijn dan 50 tekens."
+        },
+        "email": {
+          "required": "Je e-mail is verplicht.",
+          "invalid": "Je e-mail is ongeldig.",
+          "minlength": "Je e-mail moet minimaal 5 tekens bevatten.",
+          "maxlength": "Je e-mail mag niet langer zijn dan 50 tekens."
+        }
+      }
+    }
+  },
+  "cart": {
+    "total": "Totaal",
+    "checkout": "Afrekenen",
+    "viewCart": "Bekijk Winkelwagentje",
+    "viewWishlist": "Bekijk Verlanglijst",
+    "image": "Afbeelding",
+    "productName": "Productnaam",
+    "quantity": "Aantal",
+    "price": "Prijs",
+    "totalPrice": "Totale Prijs",
+    "action": "Actie",
+    "continueShopping": "Blijf Winkelen",
+    "proceedToCheckout": "Ga naar Afrekenen",
+    "totalProduct": "Totaal product",
+    "subPrice": "Subtotaal",
+    "vat": "BTW",
+    "ecoTax": "Ecologische Belasting",
+    "deliveryCharge": "Verzendkosten",
+    "totalPriceOverall": "Totaalprijs"
+  },
+  "cart2": {
+    "image": "Afbeelding",
+    "productName": "Productnaam",
+    "quantity": "Aantal",
+    "price": "Prijs",
+    "totalPrice": "Totale Prijs",
+    "action": "Actie",
+    "continueShopping": "Blijf Winkelen",
+    "proceedToCheckout": "Ga naar Afrekenen",
+    "totalProduct": "Totaal product",
+    "subPrice": "Subtotaal",
+    "vat": "BTW",
+    "ecoTax": "Ecologische Belasting",
+    "deliveryCharge": "Verzendkosten",
+    "totalPriceOverall": "Totaalprijs",
+    "viewCart": "Bekijk Winkelwagentje"
+  },
+  "wishlist": {
+    "image": "Afbeelding",
+    "productName": "Productnaam",
+    "price": "Prijs",
+    "stockStatus": "Voorraadstatus",
+    "action": "Actie",
+    "stock": "Voorraadstatus"
+  },
+  "footer": {
+    "title": "Bij Vitamiel zijn we toegewijd aan het leveren van de puurste en meest natuurlijke honing aan onze klanten. Elke pot is gevuld met de zoetheid en voordelen van de natuur.",
+    "newsletter": {
+      "title": "Nieuwsbrief",
+      "description": "Je wordt op de hoogte gesteld wanneer er iets nieuws verschijnt."
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "Vlezenbeeklaan 171A, 1602 SPL, België"
+    },
+    "copyright": "2024 Vitamiel. Alle rechten voorbehouden.",
+    "global": {
+      "form": {
+        "email.placeholder": "E-mailadres"
+      }
+    }
+  },
+  "header": {
+    "about": "Over",
+    "home": "Home",
+    "contact": "Contact",
+    "login": "Inloggen",
+    "inscription": "Aanmelden",
+    "signout": "Uitloggen",
+    "cart": "Winkelwagentje",
+    "wishlist": "Verlanglijst",
+    "question": "Enquête"
+  },
+  "product": {
+    "title1": "Honing",
+    "fresh": "100% Vers",
+    "description": "Ontdek onze selectie van pure en verse honing...",
+    "offer": {
+      "discount28": "-28%",
+      "discount25": "-25%",
+      "new": "Nieuw",
+      "discount20": "-20%",
+      "discount18": "-18%",
+      "discount15": "-15%"
+    },
+    "title2": {
+      "manuka": "Manuka Honing",
+      "brut": "Raadhoning",
+      "sauvage": "Wilde Bloemenhoning",
+      "reine": "Koninginnenhoning",
+      "moutarde": "Mosterdbloemenhoning",
+      "montagne": "Pure Berg Honing",
+      "nigelle": "Nigella Bloemenhoning",
+      "mangue": "Mango Bloemenhoning"
+    },
+    "title3": {
+      "1": "Manuka Honing",
+      "2": "Raadhoning",
+      "3": "Wilde Bloemenhoning",
+      "4": "Koninginnenhoning",
+      "5": "Mosterdbloemenhoning",
+      "6": "Pure Berg Honing",
+      "7": "Nigella Bloemenhoning",
+      "8": "Mango Bloemenhoning"
+    },
+    "currency": "€"
+  },
+  "alerts": {
+    "itemAddedToCart": "Item toegevoegd aan winkelwagentje",
+    "itemRemovedFromCart": "Item verwijderd uit winkelwagentje",
+    "itemAddedToWishList": "Item toegevoegd aan verlanglijst",
+    "itemRemovedFromWishList": "Item verwijderd uit verlanglijst"
+  }
+}

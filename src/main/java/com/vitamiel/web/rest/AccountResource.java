@@ -151,13 +151,16 @@ public class AccountResource {
      */
     @PostMapping(path = "/account/reset-password/init")
     public void requestPasswordReset(@RequestBody String mail) {
+        System.out.println("EMAIL COMING FOR RESET PASSWORD"+mail);
+
         Optional<User> user = userService.requestPasswordReset(mail);
+        System.out.println("User after checking"+user);
         if (user.isPresent()) {
             mailService.sendPasswordResetMail(user.orElseThrow());
         } else {
             // Pretend the request has been successful to prevent checking which emails really exist
             // but log that an invalid attempt has been made
-            LOG.warn("Password reset requested for non existing mail");
+            LOG.warn("Password reset requested for non existing mail in /account/reset-password/init");
         }
     }
 

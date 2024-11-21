@@ -5,7 +5,7 @@ import { TranslatorContext } from 'react-jhipster';
 
 import locale, { addTranslationSourcePrefix, loaded, setLocale, updateLocale } from 'app/shared/reducers/locale';
 
-const defaultLocale = 'fr';
+const defaultLocale = 'en';
 const dispatch = jest.fn();
 const extra = {};
 
@@ -43,6 +43,43 @@ describe('Locale reducer tests', () => {
     expect(TranslatorContext.context.locale).toEqual('es');
   });
 
+  it('should correctly detect update in current locale state (Spanish)', () => {
+    TranslatorContext.setLocale('es');
+    expect(TranslatorContext.context.locale).toEqual('es');
+    const localeState = locale(
+      {
+        currentLocale: 'en',
+        sourcePrefixes: [],
+        lastChange: new Date().getTime(),
+        loadedKeys: [],
+      },
+      updateLocale('es'),
+    );
+    expect(localeState).toMatchObject({
+      currentLocale: 'es',
+    });
+    expect(TranslatorContext.context.locale).toEqual('es');
+  });
+  
+  it('should correctly detect update in current locale state (Dutch)', () => {
+    TranslatorContext.setLocale('nl');
+    expect(TranslatorContext.context.locale).toEqual('nl');
+    const localeState = locale(
+      {
+        currentLocale: 'en',
+        sourcePrefixes: [],
+        lastChange: new Date().getTime(),
+        loadedKeys: [],
+      },
+      updateLocale('nl'),
+    );
+    expect(localeState).toMatchObject({
+      currentLocale: 'nl',
+    });
+    expect(TranslatorContext.context.locale).toEqual('nl');
+  });
+
+  
   describe('setLocale reducer', () => {
     describe('with default language loaded', () => {
       let store;

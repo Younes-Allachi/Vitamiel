@@ -1,0 +1,183 @@
+{
+  "hero": {
+    "miel": "MIEL",
+    "fresh": "Fresca",
+    "buyNow": "Comprar ahora"
+  },
+  "category": {
+    "title": "Nuestra Categoría de Miel",
+    "description": "Descubre nuestra selección de mieles de alta calidad, cada una con un perfil de sabor único y beneficios para la salud. Ya sea que busques un toque dulce para tus comidas o un remedio natural, nuestra gama tiene algo para todos.",
+    "items": {
+      "reine": {
+        "title": "Miel de la Reina",
+        "description": "Nuestra miel de la Reina se cosecha de colmenas de alta calidad y se destaca por su rico color dorado y su textura suave. Ideal para quienes disfrutan del sabor tradicional de la miel con un toque floral."
+      },
+      "tournesol": {
+        "title": "Miel de Girasol",
+        "description": "Esta miel se produce a partir de girasoles, ofreciendo un sabor ligero y brillante con un toque de cítricos. Perfecta para endulzar tus tés, ensaladas o postres ligeros."
+      },
+      "manuka": {
+        "title": "Miel de Manuka",
+        "description": "Originaria de Nueva Zelanda, la miel de Manuka es conocida por sus poderosas propiedades medicinales. Es rica en cualidades antibacterianas, lo que la hace ideal para calmar dolores de garganta y fortalecer el sistema inmunológico."
+      }
+    }
+  },
+  "product": {
+    "title1": "Miel",
+    "fresh": "100% Fresca",
+    "description": "Descubre nuestra selección de mieles puras y frescas, directamente de los apicultores para garantizar la mejor calidad y sabor. Ya sea para cocinar, por sus beneficios para la salud o como edulcorante natural, nuestra miel llevará dulzura y bienestar a tu vida diaria.",
+    "offer": {
+      "discount28": "-28%",
+      "discount25": "-25%",
+      "new": "Nuevo",
+      "discount20": "-20%",
+      "discount18": "-18%",
+      "discount15": "-15%"
+    },
+    "title2": {
+      "manuka": "Miel de Manuka",
+      "brut": "Miel Cruda",
+      "sauvage": "Miel de Flores Silvestres",
+      "reine": "Miel de la Reina",
+      "moutarde": "Miel de Flor de Mostaza",
+      "montagne": "Miel Pura de Montaña",
+      "nigelle": "Miel de Flor de Nigella",
+      "mangue": "Miel de Flor de Mango"
+    },
+    "title3": {
+      "1": "Miel de Manuka",
+      "2": "Miel Cruda",
+      "3": "Miel de Flores Silvestres",
+      "4": "Miel de la Reina",
+      "5": "Miel de Flor de Mostaza",
+      "6": "Miel Pura de Montaña",
+      "7": "Miel de Flor de Nigella",
+      "8": "Miel de Flor de Mango"
+    },
+    "stock": {
+      "1": "Disponible",
+      "2": "Disponible",
+      "3": "Agotado",
+      "4": "Disponible",
+      "5": "Disponible",
+      "6": "Agotado",
+      "7": "Disponible",
+      "8": "Disponible"
+    },
+    "currency": "$"
+  },
+  "offer": {
+    "limited": "Oferta limitada para clientes",
+    "title": "Miel de Girasol",
+    "subtitle": "Fresca y Original",
+    "discount": "Hasta un 58% de descuento",
+    "description": "¡No te pierdas nuestra promoción especial! Nuestra miel fresca de girasol está disponible a un precio inmejorable. Conocida por su sabor ligero y floral, esta miel es perfecta para realzar tus platos favoritos o disfrutarla por sí sola.",
+    "stockWarning": "Haz tu pedido antes de que termine esta oferta por tiempo limitado.",
+    "buyNow": "Comprar ahora"
+  },
+  "flashSale": {
+    "flash": "Flash",
+    "sale": "Venta",
+    "items": "Artículos"
+  },
+  "countdown": {
+    "days": "Días",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos"
+  },
+  "service": {
+    "freeShipping": {
+      "title": "Envío Gratis",
+      "description": "Para pedidos superiores a 560 €"
+    },
+    "easyPayment": {
+      "title": "Pago Fácil",
+      "description": "Pago 100% seguro"
+    },
+    "support": {
+      "title": "Soporte 24/7",
+      "description": "Soporte disponible en cualquier momento"
+    }
+  },
+  "testimonial": {
+    "title": "Testimonios",
+    "clients": "Clientes",
+    "description": "A nuestros clientes les encanta nuestra miel, y esto es lo que dicen sobre su experiencia con nuestros productos. ¡Desde la calidad hasta el sabor, nuestra miel deja una impresión duradera!",
+    "rachelQuote": "¡La miel que recibí fue absolutamente fantástica! Nunca había probado miel tan pura y fresca. Transformó completamente mi té de la mañana. ¡La recomiendo mucho!",
+    "davidQuote": "He probado varios tipos de miel, pero esta se destaca por su sabor rico y textura suave. Es el complemento perfecto para mis postres y me encanta su sabor natural.",
+    "kenQuote": "Esta miel es simplemente increíble. La calidad es excepcional y no puedo imaginar volver a la miel comprada en tienda. Es perfecta para cocinar y endulzar mis bebidas."
+  },
+  "aboutSection": {
+    "smallTitle": "Sobre nuestra empresa",
+    "mainTitle": {
+      "part1": "Todo en uno",
+      "part2": "para hacer una",
+      "part3": "estructura diferente"
+    },
+    "paragraph1": "En Vitamiel, nos comprometemos a ofrecer los mejores productos de miel natural obtenidos directamente de nuestros apicultores asociados. Creemos que la miel no solo es un edulcorante natural, sino también un alimento con múltiples beneficios para la salud. Nuestra misión es proporcionar una gama de miel de alta calidad respetando el medio ambiente y las tradiciones apícolas.",
+    "paragraph2": "Cada frasco de miel que vendemos cuenta la historia de sus orígenes, desde campos llenos de flores hasta colmenas cuidadosamente mantenidas. Con años de experiencia en apicultura, garantizamos un producto fresco y puro, rico en sabor y beneficios.",
+    "learnMore": "Saber más"
+  },
+  "category2": {
+    "queenBeeHoneyTitle": "Miel de Abeja Reina",
+    "queenBeeHoneyDescription": "La miel de abeja reina es rica en nutrientes y se considera a menudo un alimento de lujo. Se cosecha cuidadosamente para preservar su pureza y sus propiedades beneficiosas para la salud.",
+    "sunflowerHoneyTitle": "Miel de Girasol",
+    "sunflowerHoneyDescription": "La miel de girasol es apreciada por su sabor suave y ligeramente afrutado. Es una fuente natural de energía y es perfecta para endulzar tus bebidas o platos favoritos.",
+    "manukaHoneyTitle": "Miel de Manuka",
+    "manukaHoneyDescription": "La miel de Manuka, originaria de Nueva Zelanda, es conocida por sus propiedades medicinales únicas. Se usa a menudo para mejorar la salud digestiva y fortalecer el sistema inmunológico."
+  },
+  "contact": {
+    "title": "Nuestros Contactos",
+    "description": "En Vitamiel, estamos comprometidos a ofrecer la miel natural de más alta calidad directamente de nuestras colmenas en Bélgica. Nuestro equipo está siempre disponible para responder a cualquier pregunta o ayudarte a seleccionar el producto adecuado para tus necesidades.",
+    "location": {
+      "title": "Nuestra Ubicación",
+      "address": "Vlezenbeeklaan 171A, 1602 Sint-Pieters-Leeuw, Bélgica"
+    },
+    "phone": {
+      "title": "Teléfono",
+      "number": "+32 484 161 363"
+    },
+    "email": {
+      "title": "Correo electrónico",
+      "address": "vitamiel.be@gmail.com"
+    },
+    "formTitle": "Formulario de contacto rápido"
+  },
+  "contactForm": {
+    "name": "Nombre",
+    "lastname": "Apellido",
+    "email": "Correo electrónico",
+    "subject": "Selecciona un asunto",
+    "message": "Mensaje",
+    "submit": "Enviar mensaje",
+    "errors": {
+      "name": "Por favor, ingresa tu nombre",
+      "lastname": "Por favor, ingresa tu apellido",
+      "email": "Por favor, ingresa tu correo electrónico",
+      "subject": "Por favor, ingresa el asunto",
+      "events": "Por favor, selecciona un evento",
+      "notes": "Por favor, ingresa una nota"
+    },
+    "subjectt": {
+      "orderInProgress": "Pedido en curso",
+      "productInfo": "Información sobre el producto",
+      "deliveryIssue": "Problema con la entrega",
+      "returnOrExchange": "Devolución o cambio",
+      "paymentIssue": "Problema con el pago",
+      "promotionalOffers": "Pregunta sobre ofertas promocionales",
+      "partnershipRequest": "Solicitud de colaboración",
+      "generalInformation": "Solicitud de información general",
+      "suggestionOrComplaint": "Sugerencia o queja",
+      "other": "Otro"
+    }
+  },
+  "menu": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contactt": "Contacto",
+    "cart": "Carrito",
+    "wishlist": "Lista de deseos",
+    "question": "Cuestionario"
+  }
+}

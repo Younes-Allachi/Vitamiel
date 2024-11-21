@@ -10,10 +10,15 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://localhost:27017/vatamiel  # MongoDB URI
+        uri: mongodb+srv://akashurrehman456:hCmCfDOz2nsgGlip@cluster0.iylmp.mongodb.net/vitamiel?retryWrites=true&w=majority
+        database: vitamiel
 springdoc:
   api-docs:
     enabled: false
+    
+logging:
+  level:
+    org.mongodb: ERROR  # Suppress MongoDB INFO or DEBUG logs
 ---
 management:
   endpoints:
@@ -52,7 +57,17 @@ management:
       enabled: true
   health:
     mail:
-      enabled: false # When using the MailService, configure an SMTP server and set this to true
+    enabled: true  # Enable mail health check
+    host: smtp.gmail.com  # SMTP server for Gmail
+    port: 587  # SMTP port for Gmail (for TLS)
+    username: vitamiel.be@gmail.com  # Your email address
+    password: piqhbczubajgrrlt
+    protocol: smtp  # SMTP protocol
+    properties:
+      mail.smtp.auth: true  # Enable authentication
+      mail.smtp.starttls.enable: true  # Enable STARTTLS for secure connection
+      mail.smtp.starttls.required: true  # Ensure STARTTLS is required
+      mail.smtp.ssl.enable: false  # Disable SSL (since we are using STARTTLS)
   prometheus:
     metrics:
       export:

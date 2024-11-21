@@ -94,7 +94,7 @@ export const UserManagement = () => {
   };
 
   return (
-    <div>
+    <div style={{margin:'10% 5%'}}>
       <h2 id="user-management-page-heading" data-cy="userManagementPageHeading">
         <Translate contentKey="userManagement.home.title">Users</Translate>
         <div className="d-flex justify-content-end">

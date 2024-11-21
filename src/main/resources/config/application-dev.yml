@@ -5,6 +5,9 @@ logging:
     org.hibernate.SQL: DEBUG
     com.vitamiel: DEBUG
     com.paypal: DEBUG  
+    org.springframework.mail: DEBUG
+    org.mongodb: ERROR  # Suppress MongoDB INFO or DEBUG logs
+
 
 spring:
   devtools:
@@ -26,7 +29,8 @@ spring:
       auto-commit: false
   data:
     mongodb:
-      uri: mongodb://localhost:27017/vatamiel # Replace with your MongoDB URI
+      uri: mongodb+srv://akashurrehman456:hCmCfDOz2nsgGlip@cluster0.iylmp.mongodb.net/vitamiel?retryWrites=true&w=majority
+      database: vitamiel
   h2:
     console:
       # disable spring boot built-in h2-console since we start it manually with correct configuration
@@ -36,9 +40,18 @@ spring:
     contexts: dev, faker
   mail:
     host: smtp.gmail.com
-    port: 25
+    port: 587  
     username: vitamiel.be@gmail.com
-    password: Faramir**11Amir!!
+    password: piqhbczubajgrrlt
+    protocol: smtp
+    properties:
+      mail.smtp.auth: true                      # Enable authentication
+      mail.smtp.starttls.enable: true           # Enable STARTTLS
+      mail.smtp.starttls.required: true         # Enforce STARTTLS (not strictly needed but ensures the handshake)
+      mail.smtp.ssl.enable: false               # Disable SSL since you're using STARTTLS
+      mail.smtp.connectiontimeout: 5000        # Optional: Set connection timeout (in milliseconds)
+      mail.smtp.timeout: 5000                   # Optional: Set read timeout (in milliseconds)
+      mail.smtp.writetimeout: 5000              # Optional: Set write timeout (in millise
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:

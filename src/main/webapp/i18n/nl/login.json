@@ -1,0 +1,23 @@
+{
+  "login": {
+    "title": "Inloggen",
+    "success": "Inloggen geslaagd!",
+    "error": "Onjuiste gebruikersnaam of wachtwoord",
+    "username": {
+      "placeholder": "Voer je gebruikersnaam in",
+      "required": "Gebruikersnaam is verplicht"
+    },
+    "password": {
+      "placeholder": "Voer je wachtwoord in",
+      "required": "Wachtwoord is verplicht"
+    },
+    "forgot": "Wachtwoord vergeten?",
+    "signup": "Registreren",
+    "button": "Inloggen"
+  },
+  "entity": {
+    "action": {
+      "cancel": "Annuleren"
+    }
+  }
+}

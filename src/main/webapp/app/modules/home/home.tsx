@@ -11,7 +11,7 @@ import Service from 'app/modules/home/service';
 import Testimonial from 'app/modules/home/testimonial';
 import Client from 'app/modules/home/client';
 import Scrollbar from 'app/modules/home/scrollbar';
-import {getProducts,getCategories} from '../../config';
+import { getProducts, getCategories } from '../../config';
 
 export const Home = ({ addToCart, addToWishList }) => {
   const [products, setProducts] = useState([]);
@@ -23,12 +23,12 @@ export const Home = ({ addToCart, addToWishList }) => {
     // Simulez un appel asynchrone pour récupérer les produits
     const fetchProducts = async () => {
       const productsArray = await getProducts();
-      console.log('PRODUCT ARRAYS"/HOME/MEMO:',productsArray)
+      console.log('PRODUCT ARRAYS"/HOME/MEMO:', productsArray)
       setProducts(productsArray);
     };
     const fetchCategories = async () => {
       const categoriesArray = await getCategories();
-      console.log('fetchCategories ARRAYS"/HOME/MEMO:',categoriesArray)
+      console.log('fetchCategories ARRAYS"/HOME/MEMO:', categoriesArray)
       setCategories(categoriesArray);
     };
 
@@ -51,9 +51,9 @@ export const Home = ({ addToCart, addToWishList }) => {
       <Category />
       {products.length > 0 ? (
         <>
- <Product addToCartProduct={addToCartProduct} addToWishListProduct={addToWishListProduct} products={products} categories={categories}/>
- {/*           <FlashSale addToCartProduct={addToCartProduct} addToWishListProduct={addToWishListProduct} products={products} />
- */}        </>
+          <Product addToCartProduct={addToCartProduct} addToWishListProduct={addToWishListProduct} products={products} categories={categories} />
+          {/*           <FlashSale addToCartProduct={addToCartProduct} addToWishListProduct={addToWishListProduct} products={products} />*/}        
+        </>
       ) : (
         <div>Loading products...</div>
       )}

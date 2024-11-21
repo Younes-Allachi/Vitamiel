@@ -1,0 +1,80 @@
+{
+  "register": {
+    "title": "Registratie",
+    "form": {
+      "button": "Registreren"
+    },
+    "messages": {
+      "validate": {
+        "login": {
+          "required": "Uw gebruikersnaam is verplicht.",
+          "minlength": "Uw gebruikersnaam moet minstens 1 teken lang zijn.",
+          "maxlength": "Uw gebruikersnaam mag niet langer zijn dan 50 tekens.",
+          "pattern": "Uw gebruikersnaam is ongeldig."
+        }
+      },
+      "success": "<strong>Registratie opgeslagen!</strong> Controleer uw e-mail voor bevestiging.",
+      "error": {
+        "fail": "<strong>Registratie mislukt!</strong> Probeer het later opnieuw.",
+        "userexists": "<strong>Gebruikersnaam al geregistreerd!</strong> Kies een andere naam.",
+        "emailexists": "<strong>E-mail is al in gebruik!</strong> Kies een andere."
+      }
+    }
+  },
+
+  "global": {
+    "form": {
+      "firstname": {
+        "label": "Voornaam",
+        "placeholder": "Voer uw voornaam in"
+      },
+      "lastname": {
+        "label": "Achternaam",
+        "placeholder": "Voer uw achternaam in"
+      },
+      "email": {
+        "label": "E-mail",
+        "placeholder": "Voer uw e-mail in"
+      },
+      "newpassword": {
+        "label": "Wachtwoord",
+        "placeholder": "Voer uw wachtwoord in"
+      },
+      "confirmpassword": {
+        "label": "Bevestig Wachtwoord",
+        "placeholder": "Bevestig uw wachtwoord"
+      }
+    },
+    "messages": {
+      "validate": {
+        "firstname": {
+          "required": "Voornaam is verplicht"
+        },
+        "lastname": {
+          "required": "Achternaam is verplicht"
+        },
+        "email": {
+          "required": "E-mail is verplicht",
+          "invalid": "E-mail is ongeldig",
+          "minlength": "E-mail moet minimaal 5 tekens bevatten",
+          "maxlength": "E-mail mag niet langer zijn dan 254 tekens"
+        },
+        "newpassword": {
+          "required": "Wachtwoord is verplicht",
+          "minlength": "Wachtwoord moet minimaal 4 tekens lang zijn",
+          "maxlength": "Wachtwoord mag niet langer zijn dan 50 tekens"
+        },
+        "confirmpassword": {
+          "required": "Bevestiging van het wachtwoord is verplicht",
+          "dontmatch": "Wachtwoorden komen niet overeen"
+        }
+      }
+    }
+  },
+  "entity": {
+    "action": {
+      "cancel": "Annuleren",
+      "register": "Registreren"
+    }
+  }
+}
