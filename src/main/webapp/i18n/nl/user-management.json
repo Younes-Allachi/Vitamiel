@@ -1,0 +1,44 @@
+{
+  "userManagement": {
+    "home": {
+      "title": "Gebruikers",
+      "refreshListLabel": "Lijst vernieuwen",
+      "createLabel": "Maak een nieuwe gebruiker",
+      "createOrEditLabel": "Maak of bewerk een gebruiker"
+    },
+    "category": {
+      "title": "Categorieën",
+      "refreshListLabel": "Lijst vernieuwen",
+      "createLabel": "Maak een nieuwe categorie",
+      "createOrEditLabel": "Maak of bewerk een categorie",
+      "Name": "Naam",
+      "Actions": "Acties",
+      "Category ID": "Categorie ID",
+      "ID": "ID"
+    },
+    "created": "Een nieuwe gebruiker is aangemaakt met identificatie {{ param }}",
+    "updated": "Een gebruiker is bijgewerkt met identificatie {{ param }}",
+    "deleted": "Een gebruiker is verwijderd met identificatie {{ param }}",
+    "delete": {
+      "question": "Weet je zeker dat je gebruiker {{ login }} wilt verwijderen?"
+    },
+    "detail": {
+      "title": "Gebruiker"
+    },
+    "login": "Inloggen",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "Email",
+    "activated": "Geactiveerd",
+    "deactivated": "Deactiveren",
+    "profiles": "Profielen",
+    "langKey": "Taal",
+    "createdBy": "Aangemaakt door",
+    "createdDate": "Aangemaakt op",
+    "lastModifiedBy": "Gewijzigd door",
+    "lastModifiedDate": "Laatste wijziging op",
+    "View": "Bekijken",
+    "Edit": "Bewerken",
+    "Delete": "Verwijderen"
+  }
+}

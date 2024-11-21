@@ -49,17 +49,14 @@ public class PayPalService {
         redirectUrls.setReturnUrl(returnUrl);
         payment.setRedirectUrls(redirectUrls);
 
-        // Creating the payment and capturing the response
         Payment createdPayment = payment.create(apiContext);
 
-        // Extract approval URL
         String approvalUrl = createdPayment.getLinks().stream()
             .filter(link -> "approval_url".equals(link.getRel()))
             .map(link -> link.getHref())
             .findFirst()
             .orElse(null);
 
-        // Check if the approval URL was extracted successfully
         if (approvalUrl == null) {
             throw new PayPalRESTException("Approval URL not found in the PayPal response.");
         }
@@ -68,15 +65,13 @@ public class PayPalService {
         return createdPayment;
     }
 
-    // Executing the PayPal payment with the EC token (order ID) and payer ID
     public Payment executePayment(String paymentId, String payerId) throws PayPalRESTException {
         Payment payment = new Payment();
-        payment.setId(paymentId);  // paymentId is actually the EC token (orderId)
-
+        payment.setId(paymentId);
         PaymentExecution paymentExecution = new PaymentExecution();
-        paymentExecution.setPayerId(paymentId);
-
-        // Execute the payment using the EC token (orderId)
+        paymentExecution.setPayerId(payerId);
         return payment.execute(apiContext, paymentExecution);
     }
+    
+    
 }

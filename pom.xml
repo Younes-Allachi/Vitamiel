@@ -671,6 +671,7 @@
                             <includeOnlyProperty>^git.commit.id.describe$</includeOnlyProperty>
                             <includeOnlyProperty>^git.branch$</includeOnlyProperty>
                         </includeOnlyProperties>
+                        <logger name="org.mongodb.driver" level="ERROR"/>
                     </configuration>
                 </plugin>
                 <plugin>

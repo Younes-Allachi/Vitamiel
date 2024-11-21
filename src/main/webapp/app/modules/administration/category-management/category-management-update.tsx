@@ -63,18 +63,6 @@ export const UserManagementUpdate = () => {
             <p>Loading...</p>
           ) : (
             <ValidatedForm onSubmit={saveUser} defaultValues={user}>
-              {user.id ? (
-                <ValidatedField
-                  type="text"
-                  name="id"
-                  required
-                  readOnly
-                  label={translate('userManagement.category.ID')}
-                  validate={{ required: true }}
-                />
-              ) : null}
-             
-              
               <ValidatedField
                 type="text"
                 name="name"

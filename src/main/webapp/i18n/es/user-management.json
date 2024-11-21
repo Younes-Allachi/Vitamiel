@@ -1,0 +1,44 @@
+{
+  "userManagement": {
+    "home": {
+      "title": "Usuarios",
+      "refreshListLabel": "Actualizar lista",
+      "createLabel": "Crear un nuevo usuario",
+      "createOrEditLabel": "Crear o editar un usuario"
+    },
+    "category": {
+      "title": "Categorías",
+      "refreshListLabel": "Actualizar lista",
+      "createLabel": "Crear una nueva categoría",
+      "createOrEditLabel": "Crear o editar una categoría",
+      "Name": "Nombre",
+      "Actions": "Acciones",
+      "Category ID": "ID de categoría",
+      "ID": "ID"
+    },
+    "created": "Se ha creado un nuevo usuario con el identificador {{ param }}",
+    "updated": "Un usuario ha sido actualizado con el identificador {{ param }}",
+    "deleted": "Un usuario ha sido eliminado con el identificador {{ param }}",
+    "delete": {
+      "question": "¿Está seguro de que desea eliminar al usuario {{ login }}?"
+    },
+    "detail": {
+      "title": "Usuario"
+    },
+    "login": "Inicio de sesión",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "activated": "Activado",
+    "deactivated": "Desactivado",
+    "profiles": "Perfiles",
+    "langKey": "Idioma",
+    "createdBy": "Creado por",
+    "createdDate": "Fecha de creación",
+    "lastModifiedBy": "Modificado por",
+    "lastModifiedDate": "Fecha de modificación",
+    "View": "Ver",
+    "Edit": "Editar",
+    "Delete": "Eliminar"
+  }
+}

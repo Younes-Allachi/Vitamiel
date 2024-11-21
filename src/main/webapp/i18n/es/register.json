@@ -1,0 +1,80 @@
+{
+  "register": {
+    "title": "Registro",
+    "form": {
+      "button": "Registrar"
+    },
+    "messages": {
+      "validate": {
+        "login": {
+          "required": "El nombre de usuario es obligatorio.",
+          "minlength": "El nombre de usuario debe tener al menos 1 carácter.",
+          "maxlength": "El nombre de usuario no puede tener más de 50 caracteres.",
+          "pattern": "El nombre de usuario no es válido."
+        }
+      },
+      "success": "<strong>¡Registro guardado!</strong> Por favor, revisa tu correo electrónico para confirmar.",
+      "error": {
+        "fail": "<strong>¡El registro falló!</strong> Por favor, inténtalo de nuevo más tarde.",
+        "userexists": "<strong>¡El nombre de usuario ya está registrado!</strong> Por favor, elige otro.",
+        "emailexists": "<strong>¡El correo electrónico ya está en uso!</strong> Por favor, elige otro."
+      }
+    }
+  },
+
+  "global": {
+    "form": {
+      "firstname": {
+        "label": "Nombre",
+        "placeholder": "Ingresa tu nombre"
+      },
+      "lastname": {
+        "label": "Apellido",
+        "placeholder": "Ingresa tu apellido"
+      },
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "Ingresa tu correo electrónico"
+      },
+      "newpassword": {
+        "label": "Contraseña",
+        "placeholder": "Ingresa tu contraseña"
+      },
+      "confirmpassword": {
+        "label": "Confirmar contraseña",
+        "placeholder": "Confirma tu contraseña"
+      }
+    },
+    "messages": {
+      "validate": {
+        "firstname": {
+          "required": "El nombre es obligatorio"
+        },
+        "lastname": {
+          "required": "El apellido es obligatorio"
+        },
+        "email": {
+          "required": "El correo electrónico es obligatorio",
+          "invalid": "El correo electrónico no es válido",
+          "minlength": "El correo electrónico debe tener al menos 5 caracteres",
+          "maxlength": "El correo electrónico no puede superar los 254 caracteres"
+        },
+        "newpassword": {
+          "required": "La contraseña es obligatoria",
+          "minlength": "La contraseña debe tener al menos 4 caracteres",
+          "maxlength": "La contraseña no puede superar los 50 caracteres"
+        },
+        "confirmpassword": {
+          "required": "La confirmación de la contraseña es obligatoria",
+          "dontmatch": "Las contraseñas no coinciden"
+        }
+      }
+    }
+  },
+  "entity": {
+    "action": {
+      "cancel": "Cancelar",
+      "register": "Registrar"
+    }
+  }
+}

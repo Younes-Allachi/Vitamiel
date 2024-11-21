@@ -1,0 +1,183 @@
+{
+  "hero": {
+    "miel": "HONING",
+    "fresh": "Vers",
+    "buyNow": "Koop Nu"
+  },
+  "category": {
+    "title": "Onze Honingcategorie",
+    "description": "Ontdek onze selectie van hoogwaardige honingsoorten, elk met een uniek smaakprofiel en gezondheidsvoordelen. Of je nu op zoek bent naar een zoete toevoeging voor je maaltijden of een natuurlijk middel, ons assortiment heeft voor ieder wat wils.",
+    "items": {
+      "reine": {
+        "title": "Koninginnenhoning",
+        "description": "Onze Koninginnenhoning wordt geoogst uit hoogwaardige bijenkorven en valt op door zijn rijke gouden kleur en zachte textuur. Ideaal voor wie houdt van de traditionele honing smaak met een lichte bloemige toets."
+      },
+      "tournesol": {
+        "title": "Zonnebloemhoning",
+        "description": "Deze honing is gemaakt van zonnebloemen, en biedt een lichte en frisse smaak met een hint van citrus. Perfect voor het zoeten van thee, salades of lichte desserts."
+      },
+      "manuka": {
+        "title": "Manuka Honing",
+        "description": "Oorspronkelijk uit Nieuw-Zeeland, staat Manuka honing bekend om zijn krachtige medicinale eigenschappen. Het is rijk aan antibacteriële kwaliteiten, waardoor het ideaal is voor het verzachten van keelpijn en het versterken van je immuunsysteem."
+      }
+    }
+  },
+  "product": {
+    "title1": "Honing",
+    "fresh": "100% Vers",
+    "description": "Ontdek onze selectie van pure en verse honing, direct van de imkers om de beste kwaliteit en smaak te garanderen. Of het nu voor koken, gezondheidsvoordelen of als natuurlijke zoetstof is, onze honing zal zoetheid en welzijn in je dagelijks leven brengen.",
+    "offer": {
+      "discount28": "-28%",
+      "discount25": "-25%",
+      "new": "Nieuw",
+      "discount20": "-20%",
+      "discount18": "-18%",
+      "discount15": "-15%"
+    },
+    "title2": {
+      "manuka": "Manuka Honing",
+      "brut": "Raadhoning",
+      "sauvage": "Wilde Bloemenhoning",
+      "reine": "Koninginnenhoning",
+      "moutarde": "Mosterdbloemenhoning",
+      "montagne": "Pure Berg Honnig",
+      "nigelle": "Nigella Bloemenhoning",
+      "mangue": "Mango Bloemenhoning"
+    },
+    "title3": {
+      "1": "Manuka Honing",
+      "2": "Raadhoning",
+      "3": "Wilde Bloemenhoning",
+      "4": "Koninginnenhoning",
+      "5": "Mosterdbloemenhoning",
+      "6": "Pure Berg Honing",
+      "7": "Nigella Bloemenhoning",
+      "8": "Mango Bloemenhoning"
+    },
+    "stock": {
+      "1": "Op Voorraad",
+      "2": "Op Voorraad",
+      "3": "Niet Op Voorraad",
+      "4": "Op Voorraad",
+      "5": "Op Voorraad",
+      "6": "Niet Op Voorraad",
+      "7": "Op Voorraad",
+      "8": "Op Voorraad"
+    },
+    "currency": "€"
+  },
+  "offer": {
+    "limited": "Beperkte aanbieding voor klanten",
+    "title": "Zonnebloem Honing",
+    "subtitle": "Vers en Origineel",
+    "discount": "Tot 58% korting",
+    "description": "Mis onze speciale aanbieding niet! Onze verse Zonnebloemhoning is nu beschikbaar tegen een ongeëvenaarde prijs. Bekend om zijn lichte en bloemige smaak, is deze honing perfect om je favoriete gerechten te verbeteren of gewoon op zichzelf te genieten.",
+    "stockWarning": "Sla snel in voor deze tijdelijke aanbieding eindigt.",
+    "buyNow": "Koop Nu"
+  },
+  "flashSale": {
+    "flash": "Flits",
+    "sale": "Verkoop",
+    "items": "Artikelen"
+  },
+  "countdown": {
+    "days": "Dagen",
+    "hours": "Uren",
+    "minutes": "Minuten",
+    "seconds": "Seconden"
+  },
+  "service": {
+    "freeShipping": {
+      "title": "Gratis Verzending",
+      "description": "Voor elke bestelling boven de €560"
+    },
+    "easyPayment": {
+      "title": "Eenvoudige Betaling",
+      "description": "100% Veilige Betaling"
+    },
+    "support": {
+      "title": "24/7 Ondersteuning",
+      "description": "Ondersteuning beschikbaar op elk moment"
+    }
+  },
+  "testimonial": {
+    "title": "Getuigenissen",
+    "clients": "Klanten",
+    "description": "Onze klanten houden van onze honing, en hier is wat ze zeggen over hun ervaring met onze producten. Van kwaliteit tot smaak, onze honing maakt een blijvende indruk!",
+    "rachelQuote": "De honing die ik ontving was absoluut fantastisch! Ik heb nooit zulke pure en verse honing geproefd. Het veranderde mijn ochtendthee volledig. Ik beveel het ten zeerste aan!",
+    "davidQuote": "Ik heb verschillende soorten honing geprobeerd, maar deze steekt eruit met zijn rijke smaak en zachte textuur. Het is de perfecte aanvulling op mijn desserts, en ik hou van de natuurlijke smaak.",
+    "kenQuote": "Deze honing is gewoonweg ongelooflijk. De kwaliteit is uitzonderlijk en ik kan me niet voorstellen terug te gaan naar winkelhoning. Het is perfect voor koken en het zoeten van mijn drankjes."
+  },
+  "aboutSection": {
+    "smallTitle": "Over ons bedrijf",
+    "mainTitle": {
+      "part1": "Alles-in-één",
+      "part2": "om een",
+      "part3": "andere structuur te maken"
+    },
+    "paragraph1": "Bij Vitamiel zijn we toegewijd aan het aanbieden van de beste natuurlijke honingproducten rechtstreeks van onze partner-imkers. We geloven dat honing niet alleen een natuurlijke zoetstof is, maar ook een voedsel met meerdere gezondheidsvoordelen. Onze missie is om een reeks hoogwaardige honing aan te bieden, met respect voor het milieu en de bijenteelttradities.",
+    "paragraph2": "Elke pot honing die we verkopen vertelt het verhaal van zijn oorsprong, van bloemenrijke velden tot zorgvuldig onderhouden bijenkorven. Met jarenlange bijenteeltervaring garanderen we een vers en puur product, rijk aan smaak en voordelen.",
+    "learnMore": "Meer leren"
+  },
+  "category2": {
+    "queenBeeHoneyTitle": "Koninginbij Honing",
+    "queenBeeHoneyDescription": "Koninginbij honing is rijk aan voedingsstoffen en wordt vaak beschouwd als een luxevoedsel. Het wordt zorgvuldig geoogst om de zuiverheid en heilzame gezondheidsvoordelen te behouden.",
+    "sunflowerHoneyTitle": "Zonnebloemhoning",
+    "sunflowerHoneyDescription": "Zonnebloemhoning wordt gewaardeerd om zijn milde en lichtfruitige smaak. Het is een natuurlijke bron van energie en perfect om je favoriete drankjes of gerechten te zoeten.",
+    "manukaHoneyTitle": "Manuka Honing",
+    "manukaHoneyDescription": "Manuka honing, afkomstig uit Nieuw-Zeeland, staat bekend om zijn unieke medicinale eigenschappen. Het wordt vaak gebruikt om de spijsvertering te verbeteren en het immuunsysteem te versterken."
+  },
+  "contact": {
+    "title": "Onze Contacten",
+    "description": "Bij Vitamiel zijn we toegewijd aan het leveren van de hoogste kwaliteit natuurlijke honing rechtstreeks van onze bijenkorven in België. Ons team staat altijd klaar om je vragen te beantwoorden of je te helpen bij het kiezen van het juiste product voor jouw behoeften.",
+    "location": {
+      "title": "Onze Locatie",
+      "address": "Vlezenbeeklaan 171A, 1602 Sint-Pieters-Leeuw, België"
+    },
+    "phone": {
+      "title": "Telefoon",
+      "number": "+32 484 161 363"
+    },
+    "email": {
+      "title": "E-mail",
+      "address": "vitamiel.be@gmail.com"
+    },
+    "formTitle": "Snelle Contactformulier"
+  },
+  "contactForm": {
+    "name": "Naam",
+    "lastname": "Achternaam",
+    "email": "E-mail",
+    "subject": "Selecteer een onderwerp",
+    "message": "Bericht",
+    "submit": "Verstuur Bericht",
+    "errors": {
+      "name": "Vul je naam in",
+      "lastname": "Vul je achternaam in",
+      "email": "Vul je e-mail in",
+      "subject": "Vul het onderwerp in",
+      "events": "Selecteer een evenement",
+      "notes": "Vul een opmerking in"
+    },
+    "subjectt": {
+      "orderInProgress": "Bestelling in Behandeling",
+      "productInfo": "Productinformatie",
+      "deliveryIssue": "Probleem met Levering",
+      "returnOrExchange": "Retourneren of Ruilen",
+      "paymentIssue": "Probleem met Betaling",
+      "promotionalOffers": "Vraag over Promotieaanbiedingen",
+      "partnershipRequest": "Partnerschapsaanvraag",
+      "generalInformation": "Algemene Informatie Aanvraag",
+      "suggestionOrComplaint": "Suggestie of Klacht",
+      "other": "Anders"
+    }
+  },
+  "menu": {
+    "home": "Home",
+    "about": "Over",
+    "contactt": "Contact",
+    "cart": "Winkelwagentje",
+    "wishlist": "Verlanglijst",
+    "question": "Enquête"
+  }
+}

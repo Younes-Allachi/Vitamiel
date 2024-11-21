@@ -6,7 +6,7 @@ export interface ICategory {
   }
   
   export const defaultValue: ICategory = {
-    id: '',
+    id: undefined,
     categoryId: 0,
     name: '',
     description: '',

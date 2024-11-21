@@ -17,9 +17,19 @@ const apiUrl = 'api/account/reset-password';
 
 export const handlePasswordResetInit = createAsyncThunk(
   'passwordReset/reset_password_init',
-  // If the content-type isn't set that way, axios will try to encode the body and thus modify the data sent to the server.
-  async (mail: string) => axios.post(`${apiUrl}/init`, mail, { headers: { 'Content-Type': 'text/plain' } }),
-  { serializeError: serializeAxiosError },
+  async (mail: string) => {
+    console.log('Mail before sending password reset:',mail);
+    const response = await axios.post(
+      `${apiUrl}/init`,
+      { mail },  
+      { headers: { 'Content-Type': 'application/json' } } 
+    );
+    console.log('Response on email:',response.data)
+    return response.data;  
+  },
+  {
+    serializeError: serializeAxiosError,  // Keep error serialization as is
+  }
 );
 
 export const handlePasswordResetFinish = createAsyncThunk(

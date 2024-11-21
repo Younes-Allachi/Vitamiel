@@ -1,0 +1,14 @@
+{
+  "error": {
+    "title": "Foutpagina!",
+    "http": {
+      "400": "Ongeldige aanvraag.",
+      "403": "Je bent niet bevoegd om deze pagina te openen.",
+      "404": "De pagina bestaat niet.",
+      "405": "De HTTP-methode die je hebt gebruikt wordt niet ondersteund voor deze URL.",
+      "500": "Interne serverfout."
+    },
+    "concurrencyFailure": "Een andere gebruiker heeft deze gegevens tegelijkertijd bewerkt. Je wijzigingen werden afgewezen.",
+    "validation": "Validatiefout op de server."
+  }
+}

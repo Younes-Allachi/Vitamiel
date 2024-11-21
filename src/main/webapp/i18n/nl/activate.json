@@ -1,0 +1,9 @@
+{
+  "activate": {
+    "title": "Activatie",
+    "messages": {
+      "success": "<strong>Je gebruikersaccount is geactiveerd.</strong> Gelieve ",
+      "error": "<strong>Je gebruikersaccount kon niet worden geactiveerd.</strong> Gelieve het registratieformulier te gebruiken om je aan te melden."
+    }
+  }
+}

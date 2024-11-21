@@ -303,7 +303,7 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                           <div className="mini-cart-item clearfix" key={index}>
                             <div className="mini-cart-item-image">
                               <span>
-                                <img src={cart.proImg} alt="icon" />
+                                <img src={`http://localhost:8080/${cart.imageUrl}`} alt="icon" />
                               </span>
                             </div>
                             <div className="mini-cart-item-des">

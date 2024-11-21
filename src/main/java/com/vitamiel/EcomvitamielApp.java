@@ -89,25 +89,24 @@ public class EcomvitamielApp implements CommandLineRunner {
     }
 
     private void verifyMongoConnection() {
-        String connectionString = "mongodb://localhost:27017/vatamiel"; // Update if needed
 
+        String connectionString = "mongodb+srv://akashurrehman456:hCmCfDOz2nsgGlip@cluster0.iylmp.mongodb.net/vitamiel?retryWrites=true&w=majority";
+    
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(new ConnectionString(connectionString))
+                .applyToClusterSettings(builder -> builder.requiredReplicaSetName("Cluster0")) 
                 .build();
-
+    
         try (MongoClient mongoClient = MongoClients.create(settings)) {
-            MongoDatabase database = mongoClient.getDatabase("vatamiel");
-            database.runCommand(new Document("ping", 1));  // Ping to check connection
+            MongoDatabase database = mongoClient.getDatabase("vitamiel"); 
+            database.runCommand(new Document("ping", 1)); 
             LOG.info("Pinged your deployment. You successfully connected to MongoDB!");
-            // Get collection names
-            for (String collectionName : database.listCollectionNames()) {
-                LOG.info("Collection found: {}", collectionName);
-            }
+
         } catch (Exception e) {
             LOG.error("MongoDB connection failed: {}", e.getMessage(), e);
         }
     }
-
+    
     private static void logApplicationStartup(Environment env) {
         String protocol = Optional.ofNullable(env.getProperty("server.ssl.key-store")).map(key -> "https").orElse("http");
         String applicationName = env.getProperty("spring.application.name");

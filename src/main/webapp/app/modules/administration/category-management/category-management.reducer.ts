@@ -48,7 +48,10 @@ export const getUser = createAsyncThunk(
 export const createUser = createAsyncThunk(
   'userManagement/create_user',
   async (user: ICategory, thunkAPI) => {
-    const result = await axios.post<ICategory>(adminUrl, user);
+     const newUser = { ...user };
+     delete newUser.id; 
+ 
+     const result = await axios.post<ICategory>(adminUrl, newUser);
     thunkAPI.dispatch(getUsersAsAdmin({}));
     return result;
   },

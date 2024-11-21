@@ -17,8 +17,8 @@ interface CartPageProps {
 
 interface CartItem {
   id: number;
-  title: string;
-  proImg: string;
+  name: string;
+  imageUrl: string;
   qty: number;
   price: number;
 }
@@ -53,41 +53,49 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
   const createOrder = async (data, actions) => {
     try {
+      // Step 1: Create the order on your backend and get the response
       const response = await axios.post('/api/paypal/create-order', {
         total: total.toFixed(2),
         currency: locale === 'fr' ? 'EUR' : 'USD',
       });
   
-      console.log('PayPal Order Response:', response.data);
+      console.log('Complete response from backend:',response.data);
+      
+      // Step 2: Extract the paymentId, orderId (EC token), and approvalUrl from the response
+      const { paymentId,orderId, approvalUrl  } = response.data;
   
-      const { paymentId, approvalUrl, orderId } = response.data;
-  
-      if (!paymentId || !orderId) {
-        throw new Error("PayPal Payment ID or Order ID is missing.");
+      if (!paymentId || !orderId || !approvalUrl) {
+        throw new Error("PayPal Payment ID, Approval URL, or Order ID is missing.");
       }
   
-      console.log('Payment ID:', paymentId);
-      console.log('Order ID (EC token):', orderId);
+      // Log the response data to confirm correct extraction
+      console.log('Payment ID:', paymentId);  // "PAYID-M4335EQ0NV62288P56558311"
+      console.log('Approval URL:', approvalUrl);  // URL to redirect user
+      console.log('Order ID:', orderId);  // EC Token: "EC-490333546W7726802"
   
-      return approvalUrl;
+      // Step 3: Return the approval URL (this is what PayPal needs for redirection)
+      return orderId;  // This should return the order ID (EC token), not void
     } catch (error) {
       console.error('Error creating PayPal order:', error);
       throw new Error('Failed to create PayPal order');
     }
   };
   
+  
   const onApprove = async (data, actions) => {
     try {
-      const order = await actions.order.capture();
-      const orderId = order.id; 
-      console.log('PayPal Order ID:', orderId);
+      // Capture the payment after the user approves it on PayPal
+      const order = await actions.order.capture(); // This is where the payment is captured
+      const orderId = order.id;  // PayPal Order ID after approval, for example: "EC-490333546W7726802"
+      const payerId = data.payerID;  // PayPal Payer ID, for example: "UZ8CDAK92W2RC"
   
-      const payerId = data.payerID;  
-      console.log('PayPal Payer ID:', payerId);
+      console.log('PayPal Order ID:', orderId); // "EC-490333546W7726802"
+      console.log('PayPal Payer ID:', payerId); // "UZ8CDAK92W2RC"
   
+      // Send paymentId and payerId to your backend to capture the payment
       await axios.post('/api/paypal/capture-payment', {
-        paymentId: orderId,  
-        payerId: payerId, 
+        paymentId: orderId,  // Use the PayPal Order ID
+        payerId: payerId,    // Use the PayPal Payer ID
       });
   
       setLoading(false);
@@ -99,10 +107,11 @@ const CartPage: React.FC<CartPageProps> = (props) => {
   };
   
   
+  
 
   const ButtonWrapper = ({ showSpinner }: { showSpinner: boolean }) => {
     const [{ isPending }] = usePayPalScriptReducer();
-
+  
     return (
       <>
         {showSpinner && isPending && <div className="spinner" />}
@@ -115,6 +124,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
       </>
     );
   };
+  
 
   const handleProceedToCheckout = () => {
     setLoading(true);  
@@ -156,10 +166,10 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                         {carts.map((catItem, crt) => (
                           <tr key={crt}>
                             <td className="images">
-                              <img src={catItem.proImg} className="img2" alt="" />
+                              <img src={`http://localhost:8080/${catItem.imageUrl}`} className="img2" alt="" />
                             </td>
                             <td className="product">
-                              <p>{catItem.title}</p>
+                              <p>{catItem.name}</p>
                             </td>
                             <td className="stock">
                               <div className="quantity cart-plus-minus">
@@ -215,7 +225,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
               {/* PayPal buttons */}
               {loading && (
-                <PayPalScriptProvider options={{ clientId: "ASZqYCLb4pjpMt3Bq2RsQtrtgXYCA9Ido09Za0_GX7bCr5tth3Q4YEMJ9Bp33aL8ACCeaDRnrPjueGQW",currency:'EUR', intent:'capture' }}>
+                <PayPalScriptProvider options={{ clientId: "ASZqYCLb4pjpMt3Bq2RsQtrtgXYCA9Ido09Za0_GX7bCr5tth3Q4YEMJ9Bp33aL8ACCeaDRnrPjueGQW",currency:'USD', intent:'capture' }}>
                   <ButtonWrapper showSpinner={loading} />
                 </PayPalScriptProvider>
               )}
