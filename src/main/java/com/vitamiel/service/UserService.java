@@ -15,9 +15,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,11 +35,8 @@ public class UserService {
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final AuthorityRepository authorityRepository;
-
     private final MailService mailService;
 
     public UserService(
@@ -79,7 +78,6 @@ public class UserService {
     }
 
     public Optional<User> requestPasswordReset(String mail) {
-        System.out.println("User Repository"+userRepository);
         return userRepository
             .findOneByEmailIgnoreCase(mail)
             .filter(User::isActivated)
@@ -107,10 +105,10 @@ public class UserService {
                     throw new EmailAlreadyUsedException();
                 }
             });
+
         User newUser = new User();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(userDTO.getLogin().toLowerCase());
-        // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(userDTO.getFirstName());
         newUser.setLastName(userDTO.getLastName());
@@ -119,16 +117,24 @@ public class UserService {
         }
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
-        // new user is not active
         newUser.setActivated(true);
-        // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
+
+        // Set auditing fields (e.g., createdBy, createdDate)
+        String currentUserLogin = SecurityUtils.getCurrentUserLogin().orElse("system");
+        newUser.setCreatedBy(currentUserLogin);
+        newUser.setCreatedDate(Instant.now());
+        newUser.setLastModifiedBy(currentUserLogin);
+        newUser.setLastModifiedDate(Instant.now());
+
         Set<Authority> authorities = new HashSet<>();
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);
+
         userRepository.save(newUser);
         LOG.debug("Created Information for User: {}", newUser);
         mailService.sendActivationEmail(newUser);
+
         return newUser;
     }
 
@@ -136,10 +142,10 @@ public class UserService {
         if (existingUser.isActivated()) {
             return false;
         }
-        userRepository.delete(existingUser);
-        userRepository.flush();
+        userRepository.delete(existingUser); // No need for flush() here
         return true;
     }
+
 
     public User createUser(AdminUserDTO userDTO) {
         User user = new User();
@@ -155,11 +161,20 @@ public class UserService {
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
+
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
         user.setPassword(encryptedPassword);
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
         user.setActivated(true);
+
+        // Set auditing fields
+        String currentUserLogin = SecurityUtils.getCurrentUserLogin().orElse("system");
+        user.setCreatedBy(currentUserLogin);
+        user.setCreatedDate(Instant.now());
+        user.setLastModifiedBy(currentUserLogin);
+        user.setLastModifiedDate(Instant.now());
+
         if (userDTO.getAuthorities() != null) {
             Set<Authority> authorities = userDTO
                 .getAuthorities()
@@ -175,12 +190,6 @@ public class UserService {
         return user;
     }
 
-    /**
-     * Update all information for a specific user, and return the modified user.
-     *
-     * @param userDTO user to update.
-     * @return updated user.
-     */
     public Optional<AdminUserDTO> updateUser(AdminUserDTO userDTO) {
         return Optional.of(userRepository.findById(userDTO.getId()))
             .filter(Optional::isPresent)
@@ -196,6 +205,12 @@ public class UserService {
                 user.setActivated(userDTO.isActivated());
                 user.setLangKey(userDTO.getLangKey());
                 user.setDeliveryAddress(userDTO.getDeliveryAddress());
+
+                // Set lastModifiedBy and lastModifiedDate for auditing
+                String currentUserLogin = SecurityUtils.getCurrentUserLogin().orElse("system");
+                user.setLastModifiedBy(currentUserLogin);
+                user.setLastModifiedDate(Instant.now());
+
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 userDTO
@@ -205,6 +220,7 @@ public class UserService {
                     .filter(Optional::isPresent)
                     .map(Optional::get)
                     .forEach(managedAuthorities::add);
+
                 userRepository.save(user);
                 LOG.debug("Changed Information for User: {}", user);
                 return user;
@@ -221,15 +237,6 @@ public class UserService {
             });
     }
 
-    /**
-     * Update basic information (first name, last name, email, language) for the current user.
-     *
-     * @param firstName first name of user.
-     * @param lastName  last name of user.
-     * @param email     email id of user.
-     * @param langKey   language key.
-     * @param imageUrl  image URL of user.
-     */
     public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl, String deliveryAddress) {
         SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
@@ -242,6 +249,12 @@ public class UserService {
                 }
                 user.setLangKey(langKey);
                 user.setImageUrl(imageUrl);
+
+                // Set lastModifiedBy and lastModifiedDate for auditing
+                String currentUserLogin = SecurityUtils.getCurrentUserLogin().orElse("system");
+                user.setLastModifiedBy(currentUserLogin);
+                user.setLastModifiedDate(Instant.now());
+
                 userRepository.save(user);
                 LOG.debug("Changed Information for User: {}", user);
             });
@@ -282,11 +295,6 @@ public class UserService {
         return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin);
     }
 
-    /**
-     * Not activated users should be automatically deleted after 3 days.
-     * <p>
-     * This is scheduled to get fired everyday, at 01:00 (am).
-     */
     @Scheduled(cron = "0 0 1 * * ?")
     public void removeNotActivatedUsers() {
         userRepository
@@ -297,10 +305,6 @@ public class UserService {
             });
     }
 
-    /**
-     * Gets a list of all the authorities.
-     * @return a list of all the authorities.
-     */
     @Transactional(readOnly = true)
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).toList();

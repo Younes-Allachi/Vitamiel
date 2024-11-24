@@ -16,7 +16,7 @@ public class AdminUserDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;  // Changed from Long to String to match MongoDB _id field
 
     @NotBlank
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -57,8 +57,9 @@ public class AdminUserDTO implements Serializable {
         // Empty constructor needed for Jackson.
     }
 
+    // Update constructor to map from MongoDB User object
     public AdminUserDTO(User user) {
-        this.id = user.getId();
+        this.id = user.getId();  // This should be a String (MongoDB default type for _id)
         this.login = user.getLogin();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
@@ -74,11 +75,11 @@ public class AdminUserDTO implements Serializable {
         this.deliveryAddress = user.getDeliveryAddress();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -182,26 +183,28 @@ public class AdminUserDTO implements Serializable {
     @Override
     public String toString() {
         return "AdminUserDTO{" +
-            "login='" + login + '\'' +
+            "id='" + id + '\'' +  // Update to show String id
+            ", login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
             ", imageUrl='" + imageUrl + '\'' +
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
-            ", createdBy=" + createdBy +
+            ", createdBy='" + createdBy + '\'' +
             ", createdDate=" + createdDate +
             ", lastModifiedBy='" + lastModifiedBy + '\'' +
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
-            "}";
+            ", deliveryAddress='" + deliveryAddress + '\'' +  // Ensure address is shown
+            '}';
     }
 
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
 
-    public void setDeliveryAddress(final String deliveryAddress) {
+    public void setDeliveryAddress(String deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
     }
 }

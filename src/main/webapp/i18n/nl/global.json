@@ -1,4 +1,8 @@
 {
+  "stock": {
+    "outOfStock": "Niet op voorraad",
+    "inStock": "Op voorraad"
+  },  
   "global": {
     "title": "Ecomvitamiel",
     "menu": {
@@ -135,8 +139,10 @@
     "signout": "Uitloggen",
     "cart": "Winkelwagentje",
     "wishlist": "Verlanglijst",
-    "question": "Enquête"
+    "question": "Veelgestelde vragen"
   },
+  "search":"Zoek producten op titel..."
+  ,
   "product": {
     "title1": "Honing",
     "fresh": "100% Vers",

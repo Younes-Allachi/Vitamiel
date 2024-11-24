@@ -51,12 +51,15 @@ public class UserMapper {
             user.setLastName(userDTO.getLastName());
             user.setEmail(userDTO.getEmail());
             user.setImageUrl(userDTO.getImageUrl());
+            user.setActivated(userDTO.isActivated());
+            user.setLangKey(userDTO.getLangKey());
+            
+            // Set auditing fields from DTO
             user.setCreatedBy(userDTO.getCreatedBy());
             user.setCreatedDate(userDTO.getCreatedDate());
             user.setLastModifiedBy(userDTO.getLastModifiedBy());
             user.setLastModifiedDate(userDTO.getLastModifiedDate());
-            user.setActivated(userDTO.isActivated());
-            user.setLangKey(userDTO.getLangKey());
+            
             Set<Authority> authorities = this.authoritiesFromStrings(userDTO.getAuthorities());
             user.setAuthorities(authorities);
             return user;
@@ -85,9 +88,10 @@ public class UserMapper {
             return null;
         }
         User user = new User();
-        user.setId(id);
+        user.setId(id.toString());  // Convert Long to String if the id is a String in the User entity
         return user;
     }
+    
 
     @Named("id")
     @BeanMapping(ignoreByDefault = true)

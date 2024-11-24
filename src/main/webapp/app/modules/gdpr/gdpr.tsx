@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, ModalFooter, ModalHeader, Modal } from 'reactstrap';
 import { motion } from 'framer-motion';
-import './login-modal.scss';
+import { Translate } from 'react-jhipster';
+import './gdpr-modal.scss';
 
 export interface ILoginModalProps {
     showModal: boolean;
@@ -21,11 +22,10 @@ const modalVariants = {
     },
 };
 
-const LoginModal: React.FC<ILoginModalProps> = ({ showModal, handleClose }) => {
+const GDPRModal: React.FC<ILoginModalProps> = ({ showModal, handleClose }) => {
     const [gdprAccepted, setGdprAccepted] = useState<boolean>(false);
 
     useEffect(() => {
-        // Check if GDPR has been accepted before
         const consentGiven = localStorage.getItem('gdprConsent');
         if (consentGiven === 'true') {
             setGdprAccepted(true);
@@ -40,38 +40,60 @@ const LoginModal: React.FC<ILoginModalProps> = ({ showModal, handleClose }) => {
 
     return (
         <>
-            {/* GDPR Notice Modal */}
             {!gdprAccepted && (
                 <Modal isOpen={showModal} className="gdpr-modal" backdrop="static">
                     <motion.div variants={modalVariants} initial="hidden" animate="visible" exit="exit">
                         <ModalHeader toggle={handleClose}>
-                            <h5>GDPR Notice</h5>
+                            <Translate contentKey="gdprModal.mainHeading">GDPR Notice</Translate>{' '}
                         </ModalHeader>
                         <div className="modal-body">
                             <p>
-                                By using this site, you agree to our use of cookies and processing of your personal data in accordance with our privacy policy. Please read the following information regarding our data protection practices.
+                                <Translate contentKey="gdprModal.noticeText">
+                                    By using this site, you agree to our use of cookies and processing of your personal data in accordance with our privacy policy. Please read the following information regarding our data protection practices.
+                                </Translate>
                             </p>
-                            <h6>What Personal Data We Collect</h6>
+                            <h6>
+                                <Translate contentKey="gdprModal.personalDataTitle">What Personal Data We Collect</Translate>
+                            </h6>
                             <ul>
-                                <li>Your name, email address, and contact information.</li>
-                                <li>Information about your interactions with our website and services, such as pages visited and time spent on the site.</li>
-                                <li>Payment details, if you choose to make a purchase or donation through our platform.</li>
+                                <li>
+                                    <Translate contentKey="gdprModal.dataName">Your name, email address, and contact information.</Translate>
+                                </li>
+                                <li>
+                                    <Translate contentKey="gdprModal.dataInteractions">Information about your interactions with our website and services, such as pages visited and time spent on the site.</Translate>
+                                </li>
+                                <li>
+                                    <Translate contentKey="gdprModal.dataPayment">Payment details, if you choose to make a purchase or donation through our platform.</Translate>
+                                </li>
                             </ul>
-                            <h6>How We Use Your Data</h6>
+                            <h6>
+                                <Translate contentKey="gdprModal.dataUsageTitle">How We Use Your Data</Translate>
+                            </h6>
                             <p>
-                                We use the data we collect to:
+                                <Translate contentKey="gdprModal.dataUsageText">We use the data we collect to:</Translate>
                             </p>
                             <ul>
-                                <li>Provide and personalize our services for you.</li>
-                                <li>Improve our website and service offerings.</li>
-                                <li>Communicate with you regarding account updates, newsletters, and marketing communications (with your consent).</li>
-                                <li>Comply with legal requirements and protect our rights.</li>
+                                <li>
+                                    <Translate contentKey="gdprModal.dataUsagePersonalize">Provide and personalize our services for you.</Translate>
+                                </li>
+                                <li>
+                                    <Translate contentKey="gdprModal.dataUsageImprove">Improve our website and service offerings.</Translate>
+                                </li>
+                                <li>
+                                    <Translate contentKey="gdprModal.dataUsageCommunicate">Communicate with you regarding account updates, newsletters, and marketing communications (with your consent).</Translate>
+                                </li>
+                                <li>
+                                    <Translate contentKey="gdprModal.dataUsageLegal">Comply with legal requirements and protect our rights.</Translate>
+                                </li>
                             </ul>
-                            <h6>Your Rights</h6>
                         </div>
                         <ModalFooter>
-                            <Button color="secondary" onClick={handleClose}>Close</Button> {/* Close the modal */}
-                            <Button color="primary" onClick={handleGdprConsent}>Accept</Button>
+                            <Button color="secondary" onClick={handleClose}>
+                                <Translate contentKey="gdprModal.closeButton">Close</Translate>
+                            </Button>
+                            <Button color="primary" onClick={handleGdprConsent}>
+                                <Translate contentKey="gdprModal.acceptButton">Accept</Translate>
+                            </Button>
                         </ModalFooter>
                     </motion.div>
                 </Modal>
@@ -80,5 +102,4 @@ const LoginModal: React.FC<ILoginModalProps> = ({ showModal, handleClose }) => {
     );
 };
 
-
-export default LoginModal;
+export default GDPRModal;

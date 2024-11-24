@@ -2,20 +2,47 @@ package com.vitamiel.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "products")
 public class Product {
 
     @Id
     private String id;
-    private String name;
-    private String description;
+
+    @Field("id-Disabled")
+    private String idDisabled;
+
+    @Field("en-name")
+    private String enName;
+
+    @Field("es-name")
+    private String esName;
+
+    @Field("fr-name")
+    private String frName;
+
+    @Field("nl-name")
+    private String nlName;
+
+    @Field("en-description")
+    private String enDescription;
+
+    @Field("es-description")
+    private String esDescription;
+
+    @Field("fr-description")
+    private String frDescription;
+
+    @Field("nl-description")
+    private String nlDescription;
+
     private String origin;
     private double weightKg;
     private double price;
     private int stockQuantity;
     private String imageUrl;
-    private String categoryId;  
+    private String categoryId;
 
     // Getters and Setters
     public String getId() {
@@ -26,20 +53,76 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getIdDisabled() {
+        return idDisabled;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdDisabled(String idDisabled) {
+        this.idDisabled = idDisabled;
     }
 
-    public String getDescription() {
-        return description;
+    public String getEnName() {
+        return enName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEnName(String enName) {
+        this.enName = enName;
+    }
+
+    public String getEsName() {
+        return esName;
+    }
+
+    public void setEsName(String esName) {
+        this.esName = esName;
+    }
+
+    public String getFrName() {
+        return frName;
+    }
+
+    public void setFrName(String frName) {
+        this.frName = frName;
+    }
+
+    public String getNlName() {
+        return nlName;
+    }
+
+    public void setNlName(String nlName) {
+        this.nlName = nlName;
+    }
+
+    public String getEnDescription() {
+        return enDescription;
+    }
+
+    public void setEnDescription(String enDescription) {
+        this.enDescription = enDescription;
+    }
+
+    public String getEsDescription() {
+        return esDescription;
+    }
+
+    public void setEsDescription(String esDescription) {
+        this.esDescription = esDescription;
+    }
+
+    public String getFrDescription() {
+        return frDescription;
+    }
+
+    public void setFrDescription(String frDescription) {
+        this.frDescription = frDescription;
+    }
+
+    public String getNlDescription() {
+        return nlDescription;
+    }
+
+    public void setNlDescription(String nlDescription) {
+        this.nlDescription = nlDescription;
     }
 
     public String getOrigin() {

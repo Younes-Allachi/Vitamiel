@@ -1,31 +1,23 @@
 package com.vitamiel.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Objects;
-import org.springframework.data.domain.Persistable;
 
 /**
  * A Authority.
  */
-@Entity
-@Table(name = "jhi_authority")
+@Document(collection = "authorities")
 @JsonIgnoreProperties(value = { "new", "id" })
-@SuppressWarnings("common-java:DuplicatedBlocks")
-public class Authority implements Serializable, Persistable<String> {
+public class Authority implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull
-    @Size(max = 50)
     @Id
-    @Column(name = "name", length = 50, nullable = false)
-    private String name;
-
-    @Transient
-    private boolean isPersisted;
+    private String name;  // MongoDB uses String for the ID, so we use 'name' as the ID field
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -42,29 +34,7 @@ public class Authority implements Serializable, Persistable<String> {
         this.name = name;
     }
 
-    @PostLoad
-    @PostPersist
-    public void updateEntityState() {
-        this.setIsPersisted();
-    }
-
-    @Override
-    public String getId() {
-        return this.name;
-    }
-
-    @Transient
-    @Override
-    public boolean isNew() {
-        return !this.isPersisted;
-    }
-
-    public Authority setIsPersisted() {
-        this.isPersisted = true;
-        return this;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // Removed getId() as it is not necessary for MongoDB documents
 
     @Override
     public boolean equals(Object o) {
@@ -79,14 +49,13 @@ public class Authority implements Serializable, Persistable<String> {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getName());
+        return Objects.hash(getName());
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "Authority{" +
-            "name=" + getName() +
+            "name='" + getName() + '\'' +
             "}";
     }
 }

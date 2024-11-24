@@ -19,10 +19,17 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // Add a new product with an image upload and category ID
+    // Add a new product with multilingual fields and an image upload
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestParam("name") String name,
-            @RequestParam("description") String description,
+    public ResponseEntity<Product> addProduct(
+            @RequestParam("enName") String enName,
+            @RequestParam("esName") String esName,
+            @RequestParam("frName") String frName,
+            @RequestParam("nlName") String nlName,
+            @RequestParam("enDescription") String enDescription,
+            @RequestParam("esDescription") String esDescription,
+            @RequestParam("frDescription") String frDescription,
+            @RequestParam("nlDescription") String nlDescription,
             @RequestParam("origin") String origin,
             @RequestParam("weightKg") double weightKg,
             @RequestParam("price") double price,
@@ -30,19 +37,29 @@ public class ProductController {
             @RequestParam("categoryId") String categoryId, // Accept categoryId here
             @RequestParam("image") MultipartFile imageFile) {
         try {
-            Product savedProduct = productService.addProduct(name, description, origin, weightKg, price, stockQuantity,
-                    categoryId, imageFile);
+            // Call service method with multilingual parameters
+            Product savedProduct = productService.addProduct(
+                    enName, esName, frName, nlName, 
+                    enDescription, esDescription, frDescription, nlDescription,
+                    origin, weightKg, price, stockQuantity, categoryId, imageFile);
             return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Handle file upload error
         }
     }
 
-    // Update an existing product (image is optional here)
+    // Update an existing product with multilingual fields and optional image upload
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable("id") String id,
-            @RequestParam("name") String name,
-            @RequestParam("description") String description,
+    public ResponseEntity<Product> updateProduct(
+            @PathVariable("id") String id,
+            @RequestParam("enName") String enName,
+            @RequestParam("esName") String esName,
+            @RequestParam("frName") String frName,
+            @RequestParam("nlName") String nlName,
+            @RequestParam("enDescription") String enDescription,
+            @RequestParam("esDescription") String esDescription,
+            @RequestParam("frDescription") String frDescription,
+            @RequestParam("nlDescription") String nlDescription,
             @RequestParam("origin") String origin,
             @RequestParam("weightKg") double weightKg,
             @RequestParam("price") double price,
@@ -50,24 +67,31 @@ public class ProductController {
             @RequestParam("categoryId") String categoryId,
             @RequestParam(value = "image", required = false) MultipartFile imageFile) { // image is now optional
         try {
+            // Create a product object and set the updated fields
             Product productDetails = new Product();
-            productDetails.setName(name);
-            productDetails.setDescription(description);
+            productDetails.setEnName(enName);
+            productDetails.setEsName(esName);
+            productDetails.setFrName(frName);
+            productDetails.setNlName(nlName);
+            productDetails.setEnDescription(enDescription);
+            productDetails.setEsDescription(esDescription);
+            productDetails.setFrDescription(frDescription);
+            productDetails.setNlDescription(nlDescription);
             productDetails.setOrigin(origin);
             productDetails.setWeightKg(weightKg);
             productDetails.setPrice(price);
             productDetails.setStockQuantity(stockQuantity);
             productDetails.setCategoryId(categoryId);
 
-            // Call the service method and pass the image file if available
+            // Call the service method to update the product
             Product updatedProduct = productService.updateProduct(id, productDetails, imageFile);
             return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
-        }  catch (Exception e) {  // Catch a generic exception (or RuntimeException if you prefer)
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);  // Handle error gracefully
         }
     }
 
-    // Delete a product
+    // Delete a product by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable("id") String id) {
         productService.deleteProduct(id);
