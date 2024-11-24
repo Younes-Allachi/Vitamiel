@@ -7,6 +7,7 @@ import { Translate } from 'react-jhipster';
 import axios from 'axios';
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import './CartPage.scss';
+import { Link } from 'react-router-dom';
 
 interface CartPageProps {
   carts: CartItem[];
@@ -28,7 +29,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
   const currentLocale = useSelector((state: any) => state.locale.currentLocale);
   const [locale, setLocale] = useState(currentLocale);
-  const currencySymbol = locale === 'fr' ? '€' : '$'; 
+  const currencySymbol = locale === 'fr' ? '€' : '€'; 
 
   const subTotal = totalPrice(carts);
   const vat = subTotal * 0.06;
@@ -207,6 +208,46 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                     </table>
                   </form>
 
+                  <div className="submit-btn-area">
+                    <ul>
+                      <li>
+                        <Link className="theme-btn" to="/">
+                          <Translate contentKey="cart2.continueShopping">Continue Shopping</Translate>{' '}
+                          <i className="fa fa-angle-double-right"></i>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="cart-product-list">
+                    <ul>
+                      <li>
+                        <Translate contentKey="cart2.totalProduct">Total product</Translate>
+                        <span>( {carts.length} )</span>
+                      </li>
+                      <li>
+                        <Translate contentKey="cart2.subPrice">Sub Price</Translate>
+                        <span>
+                          {subTotal.toFixed(2)} {currencySymbol}
+                        </span>
+                      </li>
+                      <li>
+                        <Translate contentKey="cart2.vat">VAT (6%)</Translate>
+                        <span>
+                          {vat.toFixed(2)} {currencySymbol}
+                        </span>
+                      </li>
+                      <li>
+                        <Translate contentKey="cart2.deliveryCharge">Delivery Charge</Translate>
+                        <span>0 {currencySymbol}</span>
+                      </li>
+                      <li className="cart-b">
+                        <Translate contentKey="cart2.totalPriceOverall">Total Price</Translate>
+                        <span>
+                          {total.toFixed(2)} {currencySymbol}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
                   <div className="submit-btn-area">
                     <ul>
                       <li>

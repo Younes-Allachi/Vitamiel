@@ -32,7 +32,7 @@ const ContactForm: React.FC = () => {
     }));
   };
 
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { firstName, lastName, email, subject, notes } = state;
@@ -62,7 +62,21 @@ const ContactForm: React.FC = () => {
       return;
     }
 
-    setTimeout(() => {
+    // Send data to backend
+    try {
+      const response = await fetch('http://localhost:8080/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName, lastName, email, subject, notes }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      // Success, reset the form and show success message
       setState({
         firstName: '',
         lastName: '',
@@ -72,10 +86,14 @@ const ContactForm: React.FC = () => {
         error: {},
       });
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-    }, 1000);
+      // Optionally show success message
+      alert(translate('contactForm.successMessage'));
+
+    } catch (error) {
+      // Handle error (e.g., show an error message)
+      alert(translate('contactForm.errorMessage'));
+      console.error('Error submitting the contact form:', error);
+    }
   };
 
   const { firstName, lastName, email, subject, notes, error } = state;
@@ -85,19 +103,37 @@ const ContactForm: React.FC = () => {
       <div className="row">
         <div className="col-lg-6 col-md-6 col-12">
           <div className="form-field">
-            <input value={firstName} onChange={changeHandler} type="text" name="firstName" placeholder={translate('contactForm.name')} />
+            <input
+              value={firstName}
+              onChange={changeHandler}
+              type="text"
+              name="firstName"
+              placeholder={translate('contactForm.name')}
+            />
             <p>{error.firstName}</p>
           </div>
         </div>
         <div className="col-lg-6 col-md-6 col-12">
           <div className="form-field">
-            <input value={lastName} onChange={changeHandler} type="text" name="lastName" placeholder={translate('contactForm.lastname')} />
+            <input
+              value={lastName}
+              onChange={changeHandler}
+              type="text"
+              name="lastName"
+              placeholder={translate('contactForm.lastname')}
+            />
             <p>{error.lastName}</p>
           </div>
         </div>
         <div className="col-lg-6 col-md-6 col-12">
           <div className="form-field">
-            <input value={email} onChange={changeHandler} type="email" name="email" placeholder={translate('contactForm.email')} />
+            <input
+              value={email}
+              onChange={changeHandler}
+              type="email"
+              name="email"
+              placeholder={translate('contactForm.email')}
+            />
             <p>{error.email}</p>
           </div>
         </div>
@@ -121,7 +157,12 @@ const ContactForm: React.FC = () => {
         </div>
         <div className="col-lg-12">
           <div className="form-field">
-            <textarea name="notes" value={notes} onChange={changeHandler} placeholder={translate('contactForm.message')} />
+            <textarea
+              name="notes"
+              value={notes}
+              onChange={changeHandler}
+              placeholder={translate('contactForm.message')}
+            />
             <p>{error.notes}</p>
           </div>
         </div>

@@ -1,4 +1,8 @@
 {
+  "stock": {
+    "outOfStock": "Rupture de stock",
+    "inStock": "En stock"
+  },  
   "global": {
     "title": "Ecomvitamiel",
     "menu": {
@@ -126,6 +130,8 @@
       }
     }
   },
+  "search":"Rechercher des produits par titre..."
+  ,
   "header": {
     "about": "À propos",
     "home": "Accueil",
@@ -135,7 +141,7 @@
     "signout": "Déconnexion",
     "cart": "Panier",
     "wishlist": "Favoris",
-    "question": "Questionnaire"
+    "question": "Foire aux questions"
   },
   "product": {
     "title1": "Miel",

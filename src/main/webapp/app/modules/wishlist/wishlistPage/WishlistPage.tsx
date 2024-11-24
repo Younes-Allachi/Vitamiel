@@ -6,10 +6,10 @@ import { Translate } from 'react-jhipster';
 
 interface WishlistItem {
   id: number;
-  title: string;
-  proImg: string;
+  name: string;
+  imageUrl: string;
   price: number;
-  stock: string;
+  stockQuantity: number;  // Change from stock to stockQuantity to match logic
 }
 
 interface WishlistPageProps {
@@ -65,44 +65,53 @@ const WishlistPage: React.FC<WishlistPageProps> = props => {
                       <tbody>
                         {wishs &&
                           wishs.length > 0 &&
-                          wishs.map((wish, crt) => (
-                            <tr key={crt}>
-                              <td className="images">
-                                <img src={wish.proImg} className="img2" alt="" />
-                              </td>
-                              <td className="product">
-                                <ul>
-                                  <p>
-                                    <Translate contentKey={`product.title3.${wish.id}`}>{wish.title}</Translate>
-                                  </p>
-                                </ul>
-                              </td>
-                              <td className="ptice">
-                                {wish.price} {currencySymbol}
-                              </td>
-                              <td className="stock">
-                                <ul>
-                                  <p className="stock-status">
-                                    <Translate contentKey={`product.stock.${wish.id}`}>{wish.stock}</Translate>
-                                  </p>
-                                </ul>
-                              </td>
-                              <td className="action">
-                                <ul>
-                                  <li className="c-btn">
-                                    <button type="button" onClick={() => addToCart(wish)} title="Add to Cart" className="c-btn">
-                                      <i className="fi flaticon-shopping-cart"></i>
-                                    </button>
-                                  </li>
-                                  <li className="w-btn">
-                                    <button type="button" onClick={() => removeFromWishList(wish.id)}>
-                                      <i className="fi flaticon-delete"></i>
-                                    </button>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                          ))}
+                          wishs.map((wish, crt) => {
+                            const isOutOfStock = wish.stockQuantity <= 0; // Check stock status
+
+                            return (
+                              <tr key={crt}>
+                                <td className="images">
+                                  <img src={`http://localhost:8080/${wish.imageUrl}`} className="img2" alt="" />
+                                </td>
+                                <td className="product">
+                                  <ul>
+                                    <p>
+                                      <Translate contentKey={`product.title3.${wish.id}`}>{wish.name}</Translate>
+                                    </p>
+                                  </ul>
+                                </td>
+                                <td className="ptice">
+                                  {wish.price} {currencySymbol}
+                                </td>
+                                <td className="stock">
+                                  <ul>
+                                    <p className="stock-status">
+                                      {/* Conditional rendering of stock status */}
+                                      {isOutOfStock ? (
+                                        <Translate contentKey="stock.outOfStock">Out of Stock</Translate>
+                                      ) : (
+                                        <Translate contentKey="stock.inStock">In Stock</Translate>
+                                      )}
+                                    </p>
+                                  </ul>
+                                </td>
+                                <td className="action">
+                                  <ul>
+                                    <li className="c-btn">
+                                      <button type="button" onClick={() => addToCart(wish)} title="Add to Cart" className="c-btn">
+                                        <i className="fi flaticon-shopping-cart"></i>
+                                      </button>
+                                    </li>
+                                    <li className="w-btn">
+                                      <button type="button" onClick={() => removeFromWishList(wish.id)}>
+                                        <i className="fi flaticon-delete"></i>
+                                      </button>
+                                    </li>
+                                  </ul>
+                                </td>
+                              </tr>
+                            );
+                          })}
                       </tbody>
                     </table>
                   </form>

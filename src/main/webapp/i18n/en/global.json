@@ -1,4 +1,8 @@
 {
+  "stock": {
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock"
+  },
   "global": {
     "title": "Ecomvitamiel",
     "menu": {
@@ -126,6 +130,7 @@
       }
     }
   },
+  "search": "Search products by title...",
   "header": {
     "about": "About",
     "home": "Home",
@@ -135,7 +140,7 @@
     "signout": "Sign out",
     "cart": "Cart",
     "wishlist": "Wishlist",
-    "question": "Questionnaire"
+    "question": "FAQ"
   },
   "product": {
     "title1": "Honey",

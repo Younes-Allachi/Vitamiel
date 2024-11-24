@@ -30,5 +30,21 @@
         }
       }
     }
+  },
+  "gdprModal": {
+    "mainHeading": "GDPR Kennisgeving",
+    "noticeText": "Door deze site te gebruiken, gaat u akkoord met ons gebruik van cookies en de verwerking van uw persoonsgegevens in overeenstemming met ons privacybeleid. Lees de volgende informatie over onze gegevensbeschermingspraktijken.",
+    "personalDataTitle": "Welke Persoonlijke Gegevens Verzamelen Wij",
+    "dataName": "Uw naam, e-mailadres en contactgegevens.",
+    "dataInteractions": "Informatie over uw interacties met onze website en diensten, zoals bezochte pagina's en de tijd die op de site is doorgebracht.",
+    "dataPayment": "Betalingsgegevens, als u kiest om een aankoop of donatie te doen via ons platform.",
+    "dataUsageTitle": "Hoe We Uw Gegevens Gebruiken",
+    "dataUsageText": "We gebruiken de gegevens die we verzamelen om:",
+    "dataUsagePersonalize": "Onze diensten voor u te bieden en te personaliseren.",
+    "dataUsageImprove": "Onze website en service-aanbiedingen te verbeteren.",
+    "dataUsageCommunicate": "Met u te communiceren over accountupdates, nieuwsbrieven en marketingcommunicatie (met uw toestemming).",
+    "dataUsageLegal": "Voldoen aan wettelijke vereisten en onze rechten te beschermen.",
+    "closeButton": "Sluiten",
+    "acceptButton": "Accepteren"
   }
 }

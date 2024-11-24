@@ -61,7 +61,7 @@
       function sortUrls(urls) {
         if (!urls) return urls;
 
-        urls.sort((a, b) => compareUrls(a.name.toLowerCase(), b.name.toLowerCase()));
+        urls.sort((a, b) => compareUrls(a.name?.toLowerCase(), b.name?.toLowerCase()));
 
         return urls;
       }

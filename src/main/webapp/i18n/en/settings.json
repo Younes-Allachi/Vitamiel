@@ -30,5 +30,21 @@
         }
       }
     }
+  },
+  "gdprModal": {
+    "mainHeading": "GDPR Notice",
+    "noticeText": "By using this site, you agree to our use of cookies and processing of your personal data in accordance with our privacy policy. Please read the following information regarding our data protection practices.",
+    "personalDataTitle": "What Personal Data We Collect",
+    "dataName": "Your name, email address, and contact information.",
+    "dataInteractions": "Information about your interactions with our website and services, such as pages visited and time spent on the site.",
+    "dataPayment": "Payment details, if you choose to make a purchase or donation through our platform.",
+    "dataUsageTitle": "How We Use Your Data",
+    "dataUsageText": "We use the data we collect to:",
+    "dataUsagePersonalize": "Provide and personalize our services for you.",
+    "dataUsageImprove": "Improve our website and service offerings.",
+    "dataUsageCommunicate": "Communicate with you regarding account updates, newsletters, and marketing communications (with your consent).",
+    "dataUsageLegal": "Comply with legal requirements and protect our rights.",
+    "closeButton": "Close",
+    "acceptButton": "Accept"
   }
 }

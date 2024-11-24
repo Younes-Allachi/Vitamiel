@@ -3,6 +3,16 @@ import { Translate } from 'react-jhipster';
 import './hero.scss';
 
 const Hero: React.FC = () => {
+
+  const handleScroll = (e, position) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: position,  // Dynamic position passed in the function
+      behavior: 'smooth',
+    });
+  };
+
+  
   return (
     <section className="hero hero-style-1">
       <div className="hero-slider">
@@ -23,7 +33,7 @@ const Hero: React.FC = () => {
                   </h2>
                 </div>
                 <div className="btns">
-                  <a href="#" className="btn theme-btn" onClick={e => e.preventDefault()}>
+                  <a href="#" className="btn theme-btn" onClick={(e) => handleScroll(e, 2300)}>
                     <Translate contentKey="hero.buyNow" /> <i className="fa fa-angle-double-right"></i>
                   </a>
                 </div>

@@ -1,4 +1,8 @@
 {
+  "stock": {
+    "outOfStock": "Agotado",
+    "inStock": "En stock"
+  },  
   "global": {
     "title": "Ecomvitamiel",
     "menu": {
@@ -135,8 +139,9 @@
     "signout": "Cerrar sesión",
     "cart": "Carrito",
     "wishlist": "Lista de deseos",
-    "question": "Cuestionario"
+    "question": "Preguntas frecuentes"
   },
+  "search":"Buscar productos por título...",
   "product": {
     "title1": "Miel",
     "fresh": "100% Fresca",

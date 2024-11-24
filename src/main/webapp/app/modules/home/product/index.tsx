@@ -6,7 +6,10 @@ interface ProductProps {
   products: Array<{
     id: string;
     imageUrl: string;
-    name: string;
+    enName: string;
+    esName: string;
+    frName: string;
+    nlName: string;
     description: string;
     price: number;
     stockQuantity: number;
@@ -18,9 +21,16 @@ interface ProductProps {
   }>;
   addToCartProduct: (product: any) => void;
   addToWishListProduct: (product: any) => void;
+  currentLocale: string; // Assuming currentLocale is a string like 'en', 'es', etc.
 }
 
-const Product = ({ products, categories, addToCartProduct, addToWishListProduct }: ProductProps) => {
+const Product = ({
+  products,
+  categories,
+  addToCartProduct,
+  addToWishListProduct,
+  currentLocale
+}: ProductProps) => {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
@@ -53,7 +63,7 @@ const Product = ({ products, categories, addToCartProduct, addToWishListProduct 
   };
 
   // Filter products based on the search query
-  const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredProducts = products.filter(product => product?.enName?.toLowerCase().includes(searchQuery.toLowerCase()));
 
   // Group products by categoryId
   const groupedProducts = categories.map((category) => ({
@@ -62,7 +72,32 @@ const Product = ({ products, categories, addToCartProduct, addToWishListProduct 
     products: filteredProducts.filter((product) => String(product.categoryId) === String(category.categoryId)),
   }));
 
-  console.log('Grouped Products:/meme',groupedProducts);
+  // Function to get the correct product name based on the current locale
+  const getProductName = (product: any) => {
+    switch (currentLocale) {
+      case 'es':
+        return product.esName; // Spanish name
+      case 'fr':
+        return product.frName; // French name
+      case 'nl':
+        return product.nlName; // Dutch name
+      default:
+        return product.enName; // Default to English if locale is not supported
+    }
+  };
+  const getProductDescription = (product: any) => {
+    switch (currentLocale) {
+      case 'es':
+        return product.esDescription; // Spanish name
+      case 'fr':
+        return product.frDescription; // French name
+      case 'nl':
+        return product.frDescription; // Dutch name
+      default:
+        return product.enDescription; // Default to English if locale is not supported
+    }
+  };
+
   return (
     <section className="product-area section-padding">
       <div className="container">
@@ -87,13 +122,17 @@ const Product = ({ products, categories, addToCartProduct, addToWishListProduct 
         {/* Centered Search Bar with Icon */}
         <div className="search-bar">
           <div className="input-group">
+            <label htmlFor="search">
+              <Translate contentKey="search" />
+            </label>
             <input
+              id="search"
               type="text"
-              placeholder="Search products by title..."
               value={searchQuery}
-              onChange={handleSearchChange}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="form-control"
             />
+
             <span className="input-group-text">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +168,7 @@ const Product = ({ products, categories, addToCartProduct, addToWishListProduct 
                     <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
                       <div className="product-item">
                         <div className="product-img">
-                          <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.name} />
+                          <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.enName} />
                           <ul>
                             <li>
                               <button
@@ -159,11 +198,10 @@ const Product = ({ products, categories, addToCartProduct, addToWishListProduct 
                           </ul>
                         </div>
                         <div className="product-content">
-                          <h3>
-                            <Translate contentKey={product.name} />
-                          </h3>
+                          <h3>{getProductName(product)}</h3>
+                          <h6>{getProductDescription(product)}</h6>
                           <div className="product-btm">
-                            <div className="product-price">
+                            <div className="del-price">
                               <ul>
                                 <li>
                                   {(product.price * 1.06).toFixed(2)} <Translate contentKey="product.currency" />
@@ -189,7 +227,7 @@ const Product = ({ products, categories, addToCartProduct, addToWishListProduct 
       {/* Modal for Comparison */}
       {comparisonProducts.length === 2 && (
         <div className="modal fade show" id="comparisonModal" tabIndex={-1} style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }} aria-hidden="true">
-          <div className="modal-dialog modal-lg">
+          <div className="modal-dialog modal-lg" style={{marginTop:'7%'}}>
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Product Comparison</h5>
@@ -199,16 +237,19 @@ const Product = ({ products, categories, addToCartProduct, addToWishListProduct 
                 <div className="comparison-wrapper" style={{ display: 'flex', justifyContent: 'space-between' }}>
                   {/* Comparison Item 1 */}
                   <div className="comparison-item" style={{ width: '48%' }}>
-                    <img src={comparisonProducts[0].imageUrl} alt={comparisonProducts[0].name} style={{ width: '75%' }} />
-                    <h4><Translate contentKey={comparisonProducts[0].name} /></h4>
-                    <p>Price: ${(comparisonProducts[0].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
+                    <img src={comparisonProducts[0].imageUrl} alt={comparisonProducts[0].name} style={{ objectFit:'cover',maxWidth:'350px',maxHeight:'350px' }} />
+                    <h4>{getProductName(comparisonProducts[0])}</h4>
+                    <h6>{getProductDescription(comparisonProducts[0])}</h6>
+
+                    <p>Price:{(comparisonProducts[0].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
                   </div>
 
                   {/* Comparison Item 2 */}
                   <div className="comparison-item" style={{ width: '48%' }}>
-                    <img src={comparisonProducts[1].imageUrl} alt={comparisonProducts[1].name} style={{ width: '75%' }} />
-                    <h4><Translate contentKey={comparisonProducts[1].name} /></h4>
-                    <p>Price: ${(comparisonProducts[1].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
+                    <img src={comparisonProducts[1].imageUrl} alt={comparisonProducts[1].name} style={{ objectFit:'cover',maxWidth:'350px',maxHeight:'350px' }} />
+                    <h4>{getProductName(comparisonProducts[1])}</h4>
+                    <h6>{getProductDescription(comparisonProducts[1])}</h6>
+                    <p>Price:{(comparisonProducts[1].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
                   </div>
                 </div>
               </div>

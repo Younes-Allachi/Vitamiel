@@ -34,6 +34,8 @@ export const Home = ({ addToCart, addToWishList }) => {
 
     fetchProducts();
     fetchCategories();
+
+    console.log('Current locale in home:',currentLocale);
   }, [currentLocale]); // Recharger les produits à chaque changement de langue
 
   const addToCartProduct = (product, qty = 1) => {
@@ -51,8 +53,7 @@ export const Home = ({ addToCart, addToWishList }) => {
       <Category />
       {products.length > 0 ? (
         <>
-          <Product addToCartProduct={addToCartProduct} addToWishListProduct={addToWishListProduct} products={products} categories={categories} />
-          {/*           <FlashSale addToCartProduct={addToCartProduct} addToWishListProduct={addToWishListProduct} products={products} />*/}        
+          <Product addToCartProduct={addToCartProduct} addToWishListProduct={addToWishListProduct} products={products} categories={categories} currentLocale={currentLocale}/>
         </>
       ) : (
         <div>Loading products...</div>
