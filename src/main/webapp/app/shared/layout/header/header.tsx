@@ -208,6 +208,19 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
     </ul>
   );
 
+  const getLocalizedProductName = (product: any) => {
+    switch (currentLocale) {
+      case 'fr':
+        return product.frName || product.name;
+      case 'es':
+        return product.esName || product.name;
+      case 'nl':
+        return product.nlName || product.name;
+      default:
+        return product.enName || product.name;
+    }
+  };
+
   return (
     <header id="header" className={`site-header ${hClass}`}>
       <nav className="navigation navbar navbar-expand-lg">
@@ -307,9 +320,7 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                               </span>
                             </div>
                             <div className="mini-cart-item-des">
-                              <p>
-                                <Translate contentKey={`product.title3.${cart.id}`}>{cart.title}</Translate>
-                              </p>
+                              <p>{getLocalizedProductName(cart)}</p>  {/* Using localized name */}
                               <span className="mini-cart-item-price">
                                 ${cart.price} x {cart.qty}
                               </span>
@@ -322,10 +333,10 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                     </div>
                     <div className="mini-cart-action clearfix">
                       <span className="mini-checkout-price">
-                        <Translate contentKey="cart.total">Total</Translate>: ${totalPrice(carts)}
+                        <Translate contentKey="cart.total">Total</Translate>: ${totalPrice(carts).toFixed(2)}
                       </span>
                       <div className="mini-btn">
-                        <Link to="#" className="view-cart-btn s1">
+                        <Link to="/cart" className="view-cart-btn s1">
                           <Translate contentKey="cart.checkout">Checkout</Translate>
                         </Link>
                         <Link to="/cart" className="view-cart-btn">
@@ -353,13 +364,11 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                           <div className="mini-cart-item clearfix" key={index}>
                             <div className="mini-cart-item-image">
                               <span>
-                                <img src={wish.proImg} alt="icon" />
+                              <img src={`http://localhost:8080/${wish.imageUrl}`} alt="icon" />
                               </span>
                             </div>
                             <div className="mini-cart-item-des">
-                              <p>
-                                <Translate contentKey={`product.title3.${wish.id}`}>{wish.title}</Translate>
-                              </p>
+                                <p>{getLocalizedProductName(wish)}</p>  {/* Using localized name */}
                               <span className="mini-cart-item-price">${wish.price}</span>
                               <button onClick={() => dispatch(removeFromWishList(wish.id))} className="btn btn-sm btn-danger">
                                 <i className="ti-close"></i>
@@ -370,10 +379,10 @@ const Header: React.FC<HeaderProps> = ({ hClass = '', isAuthenticated, currentLo
                     </div>
                     <div className="mini-cart-action clearfix">
                       <span className="mini-checkout-price">
-                        <Translate contentKey="cart.total">Total</Translate>: ${totalPrice(wishs)}
+                        <Translate contentKey="cart.total">Total</Translate>: ${totalPrice(wishs).toFixed(2)}
                       </span>
                       <div className="mini-btn">
-                        <Link to="#" className="view-cart-btn s1">
+                        <Link to="/cart" className="view-cart-btn s1">
                           <Translate contentKey="cart.checkout">Checkout</Translate>
                         </Link>
                         <Link to="/wishlist" className="view-cart-btn">

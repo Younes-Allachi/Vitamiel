@@ -21,7 +21,7 @@ interface ProductProps {
   }>;
   addToCartProduct: (product: any) => void;
   addToWishListProduct: (product: any) => void;
-  currentLocale: string; // Assuming currentLocale is a string like 'en', 'es', etc.
+  currentLocale: string; 
 }
 
 const Product = ({
@@ -50,7 +50,6 @@ const Product = ({
   };
 
   const handleAddToComparison = (product: any) => {
-    // If less than two products are selected, add the product to comparison
     if (comparisonProducts.length < 2 && !comparisonProducts.some(p => p.id === product.id)) {
       setComparisonProducts([...comparisonProducts, product]);
     }
@@ -58,43 +57,39 @@ const Product = ({
 
   const handleCompare = () => {
     if (comparisonProducts.length === 2) {
-      setOpen(true); // Open the modal to show the comparison
+      setOpen(true); 
     }
   };
 
-  // Filter products based on the search query
   const filteredProducts = products.filter(product => product?.enName?.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  // Group products by categoryId
   const groupedProducts = categories.map((category) => ({
     ...category,
-    // Convert categoryId to string to match product categoryId format
     products: filteredProducts.filter((product) => String(product.categoryId) === String(category.categoryId)),
   }));
 
-  // Function to get the correct product name based on the current locale
   const getProductName = (product: any) => {
     switch (currentLocale) {
       case 'es':
-        return product.esName; // Spanish name
+        return product.esName; 
       case 'fr':
-        return product.frName; // French name
+        return product.frName; 
       case 'nl':
-        return product.nlName; // Dutch name
+        return product.nlName; 
       default:
-        return product.enName; // Default to English if locale is not supported
+        return product.enName; 
     }
   };
   const getProductDescription = (product: any) => {
     switch (currentLocale) {
       case 'es':
-        return product.esDescription; // Spanish name
+        return product.esDescription; 
       case 'fr':
-        return product.frDescription; // French name
+        return product.frDescription; 
       case 'nl':
-        return product.frDescription; // Dutch name
+        return product.nlDescription; 
       default:
-        return product.enDescription; // Default to English if locale is not supported
+        return product.enDescription; 
     }
   };
 
@@ -102,16 +97,16 @@ const Product = ({
     <section className="product-area section-padding">
       <div className="container">
         <div className="row">
-          <div className="col-lg-6 offset-lg-3">
+          <div className="col-lg-5 offset-lg-3">
             <div className="section-title">
-              <h2>
+              <h3>
                 <span style={{ color: '#b83806' }}>
                   <Translate contentKey="product.title1" />
                 </span>{' '}
                 <span>
                   <Translate contentKey="product.fresh" />
                 </span>
-              </h2>
+              </h3>
               <p>
                 <Translate contentKey="product.description" />
               </p>
@@ -148,7 +143,6 @@ const Product = ({
           </div>
         </div>
 
-        {/* Display comparison button if 2 products are selected */}
         {comparisonProducts.length === 2 && (
           <div className="compare-btn-container">
             <button className="btn btn-primary" onClick={handleCompare}>
@@ -160,12 +154,12 @@ const Product = ({
         <div className="product-wrap">
           {groupedProducts.map((category) => (
             <div key={category.categoryId}>
-              <h3>{category.name}</h3> {/* Display category name */}
+              <h3>{category.name}</h3> 
 
               <div className="row align-items-center">
                 {category.products.length > 0 ? (
                   category.products.map((product, pitem) => (
-                    <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem}>
+                    <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem} style={{height: '450px'}}>
                       <div className="product-item">
                         <div className="product-img">
                           <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.enName} />

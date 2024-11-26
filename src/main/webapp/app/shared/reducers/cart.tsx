@@ -1,4 +1,4 @@
-import { ADD_TO_CART, DECREMENT_QUANTITY, INCREMENT_QUANTITY, REMOVE_FROM_CART } from '../actions/type';
+import { ADD_TO_CART, DECREMENT_QUANTITY, INCREMENT_QUANTITY, REMOVE_FROM_CART,CLEAR_CART } from '../actions/type';
 import { minValueOne } from '../../shared/util/lists';
 
 const init = {
@@ -76,10 +76,15 @@ export const cartReducer = (state = init, action) => {
       break;
     }
 
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [], // Clear the cart
+      };
+
     default:
       return state;
   }
-
   // Sauvegarder dans le localStorage
   localStorage.setItem('cartList', JSON.stringify(updatedCart));
   return { ...state, cart: updatedCart };

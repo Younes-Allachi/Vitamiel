@@ -31,20 +31,10 @@
       }
     }
   },
-  "gdprModal": {
-    "mainHeading": "Avis GDPR",
-    "noticeText": "En utilisant ce site, vous acceptez notre utilisation des cookies et le traitement de vos données personnelles conformément à notre politique de confidentialité. Veuillez lire les informations suivantes concernant nos pratiques de protection des données.",
-    "personalDataTitle": "Quelles données personnelles collectons-nous",
-    "dataName": "Votre nom, votre adresse e-mail et vos informations de contact.",
-    "dataInteractions": "Informations sur vos interactions avec notre site Web et nos services, telles que les pages visitées et le temps passé sur le site.",
-    "dataPayment": "Détails de paiement, si vous choisissez de faire un achat ou un don via notre plateforme.",
-    "dataUsageTitle": "Comment nous utilisons vos données",
-    "dataUsageText": "Nous utilisons les données que nous collectons pour :",
-    "dataUsagePersonalize": "Fournir et personnaliser nos services pour vous.",
-    "dataUsageImprove": "Améliorer notre site Web et nos offres de services.",
-    "dataUsageCommunicate": "Communiquer avec vous concernant les mises à jour de votre compte, les newsletters et les communications marketing (avec votre consentement).",
-    "dataUsageLegal": "Respecter les exigences légales et protéger nos droits.",
-    "closeButton": "Fermer",
-    "acceptButton": "Accepter"
-  }
+    "gdprModal": {
+      "mainHeading": "Vie privée et Cookies",
+      "noticeText": "Nous utilisons des cookies et collectons des données personnelles (telles que votre nom, votre e-mail et vos informations d'interaction) pour personnaliser nos services, améliorer notre site Web et communiquer avec vous (avec votre consentement). Pour plus de détails, veuillez consulter notre page FAQ. En continuant à naviguer ou en cliquant sur 'Accepter', vous acceptez ces conditions.",
+      "closeButton": "Fermer",
+      "acceptButton": "Accepter"
+    }  
 }

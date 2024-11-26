@@ -76,6 +76,10 @@
             transform: translateX(-50%);
           }
         }
+        img{
+          max-width:265px;
+          max-height:265px;
+        }
       }
 
       .testimonial-content {

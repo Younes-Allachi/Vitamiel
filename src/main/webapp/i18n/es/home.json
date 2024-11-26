@@ -175,9 +175,9 @@
   "menu": {
     "home": "Inicio",
     "about": "Acerca de",
-    "contactt": "Contacto",
-    "cart": "Carrito",
-    "wishlist": "Lista de deseos",
-    "question": "Cuestionario"
+    "contact": "Contacto",
+    "cart": "Carro",
+    "wishlist": "Deseos",
+    "question": "FAQ"
   }
 }

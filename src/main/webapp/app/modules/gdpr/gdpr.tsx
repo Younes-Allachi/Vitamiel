@@ -41,51 +41,22 @@ const GDPRModal: React.FC<ILoginModalProps> = ({ showModal, handleClose }) => {
     return (
         <>
             {!gdprAccepted && (
-                <Modal isOpen={showModal} className="gdpr-modal" backdrop="static">
+                <Modal 
+                    isOpen={showModal} 
+                    className="gdpr-modal" 
+                    backdrop="static"
+                    size="lg" 
+                >
                     <motion.div variants={modalVariants} initial="hidden" animate="visible" exit="exit">
                         <ModalHeader toggle={handleClose}>
-                            <Translate contentKey="gdprModal.mainHeading">GDPR Notice</Translate>{' '}
+                            <Translate contentKey="gdprModal.mainHeading">Privacy & Cookies</Translate>
                         </ModalHeader>
                         <div className="modal-body">
                             <p>
                                 <Translate contentKey="gdprModal.noticeText">
-                                    By using this site, you agree to our use of cookies and processing of your personal data in accordance with our privacy policy. Please read the following information regarding our data protection practices.
+                                    We use cookies and collect personal data (such as your name, email, and interaction information) to personalize our services, improve our website, and communicate with you (with your consent). For more details, please refer to our FAQ page. By continuing to browse or clicking 'Accept,' you agree to these terms.
                                 </Translate>
                             </p>
-                            <h6>
-                                <Translate contentKey="gdprModal.personalDataTitle">What Personal Data We Collect</Translate>
-                            </h6>
-                            <ul>
-                                <li>
-                                    <Translate contentKey="gdprModal.dataName">Your name, email address, and contact information.</Translate>
-                                </li>
-                                <li>
-                                    <Translate contentKey="gdprModal.dataInteractions">Information about your interactions with our website and services, such as pages visited and time spent on the site.</Translate>
-                                </li>
-                                <li>
-                                    <Translate contentKey="gdprModal.dataPayment">Payment details, if you choose to make a purchase or donation through our platform.</Translate>
-                                </li>
-                            </ul>
-                            <h6>
-                                <Translate contentKey="gdprModal.dataUsageTitle">How We Use Your Data</Translate>
-                            </h6>
-                            <p>
-                                <Translate contentKey="gdprModal.dataUsageText">We use the data we collect to:</Translate>
-                            </p>
-                            <ul>
-                                <li>
-                                    <Translate contentKey="gdprModal.dataUsagePersonalize">Provide and personalize our services for you.</Translate>
-                                </li>
-                                <li>
-                                    <Translate contentKey="gdprModal.dataUsageImprove">Improve our website and service offerings.</Translate>
-                                </li>
-                                <li>
-                                    <Translate contentKey="gdprModal.dataUsageCommunicate">Communicate with you regarding account updates, newsletters, and marketing communications (with your consent).</Translate>
-                                </li>
-                                <li>
-                                    <Translate contentKey="gdprModal.dataUsageLegal">Comply with legal requirements and protect our rights.</Translate>
-                                </li>
-                            </ul>
                         </div>
                         <ModalFooter>
                             <Button color="secondary" onClick={handleClose}>

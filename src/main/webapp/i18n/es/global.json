@@ -116,7 +116,7 @@
   "footer": {
     "title": "En Vitamiel, nos comprometemos a proporcionar la miel más pura y natural a nuestros clientes. Cada frasco está lleno de la dulzura y los beneficios de la naturaleza.",
     "newsletter": {
-      "title": "Boletín de noticias",
+      "title": "Newsletter",
       "description": "Te notificaremos cuando algo nuevo aparezca."
     },
     "contact": {
@@ -137,9 +137,9 @@
     "login": "Iniciar sesión",
     "inscription": "Registrarse",
     "signout": "Cerrar sesión",
-    "cart": "Carrito",
-    "wishlist": "Lista de deseos",
-    "question": "Preguntas frecuentes"
+    "cart": "Carro",
+    "wishlist": "Deseos",
+    "question": "FAQ"
   },
   "search":"Buscar productos por título...",
   "product": {

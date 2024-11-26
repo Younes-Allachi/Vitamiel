@@ -51,22 +51,20 @@ public class UserEmailService {
     @Async
     public void sendContactFormEmail(ContactForm contactForm) {
         LOG.debug("Sending contact form email to '{}'", jHipsterProperties.getMail().getFrom());
-
+    
         try {
             Locale locale = Locale.forLanguageTag("en");
             Context context = new Context(locale);
-            context.setVariable("contact", contactForm); // Passing the contact form details to the template
-
-            // Using Thymeleaf to process the email content
+            context.setVariable("contact", contactForm); 
+    
             String content = templateEngine.process("mail/contactEmail", context);
-
-            // Sending the email using the sendEmail method
+    
             this.sendEmailSync("vitamiel.be@gmail.com", contactForm.getSubject(), content, false, true);
         } catch (Exception e) {
             LOG.error("Error while sending the contact email: ", e);
         }
     }
-
+    
     /**
      * Send the email synchronously (helper method).
      *

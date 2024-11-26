@@ -3,6 +3,16 @@ import { Translate } from 'react-jhipster';
 import './offer.scss';
 
 const Offer: React.FC = () => {
+
+  const handleScroll = (e, position) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: position,  // Dynamic position passed in the function
+      behavior: 'smooth',
+    });
+  };
+
+
   return (
     <section className="offer-area section-padding">
       <div className="container">
@@ -33,7 +43,7 @@ const Offer: React.FC = () => {
               <p>
                 <Translate contentKey="offer.stockWarning" /> {/* Faites vos stocks avant la fin de cette offre */}
               </p>
-              <a href="#" className="btn theme-btn" onClick={e => e.preventDefault()}>
+              <a href="#" className="btn theme-btn" onClick={e => handleScroll(e,2000)}>
                 <Translate contentKey="offer.buyNow" /> {/* Achetez Maintenant */}
                 <i className="fa fa-angle-double-right"></i>
               </a>
