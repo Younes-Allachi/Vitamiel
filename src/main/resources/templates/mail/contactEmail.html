@@ -1,10 +1,31 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}" />
   </head>
   <body>
-    <p th:text="#{email.activation.greeting(${contact.message})}">description</p>
+    <!-- Personalized Greeting -->
+    <h1 th:text="#{email.activation.greeting(${contact.firstName})}">Hello,</h1>
+    
+    <!-- User's Email -->
+    <p>
+      <strong>Email:</strong> <span th:text="${contact.email}">Email address here</span>
+    </p>
+    
+    <!-- Subject -->
+    <p>
+      <strong>Subject:</strong> <span th:text="${contact.subject}">Subject</span>
+    </p>
+    
+    <!-- Message (Notes) -->
+    <p>
+      <strong>Message:</strong><br />
+      <span th:text="${contact.notes}">Message content here</span>
+    </p>
+    
+    <p>
+      Thank you for contacting us. We will respond as soon as possible.
+    </p>
   </body>
 </html>

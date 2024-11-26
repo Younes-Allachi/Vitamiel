@@ -43,7 +43,7 @@ const Testimonial: React.FC = () => {
             <Slider {...settings}>
               <div className="testimonial-item">
                 <div className="testimonial-img">
-                  <img src="../../../../content/images/testimonial/1.png" alt="Témoignage Rachel Matthews" />
+                  <img src="../../../../content/images/testimonial/1.jpeg" alt="Cédric Verhoeven" />
                   <div className="t-quote">
                     <i className="fi flaticon-left-quote"></i>
                   </div>
@@ -53,8 +53,8 @@ const Testimonial: React.FC = () => {
                     <Translate contentKey="testimonial.rachelQuote" />
                   </p>
                   <div className="testimonial-author">
-                    <h3>Rachel Matthews</h3>
-                    <span>PDG, Deixfes</span>
+                    <h3>Cédric Verhoeven</h3>
+                    <span>Dataclean</span>
                   </div>
                   <div className="t-content-quote">
                     <i className="fi flaticon-left-quote"></i>
@@ -63,7 +63,7 @@ const Testimonial: React.FC = () => {
               </div>
               <div className="testimonial-item">
                 <div className="testimonial-img">
-                  <img src="../../../../content/images/testimonial/2.png" alt="Témoignage David Warner" />
+                  <img src="../../../../content/images/testimonial/2.jpeg" alt="Désiré Mbala" />
                   <div className="t-quote">
                     <i className="fi flaticon-left-quote"></i>
                   </div>
@@ -73,8 +73,8 @@ const Testimonial: React.FC = () => {
                     <Translate contentKey="testimonial.davidQuote" />
                   </p>
                   <div className="testimonial-author">
-                    <h3>David Warner</h3>
-                    <span>PDG, TBR</span>
+                    <h3>Désiré Mbala</h3>
+                    <span>Mutualité Chrétienne</span>
                   </div>
                   <div className="t-content-quote">
                     <i className="fi flaticon-left-quote"></i>
@@ -83,7 +83,7 @@ const Testimonial: React.FC = () => {
               </div>
               <div className="testimonial-item">
                 <div className="testimonial-img">
-                  <img src="../../../../content/images/testimonial/3.png" alt="Témoignage Ken Williamson" />
+                  <img src="../../../../content/images/testimonial/3.jpeg" alt="Rachida Bensallam" />
                   <div className="t-quote">
                     <i className="fi flaticon-left-quote"></i>
                   </div>
@@ -93,8 +93,8 @@ const Testimonial: React.FC = () => {
                     <Translate contentKey="testimonial.kenQuote" />
                   </p>
                   <div className="testimonial-author">
-                    <h3>Ken Williamson</h3>
-                    <span>PDG, Bexim</span>
+                    <h3>Rachida Bensallam</h3>
+                    <span>BNP Paribas Fortis</span>
                   </div>
                   <div className="t-content-quote">
                     <i className="fi flaticon-left-quote"></i>

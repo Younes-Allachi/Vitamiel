@@ -1,39 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, connect } from 'react-redux';
-import { Button } from '@mui/material';
+import { Button, MenuItem, Select, InputLabel, FormControl,SelectChangeEvent  } from '@mui/material';
 import { totalPrice } from 'app/shared/util/lists';
-import { removeFromCart, incrementQuantity, decrementQuantity } from 'app/shared/actions/action';
+import { removeFromCart, incrementQuantity, decrementQuantity, clearCart } from 'app/shared/actions/action';
 import { Translate } from 'react-jhipster';
 import axios from 'axios';
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import './CartPage.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface CartPageProps {
   carts: CartItem[];
   removeFromCart: (id: number) => void;
   incrementQuantity: (id: number) => void;
   decrementQuantity: (id: number) => void;
+  clearCart: () => void;  // Add clearCart action
 }
 
 interface CartItem {
   id: number;
-  name: string;
+  enName: string;
+  esName: string;
+  frName: string;
+  nlName: string;
   imageUrl: string;
+  name: string;
   qty: number;
   price: number;
 }
 
 const CartPage: React.FC<CartPageProps> = (props) => {
-  const { carts, incrementQuantity, decrementQuantity } = props;
-
+  const { carts, incrementQuantity, decrementQuantity, clearCart } = props;
+  const navigate = useNavigate(); // Use navigate from react-router-dom
   const currentLocale = useSelector((state: any) => state.locale.currentLocale);
   const [locale, setLocale] = useState(currentLocale);
-  const currencySymbol = locale === 'fr' ? '€' : '€'; 
+  const [currency, setCurrency] = useState<'EUR' | 'USD'>('USD');
+  const [currencySymbol, setCurrencySymbol] = useState<string>('$'); // default USD symbol
+
+  const currencySymbols = {
+    EUR: currentLocale === 'fr' ? '€' : '€',
+    USD: '$', 
+  };
+
+  useEffect(() => {
+    setCurrencySymbol(currencySymbols[currency]);
+  }, [currency, currentLocale]); 
+
 
   const subTotal = totalPrice(carts);
   const vat = subTotal * 0.06;
-  const total = subTotal + vat > 0 ? subTotal + vat : 1;  // Ensure total is never zero
+  const total = subTotal + vat > 0 ? subTotal + vat : 0;
 
   const [loading, setLoading] = useState(false);
 
@@ -54,65 +70,58 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
   const createOrder = async (data, actions) => {
     try {
-      // Step 1: Create the order on your backend and get the response
       const response = await axios.post('/api/paypal/create-order', {
         total: total.toFixed(2),
-        currency: locale === 'fr' ? 'EUR' : 'USD',
+        currency: currency,  
       });
-  
-      console.log('Complete response from backend:',response.data);
-      
-      // Step 2: Extract the paymentId, orderId (EC token), and approvalUrl from the response
-      const { paymentId,orderId, approvalUrl  } = response.data;
-  
+
+      const { paymentId, orderId, approvalUrl } = response.data;
+
       if (!paymentId || !orderId || !approvalUrl) {
         throw new Error("PayPal Payment ID, Approval URL, or Order ID is missing.");
       }
-  
-      // Log the response data to confirm correct extraction
-      console.log('Payment ID:', paymentId);  // "PAYID-M4335EQ0NV62288P56558311"
-      console.log('Approval URL:', approvalUrl);  // URL to redirect user
-      console.log('Order ID:', orderId);  // EC Token: "EC-490333546W7726802"
-  
-      // Step 3: Return the approval URL (this is what PayPal needs for redirection)
-      return orderId;  // This should return the order ID (EC token), not void
+
+      return orderId;
     } catch (error) {
       console.error('Error creating PayPal order:', error);
       throw new Error('Failed to create PayPal order');
     }
   };
-  
-  
+
   const onApprove = async (data, actions) => {
     try {
-      // Capture the payment after the user approves it on PayPal
-      const order = await actions.order.capture(); // This is where the payment is captured
-      const orderId = order.id;  // PayPal Order ID after approval, for example: "EC-490333546W7726802"
-      const payerId = data.payerID;  // PayPal Payer ID, for example: "UZ8CDAK92W2RC"
-  
-      console.log('PayPal Order ID:', orderId); // "EC-490333546W7726802"
-      console.log('PayPal Payer ID:', payerId); // "UZ8CDAK92W2RC"
-  
-      // Send paymentId and payerId to your backend to capture the payment
+      const order = await actions.order.capture();
+      const orderId = order.id;
+      const payerId = data.payerID;
+
       await axios.post('/api/paypal/capture-payment', {
-        paymentId: orderId,  // Use the PayPal Order ID
-        payerId: payerId,    // Use the PayPal Payer ID
+        paymentId: orderId,
+        payerId: payerId,
       });
-  
+
       setLoading(false);
+
+      // After successful payment, clear the cart and navigate to home page
+      clearCart();  // Clear the cart
+      navigate('/');  // Navigate to home page
+
       console.log('Payment captured successfully');
     } catch (error) {
       console.error('Error capturing PayPal payment:', error);
       setLoading(false);
+      clearCart();  // Clear the cart
+      navigate('/');  // Navigate to home page
     }
   };
-  
-  
-  
+
+  const handleCurrencyChange = (event: SelectChangeEvent<'EUR' | 'USD'>) => {
+    setCurrency(event.target.value as 'EUR' | 'USD');
+  };
+
 
   const ButtonWrapper = ({ showSpinner }: { showSpinner: boolean }) => {
     const [{ isPending }] = usePayPalScriptReducer();
-  
+
     return (
       <>
         {showSpinner && isPending && <div className="spinner" />}
@@ -125,10 +134,9 @@ const CartPage: React.FC<CartPageProps> = (props) => {
       </>
     );
   };
-  
 
   const handleProceedToCheckout = () => {
-    setLoading(true);  
+    setLoading(true);
   };
 
   return (
@@ -170,7 +178,12 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                               <img src={`http://localhost:8080/${catItem.imageUrl}`} className="img2" alt="" />
                             </td>
                             <td className="product">
-                              <p>{catItem.name}</p>
+                              <p>
+                                {currentLocale === 'en' ? catItem.enName :
+                                  currentLocale === 'es' ? catItem.esName :
+                                    currentLocale === 'fr' ? catItem.frName :
+                                      catItem.nlName}
+                              </p>
                             </td>
                             <td className="stock">
                               <div className="quantity cart-plus-minus">
@@ -193,7 +206,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                               {catItem.price} {currencySymbol}
                             </td>
                             <td className="stock">
-                              {catItem.qty * catItem.price} {currencySymbol}
+                              {(catItem.qty * catItem.price).toFixed(2)} {currencySymbol}
                             </td>
                             <td className="action">
                               <ul>
@@ -208,6 +221,20 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                     </table>
                   </form>
 
+                  {/* Currency Selection Dropdown */}
+                  <div className="currency-selector">
+                    <FormControl variant="outlined" fullWidth>
+                      <InputLabel>Currency</InputLabel>
+                      <Select
+                        value={currency}
+                        onChange={handleCurrencyChange}
+                        label="Currency"
+                      >
+                        <MenuItem value="USD">USD ($)</MenuItem>
+                        <MenuItem value="EUR">EUR (€)</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
                   <div className="submit-btn-area">
                     <ul>
                       <li>
@@ -218,6 +245,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                       </li>
                     </ul>
                   </div>
+
                   <div className="cart-product-list">
                     <ul>
                       <li>
@@ -248,6 +276,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                       </li>
                     </ul>
                   </div>
+
                   <div className="submit-btn-area">
                     <ul>
                       <li>
@@ -266,7 +295,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
               {/* PayPal buttons */}
               {loading && (
-                <PayPalScriptProvider options={{ clientId: "ASZqYCLb4pjpMt3Bq2RsQtrtgXYCA9Ido09Za0_GX7bCr5tth3Q4YEMJ9Bp33aL8ACCeaDRnrPjueGQW",currency:'USD', intent:'capture' }}>
+                <PayPalScriptProvider options={{ clientId: "ASZqYCLb4pjpMt3Bq2RsQtrtgXYCA9Ido09Za0_GX7bCr5tth3Q4YEMJ9Bp33aL8ACCeaDRnrPjueGQW", currency: currency, intent: 'capture' }}>
                   <ButtonWrapper showSpinner={loading} />
                 </PayPalScriptProvider>
               )}
@@ -288,4 +317,5 @@ export default connect(mapStateToProps, {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
+  clearCart, // Add clearCart action
 })(CartPage);

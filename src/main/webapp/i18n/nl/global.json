@@ -116,7 +116,7 @@
   "footer": {
     "title": "Bij Vitamiel zijn we toegewijd aan het leveren van de puurste en meest natuurlijke honing aan onze klanten. Elke pot is gevuld met de zoetheid en voordelen van de natuur.",
     "newsletter": {
-      "title": "Nieuwsbrief",
+      "title": "Newsletter",
       "description": "Je wordt op de hoogte gesteld wanneer er iets nieuws verschijnt."
     },
     "contact": {
@@ -137,9 +137,9 @@
     "login": "Inloggen",
     "inscription": "Aanmelden",
     "signout": "Uitloggen",
-    "cart": "Winkelwagentje",
+    "cart": "Winkelkar",
     "wishlist": "Verlanglijst",
-    "question": "Veelgestelde vragen"
+    "question": "FAQ"
   },
   "search":"Zoek producten op titel..."
   ,

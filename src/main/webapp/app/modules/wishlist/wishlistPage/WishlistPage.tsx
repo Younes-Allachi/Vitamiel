@@ -10,6 +10,10 @@ interface WishlistItem {
   imageUrl: string;
   price: number;
   stockQuantity: number;  // Change from stock to stockQuantity to match logic
+  enName: string;
+  esName: string;
+  frName: string;
+  nlName: string;
 }
 
 interface WishlistPageProps {
@@ -32,6 +36,8 @@ const WishlistPage: React.FC<WishlistPageProps> = props => {
   useEffect(() => {
     setLocale(currentLocale);
   }, [currentLocale]);
+
+
 
   return (
     <>
@@ -76,8 +82,12 @@ const WishlistPage: React.FC<WishlistPageProps> = props => {
                                 <td className="product">
                                   <ul>
                                     <p>
-                                      <Translate contentKey={`product.title3.${wish.id}`}>{wish.name}</Translate>
+                                      {currentLocale === 'en' && wish.enName}
+                                      {currentLocale === 'es' && wish.esName}
+                                      {currentLocale === 'fr' && wish.frName}
+                                      {currentLocale === 'nl' && wish.nlName}
                                     </p>
+
                                   </ul>
                                 </td>
                                 <td className="ptice">

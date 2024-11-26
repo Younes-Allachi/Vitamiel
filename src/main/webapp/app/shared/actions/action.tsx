@@ -8,6 +8,14 @@ export const fetchProductsBegin = () => ({
   type: types.FETCH_PRODUCTS_BEGIN,
 });
 
+export const clearCart = () => dispatch => {
+  toast.success(translate('alerts.cartCleared'));
+  dispatch({
+    type: types.CLEAR_CART,
+  });
+};
+
+
 export const receiveProducts = products => ({
   type: types.RECEIVE_PRODUCTS,
   products,
