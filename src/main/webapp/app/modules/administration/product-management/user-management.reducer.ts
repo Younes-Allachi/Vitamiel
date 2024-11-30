@@ -49,12 +49,45 @@ export const getUser = createAsyncThunk(
 export const createUser = createAsyncThunk(
   'userManagement/create_user',
   async (user: IProduct, thunkAPI) => {
-    const result = await axios.post<IProduct>(adminUrl, user);
-    thunkAPI.dispatch(getUsersAsAdmin({}));
-    return result;
+    const formData = new FormData();
+    
+    formData.append('enName', user.enName);
+    formData.append('esName', user.esName);
+    formData.append('frName', user.frName);
+    formData.append('nlName', user.nlName);
+    
+    formData.append('enDescription', user.enDescription);
+    formData.append('esDescription', user.esDescription);
+    formData.append('frDescription', user.frDescription);
+    formData.append('nlDescription', user.nlDescription);
+    
+    formData.append('origin', user.origin);
+    formData.append('weightKg', user.weightKg.toString());
+    formData.append('price', user.price.toString());
+    formData.append('stockQuantity', user.stockQuantity.toString());
+    formData.append('categoryId', user.categoryId);
+
+    if (user.imageFile) {
+      formData.append('image', user.imageFile);
+    }
+
+    try {
+      const result = await axios.post<IProduct>(adminUrl, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', 
+        },
+      });
+
+      thunkAPI.dispatch(getUsersAsAdmin({}));
+      
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   },
   { serializeError: serializeAxiosError },
 );
+
 
 export const updateUser = createAsyncThunk(
   'userManagement/update_user',
