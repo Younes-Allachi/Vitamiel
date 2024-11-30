@@ -1,27 +1,24 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, Col, FormText, Row, Input } from 'reactstrap';
+import { Button, Col, Row, Input } from 'reactstrap';
 import { Translate, ValidatedField, ValidatedForm, translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { createUser, getRoles, getUser, reset, updateUser } from './user-management.reducer';
 
-
 export const ProductManagementUpdate = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { login } = useParams<'login'>();
+  const { login } = useParams<'login'>(); // Using product ID for the route
   const isNew = login === undefined;
 
   const [image, setImage] = useState<File | null>(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isNew) {
-      dispatch(reset());
-    } else {
-      dispatch(getUser(login));
+    if (!isNew) {
+      dispatch(getUser(login)); // Fetch product details if it's an edit
     }
     return () => {
       dispatch(reset());
@@ -32,10 +29,20 @@ export const ProductManagementUpdate = () => {
     navigate('/admin/product-management');
   };
 
-  const saveProduct = values => {
+  const saveProduct = (values) => {
+
+    if (image) {
+      values.imageFile = image; // Attach the new image file if present
+    } else if (product.imageUrl && !image) {
+      // If image is deleted, remove imageFile to ensure it's not sent
+      values.imageFile = null; // Ensure that no image is sent
+      values.imageUrl = null; // Update the imageUrl in the payload to null
+    }
+
     if (isNew) {
       dispatch(createUser(values));
     } else {
+      console.log('Product before update:', values);
       dispatch(updateUser(values));
     }
     handleClose();
@@ -45,17 +52,19 @@ export const ProductManagementUpdate = () => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
       setImage(file);
-
-      // Show the image preview
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreviewUrl(reader.result as string); // Convert the image to base64
+        setImagePreviewUrl(reader.result as string); // Convert image to base64 for preview
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const isInvalid = false;
+  const handleImageDelete = () => {
+    setImage(null);
+    setImagePreviewUrl('');
+  };
+
   const product = useAppSelector(state => state.userManagement.user);
   const loading = useAppSelector(state => state.userManagement.loading);
   const updating = useAppSelector(state => state.userManagement.updating);
@@ -67,7 +76,7 @@ export const ProductManagementUpdate = () => {
       <Row className="justify-content-center">
         <Col md="8">
           <h1>
-            <Translate contentKey="productManagement.home.createOrEditLabel">Create or edit a Product</Translate>
+            <Translate contentKey="userManagement.product.createLabel">Create or edit a Product</Translate>
           </h1>
         </Col>
       </Row>
@@ -87,128 +96,137 @@ export const ProductManagementUpdate = () => {
                   validate={{ required: true }}
                 />
               ) : null}
+
+              {/* Language Fields for Name */}
               <ValidatedField
                 type="text"
-                name="name"
-                label={translate('productManagement.name')}
+                name="enName"
+                label={translate('userManagement.product.name')} // English Name
                 validate={{
-                  required: {
-                    value: true,
-                    message: translate('productManagement.messages.validate.name.required'),
-                  },
-                  maxLength: {
-                    value: 100,
-                    message: translate('entity.validation.maxlength', { max: 100 }),
-                  },
+                  required: { value: true, message: translate('userManagement.messages.validate.name.required') },
+                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
+                }}
+              />
+              <ValidatedField
+                type="text"
+                name="esName"
+                label={translate('userManagement.product.name')} // Spanish Name
+                validate={{
+                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
+                }}
+              />
+              <ValidatedField
+                type="text"
+                name="frName"
+                label={translate('userManagement.product.name')} // French Name
+                validate={{
+                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
+                }}
+              />
+              <ValidatedField
+                type="text"
+                name="nlName"
+                label={translate('userManagement.product.name')} // Dutch Name
+                validate={{
+                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
+                }}
+              />
+
+              {/* Language Fields for Description */}
+              <ValidatedField
+                type="textarea"
+                name="enDescription"
+                label={translate('userManagement.product.description')} // English Description
+                validate={{
+                  maxLength: { value: 500, message: translate('entity.validation.maxlength', { max: 500 }) },
                 }}
               />
               <ValidatedField
                 type="textarea"
-                name="description"
-                label={translate('productManagement.description')}
+                name="esDescription"
+                label={translate('userManagement.product.description')} // Spanish Description
                 validate={{
-                  maxLength: {
-                    value: 500,
-                    message: translate('entity.validation.maxlength', { max: 500 }),
-                  },
+                  maxLength: { value: 500, message: translate('entity.validation.maxlength', { max: 500 }) },
                 }}
               />
               <ValidatedField
+                type="textarea"
+                name="frDescription"
+                label={translate('userManagement.product.description')} // French Description
+                validate={{
+                  maxLength: { value: 500, message: translate('entity.validation.maxlength', { max: 500 }) },
+                }}
+              />
+              <ValidatedField
+                type="textarea"
+                name="nlDescription"
+                label={translate('userManagement.product.description')} // Dutch Description
+                validate={{
+                  maxLength: { value: 500, message: translate('entity.validation.maxlength', { max: 500 }) },
+                }}
+              />
+
+              {/* Other Product Fields */}
+              <ValidatedField
                 type="text"
                 name="origin"
-                label={translate('productManagement.origin')}
+                label={translate('userManagement.product.origin')}
                 validate={{
-                  maxLength: {
-                    value: 100,
-                    message: translate('entity.validation.maxlength', { max: 100 }),
-                  },
+                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
                 }}
               />
               <ValidatedField
                 type="number"
                 name="weightKg"
-                label={translate('productManagement.weightKg')}
+                label={translate('userManagement.product.weight')}
                 validate={{
-                  required: {
-                    value: true,
-                    message: translate('productManagement.messages.validate.weightKg.required'),
-                  },
-                  min: {
-                    value: 0,
-                    message: translate('productManagement.messages.validate.weightKg.min'),
-                  },
-                }}
-              />
-              <ValidatedField
-                type="number"
-                name="price"
-                label={translate('productManagement.price')}
-                validate={{
-                  required: {
-                    value: true,
-                    message: translate('productManagement.messages.validate.price.required'),
-                  },
-                  min: {
-                    value: 0,
-                    message: translate('productManagement.messages.validate.price.min'),
-                  },
-                }}
-              />
-              <ValidatedField
-                type="number"
-                name="stockQuantity"
-                label={translate('productManagement.stockQuantity')}
-                validate={{
-                  required: {
-                    value: true,
-                    message: translate('productManagement.messages.validate.stockQuantity.required'),
-                  },
-                  min: {
-                    value: 0,
-                    message: translate('productManagement.messages.validate.stockQuantity.min'),
-                  },
+                  required: { value: true, message: translate('userManagement.messages.validate.weightKg.required') },
+                  min: { value: 0, message: translate('userManagement.messages.validate.weightKg.min') },
                 }}
               />
               <ValidatedField
                 type="text"
-                name="imageUrl"
-                label={translate('productManagement.imageUrl')}
+                name="price"
+                label={translate('userManagement.product.price')}
                 validate={{
-                  maxLength: {
-                    value: 200,
-                    message: translate('entity.validation.maxlength', { max: 200 }),
-                  },
+                  required: { value: true, message: translate('userManagement.product.priceError') },
+                }}
+              />
+
+              <ValidatedField
+                type="number"
+                name="stockQuantity"
+                label={translate('userManagement.product.stockQuantity')}
+                validate={{
+                  required: { value: true, message: translate('userManagement.messages.validate.stockQuantity.required') },
+                  min: { value: 0, message: translate('userManagement.messages.validate.stockQuantity.min') },
                 }}
               />
               <ValidatedField
                 type="text"
                 name="categoryId"
-                label={translate('productManagement.category')}
+                label={translate('userManagement.product.categoryId')}
                 validate={{
-                  required: {
-                    value: true,
-                    message: translate('productManagement.messages.validate.categoryId.required'),
-                  },
+                  required: { value: true, message: translate('userManagement.messages.validate.categoryId.required') },
                 }}
-              >
-              
-              </ValidatedField>
+              />
 
               <div>
                 <ValidatedField
                   type="file"
                   name="imageUrl"
-                  label={translate('productManagement.imageUrl')}
+                  label={translate('userManagement.imageUrl')}
                   onChange={handleImageChange}
                   accept="image/*"
                 />
                 {imagePreviewUrl ? (
                   <div className="mt-2">
                     <img
-                      src={`http://localhost:8080/${imagePreviewUrl}`}
+                      src={imagePreviewUrl}
                       alt="Product preview"
                       style={{ maxWidth: '100%', maxHeight: '300px' }}
                     />
+                    <Button color="danger" onClick={handleImageDelete}>Delete Image</Button>
                   </div>
                 ) : imageUrl ? (
                   <div className="mt-2">
@@ -217,6 +235,7 @@ export const ProductManagementUpdate = () => {
                       alt="Product"
                       style={{ maxWidth: '100%', maxHeight: '300px' }}
                     />
+                    <Button color="danger" onClick={handleImageDelete}>Delete Image</Button>
                   </div>
                 ) : null}
               </div>
@@ -229,7 +248,7 @@ export const ProductManagementUpdate = () => {
                 </span>
               </Button>
               &nbsp;
-              <Button color="primary" type="submit" disabled={isInvalid || updating}>
+              <Button color="primary" type="submit" disabled={updating}>
                 <FontAwesomeIcon icon="save" />
                 &nbsp;
                 <Translate contentKey="entity.action.save">Save</Translate>

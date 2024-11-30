@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, connect } from 'react-redux';
-import { Button, MenuItem, Select, InputLabel, FormControl,SelectChangeEvent  } from '@mui/material';
+import { Button, MenuItem, Select, InputLabel, FormControl, SelectChangeEvent } from '@mui/material';
 import { totalPrice } from 'app/shared/util/lists';
 import { removeFromCart, incrementQuantity, decrementQuantity, clearCart } from 'app/shared/actions/action';
 import { Translate } from 'react-jhipster';
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import './CartPage.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAppSelector } from 'app/config/store';
 
 interface CartPageProps {
   carts: CartItem[];
@@ -27,31 +28,35 @@ interface CartItem {
   name: string;
   qty: number;
   price: number;
+  OrderId: string;
 }
 
 const CartPage: React.FC<CartPageProps> = (props) => {
   const { carts, incrementQuantity, decrementQuantity, clearCart } = props;
   const navigate = useNavigate(); // Use navigate from react-router-dom
   const currentLocale = useSelector((state: any) => state.locale.currentLocale);
-  const [locale, setLocale] = useState(currentLocale);
-  const [currency, setCurrency] = useState<'EUR' | 'USD'>('USD');
-  const [currencySymbol, setCurrencySymbol] = useState<string>('$'); // default USD symbol
+  const account = useAppSelector(state => state.authentication.account);
+
+  const [currency, setCurrency] = useState<'EUR' | 'USD'>('EUR');
+  const [currencySymbol, setCurrencySymbol] = useState<string>('€'); // default USD symbol
 
   const currencySymbols = {
     EUR: currentLocale === 'fr' ? '€' : '€',
-    USD: '$', 
+    USD: '$',
   };
 
   useEffect(() => {
     setCurrencySymbol(currencySymbols[currency]);
-  }, [currency, currentLocale]); 
-
+  }, [currency, currentLocale]);
 
   const subTotal = totalPrice(carts);
   const vat = subTotal * 0.06;
   const total = subTotal + vat > 0 ? subTotal + vat : 0;
 
   const [loading, setLoading] = useState(false);
+
+
+  console.log('carts in cart:', carts);
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, itemId: number) => {
     const newQty = parseInt(e.target.value, 10);
@@ -72,7 +77,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
     try {
       const response = await axios.post('/api/paypal/create-order', {
         total: total.toFixed(2),
-        currency: currency,  
+        currency: currency,
       });
 
       const { paymentId, orderId, approvalUrl } = response.data;
@@ -94,30 +99,75 @@ const CartPage: React.FC<CartPageProps> = (props) => {
       const orderId = order.id;
       const payerId = data.payerID;
 
-      await axios.post('/api/paypal/capture-payment', {
-        paymentId: orderId,
-        payerId: payerId,
-      });
+      await saveOrder(currency, orderId);
 
-      setLoading(false);
-
-      // After successful payment, clear the cart and navigate to home page
-      clearCart();  // Clear the cart
-      navigate('/');  // Navigate to home page
-
+      
       console.log('Payment captured successfully');
     } catch (error) {
+      await saveOrder(currency, 'orderId');
       console.error('Error capturing PayPal payment:', error);
       setLoading(false);
-      clearCart();  // Clear the cart
-      navigate('/');  // Navigate to home page
+      // clearCart();
+      // navigate('/');
+    }
+  };
+
+  const productIds: string[] = (Array.isArray(carts) && carts.length > 0)
+  ? carts
+      .map(item => item && item.id ? String(item.id) : undefined)  
+      .filter((id): id is string => id !== undefined)
+  : [];
+
+
+
+  const totalAmount = parseFloat(total);
+
+  console.log("productId:", productIds);
+
+
+  const saveOrder = async (currency: string, orderId: string) => {
+    try {
+      // Prepare the user data and the order details
+      const userData = {
+        userId: account.id,
+        nom: account.lastName,
+        prénom: account.firstName,
+        pays: account.deliveryAddress,
+        productIds: productIds,
+        username: account.login,
+        email: account.email,
+        status: 'PAID',
+        orderId: orderId
+      };
+
+      const orderData = {
+        ...userData,
+        totalAmount: totalAmount,
+        currency: currency
+      };
+
+      console.log('Order data before save:', orderData);
+
+      const response = await axios.post('/api/orders/save', orderData);
+
+      if (response.status === 200) {
+        console.log('Order saved successfully');
+        alert('Order saved!'); 
+        setLoading(false);
+        clearCart();
+        navigate('/');
+
+      } else {
+        console.error('Failed to save the order:', response);
+      }
+    } catch (error) {
+      console.error('Error saving order:', error);
     }
   };
 
   const handleCurrencyChange = (event: SelectChangeEvent<'EUR' | 'USD'>) => {
     setCurrency(event.target.value as 'EUR' | 'USD');
   };
-
 
   const ButtonWrapper = ({ showSpinner }: { showSpinner: boolean }) => {
     const [{ isPending }] = usePayPalScriptReducer();
@@ -136,6 +186,11 @@ const CartPage: React.FC<CartPageProps> = (props) => {
   };
 
   const handleProceedToCheckout = () => {
+    if (!account || !account.id) {
+      alert("You must be logged in to proceed with the checkout.");
+      return;
+    }
+
     setLoading(true);
   };
 
@@ -294,7 +349,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
               </div>
 
               {/* PayPal buttons */}
-              {loading && (
+              {loading && account && account.id && (
                 <PayPalScriptProvider options={{ clientId: "ASZqYCLb4pjpMt3Bq2RsQtrtgXYCA9Ido09Za0_GX7bCr5tth3Q4YEMJ9Bp33aL8ACCeaDRnrPjueGQW", currency: currency, intent: 'capture' }}>
                   <ButtonWrapper showSpinner={loading} />
                 </PayPalScriptProvider>

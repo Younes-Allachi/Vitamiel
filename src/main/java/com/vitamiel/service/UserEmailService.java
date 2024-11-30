@@ -9,14 +9,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring6.SpringTemplateEngine;
 import tech.jhipster.config.JHipsterProperties;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 
 /**
  * Service for sending contact form emails asynchronously.
@@ -29,18 +26,15 @@ public class UserEmailService {
     private final JHipsterProperties jHipsterProperties;
     private final JavaMailSender javaMailSender;
     private final MessageSource messageSource;
-    private final SpringTemplateEngine templateEngine;
 
     public UserEmailService(
         JHipsterProperties jHipsterProperties,
         JavaMailSender javaMailSender,
-        MessageSource messageSource,
-        SpringTemplateEngine templateEngine
+        MessageSource messageSource
     ) {
         this.jHipsterProperties = jHipsterProperties;
         this.javaMailSender = javaMailSender;
         this.messageSource = messageSource;
-        this.templateEngine = templateEngine;
     }
 
     /**
@@ -51,20 +45,39 @@ public class UserEmailService {
     @Async
     public void sendContactFormEmail(ContactForm contactForm) {
         LOG.debug("Sending contact form email to '{}'", jHipsterProperties.getMail().getFrom());
-    
+        
         try {
-            Locale locale = Locale.forLanguageTag("en");
-            Context context = new Context(locale);
-            context.setVariable("contact", contactForm); 
-    
-            String content = templateEngine.process("mail/contactEmail", context);
-    
+            // Prepare the email content directly without using Thymeleaf templates
+            String content = buildEmailContent(contactForm);  // Create your own email content
+
+            // Send the email
             this.sendEmailSync("vitamiel.be@gmail.com", contactForm.getSubject(), content, false, true);
         } catch (Exception e) {
             LOG.error("Error while sending the contact email: ", e);
         }
     }
     
+    /**
+     * Construct the email content directly.
+     * This is the HTML content for the email.
+     *
+     * @param contactForm The contact form data.
+     * @return The email content as a string.
+     */
+    private String buildEmailContent(ContactForm contactForm) {
+        StringBuilder content = new StringBuilder();
+        content.append("<html><body>");
+        content.append("<h3>New Contact Form Submission</h3>");
+        content.append("<p><strong>Name:</strong> ").append(contactForm.getFirstName()).append(" ").append(contactForm.getLastName()).append("</p>");
+        content.append("<p><strong>Email:</strong> ").append(contactForm.getEmail()).append("</p>");
+        content.append("<p><strong>Subject:</strong> ").append(contactForm.getSubject()).append("</p>");
+        content.append("<p><strong>Message:</strong></p>");
+        content.append("<p>").append(contactForm.getNotes()).append("</p>");
+        content.append("</body></html>");
+        
+        return content.toString();  // This is the plain HTML content for the email
+    }
+
     /**
      * Send the email synchronously (helper method).
      *

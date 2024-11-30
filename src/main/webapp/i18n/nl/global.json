@@ -5,6 +5,9 @@
   },  
   "global": {
     "title": "Ecomvitamiel",
+    "field":{
+      "id":"id"
+    },
     "menu": {
       "home": "Home",
       "account": {
@@ -181,6 +184,7 @@
     "itemAddedToCart": "Item toegevoegd aan winkelwagentje",
     "itemRemovedFromCart": "Item verwijderd uit winkelwagentje",
     "itemAddedToWishList": "Item toegevoegd aan verlanglijst",
-    "itemRemovedFromWishList": "Item verwijderd uit verlanglijst"
+    "itemRemovedFromWishList": "Item verwijderd uit verlanglijst",
+    "cartCleared":"Winkelwagentje Leeg! Betaling Succesvol"
   }
 }

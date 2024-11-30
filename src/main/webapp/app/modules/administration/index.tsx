@@ -6,6 +6,7 @@ import UserManagement from './user-management';
 import Docs from './docs/docs';
 import CategoryManagement from './category-management';
 import ProductManagement from './product-management';
+import OrderManagement from './orders-management';
 
 const AdministrationRoutes = () => (
   <div>
@@ -13,6 +14,7 @@ const AdministrationRoutes = () => (
       <Route path="user-management/*" element={<UserManagement />} />
       <Route path="product-management/*" element={<ProductManagement />} />
       <Route path="category-management/*" element={<CategoryManagement />} />
+      <Route path="order-management/*" element={<OrderManagement />} />
       <Route path="docs" element={<Docs />} />
     </ErrorBoundaryRoutes>
   </div>

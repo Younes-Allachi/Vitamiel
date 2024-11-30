@@ -5,6 +5,9 @@
   },  
   "global": {
     "title": "Ecomvitamiel",
+    "field":{
+      "id":"id"
+    },
     "menu": {
       "home": "Inicio",
       "account": {
@@ -180,6 +183,7 @@
     "itemAddedToCart": "Artículo añadido al carrito",
     "itemRemovedFromCart": "Artículo eliminado del carrito",
     "itemAddedToWishList": "Artículo añadido a la lista de deseos",
-    "itemRemovedFromWishList": "Artículo eliminado de la lista de deseos"
+    "itemRemovedFromWishList": "Artículo eliminado de la lista de deseos",
+    "cartCleared":"¡Carrito Vacío! Pago Exitoso"
   }
 }

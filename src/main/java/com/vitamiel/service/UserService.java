@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -73,22 +74,34 @@ public class UserService {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 user.setResetKey(null);
                 user.setResetDate(null);
+                userRepository.save(user);  // Make sure the user is saved after the change
+                LOG.debug("Password reset successfully for user: {}", user.getLogin());
                 return user;
             });
     }
 
     public Optional<User> requestPasswordReset(String mail) {
+        mail = mail.trim();  // Remove leading/trailing spaces
+        System.out.println("Searching for email: " + mail);
         return userRepository
             .findOneByEmailIgnoreCase(mail)
-            .filter(User::isActivated)
+            .filter(user -> {
+                System.out.println("User found: " + user);
+                return user.isActivated();
+            })
             .map(user -> {
                 user.setResetKey(RandomUtil.generateResetKey());
                 user.setResetDate(Instant.now());
                 return user;
-            });
+            })
+            .map(user -> userRepository.save(user));  
     }
+    
 
     public User registerUser(AdminUserDTO userDTO, String password) {
+
+        System.out.println("user DTO:"+userDTO);
+        // Check if the login exists
         userRepository
             .findOneByLogin(userDTO.getLogin().toLowerCase())
             .ifPresent(existingUser -> {
@@ -97,6 +110,8 @@ public class UserService {
                     throw new UsernameAlreadyUsedException();
                 }
             });
+    
+        // Check if the email exists
         userRepository
             .findOneByEmailIgnoreCase(userDTO.getEmail())
             .ifPresent(existingUser -> {
@@ -105,7 +120,8 @@ public class UserService {
                     throw new EmailAlreadyUsedException();
                 }
             });
-
+    
+        // Create a new user and set properties
         User newUser = new User();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(userDTO.getLogin().toLowerCase());
@@ -119,25 +135,36 @@ public class UserService {
         newUser.setLangKey(userDTO.getLangKey());
         newUser.setActivated(true);
         newUser.setActivationKey(RandomUtil.generateActivationKey());
-
+    
         // Set auditing fields (e.g., createdBy, createdDate)
         String currentUserLogin = SecurityUtils.getCurrentUserLogin().orElse("system");
         newUser.setCreatedBy(currentUserLogin);
         newUser.setCreatedDate(Instant.now());
         newUser.setLastModifiedBy(currentUserLogin);
         newUser.setLastModifiedDate(Instant.now());
-
+    
+        // Create authorities set
         Set<Authority> authorities = new HashSet<>();
-        authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
+    
+        // Find or create the required authorities (ROLE_USER)
+        Optional<Authority> userAuthorityOpt = authorityRepository.findById(AuthoritiesConstants.USER);
+        Authority userAuthority = userAuthorityOpt.orElseGet(() -> authorityRepository.save(new Authority().name(AuthoritiesConstants.USER)));
+    
+        authorities.add(userAuthority);
+    
+        // Set the authorities for the new user
         newUser.setAuthorities(authorities);
-
+    
+        // Save the new user to the repository
         userRepository.save(newUser);
         LOG.debug("Created Information for User: {}", newUser);
-        mailService.sendActivationEmail(newUser);
-
+    
+        // Send activation email
+        //mailService.sendActivationEmail(newUser);
+    
         return newUser;
     }
-
+    
     private boolean removeNonActivatedUser(User existingUser) {
         if (existingUser.isActivated()) {
             return false;
@@ -261,19 +288,32 @@ public class UserService {
     }
 
     @Transactional
-    public void changePassword(String currentClearTextPassword, String newPassword) {
-        SecurityUtils.getCurrentUserLogin()
-            .flatMap(userRepository::findOneByLogin)
-            .ifPresent(user -> {
-                String currentEncryptedPassword = user.getPassword();
-                if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
-                    throw new InvalidPasswordException();
-                }
-                String encryptedPassword = passwordEncoder.encode(newPassword);
-                user.setPassword(encryptedPassword);
-                LOG.debug("Changed password for User: {}", user);
-            });
-    }
+public void changePassword(String currentClearTextPassword, String newPassword) {
+    System.out.println("newPassword COMING FOR RESET PASSWORD: " + newPassword);
+
+    SecurityUtils.getCurrentUserLogin()
+        .flatMap(userRepository::findOneByLogin)
+        .ifPresent(user -> {
+            String currentEncryptedPassword = user.getPassword();
+            if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
+                throw new InvalidPasswordException();
+            }
+            String encryptedPassword = passwordEncoder.encode(newPassword);
+            System.out.println("Encrypted Password COMING FOR RESET PASSWORD: " + encryptedPassword);
+
+            user.setPassword(encryptedPassword);  // Set the new encrypted password
+
+            // Save the updated user object to MongoDB
+            userRepository.save(user);
+            System.out.println("Password updated for user: " + user.getLogin());
+
+            // Optional: Clear the current security context to force re-authentication
+            SecurityContextHolder.clearContext();
+            
+            LOG.debug("Changed password for User: {}", user);
+        });
+}
+
 
     @Transactional(readOnly = true)
     public Page<AdminUserDTO> getAllManagedUsers(Pageable pageable) {

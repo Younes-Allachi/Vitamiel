@@ -7,9 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * A Authority.
- */
 @Document(collection = "authorities")
 @JsonIgnoreProperties(value = { "new", "id" })
 public class Authority implements Serializable {
@@ -18,8 +15,6 @@ public class Authority implements Serializable {
 
     @Id
     private String name;  // MongoDB uses String for the ID, so we use 'name' as the ID field
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public String getName() {
         return this.name;
@@ -33,8 +28,6 @@ public class Authority implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-    // Removed getId() as it is not necessary for MongoDB documents
 
     @Override
     public boolean equals(Object o) {

@@ -20,12 +20,15 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    // Update an existing category
     public Category updateCategory(String categoryId, Category categoryDetails) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new NoSuchElementException("Category with ID " + categoryId + " not found"));
 
-        category.setName(categoryDetails.getName()); // Update the name or other fields if needed
+        category.setNameEn(categoryDetails.getNameEn());
+        category.setNameEs(categoryDetails.getNameEs());
+        category.setNameFr(categoryDetails.getNameFr());
+        category.setNameNl(categoryDetails.getNameNl());
+
         return categoryRepository.save(category);
     }
 
@@ -44,8 +47,18 @@ public class CategoryService {
         return categoryRepository.findById(categoryId);
     }
 
-    // Get category by name
-    public Optional<Category> getCategoryByName(String categoryName) {
-        return categoryRepository.findByName(categoryName);
+     public Optional<Category> getCategoryByName(String categoryName, String language) {
+        switch (language.toLowerCase()) {
+            case "en":
+                return categoryRepository.findByNameEn(categoryName);
+            case "es":
+                return categoryRepository.findByNameEs(categoryName);
+            case "fr":
+                return categoryRepository.findByNameFr(categoryName);
+            case "nl":
+                return categoryRepository.findByNameNl(categoryName);
+            default:
+                return categoryRepository.findByNameEs(categoryName);
+        }
     }
 }

@@ -17,7 +17,11 @@
   },
   "entity": {
     "action": {
-      "cancel": "Annuler"
+      "cancel": "Annuler",
+      "back":"Retour",
+      "save": "Sauvegarder",
+      "delete":"Supprimer"
+
     }
   }
 }
