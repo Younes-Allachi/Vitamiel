@@ -30,23 +30,27 @@ export const ProductManagementUpdate = () => {
   };
 
   const saveProduct = (values) => {
-
     if (image) {
-      values.imageFile = image; // Attach the new image file if present
-    } else if (product.imageUrl && !image) {
-      // If image is deleted, remove imageFile to ensure it's not sent
-      values.imageFile = null; // Ensure that no image is sent
-      values.imageUrl = null; // Update the imageUrl in the payload to null
-    }
-
-    if (isNew) {
-      dispatch(createUser(values));
+      values.imageFile = image;
+      values.imageUrl = null;  
+    } else if (!image && product.imageUrl) {
+      values.imageFile = null;
+      values.imageUrl = null; 
     } else {
-      console.log('Product before update:', values);
-      dispatch(updateUser(values));
+      // No image change, keep existing imageUrl and don't modify it
+      values.imageFile = null;
+      values.imageUrl = product.imageUrl; 
     }
-    handleClose();
+  
+    if (isNew) {
+      dispatch(createUser(values));  // If it's a new product, create it
+    } else {
+      dispatch(updateUser(values));  // If it's an existing product, update it
+    }
+  
+    handleClose();  // Close the form or redirect
   };
+  
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
@@ -101,7 +105,7 @@ export const ProductManagementUpdate = () => {
               <ValidatedField
                 type="text"
                 name="enName"
-                label={translate('userManagement.product.name')} // English Name
+                label={translate('userManagement.product.Enname')} // English Name
                 validate={{
                   required: { value: true, message: translate('userManagement.messages.validate.name.required') },
                   maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
@@ -110,7 +114,7 @@ export const ProductManagementUpdate = () => {
               <ValidatedField
                 type="text"
                 name="esName"
-                label={translate('userManagement.product.name')} // Spanish Name
+                label={translate('userManagement.product.Esname')} // Spanish Name
                 validate={{
                   maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
                 }}
@@ -118,7 +122,7 @@ export const ProductManagementUpdate = () => {
               <ValidatedField
                 type="text"
                 name="frName"
-                label={translate('userManagement.product.name')} // French Name
+                label={translate('userManagement.product.Frname')} // French Name
                 validate={{
                   maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
                 }}
@@ -126,7 +130,7 @@ export const ProductManagementUpdate = () => {
               <ValidatedField
                 type="text"
                 name="nlName"
-                label={translate('userManagement.product.name')} // Dutch Name
+                label={translate('userManagement.product.Nlname')} // Dutch Name
                 validate={{
                   maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
                 }}
@@ -136,7 +140,7 @@ export const ProductManagementUpdate = () => {
               <ValidatedField
                 type="textarea"
                 name="enDescription"
-                label={translate('userManagement.product.description')} // English Description
+                label={translate('userManagement.product.Endescription')} // English Description
                 validate={{
                   maxLength: { value: 500, message: translate('entity.validation.maxlength', { max: 500 }) },
                 }}
@@ -144,7 +148,7 @@ export const ProductManagementUpdate = () => {
               <ValidatedField
                 type="textarea"
                 name="esDescription"
-                label={translate('userManagement.product.description')} // Spanish Description
+                label={translate('userManagement.product.Esdescription')} // Spanish Description
                 validate={{
                   maxLength: { value: 500, message: translate('entity.validation.maxlength', { max: 500 }) },
                 }}
@@ -152,7 +156,7 @@ export const ProductManagementUpdate = () => {
               <ValidatedField
                 type="textarea"
                 name="frDescription"
-                label={translate('userManagement.product.description')} // French Description
+                label={translate('userManagement.product.Frdescription')} // French Description
                 validate={{
                   maxLength: { value: 500, message: translate('entity.validation.maxlength', { max: 500 }) },
                 }}
@@ -160,7 +164,7 @@ export const ProductManagementUpdate = () => {
               <ValidatedField
                 type="textarea"
                 name="nlDescription"
-                label={translate('userManagement.product.description')} // Dutch Description
+                label={translate('userManagement.product.Nldescription')} // Dutch Description
                 validate={{
                   maxLength: { value: 500, message: translate('entity.validation.maxlength', { max: 500 }) },
                 }}
