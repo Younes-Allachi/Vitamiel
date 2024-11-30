@@ -111,7 +111,7 @@ export const UserManagement = () => {
         <thead>
           <tr>
             <th className="hand" onClick={sort('id')}>
-              <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
+              <Translate contentKey="userManagement.category.ID">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
             </th>
             <th className="hand" onClick={sort('login')}>
               <Translate contentKey="userManagement.login">Login</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('login')} />

@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Badge, Button, Row } from 'reactstrap';
-import { TextFormat, Translate } from 'react-jhipster';
+import { Button, Row } from 'reactstrap';
+import { Translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { APP_DATE_FORMAT } from 'app/config/constants';
-import { languages } from 'app/config/translation';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getUser } from './user-management.reducer';
 
@@ -16,45 +14,52 @@ export const UserManagementDetail = () => {
 
   useEffect(() => {
     dispatch(getUser(login));
-  }, []);
+  }, [dispatch, login]);
 
   const user = useAppSelector(state => state.userManagement.user);
 
   return (
-    <div style={{margin:'10% 5%'}}>
-      <h2>
-          <dd>{user.name}</dd>
-      </h2>
+    <div style={{ margin: '10% 5%' }}>
+      <h2>{user.name}</h2>
       <Row size="md">
         <dl className="jh-entity-details">
           <dt>
-              <Translate contentKey="userManagement.email">Description</Translate>
-          </dt>
-          <dd>{user.description}</dd>
-          <dt>
-              <Translate contentKey="userManagement.profiles">Origin</Translate>
-          </dt>
-          <dd>{user.origin}</dd>
-          <dt>
-              <Translate contentKey="userManagement.profiles">Weight</Translate>
-          </dt>
-          <dd>{user.weightKg}</dd>
-          <dt>
-              <Translate contentKey="userManagement.profiles">Price</Translate>
-          </dt>
-          <dd>{user.price}</dd>
-          <dt>
-              <Translate contentKey="userManagement.profiles">Stock Quantity</Translate>
+            <Translate contentKey="userManagement.product.description">Description</Translate>
           </dt>
           <dd>
-            {user.stockQuantity}
+            <strong>{user.enDescription}</strong> <br />
+            <em>{user.esDescription}</em> <br />
+            <span>{user.frDescription}</span> <br />
+            <span>{user.nlDescription}</span>
           </dd>
+
           <dt>
-            <Translate contentKey="userManagement.category.Category ID">Category ID</Translate>
+            <Translate contentKey="userManagement.product.origin">Origin</Translate>
+          </dt>
+          <dd>{user.origin}</dd>
+
+          <dt>
+            <Translate contentKey="userManagement.product.weight">Weight</Translate>
+          </dt>
+          <dd>{user.weightKg}</dd>
+
+          <dt>
+            <Translate contentKey="userManagement.product.price">Price</Translate>
+          </dt>
+          <dd>{user.price}</dd>
+
+          <dt>
+            <Translate contentKey="userManagement.product.stockQuantity">Stock Quantity</Translate>
+          </dt>
+          <dd>{user.stockQuantity}</dd>
+
+          <dt>
+            <Translate contentKey="userManagement.product.categoryId">Category ID</Translate>
           </dt>
           <dd>{user.categoryId}</dd>
         </dl>
       </Row>
+
       <Button tag={Link} to="/admin/product-management" replace color="info">
         <FontAwesomeIcon icon="arrow-left" />{' '}
         <span className="d-none d-md-inline">

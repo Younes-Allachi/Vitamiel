@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create 100 Users</title>
+</head>
+
+<body>
+    <h1>Create 100 Users</h1>
+    <button id="createUsersBtn">Create Users</button>
+
+    <script>
+        document.getElementById('createUsersBtn').addEventListener('click', createUsers);```javascript
+async function createUsers() {
+    const users = [
+        // ... existing users array
+    ];
+
+    try {
+        const response = await fetch('http://localhost:8080/api/register/batch', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ users })
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Users created successfully:', result);
+        } else {
+            console.error('Failed to create users:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error sending request:', error);
+    }
+}
+
+document.getElementById('createUsersBtn').addEventListener('click', createUsers);
+```teUsers() {
+            const users = [
+                { "firstName": "Younes", "lastName": "Allachi", "email": "younes.allachi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Farah", "lastName": "Akachar", "email": "farah.akachar@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Karima", "lastName": "Allachi", "email": "karima.allachi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Zakaria", "lastName": "Allachi", "email": "zakaria.allachi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Roberto", "lastName": "Dexeus", "email": "roberto.dexeus@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Adria", "lastName": "Aguilar", "email": "adria.aguilar@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Jaume", "lastName": "Aguilar", "email": "jaume.aguilar@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Zael", "lastName": "Mateu", "email": "zael.mateu@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Youssef", "lastName": "Es Satty", "email": "youssef.essatty@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Karim", "lastName": "Aouragh", "email": "karim.aouragh@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Hussein", "lastName": "Mouamar", "email": "hussein.mouamar@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Elias", "lastName": "Azehaf", "email": "elias.azehaf@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Omar", "lastName": "Azehaf", "email": "omar.azehaf@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Moha", "lastName": "Azehaf", "email": "moha.azehaf@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Moustapha", "lastName": "Azehaf", "email": "moustapha.azehaf@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Yassine", "lastName": "Azehaf", "email": "yassine.azehaf@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Abdel", "lastName": "Bensalam", "email": "abdel.bensalam@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Mhammed", "lastName": "Ennakhil", "email": "mhammed.ennakhil@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Aïcha", "lastName": "Tazini", "email": "aicha.tazini@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Ouidien", "lastName": "Nori", "email": "ouidien.nori@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Hakim", "lastName": "Akhchioui", "email": "hakim.akhchioui@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Bilal", "lastName": "Koubaa", "email": "bilal.koubaa@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Ismaël", "lastName": "Saïdi", "email": "ismael.saidi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Julien", "lastName": "Manna", "email": "julien.manna@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Fatma", "lastName": "Kassoul", "email": "fatma.kassoul@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Mostafa", "lastName": "Akachar", "email": "mostafa.akachar@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Khadija", "lastName": "Tazini", "email": "khadija.tazini@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Halima", "lastName": "Allachi", "email": "halima.allachi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Hakima", "lastName": "Allachi", "email": "hakima.allachi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Hafida", "lastName": "Allachi", "email": "hafida.allachi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Fatiha", "lastName": "Allachi", "email": "fatiha.allachi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Soufiane", "lastName": "Meftah", "email": "soufiane.meftah@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Nesrine", "lastName": "Akachar", "email": "nesrine.akachar@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Mohammed", "lastName": "Mrabet", "email": "mohammed.mrabet@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Mohamed", "lastName": "Robio", "email": "mohamed.robio@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Jean", "lastName": "Dubois", "email": "jean.dubois@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Marie", "lastName": "Lambert", "email": "marie.lambert@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Éric", "lastName": "Martin", "email": "eric.martin@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Sophie", "lastName": "Bernard", "email": "sophie.bernard@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Paul", "lastName": "Peeters", "email": "paul.peeters@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Julie", "lastName": "Henry", "email": "julie.henry@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Lucas", "lastName": "Simon", "email": "lucas.simon@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Isabelle", "lastName": "Michel", "email": "isabelle.michel@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Anna", "lastName": "Willems", "email": "anna.willems@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Théo", "lastName": "Jacobs", "email": "theo.jacobs@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Nathan", "lastName": "Renard", "email": "nathan.renard@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Léa", "lastName": "Mertens", "email": "lea.mertens@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Alice", "lastName": "Dubois", "email": "alice.dubois@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Olivier", "lastName": "Dupont", "email": "olivier.dupont@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Laura", "lastName": "Fontaine", "email": "laura.fontaine@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Valentin", "lastName": "Lemaire", "email": "valentin.lemaire@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Chloé", "lastName": "Gilson", "email": "chloe.gilson@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Gabriel", "lastName": "De Vos", "email": "gabriel.devos@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Sarah", "lastName": "Mathieu", "email": "sarah.mathieu@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Noah", "lastName": "Gérard", "email": "noah.gerard@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Camille", "lastName": "Léonard", "email": "camille.leonard@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Vincent", "lastName": "Clerc", "email": "vincent.clerc@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Émilie", "lastName": "François", "email": "emilie.francois@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Mohamed", "lastName": "Lopez", "email": "mohamed.lopez@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Élise", "lastName": "Gautier", "email": "elise.gautier@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Finn", "lastName": "De Smet", "email": "finn.desmet@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Emma", "lastName": "Janssens", "email": "emma.janssens@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Luca", "lastName": "Maes", "email": "luca.maes@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Mila", "lastName": "Van Damme", "email": "mila.vandamme@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Levi", "lastName": "Goossens", "email": "levi.goossens@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Ella", "lastName": "De Clercq", "email": "ella.declercq@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Arthur", "lastName": "Van den Broeck", "email": "arthur.vandenbroeck@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Nora", "lastName": "Bosmans", "email": "nora.bosmans@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Lars", "lastName": "Smeets", "email": "lars.smeets@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Louise", "lastName": "Claes", "email": "louise.claes@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Adam", "lastName": "Wouters", "email": "adam.wouters@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Elena", "lastName": "De Backer", "email": "elena.debacker@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Sam", "lastName": "Vermeulen", "email": "sam.vermeulen@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Anna", "lastName": "Dumont", "email": "anna.dumont@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Victor", "lastName": "Pieters", "email": "victor.pieters@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Juliette", "lastName": "Hendrickx", "email": "juliette.hendrickx@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Marie", "lastName": "Dries", "email": "marie.dries@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Axel", "lastName": "Jacobs", "email": "axel.jacobs@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Zoé", "lastName": "Lauwers", "email": "zoe.lauwers@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Olivia", "lastName": "Verhoeven", "email": "olivia.verhoeven@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Yassine", "lastName": "El Kaddouri", "email": "yassine.elkaddouri@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Fatima", "lastName": "Benali", "email": "fatima.benali@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Mohammed", "lastName": "Amrani", "email": "mohammed.amrani@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Nadia", "lastName": "El Amrani", "email": "nadia.elamrani@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Samir", "lastName": "Kabbaj", "email": "samir.kabbaj@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Karima", "lastName": "Alaoui", "email": "karima.alaoui@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Sofia", "lastName": "Bouazizi", "email": "sofia.bouazizi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Ahmed", "lastName": "Choukri", "email": "ahmed.choukri@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Laila", "lastName": "Bennani", "email": "laila.bennani@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Abdel", "lastName": "Boutaleb", "email": "abdel.boutaleb@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Hanae", "lastName": "El Idrissi", "email": "hanae.elidrissi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Jalal", "lastName": "Lahmidi", "email": "jalal.lahmidi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Sara", "lastName": "Belhaj", "email": "sara.belhaj@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Omar", "lastName": "Benkhadra", "email": "omar.benkhadra@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Amina", "lastName": "Daoudi", "email": "amina.daoudi@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Fouad", "lastName": "El Ghrari", "email": "fouad.elghrari@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Souad", "lastName": "Haddad", "email": "souad.haddad@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Anas", "lastName": "Mansouri", "email": "anas.mansouri@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Hicham", "lastName": "Rahmani", "email": "hicham.rahmani@protonmail.com", "password": "Akash*!" },
+                { "firstName": "Lucie", "lastName": "Moreau", "email": "lucie.moreau@protonmail.com", "password": "Akash*!" }
+            ];
+
+            try {
+                const response = await fetch('http://localhost:8080/api/register/batch', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ users })
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Users created successfully:', result);
+                } else {
+                    console.error('Failed to create users:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error sending request:', error);
+            }
+        }
+    </script>
+</body>
+
+</html>

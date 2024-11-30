@@ -48,7 +48,7 @@ export const UserManagementUpdate = () => {
   const authorities = useAppSelector(state => state.userManagement.authorities);
 
   return (
-    <div>
+    <div style={{margin:'10% 5%'}}>
       <Row className="justify-content-center">
         <Col md="8">
           <h1>
@@ -68,7 +68,7 @@ export const UserManagementUpdate = () => {
                   name="id"
                   required
                   readOnly
-                  label={translate('global.field.id')}
+                  label={translate('userManagement.category.ID')}
                   validate={{ required: true }}
                 />
               ) : null}

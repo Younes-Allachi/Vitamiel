@@ -1,6 +1,5 @@
 package com.vitamiel.web.rest;
 
-import com.vitamiel.config.PayPalService;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.vitamiel.domain.PayPalOrderResponse;
 import com.vitamiel.domain.PaymentDetails;
 import com.vitamiel.domain.PaymentRequest;
+import com.vitamiel.service.PayPalService;
 
 @RestController
 @RequestMapping("/api/paypal")

@@ -21,7 +21,7 @@ export const UserManagementDetail = () => {
   const user = useAppSelector(state => state.userManagement.user);
 
   return (
-    <div>
+    <div style={{margin:'10% 5%'}}>
       <h2>
         <Translate contentKey="userManagement.detail.title">User</Translate> [<strong>{user.login}</strong>]
       </h2>

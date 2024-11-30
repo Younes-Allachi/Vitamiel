@@ -54,7 +54,6 @@ const GDPRModal: React.FC<ILoginModalProps> = ({ showModal, handleClose }) => {
                         <div className="modal-body">
                             <p>
                                 <Translate contentKey="gdprModal.noticeText">
-                                    We use cookies and collect personal data (such as your name, email, and interaction information) to personalize our services, improve our website, and communicate with you (with your consent). For more details, please refer to our FAQ page. By continuing to browse or clicking 'Accept,' you agree to these terms.
                                 </Translate>
                             </p>
                         </div>

@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
 
-import { IProduct, defaultValue } from 'app/shared/model/product.model';
+import { ICategory, defaultValue } from 'app/shared/model/category.model';
 import { IQueryParams, serializeAxiosError } from 'app/shared/reducers/reducer.utils';
 
 const initialState = {
   loading: false,
   errorMessage: null,
-  users: [] as ReadonlyArray<IProduct>,
+  users: [] as ReadonlyArray<ICategory>,
   authorities: [] as any[],
   user: defaultValue,
   updating: false,
@@ -15,19 +15,19 @@ const initialState = {
   totalItems: 0,
 };
 
-const apiUrl = 'api/products';
-const adminUrl = 'api/products';
+const apiUrl = 'api/categories';
+const adminUrl = 'api/categories';
 
 // Async Actions
 
 export const getUsers = createAsyncThunk('userManagement/fetch_users', async ({ page, size, sort }: IQueryParams) => {
   const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
-  return axios.get<IProduct[]>(requestUrl);
+  return axios.get<ICategory[]>(requestUrl);
 });
 
 export const getUsersAsAdmin = createAsyncThunk('userManagement/fetch_users_as_admin', async ({ page, size, sort }: IQueryParams) => {
   const requestUrl = `${adminUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
-  return axios.get<IProduct[]>(requestUrl);
+  return axios.get<ICategory[]>(requestUrl);
 });
 
 export const getRoles = createAsyncThunk('userManagement/fetch_roles', async () => {
@@ -39,17 +39,19 @@ export const getRoles = createAsyncThunk('userManagement/fetch_roles', async () 
 export const getUser = createAsyncThunk(
   'userManagement/fetch_user',
   async (id: string) => {
-    console.log('Product id in get User:',id);
     const requestUrl = `${adminUrl}/${id}`;
-    return axios.get<IProduct>(requestUrl);
+    return axios.get<ICategory>(requestUrl);
   },
   { serializeError: serializeAxiosError },
 );
 
 export const createUser = createAsyncThunk(
   'userManagement/create_user',
-  async (user: IProduct, thunkAPI) => {
-    const result = await axios.post<IProduct>(adminUrl, user);
+  async (user: ICategory, thunkAPI) => {
+     const newUser = { ...user };
+     delete newUser.id; 
+ 
+     const result = await axios.post<ICategory>(adminUrl, newUser);
     thunkAPI.dispatch(getUsersAsAdmin({}));
     return result;
   },
@@ -58,56 +60,22 @@ export const createUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'userManagement/update_user',
-  async (user: IProduct, thunkAPI) => {
-    console.log('user before update:', user);
-
-    // Create FormData to send as multipart form data
-    const formData = new FormData();
-    formData.append('id', user.id);
-    formData.append('idDisabled', user.idDisabled);
-    formData.append('enName', user.enName);
-    formData.append('esName', user.esName);
-    formData.append('frName', user.frName);
-    formData.append('nlName', user.nlName);
-    formData.append('enDescription', user.enDescription);
-    formData.append('esDescription', user.esDescription);
-    formData.append('frDescription', user.frDescription);
-    formData.append('nlDescription', user.nlDescription);
-    formData.append('origin', user.origin);
-    formData.append('weightKg', user.weightKg.toString());
-    formData.append('price', user.price.toString());
-    formData.append('stockQuantity', user.stockQuantity.toString());
-    formData.append('categoryId', user.categoryId);
-
-    // If there's an image, append it as well
-    if (user.imageFile) {
-      formData.append('image', user.imageFile);
-    }
-
-    // If the image is deleted (no new image and old image is removed), pass null to backend
-    if (!user.imageFile && !user.imageUrl) {
-      formData.append('image', null); // Notify the backend that no image should be attached
-    }
-
-    // Perform the PUT request with FormData
-    const result = await axios.put<IProduct>(`${adminUrl}/${user.id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data', // Set the content type for multipart
-      },
-    });
-
+  async (category: ICategory, thunkAPI) => {
+    const requestUrl = `${adminUrl}/${category.id}`; 
+    const result = await axios.put<ICategory>(requestUrl, category);
     thunkAPI.dispatch(getUsersAsAdmin({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  { serializeError: serializeAxiosError },
 );
 
 
 export const deleteUser = createAsyncThunk(
   'userManagement/delete_user',
   async (id: string, thunkAPI) => {
+    console.log(`Category ID before delete:,${id}`)
     const requestUrl = `${adminUrl}/${id}`;
-    const result = await axios.delete<IProduct>(requestUrl);
+    const result = await axios.delete<ICategory>(requestUrl);
     thunkAPI.dispatch(getUsersAsAdmin({}));
     return result;
   },

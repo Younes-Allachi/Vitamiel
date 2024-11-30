@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Badge, Button, Table } from 'reactstrap';
-import { JhiItemCount, JhiPagination, TextFormat, Translate, getPaginationState } from 'react-jhipster';
+import { JhiItemCount, JhiPagination, Translate, getPaginationState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getUsersAsAdmin, updateUser } from './category-management.reducer';
+import { useTranslation } from 'react-i18next'; // Importing useTranslation hook
+import { useSelector, connect } from 'react-redux';
 
-export const UserManagement = () => {
+export const CategoryManagement = () => {
+  const { i18n } = useTranslation(); // Accessing the current language from i18n
+  
   const dispatch = useAppDispatch();
 
   const pageLocation = useLocation();
   const navigate = useNavigate();
+
+  const currentLocale = useSelector((state: any) => state.locale.currentLocale);
 
   const [pagination, setPagination] = useState(
     overridePaginationStateWithQueryParams(getPaginationState(pageLocation, ITEMS_PER_PAGE, 'id'), pageLocation.search),
@@ -82,6 +88,7 @@ export const UserManagement = () => {
   const users = useAppSelector(state => state.userManagement.users);
   const totalItems = useAppSelector(state => state.userManagement.totalItems);
   const loading = useAppSelector(state => state.userManagement.loading);
+
   const getSortIconByFieldName = (fieldName: string) => {
     const sortFieldName = pagination.sort;
     const order = pagination.order;
@@ -91,8 +98,25 @@ export const UserManagement = () => {
     return order === ASC ? faSortUp : faSortDown;
   };
 
+  const getCategoryName = (category, lang) => {
+    // Return the appropriate category name based on the current language
+    switch (currentLocale) {
+      case 'en':
+        return category.nameEn;
+      case 'nl':
+        return category.nameNl;
+      case 'es':
+        return category.nameEs;
+      case 'fr':
+        return category.nameFr;
+      // Add more cases as needed for other languages
+      default:
+        return category.nameEn; // Fallback to English if the language is not supported
+    }
+  };
+
   return (
-    <div style={{margin:'10% 5%'}}>
+    <div style={{ margin: '10% 5%' }}>
       <h2 id="user-management-page-heading" data-cy="userManagementPageHeading">
         <Translate contentKey="userManagement.category.title">Categories</Translate>
         <div className="d-flex justify-content-end">
@@ -101,7 +125,8 @@ export const UserManagement = () => {
             <Translate contentKey="userManagement.home.refreshListLabel">Refresh List</Translate>
           </Button>
           <Link to="new" className="btn btn-primary jh-create-entity">
-            <FontAwesomeIcon icon="plus" /> <Translate contentKey="userManagement.category.createLabel">Create a new cateogry</Translate>
+            <FontAwesomeIcon icon="plus" />{' '}
+            <Translate contentKey="userManagement.category.createLabel">Create a new category</Translate>
           </Link>
         </div>
       </h2>
@@ -109,13 +134,16 @@ export const UserManagement = () => {
         <thead>
           <tr>
             <th className="hand" onClick={sort('id')}>
-              <Translate contentKey="userManagement.category.Category ID">Category ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
+              <Translate contentKey="userManagement.category.Category ID">Category ID</Translate>{' '}
+              <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
             </th>
             <th className="hand" onClick={sort('id')}>
-              <Translate contentKey="userManagement.category.Name">Name</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
+              <Translate contentKey="userManagement.category.Name">Name</Translate>{' '}
+              <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
             </th>
             <th className="hand" onClick={sort('id')}>
-              <Translate contentKey="userManagement.category.Actions">Actions</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
+              <Translate contentKey="userManagement.category.Actions">Actions</Translate>{' '}
+              <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
             </th>
             <th />
           </tr>
@@ -124,7 +152,7 @@ export const UserManagement = () => {
           {users.map((user, i) => (
             <tr id={user.id} key={`user-${i}`}>
               <td>{user.categoryId}</td>
-              <td>{user.name}</td>
+              <td>{getCategoryName(user, i18n.language)}</td> {/* Display the category name in the correct language */}
               <td className="text-end">
                 <div className="btn-group flex-btn-group-container">
                   <Button tag={Link} to={user.id} color="info" size="sm">
@@ -173,4 +201,4 @@ export const UserManagement = () => {
   );
 };
 
-export default UserManagement;
+export default CategoryManagement;

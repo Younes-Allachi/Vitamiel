@@ -18,6 +18,10 @@ interface ProductProps {
   categories: Array<{
     categoryId: string;
     name: string;
+    nameEs:string;
+    nameEn:string;
+    nameFr:string;
+    nameNl:string;
   }>;
   addToCartProduct: (product: any) => void;
   addToWishListProduct: (product: any) => void;
@@ -36,6 +40,7 @@ const Product = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [comparisonProducts, setComparisonProducts] = useState<Array<any>>([]);
 
+  console.log('Categories in product page:',categories);
   const handleClickOpen = (product: any) => {
     setOpen(true);
     setState(product);
@@ -61,7 +66,17 @@ const Product = ({
     }
   };
 
-  const filteredProducts = products.filter(product => product?.enName?.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredProducts = products.filter(product => {
+    const searchQueryLower = searchQuery.toLowerCase();
+    const namesToCheck = [
+      product?.enName?.toLowerCase(),
+      product?.esName?.toLowerCase(),
+      product?.frName?.toLowerCase(),
+      product?.nlName?.toLowerCase()
+    ];
+  
+    return namesToCheck.some(name => name.includes(searchQueryLower));
+  });
 
   const groupedProducts = categories.map((category) => ({
     ...category,
@@ -92,6 +107,20 @@ const Product = ({
         return product.enDescription; 
     }
   };
+
+  const getCategoryName = (category: any) => {
+    switch (currentLocale) {
+      case 'es':
+        return category.nameEs; 
+      case 'fr':
+        return category.nameFr; 
+      case 'nl':
+        return category.nameNl; 
+      default:
+        return category.nameEn; 
+    }
+  };
+
 
   return (
     <section className="product-area section-padding">
@@ -154,7 +183,7 @@ const Product = ({
         <div className="product-wrap">
           {groupedProducts.map((category) => (
             <div key={category.categoryId}>
-              <h3>{category.name}</h3> 
+              <h3>{getCategoryName(category)}</h3> 
 
               <div className="row align-items-center">
                 {category.products.length > 0 ? (
@@ -224,7 +253,7 @@ const Product = ({
           <div className="modal-dialog modal-lg" style={{marginTop:'7%'}}>
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Product Comparison</h5>
+                <h5 className="modal-title"><Translate contentKey="userManagement.product.productComparison" /></h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setComparisonProducts([])}></button>
               </div>
               <div className="modal-body">

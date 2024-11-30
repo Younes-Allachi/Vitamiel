@@ -1,12 +1,13 @@
 package com.vitamiel.web.rest;
 
+import com.vitamiel.domain.ContactForm;
 import com.vitamiel.domain.User;
 import com.vitamiel.repository.UserRepository;
 import com.vitamiel.security.SecurityUtils;
 import com.vitamiel.service.MailService;
+import com.vitamiel.service.UserEmailService;
 import com.vitamiel.service.UserService;
 import com.vitamiel.service.dto.AdminUserDTO;
-import com.vitamiel.service.dto.ContactVM;
 import com.vitamiel.service.dto.PasswordChangeDTO;
 import com.vitamiel.web.rest.errors.*;
 import com.vitamiel.web.rest.vm.KeyAndPasswordVM;
@@ -41,17 +42,61 @@ public class AccountResource {
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    private final UserEmailService userEmailService;
+
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService,UserEmailService userEmailService) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.userEmailService=userEmailService;
     }
 
     @PostMapping("/contact")
     @ResponseStatus(HttpStatus.OK)
-    public void sendContact(@Valid @RequestBody ContactVM contactVM) {
-        mailService.sendContactEmail(contactVM);
+    public void sendContact(@Valid @RequestBody ContactForm contactForm) {
+        LOG.debug("Received contact form submission: {}", contactForm);
+        
+        // Call the service to send the email asynchronously
+        userEmailService.sendContactFormEmail(contactForm);
     }
+
+
+     /**
+     * {@code POST  /register} : register multiple users.
+     *
+     * @param managedUserVMList the list of managed user View Models.
+     * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
+     * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
+     * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
+     */
+    @PostMapping("/users/register/batch")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registerMultipleUsers(@Valid @RequestBody List<ManagedUserVM> managedUserVMList) {
+        System.out.println("Received user list: " + managedUserVMList); 
+        if (managedUserVMList == null || managedUserVMList.isEmpty()) {
+            throw new IllegalArgumentException("User list cannot be empty");
+        }
+
+        // Iterate over the list of users and register each one
+        for (ManagedUserVM managedUserVM : managedUserVMList) {
+            // Validate the password for each user
+            if (isPasswordLengthInvalid(managedUserVM.getPassword())) {
+                throw new InvalidPasswordException();
+            }
+
+            // Set login from email and other necessary fields
+            managedUserVM.setLogin(managedUserVM.getEmail());
+            managedUserVM.setActivated(true);
+
+            // Register the user
+            User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+
+            System.out.println("User created" +user);
+            // Send an activation email for each registered user
+            //mailService.sendActivationEmail(user);
+        }
+    }
+
 
     /**
      * {@code POST  /register} : register the user.
@@ -64,6 +109,8 @@ public class AccountResource {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+
+        System.out.println("Managed User for registration:"+managedUserVM);
         if (isPasswordLengthInvalid(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
@@ -138,6 +185,8 @@ public class AccountResource {
      */
     @PostMapping(path = "/account/change-password")
     public void changePassword(@RequestBody PasswordChangeDTO passwordChangeDto) {
+        System.out.println("passwordChangeDto COMING FOR RESET PASSWORD: " + passwordChangeDto);
+
         if (isPasswordLengthInvalid(passwordChangeDto.getNewPassword())) {
             throw new InvalidPasswordException();
         }
@@ -150,10 +199,11 @@ public class AccountResource {
      * @param mail the mail of the user.
      */
     @PostMapping(path = "/account/reset-password/init")
-    public void requestPasswordReset(@RequestBody String mail) {
-        System.out.println("EMAIL COMING FOR RESET PASSWORD"+mail);
+    public void requestPasswordReset(@RequestBody Map<String, String> request) {
+        String email = request.get("mail");  // Extract email from the request body
+        System.out.println("EMAIL COMING FOR RESET PASSWORD: " + email);
 
-        Optional<User> user = userService.requestPasswordReset(mail);
+        Optional<User> user = userService.requestPasswordReset(email);
         System.out.println("User after checking"+user);
         if (user.isPresent()) {
             mailService.sendPasswordResetMail(user.orElseThrow());
@@ -173,6 +223,8 @@ public class AccountResource {
      */
     @PostMapping(path = "/account/reset-password/finish")
     public void finishPasswordReset(@RequestBody KeyAndPasswordVM keyAndPassword) {
+
+        System.out.println("Key and Password:"+keyAndPassword);
         if (isPasswordLengthInvalid(keyAndPassword.getNewPassword())) {
             throw new InvalidPasswordException();
         }

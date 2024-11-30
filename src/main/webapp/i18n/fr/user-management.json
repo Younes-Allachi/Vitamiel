@@ -6,6 +6,50 @@
       "createLabel": "Créer un nouvel utilisateur",
       "createOrEditLabel": "Créer ou éditer un utilisateur"
     },
+    "category": {
+      "title": "Catégories",
+      "refreshListLabel": "Rafraîchir la liste",
+      "createLabel": "Créer une nouvelle catégorie",
+      "createOrEditLabel": "Créer ou modifier une catégorie",
+      "Name": "Nom",
+      "Actions": "Actions",
+      "Category ID": "ID de catégorie",
+      "ID": "ID",
+      "EnName": "Nom de la catégorie en anglais",
+  "EsName": "Nom de la catégorie en espagnol",
+  "FrName": "Nom de la catégorie en français",
+  "NlName": "Nom de la catégorie en néerlandais"
+    },
+    "product": {
+      "createLabel": "Créer le nouveau produit",
+      "createorEditLabel": "Créer ou modifier le produit",
+      "title": "Produits",
+      "name": "Nom",
+      "description": "Description",
+      "origin": "Origine",
+      "weight": "Poids",
+      "price": "Prix",
+      "stockQuantity": "Quantité en stock",
+      "categoryId": "ID de catégorie",
+      "actions": "Actions",
+      "view": "Voir",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "Total Count": "Nombre total",
+      "productComparison": "Comparaison de produits"
+
+    },    
+    "order": {
+      "title": "Commandes",
+      "Order ID": "ID de commande",
+      "Order Date": "Date de la commande",
+      "Product ID": "ID du produit",
+      "Customer Name": "Nom du client",
+      "Email": "Email",
+      "Status": "Statut",
+      "View": "Voir",
+      "refreshListLabel": "Rafraîchir la liste"
+    },        
     "created": "L'utilisateur {{ param }} a été créé.",
     "updated": "L'utilisateur {{ param }} a été mis à jour.",
     "deleted": "L'utilisateur {{ param }} a été supprimé.",
@@ -26,6 +70,9 @@
     "createdBy": "Créé par",
     "createdDate": "Créé le",
     "lastModifiedBy": "Modifié par",
-    "lastModifiedDate": "Modifié le"
+    "lastModifiedDate": "Modifié le",
+    "View": "Voir",
+    "Edit": "Modifier",
+    "Delete": "Supprimer"
   }
 }

@@ -14,8 +14,42 @@
       "Name": "Nombre",
       "Actions": "Acciones",
       "Category ID": "ID de categoría",
-      "ID": "ID"
+      "ID": "ID",
+      "EnName": "Nombre de la categoría en inglés",
+  "EsName": "Nombre de la categoría en español",
+  "FrName": "Nombre de la categoría en francés",
+  "NlName": "Nombre de la categoría en neerlandés"
     },
+    "product": {
+      "createLabel": "Crear el nuevo producto",
+  "createorEditLabel": "Crear o editar producto",
+      "title": "Productos",
+      "name": "Nombre",
+      "description": "Descripción",
+      "origin": "Origen",
+      "weight": "Peso",
+      "price": "Precio",
+      "stockQuantity": "Cantidad en stock",
+      "categoryId": "ID de categoría",
+      "actions": "Acciones",
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "Total Count": "Recuento total",
+      "productComparison": "Comparación de productos"
+
+    },    
+    "order": {
+      "title": "Pedidos",
+      "Order ID": "ID del pedido",
+      "Order Date": "Fecha del pedido",
+      "Product ID": "ID del producto",
+      "Customer Name": "Nombre del cliente",
+      "Email": "Correo electrónico",
+      "Status": "Estado",
+      "View": "Ver",
+      "refreshListLabel": "Actualizar lista"
+    },    
     "created": "Se ha creado un nuevo usuario con el identificador {{ param }}",
     "updated": "Un usuario ha sido actualizado con el identificador {{ param }}",
     "deleted": "Un usuario ha sido eliminado con el identificador {{ param }}",

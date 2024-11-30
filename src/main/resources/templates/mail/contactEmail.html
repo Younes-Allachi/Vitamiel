@@ -6,7 +6,7 @@
   </head>
   <body>
     <!-- Personalized Greeting -->
-    <h1 th:text="#{email.activation.greeting(${contact.firstName})}">Hello,</h1>
+    <h1 th:text="'Hello, ' + ${contact.firstName}">Hello,</h1>
     
     <!-- User's Email -->
     <p>

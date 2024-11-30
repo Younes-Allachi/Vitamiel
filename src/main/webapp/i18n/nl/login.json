@@ -17,7 +17,10 @@
   },
   "entity": {
     "action": {
-      "cancel": "Annuleren"
+      "cancel": "Annuleren",
+      "back":"Terug",
+      "save": "Opslaan",
+      "delete":"Verwijderen"
     }
   }
 }

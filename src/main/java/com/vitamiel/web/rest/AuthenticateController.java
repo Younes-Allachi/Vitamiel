@@ -17,8 +17,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +27,8 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 
 /**
  * Controller to authenticate users.
@@ -45,29 +47,48 @@ public class AuthenticateController {
     @Value("${jhipster.security.authentication.jwt.token-validity-in-seconds-for-remember-me:0}")
     private long tokenValidityInSecondsForRememberMe;
 
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final AuthenticationManager authenticationManager;
 
-    public AuthenticateController(JwtEncoder jwtEncoder, AuthenticationManagerBuilder authenticationManagerBuilder) {
+    public AuthenticateController(JwtEncoder jwtEncoder, AuthenticationManager authenticationManager) {
         this.jwtEncoder = jwtEncoder;
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
+        this.authenticationManager = authenticationManager;
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginVM loginVM) {
-
-        System.out.println("Authenticated User request:"+loginVM);
+    
+        System.out.println("Authenticated User request: " + loginVM);
+    
+        // Create an authentication token with the login credentials
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
             loginVM.getUsername(),
             loginVM.getPassword()
         );
-
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = this.createToken(authentication, loginVM.isRememberMe());
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setBearerAuth(jwt);
-        return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
+    
+        try {
+            Authentication authentication = authenticationManager.authenticate(authenticationToken);
+    
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+    
+            String jwt = this.createToken(authentication, loginVM.isRememberMe());
+    
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setBearerAuth(jwt);
+    
+            return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
+    
+        } catch (BadCredentialsException e) {
+            LOG.error("Authentication failed for user: {}", loginVM.getUsername(), e);
+            JWTToken errorToken = new JWTToken("Authentication failed: Invalid username or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorToken);
+    
+        } catch (AuthenticationException e) {
+            LOG.error("Authentication error occurred for user: {}", loginVM.getUsername(), e);
+            JWTToken errorToken = new JWTToken("Authentication failed: General authentication error");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorToken);
+        }
     }
+    
 
     /**
      * {@code GET /authenticate} : check if the user is authenticated, and return its login.

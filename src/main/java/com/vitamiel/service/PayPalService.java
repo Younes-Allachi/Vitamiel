@@ -1,4 +1,4 @@
-package com.vitamiel.config;
+package com.vitamiel.service;
 
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.APIContext;

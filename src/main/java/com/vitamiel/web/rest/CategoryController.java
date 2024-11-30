@@ -1,9 +1,7 @@
 package com.vitamiel.web.rest;
 
 import com.vitamiel.domain.Category;
-import com.vitamiel.domain.Email; // Import the Email domain
 import com.vitamiel.service.CategoryService;
-import com.vitamiel.service.EmailService; // Import the Email service
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +15,10 @@ import java.util.Optional;
 public class CategoryController {
 
     private final CategoryService categoryService;
-    private final EmailService emailService; // Inject the EmailService
 
     @Autowired
-    public CategoryController(CategoryService categoryService, EmailService emailService) {
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
-        this.emailService = emailService; // Initialize EmailService
     }
 
     // Create a new category
@@ -72,31 +68,11 @@ public class CategoryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-    // Find category by name (Custom query example)
-    @GetMapping("/name/{name}")
-    public ResponseEntity<Category> getCategoryByName(@PathVariable String name) {
-        Optional<Category> category = categoryService.getCategoryByName(name);
+    @GetMapping("/name/{name}/language/{language}")
+    public ResponseEntity<Category> getCategoryByNameAndLanguage(@PathVariable String name, @PathVariable String language) {
+        Optional<Category> category = categoryService.getCategoryByName(name, language);
         return category.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                        .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
-    // NEW: Save user email functionality
-    @PostMapping("/useremail")
-    public ResponseEntity<?> saveEmail(@RequestBody Email email) {
-        try {
-            if (email == null || email.getEmail() == null || email.getEmail().isEmpty()) {
-                return ResponseEntity.badRequest().body("Email cannot be null or empty.");
-            }
-
-            // Save the email using the email service
-            Email savedEmail = emailService.saveEmail(email);
-            
-            return new ResponseEntity<>(savedEmail, HttpStatus.CREATED);  // Return saved email response
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while saving the email: " + e.getMessage());
-        }
-    }
+    
 }
