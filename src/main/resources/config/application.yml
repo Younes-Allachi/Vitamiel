@@ -10,8 +10,8 @@ spring:
 
   data:
     mongodb:
-        uri: mongodb+srv://akashurrehman456:hCmCfDOz2nsgGlip@cluster0.iylmp.mongodb.net/vitamiel?retryWrites=true&w=majority
-        database: vitamiel
+        uri: mongodb+srv://developer:developer123@vitamielcluster.mfawq.mongodb.net/Vitamiel?retryWrites=true&w=majority
+        database: Vitamiel
 springdoc:
   api-docs:
     enabled: false

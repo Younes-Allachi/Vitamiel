@@ -29,8 +29,8 @@ spring:
       auto-commit: false
   data:
     mongodb:
-      uri: mongodb+srv://akashurrehman456:hCmCfDOz2nsgGlip@cluster0.iylmp.mongodb.net/vitamiel?retryWrites=true&w=majority
-      database: vitamiel
+      uri: mongodb+srv://developer:developer123@vitamielcluster.mfawq.mongodb.net/Vitamiel?retryWrites=true&w=majority
+      database: Vitamiel
   h2:
     console:
       # disable spring boot built-in h2-console since we start it manually with correct configuration

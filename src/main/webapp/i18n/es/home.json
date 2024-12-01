@@ -64,7 +64,8 @@
       "7": "Disponible",
       "8": "Disponible"
     },
-    "currency": "$"
+    "currency": "$",
+    "price":"precio"
   },
   "offer": {
     "limited": "Oferta limitada para clientes",

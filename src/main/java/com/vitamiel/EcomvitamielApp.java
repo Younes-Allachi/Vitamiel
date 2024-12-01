@@ -90,7 +90,7 @@ public class EcomvitamielApp implements CommandLineRunner {
 
     private void verifyMongoConnection() {
 
-        String connectionString = "mongodb+srv://akashurrehman456:hCmCfDOz2nsgGlip@cluster0.iylmp.mongodb.net/vitamiel?retryWrites=true&w=majority";
+        String connectionString = "mongodb+srv://developer:developer123@vitamielcluster.mfawq.mongodb.net/Vitamiel?retryWrites=true&w=majority";
     
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(new ConnectionString(connectionString))

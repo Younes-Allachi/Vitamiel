@@ -185,7 +185,7 @@
     "itemRemovedFromCart": "Article retiré du panier",
     "itemAddedToWishList": "Article ajouté aux favoris",
     "itemRemovedFromWishList": "Article retiré des favoris",
-    "cartCleared": "Panier Vider ! Paiement Réussi"
+    "cartCleared": "Panier vidé ! Paiement Réussi"
   },
   "item-count":"Total count"
 }
