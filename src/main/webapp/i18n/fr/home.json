@@ -64,7 +64,8 @@
       "7": "En Stock",
       "8": "En Stock"
     },
-    "currency": "€"
+    "currency": "€",
+    "price":"prix"
   },
   "offer": {
     "limited": "Offre limitée pour les clients",

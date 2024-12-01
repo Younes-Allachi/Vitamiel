@@ -64,7 +64,8 @@
       "7": "In Stock",
       "8": "In Stock"
     },
-    "currency": "$"
+    "currency": "$",
+    "price":"price"
   },
   "offer": {
     "limited": "Limited offer for customers",

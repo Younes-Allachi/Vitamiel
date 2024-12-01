@@ -18,14 +18,14 @@ interface ProductProps {
   categories: Array<{
     categoryId: string;
     name: string;
-    nameEs:string;
-    nameEn:string;
-    nameFr:string;
-    nameNl:string;
+    nameEs: string;
+    nameEn: string;
+    nameFr: string;
+    nameNl: string;
   }>;
   addToCartProduct: (product: any) => void;
   addToWishListProduct: (product: any) => void;
-  currentLocale: string; 
+  currentLocale: string;
 }
 
 const Product = ({
@@ -40,7 +40,7 @@ const Product = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [comparisonProducts, setComparisonProducts] = useState<Array<any>>([]);
 
-  console.log('Categories in product page:',categories);
+  console.log('Categories in product page:', categories);
   const handleClickOpen = (product: any) => {
     setOpen(true);
     setState(product);
@@ -62,7 +62,7 @@ const Product = ({
 
   const handleCompare = () => {
     if (comparisonProducts.length === 2) {
-      setOpen(true); 
+      setOpen(true);
     }
   };
 
@@ -74,7 +74,7 @@ const Product = ({
       product?.frName?.toLowerCase(),
       product?.nlName?.toLowerCase()
     ];
-  
+
     return namesToCheck.some(name => name.includes(searchQueryLower));
   });
 
@@ -86,38 +86,38 @@ const Product = ({
   const getProductName = (product: any) => {
     switch (currentLocale) {
       case 'es':
-        return product.esName; 
+        return product.esName;
       case 'fr':
-        return product.frName; 
+        return product.frName;
       case 'nl':
-        return product.nlName; 
+        return product.nlName;
       default:
-        return product.enName; 
+        return product.enName;
     }
   };
   const getProductDescription = (product: any) => {
     switch (currentLocale) {
       case 'es':
-        return product.esDescription; 
+        return product.esDescription;
       case 'fr':
-        return product.frDescription; 
+        return product.frDescription;
       case 'nl':
-        return product.nlDescription; 
+        return product.nlDescription;
       default:
-        return product.enDescription; 
+        return product.enDescription;
     }
   };
 
   const getCategoryName = (category: any) => {
     switch (currentLocale) {
       case 'es':
-        return category.nameEs; 
+        return category.nameEs;
       case 'fr':
-        return category.nameFr; 
+        return category.nameFr;
       case 'nl':
-        return category.nameNl; 
+        return category.nameNl;
       default:
-        return category.nameEn; 
+        return category.nameEn;
     }
   };
 
@@ -183,12 +183,12 @@ const Product = ({
         <div className="product-wrap">
           {groupedProducts.map((category) => (
             <div key={category.categoryId}>
-              <h3>{getCategoryName(category)}</h3> 
+              <h3>{getCategoryName(category)}</h3>
 
               <div className="row align-items-center">
                 {category.products.length > 0 ? (
                   category.products.map((product, pitem) => (
-                    <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem} style={{height: '450px'}}>
+                    <div className="col-lg-3 col-md-6 col-sm-12 col-12" key={pitem} style={{ height: '450px' }}>
                       <div className="product-item">
                         <div className="product-img">
                           <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.enName} />
@@ -250,7 +250,7 @@ const Product = ({
       {/* Modal for Comparison */}
       {comparisonProducts.length === 2 && (
         <div className="modal fade show" id="comparisonModal" tabIndex={-1} style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }} aria-hidden="true">
-          <div className="modal-dialog modal-lg" style={{marginTop:'7%'}}>
+          <div className="modal-dialog modal-lg" style={{ marginTop: '7%' }}>
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title"><Translate contentKey="userManagement.product.productComparison" /></h5>
@@ -260,25 +260,25 @@ const Product = ({
                 <div className="comparison-wrapper" style={{ display: 'flex', justifyContent: 'space-between' }}>
                   {/* Comparison Item 1 */}
                   <div className="comparison-item" style={{ width: '48%' }}>
-                    <img src={comparisonProducts[0].imageUrl} alt={comparisonProducts[0].name} style={{ objectFit:'cover',maxWidth:'350px',maxHeight:'350px' }} />
+                    <img src={comparisonProducts[0].imageUrl} alt={comparisonProducts[0].name} style={{ objectFit: 'cover', maxWidth: '350px', maxHeight: '350px' }} />
                     <h4>{getProductName(comparisonProducts[0])}</h4>
                     <h6>{getProductDescription(comparisonProducts[0])}</h6>
 
-                    <p>Price:{(comparisonProducts[0].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
+                    <p> <Translate contentKey="product.price" />:{(comparisonProducts[0].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
                   </div>
 
                   {/* Comparison Item 2 */}
                   <div className="comparison-item" style={{ width: '48%' }}>
-                    <img src={comparisonProducts[1].imageUrl} alt={comparisonProducts[1].name} style={{ objectFit:'cover',maxWidth:'350px',maxHeight:'350px' }} />
+                    <img src={comparisonProducts[1].imageUrl} alt={comparisonProducts[1].name} style={{ objectFit: 'cover', maxWidth: '350px', maxHeight: '350px' }} />
                     <h4>{getProductName(comparisonProducts[1])}</h4>
                     <h6>{getProductDescription(comparisonProducts[1])}</h6>
-                    <p>Price:{(comparisonProducts[1].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
+                    <p><Translate contentKey="product.price" />:{(comparisonProducts[1].price * 1.06).toFixed(2)} <Translate contentKey="product.currency" /></p>
                   </div>
                 </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setComparisonProducts([])}>
-                  Close
+                  <Translate contentKey="gdprModal.closeButton" />
                 </button>
               </div>
             </div>

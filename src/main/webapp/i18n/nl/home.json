@@ -64,7 +64,8 @@
       "7": "Op Voorraad",
       "8": "Op Voorraad"
     },
-    "currency": "€"
+    "currency": "€",
+    "price":"prijs"
   },
   "offer": {
     "limited": "Beperkte aanbieding voor klanten",
