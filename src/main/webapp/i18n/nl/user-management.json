@@ -36,7 +36,8 @@
       "edit": "Bewerken",
       "delete": "Verwijderen",
       "Total Count": "Totaal aantal",
-      "productComparison": "Productvergelijking"
+      "productComparison": "Productvergelijking",
+      "noProduct":"Geen producten gevonden voor deze categorie."
     },    
     "order": {
       "title": "Bestellingen",

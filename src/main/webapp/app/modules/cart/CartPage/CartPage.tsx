@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, connect } from 'react-redux';
-import { Button, MenuItem, Select, InputLabel, FormControl, SelectChangeEvent } from '@mui/material';
+import { Button, MenuItem, Select, InputLabel, FormControl, SelectChangeEvent, Checkbox, FormControlLabel } from '@mui/material';
 import { totalPrice } from 'app/shared/util/lists';
 import { removeFromCart, incrementQuantity, decrementQuantity, clearCart } from 'app/shared/actions/action';
 import { Translate } from 'react-jhipster';
@@ -29,6 +29,7 @@ interface CartItem {
   qty: number;
   price: number;
   OrderId: string;
+  stockQuantity: number;  // Add stockQuantity here
 }
 
 const CartPage: React.FC<CartPageProps> = (props) => {
@@ -39,6 +40,8 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
   const [currency, setCurrency] = useState<'EUR' | 'USD'>('EUR');
   const [currencySymbol, setCurrencySymbol] = useState<string>('€'); // default USD symbol
+  const [termsChecked, setTermsChecked] = useState<boolean>(false);  // New state for checkbox
+  const [stockError, setStockErrors] = useState<Record<number, string>>({});  // Correct type
 
   const currencySymbols = {
     EUR: currentLocale === 'fr' ? '€' : '€',
@@ -56,22 +59,82 @@ const CartPage: React.FC<CartPageProps> = (props) => {
   const [loading, setLoading] = useState(false);
 
 
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTermsChecked(event.target.checked);
+  };
+
   console.log('carts in cart:', carts);
 
+  // Handle direct quantity change in input
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, itemId: number) => {
     const newQty = parseInt(e.target.value, 10);
-    if (newQty > 0) {
-      const item = carts.find(cartItem => cartItem.id === itemId);
-      if (item && item.qty !== newQty) {
+    const item = carts.find(cartItem => cartItem.id === itemId);
+
+    if (item) {
+      if (newQty > item.stockQuantity) {
+        setStockErrors(prev => ({
+          ...prev,
+          [itemId]: `You can only purchase up to ${item.stockQuantity} units of this product.`,
+        }));
+      } else if (newQty <= 0) {
+        setStockErrors(prev => ({
+          ...prev,
+          [itemId]: "Quantity must be greater than 0.",
+        }));
+      } else {
+        setStockErrors(prev => {
+          const { [itemId]: _, ...rest } = prev;
+          return rest;
+        });
+
         const difference = newQty - item.qty;
         if (difference > 0) {
-          Array.from({ length: difference }).forEach(() => incrementQuantity(itemId));
-        } else {
+          // Increment quantity, but ensure it does not exceed stock
+          if (item.qty + difference <= item.stockQuantity) {
+            Array.from({ length: difference }).forEach(() => incrementQuantity(itemId));
+          } else {
+            setStockErrors(prev => ({
+              ...prev,
+              [itemId]: `You can only purchase up to ${item.stockQuantity} units of this product.`,
+            }));
+          }
+        } else if (difference < 0) {
+          // Decrement quantity
           Array.from({ length: -difference }).forEach(() => decrementQuantity(itemId));
         }
       }
     }
   };
+
+  // Handle increment of quantity
+  const handleIncrement = (itemId: number) => {
+    const item = carts.find(cartItem => cartItem.id === itemId);
+    if (item && item.qty < item.stockQuantity) {
+      incrementQuantity(itemId);
+      setStockErrors(prev => {
+        const { [itemId]: _, ...rest } = prev;
+        return rest;
+      });
+    } else {
+      setStockErrors(prev => ({
+        ...prev,
+        [itemId]: `You can only purchase up to ${item.stockQuantity} units of this product.`,
+      }));
+    }
+  };
+
+  // Handle decrement of quantity
+  const handleDecrement = (itemId: number) => {
+    const item = carts.find(cartItem => cartItem.id === itemId);
+    if (item && item.qty > 1) {
+      decrementQuantity(itemId);
+      setStockErrors(prev => {
+        const { [itemId]: _, ...rest } = prev;
+        return rest;
+      });
+    }
+  };
+
 
   const createOrder = async (data, actions) => {
     try {
@@ -101,7 +164,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
       await saveOrder(currency, orderId);
 
-      
+
       console.log('Payment captured successfully');
     } catch (error) {
       await saveOrder(currency, 'orderId');
@@ -113,12 +176,17 @@ const CartPage: React.FC<CartPageProps> = (props) => {
   };
 
   const productIds: string[] = (Array.isArray(carts) && carts.length > 0)
-  ? carts
-      .map(item => item && item.id ? String(item.id) : undefined)  
+    ? carts
+      .map(item => item && item.id ? String(item.id) : undefined)
       .filter((id): id is string => id !== undefined)
-  : [];
+    : [];
 
 
+  const quantities: number[] = (Array.isArray(carts) && carts.length > 0)
+    ? carts
+      .map(item => item && item.qty ? item.qty : undefined)  // Capture the quantity of each item
+      .filter((quantity): quantity is number => quantity !== undefined)
+    : [];
 
   const totalAmount = parseFloat(total);
 
@@ -134,6 +202,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
         prénom: account.firstName,
         pays: account.deliveryAddress,
         productIds: productIds,
+        quantities: quantities,
         username: account.login,
         email: account.email,
         status: 'PAID',
@@ -152,7 +221,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
       if (response.status === 200) {
         console.log('Order saved successfully');
-        alert('Order saved!'); 
+        alert('Order saved!');
         setLoading(false);
         clearCart();
         navigate('/');
@@ -190,6 +259,11 @@ const CartPage: React.FC<CartPageProps> = (props) => {
       alert("You must be logged in to proceed with the checkout.");
       return;
     }
+    if (!termsChecked) {
+      alert("You must read and accept the Terms and Conditions of Sale for Vitamiel.");
+      return;
+    }
+
 
     setLoading(true);
   };
@@ -242,7 +316,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                             </td>
                             <td className="stock">
                               <div className="quantity cart-plus-minus">
-                                <Button className="dec qtybutton" onClick={() => decrementQuantity(catItem.id)}>
+                                <Button className="dec qtybutton" onClick={() => handleDecrement(catItem.id)}>
                                   -
                                 </Button>
                                 <input
@@ -252,10 +326,11 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                                   onChange={e => handleQuantityChange(e, catItem.id)}
                                   className="quantity-input"
                                 />
-                                <Button className="inc qtybutton" onClick={() => incrementQuantity(catItem.id)}>
+                                <Button className="inc qtybutton" onClick={() => handleIncrement(catItem.id)}>
                                   +
                                 </Button>
                               </div>
+                              {stockError[catItem.id] && <div className="stock-error">{stockError[catItem.id]}</div>}
                             </td>
                             <td className="ptice">
                               {catItem.price} {currencySymbol}
@@ -332,6 +407,28 @@ const CartPage: React.FC<CartPageProps> = (props) => {
                     </ul>
                   </div>
 
+                  {/* Terms and Conditions Checkbox */}
+                  <div className="terms-checkbox">
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={termsChecked}
+                          onChange={handleCheckboxChange}
+                          name="terms"
+                          color="primary"
+                        />
+                      }
+                      label={
+                        currentLocale === 'en'
+                          ? "I've read the Terms and Conditions of Sale for Vitamiel in the FAQ page."
+                          : currentLocale === 'es'
+                            ? "He leído los Términos y Condiciones de Venta de Vitamiel en la página de preguntas frecuentes."
+                            : currentLocale === 'fr'
+                              ? "J'ai lu les Conditions Générales de Vente de Vitamiel dans la page FAQ."
+                              : "Ik heb de Algemene Voorwaarden van Vitamiel gelezen op de FAQ-pagina."
+                      }
+                    />
+                  </div>
                   <div className="submit-btn-area">
                     <ul>
                       <li>

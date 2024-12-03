@@ -15,6 +15,8 @@ const AdministrationRoutes = () => (
       <Route path="product-management/*" element={<ProductManagement />} />
       <Route path="category-management/*" element={<CategoryManagement />} />
       <Route path="order-management/*" element={<OrderManagement />} />
+
+      {/* Two routes more, one for email and other for contact */}
       <Route path="docs" element={<Docs />} />
     </ErrorBoundaryRoutes>
   </div>
