@@ -238,7 +238,7 @@ const Product = ({
                   ))
                 ) : (
                   <div className="col-12">
-                    <p>No products found for this category.</p>
+                    <Translate contentKey="userManagement.product.noProduct" />
                   </div>
                 )}
               </div>

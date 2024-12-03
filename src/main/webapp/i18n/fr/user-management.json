@@ -36,8 +36,8 @@
       "edit": "Modifier",
       "delete": "Supprimer",
       "Total Count": "Nombre total",
-      "productComparison": "Comparaison de produits"
-
+      "productComparison": "Comparaison de produits",
+      "noProduct":"Aucun produit trouvé pour cette catégorie."
     },    
     "order": {
       "title": "Commandes",

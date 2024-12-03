@@ -36,8 +36,8 @@
       "edit": "Editar",
       "delete": "Eliminar",
       "Total Count": "Recuento total",
-      "productComparison": "Comparación de productos"
-
+      "productComparison": "Comparación de productos",
+      "noProduct":" No se encontraron productos para esta categoría."
     },    
     "order": {
       "title": "Pedidos",

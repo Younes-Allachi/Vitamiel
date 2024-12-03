@@ -18,6 +18,7 @@ public class Order {
     private String prénom;         // First name (prénom) of the user
     private String pays;           // Country of the user (can be null)
     private List<String> productIds;
+    private List<Integer> quantities;
     private String username;       // Username of the user
     private String email;          // Email of the user
     private String status;         // Payment status (e.g., "PAID", "PENDING")
@@ -29,12 +30,13 @@ public class Order {
     // Constructor with all fields, setting null for missing fields
     public Order(String userId, String nom, String prénom, String pays, List<String> productIds, 
                  String username, String email, String status, Double totalAmount, 
-                 String currency, String orderId) {
+                 String currency, String orderId,List<Integer> quantities) {
         this.userId = userId != null ? userId : null;  // Handle null explicitly
         this.nom = nom != null ? nom : null;
         this.prénom = prénom != null ? prénom : null;
         this.pays = pays != null ? pays : null;
         this.productIds = productIds != null ? productIds : null;
+        this.quantities = quantities != null ? quantities : null;
         this.username = username != null ? username : null;
         this.email = email != null ? email : null;
         this.status = status != null ? status : null;
@@ -120,6 +122,15 @@ public class Order {
     public Instant getOrderDate() {
         return orderDate;
     }
+
+    public List<Integer> getQuantities() {
+        return quantities;
+    }
+
+    public void setQuantities(List<Integer> quantities) {
+        this.quantities = quantities;
+    }
+
 
     public void setOrderDate(Instant orderDate) {
         this.orderDate = orderDate;

@@ -52,6 +52,10 @@ const FaqSection: React.FC = () => {
       questionKey: 'faqSection.questions[11].question',
       answerKey: 'faqSection.questions[11].answer',
     },
+    {
+      questionKey: 'faqSection.questions[12].question',
+      answerKey: 'faqSection.questions[12].answer',
+    },
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
