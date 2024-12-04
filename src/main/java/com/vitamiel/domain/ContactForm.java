@@ -3,7 +3,6 @@ package com.vitamiel.domain;
 
 public class ContactForm {
     
-  
     private String firstName;
     private String lastName;
     private String email;
