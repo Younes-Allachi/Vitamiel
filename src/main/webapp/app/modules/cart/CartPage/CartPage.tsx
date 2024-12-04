@@ -43,6 +43,26 @@ const CartPage: React.FC<CartPageProps> = (props) => {
   const [termsChecked, setTermsChecked] = useState<boolean>(false);  // New state for checkbox
   const [stockError, setStockErrors] = useState<Record<number, string>>({});  // Correct type
 
+  const translations = {
+    en: {
+      maxQuantityError: (stockQuantity) => `You can only purchase up to ${stockQuantity} units of this product.`,
+      minQuantityError: "Quantity must be greater than 0.",
+    },
+    fr: {
+      maxQuantityError: (stockQuantity) => `Vous pouvez acheter jusqu'à ${stockQuantity} unités de ce produit.`,
+      minQuantityError: "La quantité doit être supérieure à 0.",
+    },
+    es: {
+      maxQuantityError: (stockQuantity) => `Solo puedes comprar hasta ${stockQuantity} unidades de este producto.`,
+      minQuantityError: "La cantidad debe ser mayor a 0.",
+    },
+    nl: {
+      maxQuantityError: (stockQuantity) => `Je kunt maximaal ${stockQuantity} eenheden van dit product kopen.`,
+      minQuantityError: "De hoeveelheid moet groter dan 0 zijn.",
+    },
+  };
+
+  
   const currencySymbols = {
     EUR: currentLocale === 'fr' ? '€' : '€',
     USD: '$',
@@ -65,28 +85,30 @@ const CartPage: React.FC<CartPageProps> = (props) => {
 
   console.log('carts in cart:', carts);
 
-  // Handle direct quantity change in input
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, itemId: number) => {
     const newQty = parseInt(e.target.value, 10);
     const item = carts.find(cartItem => cartItem.id === itemId);
-
+  
     if (item) {
+      // Get the error messages based on the current locale
+      const localeMessages = translations[currentLocale];
+  
       if (newQty > item.stockQuantity) {
         setStockErrors(prev => ({
           ...prev,
-          [itemId]: `You can only purchase up to ${item.stockQuantity} units of this product.`,
+          [itemId]: localeMessages.maxQuantityError(item.stockQuantity),
         }));
       } else if (newQty <= 0) {
         setStockErrors(prev => ({
           ...prev,
-          [itemId]: "Quantity must be greater than 0.",
+          [itemId]: localeMessages.minQuantityError,
         }));
       } else {
         setStockErrors(prev => {
           const { [itemId]: _, ...rest } = prev;
           return rest;
         });
-
+  
         const difference = newQty - item.qty;
         if (difference > 0) {
           // Increment quantity, but ensure it does not exceed stock
@@ -95,7 +117,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
           } else {
             setStockErrors(prev => ({
               ...prev,
-              [itemId]: `You can only purchase up to ${item.stockQuantity} units of this product.`,
+              [itemId]: localeMessages.maxQuantityError(item.stockQuantity),
             }));
           }
         } else if (difference < 0) {
@@ -105,8 +127,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
       }
     }
   };
-
-  // Handle increment of quantity
+  
   const handleIncrement = (itemId: number) => {
     const item = carts.find(cartItem => cartItem.id === itemId);
     if (item && item.qty < item.stockQuantity) {
@@ -116,14 +137,14 @@ const CartPage: React.FC<CartPageProps> = (props) => {
         return rest;
       });
     } else {
+      const localeMessages = translations[currentLocale];
       setStockErrors(prev => ({
         ...prev,
-        [itemId]: `You can only purchase up to ${item.stockQuantity} units of this product.`,
+        [itemId]: localeMessages.maxQuantityError(item.stockQuantity),
       }));
     }
   };
-
-  // Handle decrement of quantity
+  
   const handleDecrement = (itemId: number) => {
     const item = carts.find(cartItem => cartItem.id === itemId);
     if (item && item.qty > 1) {
@@ -134,6 +155,7 @@ const CartPage: React.FC<CartPageProps> = (props) => {
       });
     }
   };
+  
 
 
   const createOrder = async (data, actions) => {
